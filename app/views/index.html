@@ -1,0 +1,105 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="/">
+    <title></title> 
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(app) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/normalize-css/normalize.css" />
+    <link rel="stylesheet" href="bower_components/foundation/css/foundation.css" />
+    <link rel="stylesheet" href="bower_components/ionicons/css/ionicons.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/perfect-scrollbar/min/perfect-scrollbar-0.4.8.min.css">
+    <link rel="stylesheet" href="styles/ionicons.css" />
+
+    <link rel="stylesheet" href="styles/medium.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/main_styl.css">
+
+    <!-- endbuild -->
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow|PT+Serif:400,400italic|Roboto:300|Oswald|Open+Sans|Roboto+Condensed|Merriweather' rel='stylesheet' type='text/css'>
+  </head>
+  <body ng-app="wrdz">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="pure-g" ng-view=""></div>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-47683318-1', 'jit.su');
+      ga('send', 'pageview');
+
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <!-- build:js(app) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/momentjs/moment.js"></script>
+    <script src="bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+    <script src="bower_components/foundation/js/foundation.js"></script>
+    <script src="bower_components/angular-dropdowns/dist/angular-dropdowns.js"></script>
+    <script src="bower_components/angular-perfect-scrollbar/src/angular-perfect-scrollbar.js"></script>
+    <!-- endbower -->
+    <script src="vendor/medium.js"></script>
+    <script src="vendor/mousetrap.js"></script>
+    <script src="vendor/wMousetrap.js"></script>
+    <script src="bower_components/perfect-scrollbar/min/perfect-scrollbar-0.4.8.with-mousewheel.min.js"></script>
+    
+    <!-- endbuild -->
+    <script>
+    $(document).foundation();
+  </script>
+
+
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/nodes.js"></script>
+        <script src="scripts/controllers/navbar.js"></script>
+        <script src="scripts/directives/node.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/notes.js"></script>
+        <script src="scripts/controllers/auth.js"></script>
+        <script src="scripts/services/Auth.js"></script>
+        <script src="scripts/services/Notes.js"></script>
+        <script src="scripts/directives/medium-js.js"></script>
+        <script src="scripts/directives/blank-node.js"></script>
+        <script src="scripts/directives/note-in-list.js"></script>
+        <script src="scripts/filters/noteSorter.js"></script>
+        <script src="scripts/directives/level-meter.js"></script>
+        <script src="scripts/directives/node-functions.js"></script>
+        <!-- endbuild -->
+</body>
+</html>

@@ -1,0 +1,60 @@
+<div>
+
+  <div   ng-mouseenter="switchButtons()" ng-mouseleave="switchButtons()">
+
+    <div ng-click="switchIndex($index)" class="note-in-list-info">
+      <div ng-hide="archived">
+        <span class="title-stamp">
+          {{note.data.title}}
+        </span> 
+        <div class="updated-stamp">
+          <span ng-show="note.data.updated">
+            {{moment(note.data.updated).calendar()}}
+          </span>  
+
+        </div>
+
+      </div>
+
+      <div class='archivedText' ng-show="archived">
+
+
+        <span>Deleted</span>
+
+        <div class='right'ng-click="noArchive = true; archived = false">
+
+          <span id='archiveIcon' class="icon ion-reply"></span>
+          <span>Undo</span>
+        </div>
+
+
+
+
+      </div>
+    </div>
+
+
+    <div ng-hide='archived'>
+
+      <div  ng-show="buttons || note.data.pinned"  class="right note-in-list-buttons " >      
+
+
+
+        <div ng-click="archive(note)" ng-hide="!buttons && note.data.pinned" class="pin-archive-buttons left archive-button">
+          <span class="pin-archive-text ion ion-trash-b"></span>
+        </div>
+
+        <div ng-click="pinClick()"  ng-class="{pinnedNote: note.data.pinned}" class="pin-archive-buttons right pin-button">
+          <span class="pin-archive-text ion ion-pin"></span>
+        </div>
+
+     </div>
+
+   </div>
+
+
+ </div>
+
+
+
+</div>

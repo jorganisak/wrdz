@@ -1,0 +1,25 @@
+{
+  "name": "angular-dropdowns",
+  "homepage": "https://github.com/jseppi/angular-dropdowns",
+  "authors": [
+    "James Seppi"
+  ],
+  "description": "AngularJS Dropdown Directives",
+  "main": "dist/angular-dropdowns.js",
+  "keywords": [
+    "angular",
+    "dropdown",
+    "select"
+  ],
+  "license": "MIT",
+  "_release": "81cbebf271",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "81cbebf27143d2c21e4b3117a8e8662c520e8ff3"
+  },
+  "_source": "git://github.com/jseppi/angular-dropdowns.git",
+  "_target": "*",
+  "_originalSource": "angular-dropdowns",
+  "_direct": true
+}
