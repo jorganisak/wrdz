@@ -1,0 +1,177 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', 'selenium', '-g' ]
+2 info using npm@1.3.24
+3 info using node@v0.10.25
+4 verbose node symlink /usr/bin/node
+5 verbose cache add [ 'selenium', null ]
+6 verbose cache add name=undefined spec="selenium" args=["selenium",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'selenium',
+7 verbose parsed url   path: 'selenium',
+7 verbose parsed url   href: 'selenium' }
+8 silly lockFile 781b4ea1-selenium selenium
+9 verbose lock selenium /home/joey/.npm/781b4ea1-selenium.lock
+10 silly lockFile 781b4ea1-selenium selenium
+11 silly lockFile 781b4ea1-selenium selenium
+12 verbose addNamed [ 'selenium', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile fe0c0f79-selenium selenium@
+15 verbose lock selenium@ /home/joey/.npm/fe0c0f79-selenium.lock
+16 silly addNameRange { name: 'selenium', range: '*', hasData: false }
+17 verbose url raw selenium
+18 verbose url resolving [ 'http://registry.npmjs.org/', './selenium' ]
+19 verbose url resolved http://registry.npmjs.org/selenium
+20 info trying registry request attempt 1 at 16:59:48
+21 http GET http://registry.npmjs.org/selenium
+22 http 200 http://registry.npmjs.org/selenium
+23 silly registry.get cb [ 200,
+23 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B)',
+23 silly registry.get     etag: '"172EYNB80J9WQ4RV7DPUYNUZP"',
+23 silly registry.get     'content-type': 'application/json',
+23 silly registry.get     via: '1.1 varnish',
+23 silly registry.get     'cache-control': 'max-age=1',
+23 silly registry.get     'content-length': '2274',
+23 silly registry.get     'accept-ranges': 'bytes',
+23 silly registry.get     date: 'Sat, 08 Feb 2014 21:59:49 GMT',
+23 silly registry.get     age: '0',
+23 silly registry.get     connection: 'keep-alive',
+23 silly registry.get     'x-served-by': 'cache-v43-ASH, cache-at51-ATL',
+23 silly registry.get     'x-cache': 'MISS, MISS',
+23 silly registry.get     'x-cache-hits': '0, 0',
+23 silly registry.get     'x-timer': 'S1391896789.011841297,VS0,VS7,VE95,VE101',
+23 silly registry.get     vary: 'Accept' } ]
+24 silly addNameRange number 2 { name: 'selenium', range: '*', hasData: true }
+25 silly addNameRange versions [ 'selenium', [ '2.0.0', '2.20.0' ] ]
+26 verbose addNamed [ 'selenium', '2.20.0' ]
+27 verbose addNamed [ '2.20.0', '2.20.0' ]
+28 silly lockFile 32e50e87-selenium-2-20-0 selenium@2.20.0
+29 verbose lock selenium@2.20.0 /home/joey/.npm/32e50e87-selenium-2-20-0.lock
+30 silly lockFile 3e5ca826-org-selenium-selenium-2-20-0-tgz http://registry.npmjs.org/selenium/-/selenium-2.20.0.tgz
+31 verbose lock http://registry.npmjs.org/selenium/-/selenium-2.20.0.tgz /home/joey/.npm/3e5ca826-org-selenium-selenium-2-20-0-tgz.lock
+32 verbose addRemoteTarball [ 'http://registry.npmjs.org/selenium/-/selenium-2.20.0.tgz',
+32 verbose addRemoteTarball   'f515b1a162de93c2ccef2fc0ca33f3b5543e38c8' ]
+33 info retry fetch attempt 1 at 16:59:48
+34 verbose fetch to= /home/joey/tmp/npm-12846-fOQw3Ue2/1391896788723-0.6118395733647048/tmp.tgz
+35 http GET http://registry.npmjs.org/selenium/-/selenium-2.20.0.tgz
+36 http 200 http://registry.npmjs.org/selenium/-/selenium-2.20.0.tgz
+37 verbose tar unpack /home/joey/tmp/npm-12846-fOQw3Ue2/1391896788723-0.6118395733647048/tmp.tgz
+38 silly lockFile 0bed4049-88723-0-6118395733647048-package tar:///home/joey/tmp/npm-12846-fOQw3Ue2/1391896788723-0.6118395733647048/package
+39 verbose lock tar:///home/joey/tmp/npm-12846-fOQw3Ue2/1391896788723-0.6118395733647048/package /home/joey/.npm/0bed4049-88723-0-6118395733647048-package.lock
+40 silly lockFile b4e0a1fb-88723-0-6118395733647048-tmp-tgz tar:///home/joey/tmp/npm-12846-fOQw3Ue2/1391896788723-0.6118395733647048/tmp.tgz
+41 verbose lock tar:///home/joey/tmp/npm-12846-fOQw3Ue2/1391896788723-0.6118395733647048/tmp.tgz /home/joey/.npm/b4e0a1fb-88723-0-6118395733647048-tmp-tgz.lock
+42 silly gunzTarPerm modes [ '755', '644' ]
+43 silly gunzTarPerm extractEntry package.json
+44 silly gunzTarPerm extractEntry README.md
+45 silly gunzTarPerm extractEntry bin/selenium
+46 silly gunzTarPerm extractEntry lib/runner/app.js
+47 silly gunzTarPerm extractEntry lib/runner/selenium-server-standalone-2.20.0.jar
+48 silly gunzTarPerm extractEntry logs/.gitignore
+49 silly lockFile 0bed4049-88723-0-6118395733647048-package tar:///home/joey/tmp/npm-12846-fOQw3Ue2/1391896788723-0.6118395733647048/package
+50 silly lockFile 0bed4049-88723-0-6118395733647048-package tar:///home/joey/tmp/npm-12846-fOQw3Ue2/1391896788723-0.6118395733647048/package
+51 silly lockFile b4e0a1fb-88723-0-6118395733647048-tmp-tgz tar:///home/joey/tmp/npm-12846-fOQw3Ue2/1391896788723-0.6118395733647048/tmp.tgz
+52 silly lockFile b4e0a1fb-88723-0-6118395733647048-tmp-tgz tar:///home/joey/tmp/npm-12846-fOQw3Ue2/1391896788723-0.6118395733647048/tmp.tgz
+53 verbose tar pack [ '/home/joey/.npm/selenium/2.20.0/package.tgz',
+53 verbose tar pack   '/home/joey/tmp/npm-12846-fOQw3Ue2/1391896788723-0.6118395733647048/package' ]
+54 verbose tarball /home/joey/.npm/selenium/2.20.0/package.tgz
+55 verbose folder /home/joey/tmp/npm-12846-fOQw3Ue2/1391896788723-0.6118395733647048/package
+56 silly lockFile 0bed4049-88723-0-6118395733647048-package tar:///home/joey/tmp/npm-12846-fOQw3Ue2/1391896788723-0.6118395733647048/package
+57 verbose lock tar:///home/joey/tmp/npm-12846-fOQw3Ue2/1391896788723-0.6118395733647048/package /home/joey/.npm/0bed4049-88723-0-6118395733647048-package.lock
+58 silly lockFile f3691684--npm-selenium-2-20-0-package-tgz tar:///home/joey/.npm/selenium/2.20.0/package.tgz
+59 verbose lock tar:///home/joey/.npm/selenium/2.20.0/package.tgz /home/joey/.npm/f3691684--npm-selenium-2-20-0-package-tgz.lock
+60 silly lockFile 0bed4049-88723-0-6118395733647048-package tar:///home/joey/tmp/npm-12846-fOQw3Ue2/1391896788723-0.6118395733647048/package
+61 silly lockFile 0bed4049-88723-0-6118395733647048-package tar:///home/joey/tmp/npm-12846-fOQw3Ue2/1391896788723-0.6118395733647048/package
+62 silly lockFile f3691684--npm-selenium-2-20-0-package-tgz tar:///home/joey/.npm/selenium/2.20.0/package.tgz
+63 silly lockFile f3691684--npm-selenium-2-20-0-package-tgz tar:///home/joey/.npm/selenium/2.20.0/package.tgz
+64 silly lockFile c800fd10-joey-npm-selenium-2-20-0-package /home/joey/.npm/selenium/2.20.0/package
+65 verbose lock /home/joey/.npm/selenium/2.20.0/package /home/joey/.npm/c800fd10-joey-npm-selenium-2-20-0-package.lock
+66 silly lockFile c800fd10-joey-npm-selenium-2-20-0-package /home/joey/.npm/selenium/2.20.0/package
+67 silly lockFile c800fd10-joey-npm-selenium-2-20-0-package /home/joey/.npm/selenium/2.20.0/package
+68 verbose tar unpack /home/joey/.npm/selenium/2.20.0/package.tgz
+69 silly lockFile 83ebfb87-joey-npm-selenium-2-20-0-package tar:///home/joey/.npm/selenium/2.20.0/package
+70 verbose lock tar:///home/joey/.npm/selenium/2.20.0/package /home/joey/.npm/83ebfb87-joey-npm-selenium-2-20-0-package.lock
+71 silly lockFile f3691684--npm-selenium-2-20-0-package-tgz tar:///home/joey/.npm/selenium/2.20.0/package.tgz
+72 verbose lock tar:///home/joey/.npm/selenium/2.20.0/package.tgz /home/joey/.npm/f3691684--npm-selenium-2-20-0-package-tgz.lock
+73 silly gunzTarPerm modes [ '755', '644' ]
+74 silly gunzTarPerm extractEntry package.json
+75 silly gunzTarPerm extractEntry README.md
+76 silly gunzTarPerm extractEntry bin/selenium
+77 silly gunzTarPerm extractEntry lib/runner/app.js
+78 silly gunzTarPerm extractEntry lib/runner/selenium-server-standalone-2.20.0.jar
+79 silly gunzTarPerm extractEntry logs/.npmignore
+80 silly lockFile 83ebfb87-joey-npm-selenium-2-20-0-package tar:///home/joey/.npm/selenium/2.20.0/package
+81 silly lockFile 83ebfb87-joey-npm-selenium-2-20-0-package tar:///home/joey/.npm/selenium/2.20.0/package
+82 silly lockFile f3691684--npm-selenium-2-20-0-package-tgz tar:///home/joey/.npm/selenium/2.20.0/package.tgz
+83 silly lockFile f3691684--npm-selenium-2-20-0-package-tgz tar:///home/joey/.npm/selenium/2.20.0/package.tgz
+84 verbose chmod /home/joey/.npm/selenium/2.20.0/package.tgz 644
+85 verbose chown /home/joey/.npm/selenium/2.20.0/package.tgz [ 1000, 1000 ]
+86 silly lockFile 3e5ca826-org-selenium-selenium-2-20-0-tgz http://registry.npmjs.org/selenium/-/selenium-2.20.0.tgz
+87 silly lockFile 3e5ca826-org-selenium-selenium-2-20-0-tgz http://registry.npmjs.org/selenium/-/selenium-2.20.0.tgz
+88 silly lockFile 32e50e87-selenium-2-20-0 selenium@2.20.0
+89 silly lockFile 32e50e87-selenium-2-20-0 selenium@2.20.0
+90 silly lockFile fe0c0f79-selenium selenium@
+91 silly lockFile fe0c0f79-selenium selenium@
+92 silly resolved [ { author: { name: 'Didit Tech', email: 'developers@didit.com' },
+92 silly resolved     name: 'selenium',
+92 silly resolved     description: 'Selenium in an npm package',
+92 silly resolved     version: '2.20.0',
+92 silly resolved     homepage: 'http://github.com/didit-tech/NPM-Selenium',
+92 silly resolved     repository:
+92 silly resolved      { type: 'git',
+92 silly resolved        url: 'git://github.com/didit-tech/NPM-Selenium.git' },
+92 silly resolved     engines: { node: '> 0.4.x' },
+92 silly resolved     keywords: [ 'bdd', 'tdd', 'selenium' ],
+92 silly resolved     bin: { selenium: './bin/selenium' },
+92 silly resolved     preferGlobal: true,
+92 silly resolved     readme: '# Intro\n\nNode wrapper for Selenium\n\n# Install\n\n    npm install -g selenium\n\n# Use\n\n    selenium &\n',
+92 silly resolved     readmeFilename: 'README.md',
+92 silly resolved     bugs: { url: 'https://github.com/didit-tech/NPM-Selenium/issues' },
+92 silly resolved     _id: 'selenium@2.20.0',
+92 silly resolved     dist: { shasum: 'c219ff78f282f304ca7c3d145dd0580dba7ea2fe' },
+92 silly resolved     _from: 'selenium@',
+92 silly resolved     _resolved: 'http://registry.npmjs.org/selenium/-/selenium-2.20.0.tgz' } ]
+93 info install selenium@2.20.0 into /usr/lib
+94 info installOne selenium@2.20.0
+95 info /usr/lib/node_modules/selenium unbuild
+96 verbose tar unpack /home/joey/.npm/selenium/2.20.0/package.tgz
+97 silly lockFile 18eb6144-ar-usr-lib-node-modules-selenium tar:///usr/lib/node_modules/selenium
+98 verbose lock tar:///usr/lib/node_modules/selenium /home/joey/.npm/18eb6144-ar-usr-lib-node-modules-selenium.lock
+99 silly lockFile f3691684--npm-selenium-2-20-0-package-tgz tar:///home/joey/.npm/selenium/2.20.0/package.tgz
+100 verbose lock tar:///home/joey/.npm/selenium/2.20.0/package.tgz /home/joey/.npm/f3691684--npm-selenium-2-20-0-package-tgz.lock
+101 silly gunzTarPerm modes [ '755', '644' ]
+102 error Error: EACCES, mkdir '/usr/lib/node_modules/selenium'
+102 error  { [Error: EACCES, mkdir '/usr/lib/node_modules/selenium']
+102 error   errno: 3,
+102 error   code: 'EACCES',
+102 error   path: '/usr/lib/node_modules/selenium',
+102 error   fstream_type: 'Directory',
+102 error   fstream_path: '/usr/lib/node_modules/selenium',
+102 error   fstream_class: 'DirWriter',
+102 error   fstream_stack:
+102 error    [ '/usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+102 error      '/usr/lib/node_modules/npm/node_modules/mkdirp/index.js:37:53',
+102 error      'Object.oncomplete (fs.js:107:15)' ] }
+103 error Please try running this command again as root/Administrator.
+104 error System Linux 3.8.0-35-generic
+105 error command "/usr/bin/node" "/usr/bin/npm" "install" "selenium" "-g"
+106 error cwd /home/joey/wrdz
+107 error node -v v0.10.25
+108 error npm -v 1.3.24
+109 error path /usr/lib/node_modules/selenium
+110 error fstream_path /usr/lib/node_modules/selenium
+111 error fstream_type Directory
+112 error fstream_class DirWriter
+113 error code EACCES
+114 error errno 3
+115 error stack Error: EACCES, mkdir '/usr/lib/node_modules/selenium'
+116 error fstream_stack /usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+116 error fstream_stack /usr/lib/node_modules/npm/node_modules/mkdirp/index.js:37:53
+116 error fstream_stack Object.oncomplete (fs.js:107:15)
+117 verbose exit [ 3, true ]

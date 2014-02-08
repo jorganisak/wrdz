@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('wrdz')
-  .factory('Auth', function ($http, $cookieStore, $rootScope) {
+  .factory('User', function ($http, $cookieStore, $rootScope) {
     // Service logic
     
-    var currentUser = $cookieStore.get('user') || {email: ''};
+    var currentUser = $cookieStore.get('user') || null;
 
     function changeUser(user) {
-      _.extend(currentUser, user);
+      currentUser =  user;
 
       $rootScope.$broadcast('userChange', user);
     }
@@ -16,34 +16,22 @@ angular.module('wrdz')
 
     // Public API here
     return {
+
+        changeUser: changeUser,
        
-        isLoggedIn: function(user) {
-            if(user === undefined){
-              user = currentUser;
-            }
-            return user;
+        isLoggedIn: function() {
+          if(currentUser){
+            return currentUser;
+          } else return null;
+        },
+        signup: function(user) {
+            return $http.post('/signup', user);
           },
-        register: function(user, success, error) {
-            $http.post('/signup', user).success(function(user) {
-                changeUser(user);
-                success(user);
-              }).error(error);
+        signin: function(user, success, error) {
+            return $http.post('/login', user);
           },
-        login: function(user, success, error) {
-            $http.post('/login', user).success(function(user){
-                changeUser(user);
-                success(user);
-              }).error(error);
-          },
-        logout: function(success, error) {
-            $http.get('/logout').success(function(){
-                changeUser({
-                  email: '',
-                  _id : '',
-                  notes: []
-                });
-                success();
-              }).error();
+        logout: function() {
+            return $http.get('/logout');
           },
         update: function() {
           $http.post('/updateuser', currentUser).success(function(user) {

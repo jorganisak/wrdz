@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <base href="/">
-    <title></title> 
+    <title>wrdz</title> 
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -33,9 +33,10 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    
+    <div ng-include="'partials/main.html'"></div>
 
-    <!-- Add your site or application content here -->
-    <div class="pure-g" ng-view=""></div>
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -63,22 +64,20 @@
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/momentjs/moment.js"></script>
-    <script src="bower_components/fastclick/lib/fastclick.js"></script>
-    <script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
-    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <script src="bower_components/foundation/js/foundation.js"></script>
-    <script src="bower_components/angular-dropdowns/dist/angular-dropdowns.js"></script>
     <script src="bower_components/angular-perfect-scrollbar/src/angular-perfect-scrollbar.js"></script>
     <!-- endbower -->
     <script src="vendor/medium.js"></script>
+    <script src="vendor/ui-router/angular-ui-router.min.js"></script>
     <script src="vendor/mousetrap.js"></script>
     <script src="vendor/wMousetrap.js"></script>
     <script src="bower_components/perfect-scrollbar/min/perfect-scrollbar-0.4.8.with-mousewheel.min.js"></script>
     
     <!-- endbuild -->
-    <script>
+    <script> 
     $(document).foundation();
   </script>
 
@@ -86,20 +85,11 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/nodes.js"></script>
+        <script src="scripts/states.js"></script>
         <script src="scripts/controllers/navbar.js"></script>
-        <script src="scripts/directives/node.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/notes.js"></script>
-        <script src="scripts/controllers/auth.js"></script>
         <script src="scripts/services/Auth.js"></script>
-        <script src="scripts/services/Notes.js"></script>
         <script src="scripts/directives/medium-js.js"></script>
-        <script src="scripts/directives/blank-node.js"></script>
-        <script src="scripts/directives/note-in-list.js"></script>
-        <script src="scripts/filters/noteSorter.js"></script>
-        <script src="scripts/directives/level-meter.js"></script>
-        <script src="scripts/directives/node-functions.js"></script>
         <!-- endbuild -->
 </body>
 </html>

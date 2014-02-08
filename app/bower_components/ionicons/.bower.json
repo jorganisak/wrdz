@@ -32,10 +32,9 @@
   "_resolution": {
     "type": "version",
     "tag": "v1.4.1",
-    "commit": "6b3b1843bd0b98d130769a90a9d28a8d92a16da9"
+    "commit": "76925c32a033b7ff1acb64691e42d3014511bf7c"
   },
   "_source": "git://github.com/driftyco/ionicons.git",
   "_target": "~1.4.1",
-  "_originalSource": "ionicons",
-  "_direct": true
+  "_originalSource": "ionicons"
 }

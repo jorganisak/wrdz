@@ -1,21 +1,21 @@
 'use strict';
 
 angular.module('wrdz')
-  .controller('NavbarCtrl', function ($scope, $location) {
-    $scope.menu = [{
-      'title': 'Home',
-      'link': '/'
-    },
-    {
-      'title': 'About',
-      'link': '#'
-    },
-    {
-      'title': 'Contact',
-      'link': '#'
-    }];
+  .controller('NavbarCtrl', function ($scope, $state, User) {
 
-    $scope.isActive = function(route) {
-      return route === $location.path();
+
+    $scope.logout = function() {
+      if ( User.isLoggedIn() ) {
+        User.logout().
+          success( function( data ) {
+            User.changeUser(null);
+            if (data == 'Logged out now.') {
+              $state.go('landing');
+            }
+          }).error(function(err) {
+            console.log(err);
+          });
+      }
     };
+
   });

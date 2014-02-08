@@ -20,6 +20,5 @@
   },
   "_source": "git://github.com/jseppi/angular-dropdowns.git",
   "_target": "*",
-  "_originalSource": "angular-dropdowns",
-  "_direct": true
+  "_originalSource": "angular-dropdowns"
 }
