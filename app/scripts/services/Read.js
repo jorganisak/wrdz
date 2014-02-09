@@ -1,16 +1,26 @@
 'use strict';
 
 angular.module('wrdz')
-  .factory('Read', function () {
-    // Service logic
-    // ...
+  .factory('Read', function ($http) {
 
-    var meaningOfLife = 42;
+
+    var docs = [];
+
 
     // Public API here
     return {
-      someMethod: function () {
-        return meaningOfLife;
+
+      getDocs : function  () {
+        return docs;
+      },
+
+      refreshDocs : function  () {
+        $http.get('pubDocs/').success(function  (data) {
+          docs = data;
+        }).error();
       }
+
+
+
     };
   });

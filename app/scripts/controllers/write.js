@@ -2,7 +2,7 @@
 
 angular.module('wrdz')
 
-  .controller('WriteCtrl', function ($scope, User, Write, $state) {
+  .controller('WriteCtrl', function ($scope, User, Write, Profile, $state) {
 
 
 
@@ -33,19 +33,34 @@ angular.module('wrdz')
 
 
     $scope.archive = function () {
-      if ($scope.currentDoc.title || $scope.currentDoc.body) {
+      if ($scope.currentDoc.title && $scope.currentDoc.body) {
         Write.archiveDoc().then(
-          function () {
-
-            Write.updateCurrentDoc('body', '');
-            Write.updateCurrentDoc('title', '');
-            $state.go('me');
+          function (data) {
+            Profile.pushDocId(data.data._id);
+            Write.updateCurrentDoc('body', '', User.user);
+            Write.updateCurrentDoc('title', '', User.user);
             
           }
 
         );
       } else {
-        console.log('note is empty!!')
+        // { TODO } error message notifiying user
+        console.log('note is empty!!');
+      }
+    };
+
+    $scope.publish = function () {
+      if ($scope.currentDoc.title && $scope.currentDoc.body) {
+        Write.publishDoc().then(
+          function  () {
+
+            $scope.currentDoc.is_published = true;
+            $scope.archive();
+          }
+        );
+      } else {
+        // { TODO } error message notifiying user
+        console.log('note is empty!!');
       }
 
     };

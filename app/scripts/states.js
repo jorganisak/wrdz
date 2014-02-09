@@ -96,9 +96,21 @@ angular.module('wrdz').
       ME
 */
 
-      .state('me', {
-        url: '/me',
-        templateUrl: 'partials/me.html'
-      });
+      .state('profile', {
+        url: '/profile',
+        templateUrl: 'partials/profile.html'
+      })
+      .state('profile.docs', {
+        url: '/docs',
+        templateUrl: 'partials/showUserDocs.html'
+      })
+      .state('profile.inbox', {
+        url: '/inbox',
+        templateUrl: 'partials/inbox.html'
+      })
+      .state('profile.about', {
+        url: '/about',
+        templateUrl: 'partials/about.html'
+      })
 
   }]);

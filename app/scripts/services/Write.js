@@ -21,7 +21,9 @@ angular.module('wrdz')
         return current_doc;
       },
 
-
+      publishDoc : function () {
+        return $http.post('/pubDocs', current_doc);
+      },
 
       setCurrentDoc : function  (doc) {
         current_doc = doc;

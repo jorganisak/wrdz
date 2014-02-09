@@ -1,1 +1,21 @@
-<h3>there will be stuff to read here</h3>
+<div ng-controller="ReadCtrl">
+  
+  <h3>there will be stuff to read here</h3>
+
+  <div ng-repeat='doc in docs'>
+    <h3>
+      {{doc.title}}  
+    </h3>
+    <br>
+
+    <h5>
+      {{doc.body.slice(0,300)}}  
+    </h5>
+    
+    <p>upvotes:  {{doc.up_votes}} </p>
+    <p>hearts:    {{doc.hearts}}</p>
+  </div>
+
+  
+  
+</div>

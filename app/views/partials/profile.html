@@ -1,0 +1,17 @@
+<div class="medium-6 column medium-centered" ng-controller="ProfileCtrl">
+  
+  <h3>this page is about me</h3>
+  <br>
+  <br>
+  <dl class="tabs" data-tab>
+    <dd><a ui-sref="profile.docs">My Wrdz</a></dd>
+    <dd><a ui-sref="profile.inbox">Inbox</a></dd>
+    <dd><a ui-sref="profile.about">About this thing</a></dd>
+  </dl>
+  <div class="tabs-content">
+    <div ui-view></div>
+  </div>
+      <a ng-click="logout()">logout</a>
+
+</div>
+
