@@ -22,10 +22,12 @@ angular.module('wrdz').
                 success(function(user, status, headers, config)
                 {
                   User.changeUser(user);
+                  $state.go('read');
                 }).
                 error(function(err, status, headers, config)
                 {
                   console.log(err.errors.email.type);
+                  $scope.message = 'Something went wrong...someone probably already has that email on here.';
                 });
               }
             };
@@ -46,6 +48,7 @@ angular.module('wrdz').
                 User.signin(user).
                   success(function(user, status, headers, config) {
                     User.changeUser(user);
+                    $state.go('read');
                   }).
                   error(function(err, status, headers, config) {
                     if (err == 'Unknown user') {
@@ -96,6 +99,6 @@ angular.module('wrdz').
       .state('me', {
         url: '/me',
         templateUrl: 'partials/me.html'
-      })
+      });
 
   }]);

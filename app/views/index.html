@@ -21,10 +21,8 @@
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="bower_components/perfect-scrollbar/min/perfect-scrollbar-0.4.8.min.css">
     <link rel="stylesheet" href="styles/ionicons.css" />
+    <link rel="stylesheet" href="styles/main.css" />
 
-    <link rel="stylesheet" href="styles/medium.css">
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/main_styl.css">
 
     <!-- endbuild -->
     <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow|PT+Serif:400,400italic|Roboto:300|Oswald|Open+Sans|Roboto+Condensed|Merriweather' rel='stylesheet' type='text/css'>
@@ -64,16 +62,20 @@
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
-
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/momentjs/moment.js"></script>
+    <script src="bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <script src="bower_components/foundation/js/foundation.js"></script>
     <script src="bower_components/angular-perfect-scrollbar/src/angular-perfect-scrollbar.js"></script>
+
     <!-- endbower -->
     <script src="vendor/medium.js"></script>
     <script src="vendor/ui-router/angular-ui-router.min.js"></script>
     <script src="vendor/mousetrap.js"></script>
     <script src="vendor/wMousetrap.js"></script>
+    <script src="vendor/angular-contenteditable.js"></script>
     <script src="bower_components/perfect-scrollbar/min/perfect-scrollbar-0.4.8.with-mousewheel.min.js"></script>
     
     <!-- endbuild -->
@@ -88,8 +90,12 @@
         <script src="scripts/states.js"></script>
         <script src="scripts/controllers/navbar.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/services/Auth.js"></script>
+        <script src="scripts/services/User.js"></script>
         <script src="scripts/directives/medium-js.js"></script>
+        <script src="scripts/controllers/write.js"></script>
+        <script src="scripts/services/Write.js"></script>
+        <script src="scripts/services/Read.js"></script>
+        <script src="scripts/controllers/read.js"></script>
         <!-- endbuild -->
 </body>
 </html>

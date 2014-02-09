@@ -7,7 +7,8 @@ angular.module('wrdz', [
   'ngRoute',
   'mgo-mousetrap',
   'perfect_scrollbar',
-  'ui.router'
+  'ui.router',
+  'contenteditable'
 ])
   .config( function($locationProvider) {
     $locationProvider.html5Mode(true);

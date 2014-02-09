@@ -1,4 +1,3 @@
-/* jshint ignore:start */
 /*
  * Medium.js
  *
@@ -268,7 +267,7 @@
                         }
                         
                         // Add base P tag and do autofocus
-                        //utils.html.addTag(settings.tags.paragraph, cache.initialized ? true : settings.autofocus);
+                        utils.html.addTag(settings.tags.paragraph, cache.initialized ? true : settings.autofocus);
                     } else {
                         if(innerText !== settings.placeholder){
                             var i;
@@ -584,4 +583,3 @@
     }
 
 }).call(this, window, document);
-/* jshint ignore:end */

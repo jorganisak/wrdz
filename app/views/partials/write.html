@@ -1,1 +1,30 @@
-<h3>place to write things here</h3>
+<div ng-controller='WriteCtrl'>
+  
+  <h3>place to write things here</h3>
+
+  <div class="medium-4 column medium-centered">
+    <p ng-show="!user">Youre not signed in so you cant publish or save this note but write away! and then <a ui-sref='signin'>sign in</a> or <a ui-ref='signup'>join wrdz</a>.</p>
+
+    <div ng-show="user" class="write-buttons">
+      <button ng-click="archive()">File away</button>
+      <button ng-click="publish()">Publish</button>
+    </div>
+
+    <div contenteditable='true' strip-br="true"
+        select-non-editable="true" id='write-title' ng-model='currentDoc.title' >
+      <p>
+      </p>  
+           
+    </div>
+    
+    <div  contenteditable='true' strip-br="true"
+        select-non-editable="true" class='' id='write-body' ng-model='currentDoc.body' >
+      <p>
+      </p>
+    </div>
+
+  </div>
+
+  
+</div>
+

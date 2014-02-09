@@ -3,28 +3,30 @@
 angular.module('wrdz')
   .controller('MainCtrl', function ($scope, User, $rootScope) {
     
+/*
+Does a few things:
+  1. when loaded checks to see if user is logged in
+  2. if it is a cookie of a user then it calls to get full user
+  3. assigns the full user to $scope.user
+  4. listener at the bottom for changes like login/signup/logout
 
-    $scope.user = User.user ;
+  */
 
 
+    function getUser () {
+      var u = User.isLoggedIn();
+      var result;
+      if (u && !u.messages) {
+        User.getCurrentUser(u._id).success(function  (data) {
+          User.changeUser(data.user);
+        }).error(function  (data) {
+          console.log(data);
+        });
+      }
 
-    // This function runs on initial load of the app from the MainCtrl
-    // If a user cookie exists, it sets $scope.user, and gets all notes
-    // belonging to this user, setting them to $scope.notes
-    // if there is no user, it calls Notes.initNoUser, passing scope
-    // // to the Notes service
-    // $scope.init = function() {
-    //   var user = User.isLoggedIn();
-    //   if (user.email !== '') {
-    //     $scope.user = user;
-    //     Notes.getAllNotes().then(function(res) {
-    //       $scope.notes = res.data;
-    //       $scope.currentIndex = 0;
-    //     });
-    //   } else {
-    //     Notes.initNoUser($scope);
-    //   }
-    // };
+    }
+
+    getUser();
 
     // This recieves a broadcast signal from the User service when
     // login or logout happens during interaction with the app
@@ -35,11 +37,5 @@ angular.module('wrdz')
         $scope.user = null;
       }
     });
-
-    // // call init()
-    // $scope.init();
-
-
-
 
   });
