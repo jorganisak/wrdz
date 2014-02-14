@@ -1,28 +1,6 @@
 /* Space out content a bit */
 
 
-#write-title {
-  padding: 10px;
-  cursor: text;
-  height: 100px;
-  border: solid 1px gray;
-  font-family: 'Roboto', sans-serif;
-  outline: none;
-  font-size: 2em;
-  text-align: center;
-}
-
-#write-body {
-  
-  padding: 10px;
-  cursor: text;
-  height: 600px;
-  border: solid 1px gray;
-  font-family: 'Open Sans', sans-serif;
-  outline: none;
-  font-size: 1em;
-  text-align: justify;
-}
 
 /* Customize container */
 

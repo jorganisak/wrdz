@@ -1,30 +1,107 @@
-<div ng-controller='WriteCtrl'>
-  
-  <h3>place to write things here</h3>
+<div id="write-body" ng-controller='WriteCtrl'>
+        <div class="row">
+            <div class="small-12 column small-centered">
 
-  <div class="medium-4 column medium-centered">
-    <p ng-show="!user">Youre not signed in so you cant publish or save this note but write away! and then <a ui-sref='signin'>sign in</a> or <a ui-ref='signup'>join wrdz</a>.</p>
+                <div class="row">
+                    
+                    
+                    <div id='' class="write-column-left medium-3 show-for-medium-up text-left column">
+                                <button ng-click='newDoc()' class=''>New</button>                                                                   
+                                <button>Publish Annoyomously</button>
+                            <button>Publish with Name</button>
+                        
+                        <div id='write-box' class="row">
+                            <div class="row">
+                                <div class='medium-6 column' id="write-last-title">
+                                    Last 5
+                                </div>
+                                <div id='write-last-tags' class="medium-4 text-center column">
+                                    tags
+                                </div>
+                            </div>
+                            <div class="write-last-item">
+                                Something I wrote Yesterda
+                            </div>
+                            <div class="write-last-item">
+                                Something I wrote Yesterda
+                            </div>
+                            <div class="write-last-item">
+                                Something I wrote Yesterda
+                            </div>
+                            <div class="write-last-item">
+                                Something I wrote Yesterda
+                            </div>
+                            <div class="write-last-item">
+                                Something I wrote Yesterda
+                            </div>
+                        </div>
+                        <div id='write-box' class="row">
+                            <div class="row">
+                                <div class='medium-6 column' id="write-last-title">
+                                    Tags
+                                </div>
+                                <div id='write-last-tags' class="medium-4 text-center column">
+                                    last 5
+                                </div>
+                            </div>
+                            <div class="row write-add-tag-box">
+                                <div class="medium-10 column">
+                                    <input type="text">
+                                </div>
+                                <div class="medium-1 left column">
+                                    <span class="icon ion-plus-circled"></span>
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="label tag-label">Diary <span class="icon tag-remove-x ion-close"></span></div>
+                            <div class="label tag-label">Diary<span class="icon tag-remove-x ion-close"></span></div>
+                            <div class="label tag-label">Diary<span class="icon tag-remove-x ion-close"></span></div>
+                            <div class="label tag-label">Diary<span class="icon tag-remove-x ion-close"></span></div>
+                            <div class="label tag-label">Diary<span class="icon tag-remove-x ion-close"></span></div>
+                   
+                            
+                            
+                            
+                            <div class='row '>
+                                <div class="medium-12 write-recent-tag-title column">
+                                    
+                                    <em>Most recent tags</em>
+                                </div>
+                                
+                            </div>
+                            <div class="label tag-label">Diary<span class="icon tag-add-plus ion-plus"></span></div>
 
-    <div ng-show="user" class="write-buttons">
-      <button ng-click="archive()">File away</button>
-      <button ng-click="publish()">Publish and file</button>
+                            
+                                
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="medium-8 column text-center" ng-show='noDoc'>Nothing selected! <br> Create new </div>
+
+                    <div ng-hide='noDoc' id='write-center' class="medium-8  column ">
+                        
+                            
+
+                                
+                                <div medium-editor options='{"placeholder": "Title", "disableToolbar": true, "disableReturn":true}' ng-model='currentDoc.title' contenteditable="true" id="write-title">
+                                    
+                             
+                                </div>
+                                <div medium-editor ng-model='currentDoc.body'  class='text-justify' id="write-content">
+                                    
+                                </div>
+                                
+                    
+
+                    </div>
+                    
+                </div>
+                
+                
+            </div>
+        </div>
+        
+        
     </div>
-
-    <div contenteditable='true' strip-br="true"
-        select-non-editable="true" id='write-title' ng-model='currentDoc.title' >
-      <p>
-      </p>  
-           
-    </div>
-    
-    <div  contenteditable='true' strip-br="true"
-        select-non-editable="true" class='' id='write-body' ng-model='currentDoc.body' >
-      <p>
-      </p>
-    </div>
-
-  </div>
-
-  
-</div>
-

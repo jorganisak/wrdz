@@ -98,16 +98,10 @@ angular.module('wrdz').
 
       .state('profile', {
         url: '/profile',
-        templateUrl: 'partials/profile.html'
+        templateUrl: 'partials/me.html'
       })
-      .state('profile.docs', {
-        url: '/docs',
-        templateUrl: 'partials/showUserDocs.html'
-      })
-      .state('profile.inbox', {
-        url: '/inbox',
-        templateUrl: 'partials/inbox.html'
-      })
+
+      
       .state('profile.about', {
         url: '/about',
         templateUrl: 'partials/about.html'

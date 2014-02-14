@@ -7,15 +7,21 @@ angular.module('wrdz')
 
     var current_doc = {};
 
-
+    function setCurrentDoc (doc) {
+      current_doc = doc;
+    };
 
     // Public API here
     return {
 
+      createNewDoc : function  () {
+        return $http.get('/userDocs');
 
-      archiveDoc : function  () {
-        return $http.post('/userDocs', current_doc);
+
       },
+
+
+
 
       getCurrentDoc : function  () {
         return current_doc;
@@ -25,22 +31,26 @@ angular.module('wrdz')
         return $http.post('/pubDocs', current_doc);
       },
 
-      setCurrentDoc : function  (doc) {
-        current_doc = doc;
+      setCurrentDoc : setCurrentDoc,
+
+      updateUserDoc : function  (t, d) {
+        var send = {
+          type: t,
+          data: d
+        };
+        return $http.post('/userDocs/'+current_doc._id, send);
       },
 
-      updateCurrentDoc: function (type, content, user) {
+      updateCurrentDoc: function (id, user) {
         var data = {
-          type : 'current_doc_'+type,
-          doc : content
+          type : 'current_doc',
+          docId : id
         };
 
-        if (type == 'title') current_doc.title = content;
-        if (type == 'body') current_doc.body = content;
+        return $http.post('/users/' + user._id, data);
 
-        if (user) {
-          return $http.post('/users/' + user._id, data);
-        }
+        
+        
       }
     };
   });

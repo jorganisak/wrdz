@@ -10,10 +10,16 @@ angular.module('wrdz')
 
     $scope.$on('userChange', function  (evt, user) {
       if (user) {
-        $scope.currentDoc.title = user.current_doc.title;
-        $scope.currentDoc.body = user.current_doc.body;
-        Write.setCurrentDoc($scope.currentDoc);
+        if ( user.current_doc ) {
+          $scope.currentDoc = user.current_doc;
+          Write.setCurrentDoc($scope.currentDoc);
+        } else {
+          console.log('No current Doc');
+          $scope.noDoc = true;
+        }
         
+      } else {
+        $scope.noUser = true;
       }
 
     });
@@ -21,13 +27,15 @@ angular.module('wrdz')
 
     $scope.$watch('currentDoc.title', function  (newValue, oldValue) {
       if (newValue) {
-        Write.updateCurrentDoc('title',$scope.currentDoc.title, User.user);
+        console.log('title change');
+        Write.updateUserDoc('title',$scope.currentDoc.title);
       }
     });
 
     $scope.$watch('currentDoc.body', function  (newValue, oldValue) {
       if (newValue) {
-        Write.updateCurrentDoc('body',$scope.currentDoc.body, User.user);
+        console.log('body change');
+        Write.updateUserDoc('body',$scope.currentDoc.body);
       }
     });
 
@@ -63,6 +71,15 @@ angular.module('wrdz')
         console.log('note is empty!!');
       }
 
+    };
+
+    $scope.newDoc = function  () {
+      Write.createNewDoc().then(function  (res) {
+        var doc = res.data;
+        Write.setCurrentDoc(doc);
+        $scope.noDoc = false;
+        Write.updateCurrentDoc(doc._id, $scope.user);
+      })
     };
 
 

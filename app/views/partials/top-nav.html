@@ -1,9 +1,22 @@
-<nav ng-controller="NavbarCtrl">
-  <a ui-sref="read">read</a>
-  <a ui-sref="write">write</a>
-  <a ui-sref="landing">wrdz home</a>
-  <a ui-sref="profile">me</a>
-  {{user.email}}
 
-
-</nav>
+ <div ng-controller="NavbarCtrl" id="header">
+        <div class="row">
+            <div id='top-nav' class="medium-12  small-centered column">
+                <div ui-sref="write" id='top-nav-write' class="column small-6 top-nav-item medium-2">
+                    write
+                </div>
+                <div ui-sref="read" id='top-nav-read' class="small-6 column top-nav-item medium-2">
+                    read
+                </div>
+                <div ui-sref="landing" id='wrdz-headline' class="column show-for-medium-up medium-4">
+                    wrdz
+                </div>
+                <div id='top-nav-inbox' class="column top-nav-item small-6 medium-2">
+                    talk
+                </div>
+                <div ui-sref="profile" id='top-nav-profile' class="column top-nav-item small-6 medium-2">
+                    my wrdz
+                </div>
+            </div>
+        </div>
+    </div>
