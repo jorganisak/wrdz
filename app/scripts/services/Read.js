@@ -16,8 +16,22 @@ angular.module('wrdz')
 
       refreshDocs : function  () {
         $http.get('pubDocs/').success(function  (data) {
+          // console.log(data);
           docs = data;
+
+
         }).error();
+      },
+
+      getPubDoc : function  (docId) {
+        return $http.get('pubDocs/'+ docId);
+      },
+
+      updatePubDoc : function  (docId, type) {
+        var data = {
+          type: type
+        }
+        return $http.post('/pubDocs/'+ docId, data);
       }
 
 

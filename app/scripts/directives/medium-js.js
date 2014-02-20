@@ -1,5 +1,5 @@
 'use strict';
-angular.module('wrdz').directive('mediumEditor', function () {
+angular.module('wrdz').directive('mediumEditor', function ($timeout) {
   return {
     require: 'ngModel',
     restrict: 'AE',
@@ -10,26 +10,30 @@ angular.module('wrdz').directive('mediumEditor', function () {
         opts = angular.fromJson(iAttrs.options);
       }
       var placeholder = opts.placeholder || 'Type here';
-      iElement.on('blur keypress', function () {
+      iElement.on('blur keypress keydown keyup change focus', function () {
         scope.$apply(function () {
-          if (iElement.html() == '<p><br></p>') {
+          if (iElement.html() == '<p><br></p>' || iElement.html() == '' || iElement.html() =='<br>') {
             opts.placeholder = placeholder;
             var editor = new MediumEditor(iElement, opts);
           }
-          ctrl.$setViewValue(iElement.html());
+          $timeout(function  () {
+            ctrl.$setViewValue(iElement.html());
+          },100)
         });
       });
       ctrl.$render = function () {
         
 
         if (!editor) {
-          console.log('making editor')
           
           if (!ctrl.$isEmpty(ctrl.$viewValue)) {
             console.log('not empty so no placeholder');
             opts.placeholder = '';
+            iAttrs.$set('data-placeholder', '');
+          } else {
+            iAttrs.$set('data-placeholder', angular.fromJson(iAttrs.options).placeholder);
           }
-          console.log(opts);
+          console.log('making editor')
           var editor = new MediumEditor(iElement, opts);
         }
         iElement.html(ctrl.$isEmpty(ctrl.$viewValue) ? '' : ctrl.$viewValue);

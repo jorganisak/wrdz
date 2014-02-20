@@ -5,6 +5,20 @@ angular.module('wrdz')
 
   Read.refreshDocs();
 
+  function arrayTest (docId, a) {
+    var res = false;
+    angular.forEach(a, function  (item) {
+      if (a == item) {
+        res = true;
+      }
+    })
+    return res;
+  }
+
+  $scope.isHeart = function  () {
+    
+  }
+
   if ($scope.user) {
     $scope.seen = $scope.user.meta._views;
   }
@@ -17,10 +31,9 @@ angular.module('wrdz')
 
   $scope.docs = Read.getDocs();
 
-  $scope.$watch(function  () {
-    return Read.getDocs();
-  }, function  (newValue, oldValue) {
+  $scope.$watch(Read.getDocs, function  (newValue, oldValue) {
     if (newValue) {
+      console.log('loading new docs')
       $scope.docs = newValue;
     }
   });

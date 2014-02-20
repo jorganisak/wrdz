@@ -6,6 +6,7 @@
   <br>
   {{message}}
   <input  type="email" class="medium-6 columns" ng-model="userSignUp.email" required placeholder="Email">
+  <input  type="text" class="medium-6 columns" ng-model="userSignUp.username" required placeholder="Username">
   <input type="password" class="medium-6 columns" ng-model="userSignUp.password" required placeholder="Password">
   <button type="submit" ng-disabled="signUpForm.$invalid" class="button medium-6 success radius">Sign Up</button>
 

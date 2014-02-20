@@ -26,6 +26,7 @@ Does a few things:
 
     }
 
+
     getUser();
 
     // This recieves a broadcast signal from the User service when

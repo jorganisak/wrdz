@@ -8,6 +8,8 @@
   opacity: 1;
 }
 
+
+
 #top-nav {
   height: 50px;
 }
@@ -34,6 +36,8 @@
   letter-spacing: 7px;
   cursor: pointer;
 }
+
+
 
 #top-nav-write:hover {
   border-top-color: #70ff56;
@@ -189,6 +193,8 @@ p {
   padding: 0px 5px;
 }
 
+
+
 #talk-body {
   margin-top: 70px;
 }
@@ -196,6 +202,8 @@ p {
 h3 {
   font-family: 'Oswald', sans-serif;
 }
+
+
 
 .inbox-unread {
   margin-top: 10px;
@@ -259,6 +267,8 @@ h3 {
   padding: 8px;
   font-size: 0.9em;
 }
+
+
 
 #read-sub-nav {
   padding-top: 9px;
@@ -353,12 +363,16 @@ h3 {
   transition: all .2s linear;
 }
 
+
+
 .read-list-heart {
   height: 100%;
   padding-top: 5px;
   font-size: 1.0em;
   transition: all .2s linear;
 }
+
+
 
 .read-list-headline {
   font-family: 'PT Sans Narrow', sans-serif;
@@ -458,6 +472,8 @@ h3 {
   margin-top: 30px;
 }
 
+
+
 #read-doc-body {
   margin-top: 40px;
 }
@@ -514,6 +530,8 @@ h3 {
   border-color: black;
 }
 
+
+
 .read-doc-heart-count {
   padding-top: 4px;
   padding-right: 14px;
@@ -566,6 +584,8 @@ h3 {
   position: fixed;
   opacity: 0.4;
 }
+
+
 
 .read-doc-center {
   padding-bottom: 70px;
@@ -825,3 +845,4 @@ h3 {
 #profile-karma {
   margin-bottom: 30px;
 }
+
