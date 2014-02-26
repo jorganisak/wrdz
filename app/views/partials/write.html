@@ -1,116 +1,120 @@
 <div id="write-body" ng-controller='WriteCtrl'>
-        <div ng-hide='user' class="row">No user, sign in and shit!</div>
-        <div ng-show='user' class="row">
-            <div class="small-12 column small-centered">
+    <div ng-hide='user' class="row">No user, sign in and shit!</div>
+    <div ng-show='user' class="row">
+        <div class="">
 
-                <div class="row">
-                    
-                    
-                    <div id='' class="write-column-left medium-3 show-for-medium-up text-left column">
-                                <button ng-click='newDoc()' class=''>New</button>   
+            <div class="">
 
 
-                                <button ng-click='publishSwitch()'>Publish</button>
-                        
-                        <div id='write-box' ng-show='showSidebar' class="row">
-                            <div class="row">
-                                <div class='medium-6 column' id="write-last-title">
-                                    Recent
-                                </div>
-                                <div id='write-last-tags' ng-click='switchSidebar()' class="medium-4 text-center column">
-                                    tags
-                                </div>
-                            </div>
-                            <div ng-repeat="recent_doc in user._userDocs | limitTo: 6 | orderBy : '-updated_at'">
-                                
-                                <div ng-click='switchDoc(recent_doc)' class="write-last-item">
-                                    <span ng-bind-html="recent_doc.title"></span>
-                                    <div ng-hide="recent_doc.title"><em>No Title</em></div>
-                                </div>
-                            </div>
-                        </div>
+                <div id='' class="write-column-left medium-2 show-for-medium-up text-left column">
+                    <button ng-click='newDoc()' class=''>New</button>   
 
 
+                    <button ng-click='publishSwitch()'>Publish</button>
 
-
-
-                        <div id='write-box' ng-hide='showSidebar' class="row">
-                            <div class="row">
-                                <div class='medium-6 column' id="write-last-title">
-                                    Tags
-                                </div>
-                                <div id='write-last-tags' ng-click='switchSidebar()' class="medium-4 text-center column">
-                                    Recent
-                                </div>
-                            </div>
-                            <div class="row write-add-tag-box">
-                                <div class="medium-10 column">
-                                    <form ng-submit="newTag(newTagTitle)">
-                                        
-                                        <input ng-model='newTagTitle' type="text">
-                                    </form>
-                                </div>
-                                <div class="medium-1 left column">
-                                    <span ng-click='newTag(newTagTitle)' ng-disabled='!newTagTitle' class="icon ion-plus-circled"></span>
-                                </div>
-                                
-                            </div>
-                            
-                            <span ng-repeat='tag in currentDoc.tags'>
-                                
-                            <span class="label tag-label">{{tag.title}} <span ng-click='removeTag(tag._id)' class="icon tag-remove-x ion-close"></span></span>
-                            </span>
-                            
-                            
-                            
-                            <div class='row '>
-                                <div class="medium-12 write-recent-tag-title column">
-                                    
-                                    <em>Your top tags</em>
-                                </div>
-                                
-                            </div>
-                            <span ng-repeat="recentTag in user.tags | orderBy: '-_docs.length' | limitTo: 6 ">
-                                
-                            <span class="label tag-label">{{recentTag.title}}<span ng-click='newTag(recentTag.title)' class="icon tag-add-plus ion-plus"></span></span>
-                            </span>
-
-                            
-                                
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="medium-8 column text-center" ng-hide='currentDoc._id'>Nothing selected! <br> Create new </div>
-                                
-
-                                <div ng-show="publishBox" class="medium-8 right column publish-box">
-                                    <button ng-click='publish(false)'class='small-4  left column'>Publish as {{user.username}}</button>
-                                    <button ng-click='publish(true)' class='small-4 small-offset-1  column'>Publish Anonymously</button>
-                                    <div ng-click="publishSwitch()" class="small-2 right column icon ion-close"></div>
-                                </div>
-                            
-                    <div ng-show='currentDoc._id' id='write-center' class="medium-8  column ">
-                        
-
-                                
-                                <div  medium-editor options='{"placeholder": "Title", "disableToolbar": true, "disableReturn":true}' ng-model='currentDoc.title' id="write-title">
-                                    
-                             
-                                </div>
-                                <div medium-editor options='{"placeholder": "Write here", "buttons": ["bold", "italic", "anchor"], "disableToolbar": false, "forcePlainText" : false, "targetBlank": true}' ng-model='currentDoc.body'  class='text-justify' id="write-content">
-                                    
-                                </div>
-                                
-                    
-
-                    </div>
-                    
+                    <div ng-show="publishBox" class="publish-box">
+                    <div ng-click="publishSwitch()" class=" right icon ion-close"></div>
+                    <button ng-click='publish(false)'class=''>Publish as {{user.username}}</button>
+                    <button ng-click='publish(true)' class=''>Publish Anonymously</button>
                 </div>
-                
-                
-            </div>
-        </div>
 
-        
+                </div>
+
+
+                <div class="medium-6 column text-center" ng-hide='currentDoc._id'>Nothing selected! <br> Create new </div>
+
+
+                
+                <div ng-show='currentDoc._id' id='write-center' class="medium-6  small-offset-1 left column ">
+
+
+
+                    <div  medium-editor options='{"placeholder": "Title", "disableToolbar": true, "disableReturn":true}' ng-model='currentDoc.title' id="write-title">
+
+
+                    </div>
+                    <div medium-editor options='{"placeholder": "Write here", "buttons": ["bold", "italic", "anchor", "header1", "header2","quote","orderedlist", "unorderedlist" ], "disableToolbar": false, "forcePlainText" : false, "targetBlank": true}' ng-model='currentDoc.body'  class='text-justify' id="write-content">
+
+                    </div>
+
+                    
+
+                </div>
+
+                <div class="medium-2 right column">
+                    <div id='write-box' ng-show='showSidebar' class="row">
+                        <div class="row">
+                            <div class='medium-6 column' id="write-last-title">
+                                Recent
+                            </div>
+                            <div id='write-last-tags' ng-click='switchSidebar()' class="medium-4 text-center column">
+                                tags
+                            </div>
+                        </div>
+                        <div ng-repeat="recent_doc in user._userDocs | limitTo: 6 | orderBy : '-updated_at'">
+
+                            <div ng-click='switchDoc(recent_doc)' class="text-right write-last-item">
+                                <span ng-bind-html="recent_doc.title"></span>
+                                <div ng-hide="recent_doc.title"><em>No Title</em></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div id='write-box' ng-hide='showSidebar' class="row">
+                        <div class="row">
+                            <div class='medium-6 column' id="write-last-title">
+                                Tags
+                            </div>
+                            <div id='write-last-tags' ng-click='switchSidebar()' class="medium-4 text-center column">
+                                Recent
+                            </div>
+                        </div>
+                        <div class="row write-add-tag-box">
+                            <div class="medium-10 column">
+                                <form ng-submit="newTag(newTagTitle)">
+
+                                    <input ng-model='newTagTitle' type="text">
+                                </form>
+                            </div>
+                            <div class="medium-1 left column">
+                                <span ng-click='newTag(newTagTitle)' ng-disabled='!newTagTitle' class="icon ion-plus-circled"></span>
+                            </div>
+
+                        </div>
+
+                        <span ng-repeat='tag in currentDoc.tags'>
+
+                            <span class="label tag-label">{{tag.title}} <span ng-click='removeTag(tag._id)' class="icon tag-remove-x ion-close"></span></span>
+                        </span>
+
+
+
+                        <div class='row '>
+                            <div class="medium-12 write-recent-tag-title column">
+
+                                <em>Your top tags</em>
+                            </div>
+
+                        </div>
+                        <span ng-repeat="recentTag in user.tags | orderBy: '-_docs.length' | limitTo: 6 ">
+
+                            <span class="label tag-label">{{recentTag.title}}<span ng-click='newTag(recentTag.title)' class="icon tag-add-plus ion-plus"></span></span>
+                        </span>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
     </div>
+
+
+</div>
