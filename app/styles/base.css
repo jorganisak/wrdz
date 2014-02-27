@@ -65,7 +65,7 @@ blockquote {
 
 .ion-close {
   opacity: 0.2;
-  cursor: pointer;
+  /* cursor: pointer; */
   transition: opacity .2s ease;
 }
 

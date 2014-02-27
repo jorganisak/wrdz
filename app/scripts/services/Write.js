@@ -59,16 +59,11 @@
       // type is either 'body' or 'title'
       var send = {'data' : d };
       
-      return $http.post('/userDocs/' + current_doc._id  + '/?type=' + t, send);
+
+      // res.status = 200 on good, 400 bad
+      return $http.post('/userDocs/' + current_doc._id  + '/?type=' + t, send)
     },
 
-
-    // updateHasTitle : function  (hasTitle) {
-    //   var data = {
-    //     data: hasTitle
-    //   }
-    //   return $http.post('/userDocs/' + current_doc._id + '/?type=hasTitle', data);
-    // },
 
 
     // Published Docs
@@ -107,7 +102,7 @@
 
 
 /*
-    Tags      
+    Topics      
     */
 
     // Users

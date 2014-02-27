@@ -18,7 +18,7 @@
                         <button ng-click="publish(true)" class="">Anonymously</button>
                     </div>
 
-                    <button ng-click="tagBox = !tagBox"><span class="ion-pricetags icon"></span> &nbsp;&nbsp;&nbsp; Tags</button>
+                    <button ng-click="tagBox = !tagBox"><span class="ion-pricetags icon"></span> &nbsp;&nbsp;&nbsp; Topics</button>
 
 
                     <div id="write-box" ng-show="tagBox" class="panel">
@@ -26,20 +26,20 @@
 
                         <div class="row write-add-tag-box">
                             <div class="medium-10 column">
-                                <form ng-submit="newTag(newTagTitle)">
+                                <form ng-submit="newTag(newTopicTitle)">
 
-                                    <input ng-model="newTagTitle" type="text">
+                                    <input ng-model="newTopicTitle" type="text">
                                 </form>
                             </div>
                             <div class="medium-1 right">
-                                <span ng-click="newTag(newTagTitle)" ng-disabled="!newTagTitle" class="icon ion-plus-circled"></span>
+                                <span ng-click="newTag(newTopicTitle)"  class="icon ion-plus-circled"></span>
                             </div>
 
                         </div>
 
-                        <span ng-repeat="tag in currentDoc.tags">
+                        <span ng-repeat="topic in currentDoc.topics">
 
-                            <span class="label tag-label">{{tag.title}} <span ng-click="removeTag(tag._id)" class="icon tag-remove-x ion-close"></span></span>
+                            <span class="label tag-label">{{topic.title}} <span ng-click="removeTopic(topic._id)" class="icon tag-remove-x ion-close"></span></span>
                         </span>
 
 
@@ -47,13 +47,13 @@
                         <div class="row">
                             <div class="medium-12 write-recent-tag-title column">
 
-                                <em>Your top tags</em>
+                                <em>Your top topics</em>
                             </div>
 
                         </div>
-                        <span ng-repeat="recentTag in user.tags | orderBy: '-_docs.length' | limitTo: 6 ">
+                        <span ng-repeat="recetnTopics in user.topics | orderBy: '-_docs.length' | limitTo: 6 ">
 
-                            <span class="label tag-label">{{recentTag.title}}<span ng-click="newTag(recentTag.title)" class="icon tag-add-plus ion-plus"></span></span>
+                            <span class="label tag-label">{{recentTopic.title}}<span ng-click="newTopic(recentTopic.title)" class="icon tag-add-plus ion-plus"></span></span>
                         </span>
 
 

@@ -112,7 +112,7 @@ angular.module('wrdz')
     $scope.$watch( Write.getCurrentDoc, function  ( newValue, oldValue ) {
       if ( newValue ) {
         $scope.currentDoc = newValue;
-        console.log(newValue)
+        // console.log(newValue)
         $scope.hasTitle = newValue.has_title;
       }
     });
@@ -141,8 +141,13 @@ angular.module('wrdz')
     // Publish doc
 
     $scope.publish  = function( isAnon ) {
-      Write.publishDoc( isAnon, $scope.user );
-      $scope.currentDoc.is_published = true;
+      Write.publishDoc( isAnon, $scope.user ).then(
+        function  (res) {
+          if (res.status == 201) {
+            // console.log(res);
+            $scope.currentDoc.is_published = true;
+          };
+        });
     }
 
     $scope.switchDoc = function  ( doc ) {
@@ -153,6 +158,7 @@ angular.module('wrdz')
 
     $scope.newDoc = function  ( ) {
       Write.createNewDoc().then( function  ( res ) {
+        console.log(res.status);
         var doc = res.data;
         Write.setCurrentDoc( doc ); // set current doc in Write service
         Write.updateCurrentDoc( doc._id, $scope.user ); // update User.currentDoc on server
