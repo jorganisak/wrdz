@@ -26,6 +26,8 @@
     Public API here  
 
     Doc: 
+      @getCurrentDoc
+      @setCurrentDoc
       @createNewDoc
       @publishDoc
       @updateUserDoc
@@ -44,24 +46,12 @@
 /*
     Docs API
     */
+
+
+    // User Docs
+
     createNewDoc : function  () {
       return $http.get('/userDocs');
-    },
-
-    publishDoc : function (isAnon, user) {
-      var data = {
-        title: current_doc.title,
-        body: current_doc.body
-      }
-      if (isAnon) {
-        data.is_anon = true;
-        data.author = 'Anonymous'
-
-      } else {
-        data.is_anon = false;
-        data.author = user.username;
-      }
-      return $http.post('/pubDocs', data);
     },
 
 
@@ -74,12 +64,37 @@
       return $http.post('/userDocs/'+current_doc._id, send);
     },
 
+    // Published Docs
+
+    publishDoc : function (isAnon, user) {
+      var data = {
+        doc : {
+          title: current_doc.title,
+          body: current_doc.body,
+          
+        },
+        id: current_doc._id
+      }
+
+      if (isAnon) {
+        data.doc.is_anon = true;
+        data.doc.author = 'Anonymous'
+
+      } else {
+        data.doc.is_anon = false;
+        data.doc.author = user.username;
+      }
+
+      return $http.post('/pubDocs', data);
+    },
+
+    // User
+
     updateCurrentDoc: function (id, user) {
       var data = {
         type : 'current_doc',
         docId : id
       };
-
       return $http.post('/users/' + user._id, data);
     },
 
@@ -88,6 +103,7 @@
     Tags      
     */
 
+    // Users
 
     newTag : function  (tagName, docId, user)  {
       var data = {

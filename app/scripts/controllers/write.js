@@ -2,27 +2,31 @@
 
 /*
   Write Controller
-    scope vars:
-      {} currentDoc
-        .title - tied to #write-title
-        .body - tied to #write-content
-      {} user (from MainCtrl)
-      '' newTagTitle - model for tag input
-      Boolean noDoc
-      Boolean noUser (this probs gets moved to MainCtrl)
 
-    scope watch/listeners:
+
+    @scope VARS - 
+      currentDoc {object}
+          .title - tied to #write-title
+          .body - tied to #write-content
+      user (from MainCtrl) {object}
+      newTagTitle - model for tag input {string}
+      noDoc {boolean}
+      noUser (this probs gets moved to MainCtrl) {boolean}
+    
+    ------------
+
+    @scope watch/listeners - 
       on.userChange
       currentDoc.title
       currentDoc.body
       Write.getCurrentDoc()
 
-    scope methods:
-
-
-
-  
-
+    @scope methods - 
+      publish
+      switchDoc
+      newDoc
+      newTag
+      removeTag
 
 */
 
@@ -132,24 +136,12 @@ angular.module('wrdz')
             //   }
             // };
 
+    // Publish doc
 
-
-    $scope.publish = function ( ) {
-      if ( $scope.currentDoc.title && $scope.currentDoc.body ) {
-        Write.publishDoc( ).then (
-          function  ( ) {
-            $scope.currentDoc.is_published = true;
-          }
-          );
-      } else {
-
-        // { TODO } 
-
-        // error message notifiying user
-
-        console.log( 'note is empty!!' );
-      }
-    };
+    $scope.publish  = function( isAnon ) {
+      Write.publishDoc( isAnon, $scope.user );
+      $scope.currentDoc.is_published = true;
+    }
 
     $scope.switchDoc = function  ( doc ) {
       Write.setCurrentDoc( doc ); // sets new doc on scope
@@ -160,19 +152,14 @@ angular.module('wrdz')
     $scope.newDoc = function  ( ) {
       Write.createNewDoc().then( function  ( res ) {
         var doc = res.data;
-        Write.setCurrentDoc( doc );
-        Write.updateCurrentDoc( doc._id, $scope.user );
+        Write.setCurrentDoc( doc ); // set current doc in Write service
+        Write.updateCurrentDoc( doc._id, $scope.user ); // update User.currentDoc on server
         $scope.user._userDocs.unshift( doc );
         $scope.noDoc = false;
         focusContent( );
       })
     };
     
-    // Publish doc
-
-    $scope.publish  = function( anon ) {
-      Write.publishDoc( anon, $scope.user );
-    }
 
     // Add tag to doc with (String) as tag
 
