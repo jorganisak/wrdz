@@ -3,34 +3,35 @@
   
 
     <div class="row">
-        <div id='read-nav-container' class="small-4 column">
+        <div id='read-nav-container' class="small-2 column">
+            
             <div id='read-sub-nav' >
 
-                <div id='active-read-nav' class="text-center read-nav-item">
+                <div id='active-read-nav' class="text-left read-nav-item">
                     <div  class="read-nav-item-inside">
                         Front Page
                     </div>
                 </div>
-                <div class=" text-center read-nav-item">
+                <div class=" text-left read-nav-item">
                     <div class="read-nav-item-inside">
                         New
                     </div>
                 </div>
-                <div class=" text-center read-nav-item">
-                    <div class="read-nav-item-inside">
-                        Sections
-                    </div>
-                </div>
-                <div class=" text-center read-nav-item">
+                <div class=" text-left read-nav-item">
                     <div class="read-nav-item-inside">
                         Anonymous
+                    </div>
+                </div>
+                <div class=" text-left read-nav-item">
+                    <div class="read-nav-item-inside">
+                        Sections
                     </div>
                 </div>
                 
             </div>
         </div>
         <div id="read-list-body">
-            <div class="small-8  column">
+            <div class="small-6 small-offset-1  column">
 
                 <div ng-repeat="doc in docs | orderBy: '-score'">
 
@@ -45,14 +46,14 @@
                             </div>
                             <div class="medium-2 right column">
                                 <div class="row read-list-arrow">
-                                    <span class="medium-1 column icon ion-arrow-up-a"></span>
+                                    <span class="medium-6 column icon ion-arrow-up-a"></span>
                                     <span class='medium-6 column text-right left read-list-arrow-count'>{{doc.up_votes}}</span>
                                 </div>
                             </div>
                             <div class="medium-2 right column">
                                 
                                 <div class="row read-list-heart">
-                                    <span class="medium-1 column  icon ion-heart"></span>
+                                    <span class="medium-6 column  icon ion-heart"></span>
                                     <span class="medium-6 column  left text-right read-list-heart-count">{{doc.hearts}}</span>
                                 </div>
                      
@@ -60,7 +61,7 @@
                             </div>
                         </div>
                         <div class="row read-list-bottom-row">
-                            <div class="medium-8 column">
+                            <div class="medium-6 column">
                                 
 
 
@@ -69,7 +70,7 @@
                                 </div>
 
                             </div>
-                            <div class="medium-2 right column">
+                            <div class="medium-6 text-right right column">
                                 
                                 <div class="read-list-date">
                                     
