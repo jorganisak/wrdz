@@ -64,6 +64,16 @@
       return $http.post('/userDocs/'+current_doc._id, send);
     },
 
+
+    updateHasTitle : function  (hasTitle) {
+      var data = {
+        type: 'hasTitle',
+        data: hasTitle
+      }
+
+      return $http.post('/userDocs/'+current_doc._id, data);
+    },
+
     // Published Docs
 
     publishDoc : function (isAnon, user) {

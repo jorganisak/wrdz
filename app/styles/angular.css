@@ -1,0 +1,17 @@
+  .show-hide-fade.ng-hide-add, .show-hide-fade.ng-hide-remove {
+    -webkit-transition:all ease 300ms;
+    -moz-transition:all ease 300ms;
+    -o-transition:all ease 300ms;
+    transition:all ease 300ms;
+    display:block!important;
+  }
+ 
+  .show-hide-fade.ng-hide-add.ng-hide-add-active,
+  .show-hide-fade.ng-hide-remove {
+    opacity:0;
+  }
+ 
+  .show-hide-fade.ng-hide-add,
+  .show-hide-fade.ng-hide-remove.ng-hide-remove-active {
+    opacity:1;
+  }

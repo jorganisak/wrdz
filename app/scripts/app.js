@@ -3,6 +3,7 @@
 angular.module('wrdz', [
   'ngCookies',
   'ngResource',
+  'ngAnimate',
   'ngSanitize',
   'ngRoute',
   'mgo-mousetrap',

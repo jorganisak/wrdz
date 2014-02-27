@@ -112,6 +112,8 @@ angular.module('wrdz')
     $scope.$watch( Write.getCurrentDoc, function  ( newValue, oldValue ) {
       if ( newValue ) {
         $scope.currentDoc = newValue;
+        console.log(newValue)
+        $scope.hasTitle = newValue.has_title;
       }
     });
 
@@ -182,6 +184,15 @@ angular.module('wrdz')
         }
       }
     };
+
+
+////////////////////////////////// MESS AROUND TOWN
+
+    $scope.switchHasTitle = function  () {
+      Write.updateHasTitle(!$scope.hasTitle);
+      Write.setCurrentDoc.hasTitle = !$scope.hasTitle;
+      $scope.hasTitle = !$scope.hasTitle;
+    }
 
 
 
