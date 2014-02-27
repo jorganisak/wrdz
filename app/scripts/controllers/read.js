@@ -3,6 +3,8 @@
 angular.module('wrdz')
 .controller('ReadCtrl', function ($scope, Read, $state) {
 
+  $scope.moment = moment;
+
   Read.refreshDocs();
 
   function arrayTest (docId, a) {

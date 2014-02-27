@@ -12,11 +12,11 @@
 
                     <button ng-click='publishSwitch()'>Publish</button>
 
-                    <div ng-show="publishBox" class="publish-box">
-                    <div ng-click="publishSwitch()" class=" right icon ion-close"></div>
-                    <button ng-click='publish(false)'class=''>Publish as {{user.username}}</button>
-                    <button ng-click='publish(true)' class=''>Publish Anonymously</button>
-                </div>
+                    <div ng-show="publishBox" class="panel publish-box">
+                        <div ng-click="publishSwitch()" class=" right icon ion-close"></div>
+                        <button ng-click='publish(false)'class=''>As {{user.username}}</button>
+                        <button ng-click='publish(true)' class=''>Anonymously</button>
+                    </div>
 
                 </div>
 

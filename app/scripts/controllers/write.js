@@ -104,6 +104,7 @@ angular.module('wrdz')
         $scope.noDoc = false;
         Write.updateCurrentDoc(doc._id, $scope.user);
         $scope.user._userDocs.unshift(doc);
+        document.getElementById('write-title').focus();
       })
     };
 
