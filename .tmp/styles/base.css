@@ -13,6 +13,36 @@
   border-radius: 4px;
 }
 
+a:hover,
+a:focus {
+  color: #2461FF;
+}
+
+a:active,
+a:hover {
+  outline: 0;
+}
+
+a {
+  color: #0040B3;
+  text-decoration: underline;
+  line-height: inherit;
+}
+
+blockquote,
+blockquote p {
+  line-height: 1.6;
+  font-style: italic;
+  color: #6F6F6F;
+  font-family: 'Roboto', sans-serif;
+}
+
+blockquote {
+  margin: 0 0  1.25rem;
+  padding: 0.5625rem 1.25rem 1rem 1.1875rem;
+  border-left: 1px solid #dddddd;
+}
+
 #header {
   text-align: center;
   opacity: 0.6;
@@ -158,9 +188,13 @@
 }
 
 h4 {
-  font-family: 'Droid Sans', sans-serif;
-  letter-spacing: 0.8px;
+  font-family: 'Roboto', sans-serif;
+  /* font-style: italic; */
   font-weight: 600;
+  line-height: 1.6;
+  opacity: 0.9;
+  font-size: 1.3em;
+  letter-spacing: 0.5px;
 }
 
 .row {
@@ -234,7 +268,8 @@ p {
   line-height: 1.5;
   margin-bottom: 1.2em;
   opacity: 0.9;
-  padding-right: 4px;
+  padding-right: 12px;
+  padding-left: 5px;
   /* text-shadow: -1px 0px 0px rgba(199, 199, 199, 1); */
 }
 
@@ -255,7 +290,7 @@ li {
 #write-content {
   margin-top: 15px;
   outline: none;
-  padding: 0 17px;
+  padding: 0px 10px;
   border: none;
   cursor: text;
   /* font-family: 'Source Sans Pro', sans-serif; */
@@ -271,8 +306,8 @@ li {
 
 #write-title {
   font-family: 'Roboto', sans-serif;
-  font-family: "Alegreya Sans", sans-serif;
-  font-size: 2em;
+  /* font-family: "Alegreya Sans", sans-serif; */
+  font-size: 2rem;
   text-align: left;
   /* letter-spacing: 0.8px; */
   line-height: 1;
@@ -326,7 +361,11 @@ li {
 }
 
 h3 {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  line-height: 1.8;
+  opacity: 0.95;
 }
 
 .inbox-unread {
@@ -820,7 +859,7 @@ h3 {
 #title-switch {
   text-align: right;
   margin-top: -37px;
-  opacity: 0.1;
+  opacity: 0.05;
   font-style: italic;
   height: 20px;
   font-size: 1.2em;

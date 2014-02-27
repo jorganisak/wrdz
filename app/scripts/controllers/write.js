@@ -189,7 +189,7 @@ angular.module('wrdz')
 ////////////////////////////////// MESS AROUND TOWN
 
     $scope.switchHasTitle = function  () {
-      Write.updateHasTitle(!$scope.hasTitle);
+      Write.updateUserDoc('hasTitle', !$scope.hasTitle);
       Write.setCurrentDoc.hasTitle = !$scope.hasTitle;
       $scope.hasTitle = !$scope.hasTitle;
     }

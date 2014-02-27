@@ -75,9 +75,9 @@
 
                         <div class='show-hide-fade' ng-show="hasTitle">
                             <div class="" ng-click='switchHasTitle()' id="remove-title-switch"><span class="icon ion-close"></span></div>
-                        <div medium-editor options='{"placeholder": "Title", "disableToolbar": true, "disableReturn":true}' ng-model='currentDoc.title' id="write-title">
-                        </div>
-                        
+                            <div medium-editor options='{"placeholder": "Title", "disableToolbar": true, "disableReturn":true}' ng-model='currentDoc.title' id="write-title">
+                            </div>
+                            
 
                         </div>
 
@@ -94,13 +94,13 @@
                 </div>
 
                 <div class=" write-column-right medium-2 right column">
-                        <div ng-repeat="recent_doc in user._userDocs | limitTo: 10 | orderBy : '-updated_at'">
+                    <div ng-repeat="recent_doc in user._userDocs | limitTo: 10 | orderBy : '-updated_at'">
 
-                            <div ng-click='switchDoc(recent_doc)' class="text-right write-last-item">
-                                <span ng-bind-html="recent_doc.title"></span>
-                                <div ng-hide="recent_doc.title"><em>No Title</em></div>
-                            </div>
+                        <div ng-click='switchDoc(recent_doc)' class="text-right write-last-item">
+                            <span ng-bind-html="recent_doc.title"></span>
+                            <div ng-hide="recent_doc.title"><em>No Title</em></div>
                         </div>
+                    </div>
 
 
                     

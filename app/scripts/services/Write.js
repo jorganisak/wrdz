@@ -56,23 +56,20 @@
 
 
     updateUserDoc : function  (t, d) {
-      // type t is either 'body' or 'title'
-      var send = {
-        type: t,
-        data: d
-      };
-      return $http.post('/userDocs/'+current_doc._id, send);
+      // type is either 'body' or 'title'
+      var send = {'data' : d };
+      
+      return $http.post('/userDocs/' + current_doc._id  + '/?type=' + t, send);
     },
 
 
-    updateHasTitle : function  (hasTitle) {
-      var data = {
-        type: 'hasTitle',
-        data: hasTitle
-      }
+    // updateHasTitle : function  (hasTitle) {
+    //   var data = {
+    //     data: hasTitle
+    //   }
+    //   return $http.post('/userDocs/' + current_doc._id + '/?type=hasTitle', data);
+    // },
 
-      return $http.post('/userDocs/'+current_doc._id, data);
-    },
 
     // Published Docs
 
