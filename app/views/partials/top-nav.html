@@ -1,22 +1,20 @@
 
  <div ng-controller="NavbarCtrl" id="header">
-        <div class="row">
-            <div id='top-nav' class="medium-12  small-centered column">
-                <div ui-sref-active='active-top-nav' ui-sref="write" id='top-nav-write' class="column small-3 top-nav-item medium-2">
+            <div id='top-nav' class="col-md-12">
+                <div ui-sref-active='active-top-nav' ui-sref="write" id='top-nav-write' class="top-nav-item col-xs-3 col-sm-3  col-md-2">
                     write
                 </div>
-                <div ui-sref-active='active-top-nav' ui-sref="read" id='top-nav-read' class="small-3 column top-nav-item medium-2">
+                <div ui-sref-active='active-top-nav' ui-sref="read" id='top-nav-read' class="top-nav-item  col-xs-3 col-sm-3  col-md-2">
                     read
                 </div>
-                <div ui-sref="landing" id='wrdz-headline' class="column show-for-medium-up medium-4">
+                <div ui-sref="landing" id='wrdz-headline' class=" hidden-xs hidden-sm col-md-4">
                     wrdz
                 </div>
-                <div ui-sref-active='active-top-nav' id='top-nav-inbox' ui-sref='talk' class="column top-nav-item small-3 medium-2">
-                    talk
+                <div ui-sref-active='active-top-nav' id='top-nav-inbox' ui-sref='talk' class=" top-nav-item col-xs-3 col-sm-3 col-md-2">
+                    talk &nbsp; <span class="label label-success">42</span>
                 </div>
-                <div ui-sref-active='active-top-nav' ui-sref="profile" id='top-nav-profile' class="column top-nav-item small-3 medium-2">
+                <div ui-sref-active='active-top-nav' ui-sref="profile" id='top-nav-profile' class=" top-nav-item col-xs-3 col-sm-3 col-md-2">
                     me
                 </div>
-            </div>
         </div>
     </div>

@@ -1,105 +1,101 @@
-<div class="row" ng-controller="ProfileCtrl">
-        <div id="me-list-body">
-            <div class="me-list-top-nav small-12 column small-centered text-center">
-                <div class="medium-2 me-list-nav-item small-4 column">All</div>
-                <div class="medium-2 me-list-nav-item small-4 column">Published</div>
-                <div class="medium-2 me-list-nav-item small-4 column">Private</div>
-                <div class="medium-2 me-list-nav-item small-4 column">My  <span class="icon me-heart ion-heart"></span>s</div>
-                <div class="medium-2 me-list-nav-item small-4 column">Archive</div>
-                <div class="medium-2 me-list-nav-item small-4 column">Settings</div>
-                
+<div class="row" id='me-content' ng-controller="MeCtrl">
+
+
+    <div id="me-left" class="col-sm-5">
+
+        <div class="btn-group btn-group-justified">
+            <div class="btn-group btn-group-jo">
+            <button type="button" class="btn btn-jo  " ng-model="radioModel" btn-radio="'all'">All</button>
+                    
+            </div>
+            <div class="btn-group btn-group-jo">
+            <button type="button" class="btn btn-jo " ng-model="radioModel" btn-radio="'public'">Public</button>
                 
             </div>
-            
-            <div class="row">
-                <div class="small-11 column small-centered">
-                    <div class="medium-4 column">
-                        <label for="">Search</label>
-                        <input type="text">
-                        Search By Date
-                        (angular cal)
-                        
-                        <div id='write-box' class="row">
-                            <div class="row">
-                                <div class='medium-6 column' id="write-last-title">
-                                    Tags
-                                </div>
-                                
-                            </div>
-  
-                            
-                            <div class="label active me-tag-label">Diary</div>
-                            <div class="label me-tag-label">Diary</div>
-                            <div class="label me-tag-label">Diary</div>
-                            <div class="label me-tag-label">Diary</div>
-                            <div class="label me-tag-label">Diary</div>
-                            <div class="label me-tag-label">Diary</div>
-                            <div class="label me-tag-label">Diary</div>
-                            <div class="label me-tag-label">Diary</div>
-                            <div class="label me-tag-label">Diary</div>
-                            <div class="label me-tag-label">Diary</div>
-                            
-                  
-                        </div>
-                    </div>
-                    
-                    <div class="medium-8 column">
-                        <div class="me-doc-box">
-                            <div class="me-doc">
-                            <div class="row">
-                                <div class="medium-9 me-doc-title column">
-                                    A supposidly fun thing I'll never do again
-                                </div>
-                                <div class="medium-3 text-right column">
-                                    Dec 12, 2014
-                                </div>
-                                
-                            </div>
-                            <div class="row text-center">
-                                <div class="medium-3 column">
-                                    Views: 145
-                                </div>
-                                <div class="medium-3 column">
-                                    Hearts: 324
-                                </div>
-                                <div class="medium-3 column">
-                                    Votes: 3843
-                                </div>
-                                <div class="medium-3 column">
-                                    Archive
-                                </div>
-                                
-                            </div>
-                            </div>
-                            <div class="me-doc">
-                            <div class="row">
-                                <div class="medium-9 me-doc-title column">
-                                    A supposidly fun thing I'll never do again
-                                </div>
-                                <div class="medium-3 text-right column">
-                                    Dec 12, 2014
-                                </div>
-                                
-                            </div>
-                            <div class="row text-center">
-                                <div class="medium-3 column">
-                                    Unpublished
-                                </div>
-                                <div class="medium-3 column">
-                                </div>
-                                <div class="medium-3 column">
-                                </div>
-                                <div class="medium-3 column">
-                                    Archive
-                                </div>
-                                
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
+            <div class="btn-group btn-group-jo">
+                
+            <button type="button" class="btn btn-jo " ng-model="radioModel" btn-radio="'hearts'"><span class="icon ion-heart"></span></button>
             </div>
         </div>
+
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+
+
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+
+        <div style="display:inline-block; min-height:290px;">
+            <div class="well well-sm" ng-model="dt">
+                <datepicker min="minDate" show-weeks="showWeeks"></datepicker>
+            </div>
+    </div>  
+
+
     </div>
+
+    <div id="me-right" class="col-sm-7">
+
+         <div class="btn-group btn-group-justified">
+        <div class="btn-group btn-group-jo">
+        <button type="button" class="btn btn-default " ng-model="radioModel" btn-radio="'all'">Date</button>
+                
+        </div>
+        <div class="btn-group btn-group-jo">
+        <button type="button" class="btn btn-default " ng-model="radioModel" btn-radio="'public'">Votes</button>
+            
+        </div>
+        <div class="btn-group btn-group-jo">
+            
+        <button type="button" class="btn btn-default " ng-model="radioModel" btn-radio="'hearts'"><span class="icon ion-heart"></span></button>
+        </div>
+        <div class="btn-group btn-group-jo">
+            
+        <button type="button" class="btn btn-default " ng-model="radioModel" btn-radio="'hearts'">Views</button>
+        </div>
+        </div>
+
+
+        <div class="me-doc-block well">
         
+            <div ng-show="doc.has_title">
+                            <div  id="me-card-title">
+                                {{doc.title}}
+                            </div>
+                            
+
+                        </div>
+
+            <div ng-hide="doc.has_title">
+                            <div  ng-bind-html='doc.body ' id="me-card-body">
+                                
+                            </div>
+                            
+
+                        </div>
+
+
+
+        </div>
+
+              <div id="write-center">
+                        
+                        
+
+                        <div ng-show="doc.has_title">
+                            <div  id="write-title">
+                                {{doc.title}}
+                            </div>
+                            
+
+                        </div>
+
+                        <div class='text-justify'ng-bind-html="doc.body" id="write-content">
+                        </div>
+                    </div>
+
+    </div>
+
+</div>

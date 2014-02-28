@@ -5,27 +5,26 @@
 
             <div class="">
 
+                <div id='' class="write-column-left col-sm-2 show-for-medium-up text-left ">
+                    <button ng-click='newDoc()' class='btn btn-jo'><span class="ion-compose icon"></span> &nbsp;&nbsp;&nbsp;New</button>   
 
-                <div id='' class="write-column-left medium-2 show-for-medium-up text-left column">
-                    <button ng-click='newDoc()' class=''><span class="ion-compose icon"></span> &nbsp;&nbsp;&nbsp;New</button>   
 
-
-                    <button ng-click='publishBox = !publishBox'><span class="ion-eye icon"></span> &nbsp;&nbsp;&nbsp;Publish</button>
+                    <button class='btn-jo' ng-click='publishBox = !publishBox'><span class="ion-eye icon"></span> &nbsp;&nbsp;&nbsp;Publish</button>
 
                     <div ng-show="publishBox" class="panel publish-box">
                         <div ng-click="publishBox = !publishBox" class=" right icon ion-close"></div>
-                        <button ng-click='publish(false)'class=''>As {{user.username}}</button>
-                        <button ng-click='publish(true)' class=''>Anonymously</button>
+                        <button ng-click='publish(false)'class='btn-jo'>As {{user.username}}</button>
+                        <button ng-click='publish(true)' class='btn-jo'>Anonymously</button>
                     </div>
 
-                    <button  ng-click='tagBox = !tagBox'><span class="ion-pricetags icon"></span> &nbsp;&nbsp;&nbsp; Tags</button>
+                    <button  class='btn-jo' ng-click='tagBox = !tagBox'><span class="ion-pricetags icon"></span> &nbsp;&nbsp;&nbsp; Tags</button>
 
 
                     <div id='write-box' ng-show='tagBox' class="panel">
                         <div ng-click="tagBox = !tagBox" class="  right icon ion-close"></div>
 
                         <div class="row write-add-tag-box">
-                            <div class="medium-10 column">
+                            <div class="col-sm-10 ">
                                 <form ng-submit="newTag(newTagTitle)">
 
                                     <input ng-model='newTagTitle' type="text">
@@ -45,7 +44,7 @@
 
 
                         <div class='row '>
-                            <div class="medium-12 write-recent-tag-title column">
+                            <div class="col-sm-12 write-recent-tag-title ">
 
                                 <em>Your top tags</em>
                             </div>
@@ -63,11 +62,11 @@
                 </div>
 
 
-                <div class="medium-6 column text-center" ng-hide='currentDoc._id'>Nothing selected! <br> Create new </div>
+                <div class="col-sm-6 text-center" ng-hide='currentDoc._id'>Nothing selected! <br> Create new </div>
 
 
                 
-                <div ng-show='currentDoc._id'  class="text-center medium-8 left column ">
+                <div ng-show='currentDoc._id'  class="text-center col-sm-8 pull-left column ">
 
                     <div id="write-center">
                         
@@ -93,7 +92,7 @@
 
                 </div>
 
-                <div class=" write-column-right medium-2 right column">
+                <div class=" write-column-right col-sm-2 pull-right ">
                     <div ng-repeat="recent_doc in user._userDocs | limitTo: 10 | orderBy : '-updated_at'">
 
                         <div ng-click='switchDoc(recent_doc)' class="text-right write-last-item">
@@ -101,7 +100,6 @@
                             <div ng-hide="recent_doc.title"><em>No Title</em></div>
                         </div>
                     </div>
-
 
                     
                 </div>

@@ -8,6 +8,7 @@ angular.module('wrdz', [
   'ngRoute',
   'mgo-mousetrap',
   'perfect_scrollbar',
+  'ui.bootstrap',
   'ui.router'
 ])
   .config( function($locationProvider) {

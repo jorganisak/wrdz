@@ -45,8 +45,8 @@ blockquote {
 
 #header {
   text-align: center;
-  opacity: 0.6;
-  /* background-color: rgb(42, 31, 31); */
+  opacity: 0.2;
+  background-color: rgb(159, 33, 243);
   transition: all .2s ease-in-out;
 }
 
@@ -75,14 +75,17 @@ blockquote {
 
 .top-nav-item {
   font-family: 'Open Sans', sans-serif;
-  font-size: 1.1em;
+  font-size: 1.2em;
+  background-color: white;
   border-bottom: solid 2px white;
   font-variant: small-caps;
   font-style: italic;
+  opacity: 0.5;
+  border: solid 1px rgb(241, 241, 241);
   letter-spacing: 3px;
   cursor: pointer;
   /* border-top: solid 1px white; */
-  height: 80%;
+  height: 90%;
   padding: 9px 0 0 0;
   transition: all 300ms ease;
   text-shadow: 0px -1.3px 0px rgb(216, 245, 255);
@@ -105,12 +108,13 @@ blockquote {
   /* font-weight: 800; */
   letter-spacing: 3px;
   cursor: pointer;
-  background-color: white;
+  /* background-color: white; */
   /* font-style: italic; */
   font-variant: normal;
-  padding-bottom: 8px;
+  padding-bottom: 9px;
   /* opacity: 0.5; */
   transition: all .15s ease;
+  /* box-shadow: inset 1px 0px 0px 0px gold; */
 }
 
 #wrdz-headline:hover {
@@ -118,6 +122,7 @@ blockquote {
   /* padding: 2px 0px; */
   text-shadow: 0px -1px 0px rgb(0, 0, 0);
   /* margin-top: -30px; */
+  /* border-bottom: ridge 3px rgb(225, 224, 224); */
 }
 
 #top-nav-write.active-top-nav {
@@ -193,12 +198,12 @@ h4 {
   font-weight: 600;
   line-height: 1.6;
   opacity: 0.9;
-  font-size: 1.3em;
+  font-size: 1.5em;
   letter-spacing: 0.5px;
 }
 
 .row {
-  max-width: 75rem;
+  /* max-width: 75rem; */
 }
 
 .headline {
@@ -234,43 +239,48 @@ h4 {
   opacity: 1;
 }
 
-button {
+.btn-jo {
   width: 100%;
   padding: 7px;
   opacity: 0.5;
-  font-size: 0.8rem;
-  font-family: 'Open Sans', sans-serif;
   background-color: white;
   color: black;
-  border-radius: 2px;
   border: solid 1px #cdcddd;
   margin: 13px 0px 10px 0px;
   transition: all .1s ease-in-out;
   font-style: normal;
+  font-family: 'Open Sans', sans-serif;
   letter-spacing: 1px;
+  border-radius: 2px;
 }
 
-button:hover,
-button:focus {
+.btn-jo.active {
+  /* box-shadow: inset 0px 0px 28px -14px rgb(121, 119, 50); */
+  opacity: 1;
+  /* border-color: rgb(0, 255, 128); */
+}
+
+.btn-jo:hover,
+.btn-jo:focus {
   /* border: solid 1px rgb(219, 219, 219); */
   background-color: white;
-  color: black;
-  box-shadow: inset 0px 0px 2px 0px rgb(190, 190, 190);
+  /* color: black; */
+  /* box-shadow: inset 0px 0px 2px 0px rgb(190, 190, 190); */
   opacity: 1;
-  opacity: 1;
-  font-weight: 800;
+  /* font-weight: 800; */
 }
 
 p {
-  font-family: 'Source Sans Pro', serif;
+  /* font-family: 'Source Sans Pro', serif; */
   font-family: 'Cambo', serif;
-  font-size: 20px;
+  font-size: 21px;
   line-height: 1.5;
   margin-bottom: 1.2em;
   opacity: 0.9;
   padding-right: 12px;
   padding-left: 5px;
   /* text-shadow: -1px 0px 0px rgba(199, 199, 199, 1); */
+  text-rendering: optimizeLegibility;
 }
 
 li {
@@ -280,6 +290,7 @@ li {
 #write-center {
   /* margin-top: 10px; */
   padding: 5% 6%;
+  background-color: rgba(255, 255, 255, 0.97);
   box-shadow: 0px 1px 9px -4px black;
   border-radius: 4px;
   max-width: 684px;
@@ -307,7 +318,7 @@ li {
 #write-title {
   font-family: 'Roboto', sans-serif;
   /* font-family: "Alegreya Sans", sans-serif; */
-  font-size: 2rem;
+  font-size: 3.5rem;
   text-align: left;
   /* letter-spacing: 0.8px; */
   line-height: 1;
@@ -361,9 +372,9 @@ li {
 }
 
 h3 {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 2.2rem;
-  font-weight: 600;
+  font-family: 'Patua One', sans-serif;
+  font-size: 4.2rem;
+  font-weight: 200;
   line-height: 1.8;
   opacity: 0.95;
 }
@@ -523,7 +534,9 @@ h3 {
 .ion-heart {
   color: rgba(255, 99, 92, 0.37);
   font-size: 1.5em;
-  padding-left: 15px;
+  margin-top: -20px;
+  margin-bottom: -20px;
+  padding-top: 11px;
 }
 
 .ion-arrow-up-a {
@@ -795,36 +808,10 @@ h3 {
 
 .active-top-nav {
   color: black;
-  padding-top: 9px;
   transition: all .2s ease-in-out;
   font-weight: 600;
+  opacity: 0.9 !important;
   font-style: normal;
-}
-
-#me-list-body {
-  margin-top: 20px;
-}
-
-.me-list-top-nav {
-  font-family: 'Open Sans', sans-serif;
-  height: 40px;
-  font-size: 0.9em;
-  padding-top: 10px;
-}
-
-.me-heart {
-  font-size: 0.9em;
-  padding: 0px;
-}
-
-.me-list-nav-item {
-  padding: 16px;
-  transition: all .1s ease-in-out;
-  cursor: pointer;
-}
-
-.me-list-nav-item:hover {
-  background-color: #e8e4ff;
 }
 
 .write-column-left {
@@ -1006,50 +993,24 @@ h3 {
   opacity: 1;
 }
 
-.me-doc-box {
-  margin-top: 20px;
-}
-
-.me-doc {
-  line-height: 1.8;
-  padding: 10px;
-  border-bottom: solid 1px gray;
-  border-radius: 3px;
-  opacity: 0.5;
-  transition: all .1s ease-in-out;
-  cursor: pointer;
-}
-
-.me-doc:hover {
-  opacity: 1;
-  border-color: black;
-}
-
-.me-doc-title {
-  font-family: 'Patua One', sans-serif;
-  font-size: 1.2em;
-}
-
-.me-tag-label {
-  margin: 7px;
-  padding: 8px;
-  opacity: 0.6;
-  border-radius: 4px;
-  background-color: lightgray;
-  color: black;
-  cursor: pointer;
-  font-size: 1.1em;
-}
-
 .profile-filter-nav.active {
   font-weight: 700;
   opacity: 1;
 }
 
-.me-tag-label:hover {
-  opacity: 1;
-}
-
 #profile-karma {
   margin-bottom: 30px;
+}
+
+/*  
+  ROUTE -  ME 
+*/
+
+#me-content {
+  margin-top: 20px;
+}
+
+.me-doc-block {
+  height: 100px;
+  overflow: hidden;
 }
