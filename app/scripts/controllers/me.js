@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('wrdz')
-.controller('MeCtrl', function ($scope, User, Profile, $state) {
+angular.module('me')
+.controller('MeCtrl', function ($scope, User, $state) {
 
 
 /*
@@ -34,22 +34,6 @@ MY WRDZ
 
   });
 
-  // $scope.$watch(function  () {
-  //   return Profile.getDocs();
-  // }, function  (newValue, oldValue) {
-  //   if (newValue) {
-  //     $scope.currentDocs = newValue;
-  //   }
-  // });
-
-  // $scope.$watch(function  () {
-  //   return Profile.getDocIds();
-  // }, function  (newValue, oldValue) {
-  //   if (newValue) {
-  //     $scope.docIds = newValue;
-  //     Profile.getDocServer_20();
-  //   }
-  // });
 
 
 

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('wrdz')
+angular.module('read')
   .factory('Read', function ($http) {
 
 
@@ -33,7 +33,6 @@ angular.module('wrdz')
         }
         return $http.post('/pubDocs/'+ docId, data);
       }
-
 
 
     };

@@ -27,13 +27,13 @@ angular.module('wrdz').directive('mediumEditor', function ($timeout) {
         if (!editor) {
           
           if (!ctrl.$isEmpty(ctrl.$viewValue)) {
-            console.log('not empty so no placeholder');
+            // console.log('not empty so no placeholder');
             opts.placeholder = '';
             iAttrs.$set('data-placeholder', '');
           } else {
             iAttrs.$set('data-placeholder', angular.fromJson(iAttrs.options).placeholder);
           }
-          console.log('making editor')
+          // console.log('making editor')
           var editor = new MediumEditor(iElement, opts);
         }
         iElement.html(ctrl.$isEmpty(ctrl.$viewValue) ? '' : ctrl.$viewValue);

@@ -4,8 +4,8 @@
   Write Service
   */
 
-  angular.module('wrdz')
-  .factory('Write', function ($http) {
+  angular.module('write')
+  .factory('Write', function ($http, User, UserDoc) {
 
 /*
       Service Logic and declarations
@@ -51,7 +51,7 @@
     // User Docs
 
     createNewDoc : function  () {
-      return $http.get('/userDocs');
+      return UserDoc.create();
     },
 
 
@@ -92,12 +92,10 @@
 
     // User
 
-    updateCurrentDoc: function (id, user) {
-      var data = {
-        type : 'current_doc',
-        docId : id
-      };
-      return $http.post('/users/' + user._id, data);
+    updateCurrentDoc: function (id) {
+
+      User.update('currentDoc', id);
+
     },
 
 

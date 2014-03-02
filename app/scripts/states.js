@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('wrdz').
+angular.module('shared').
 config(['$stateProvider', '$urlRouterProvider',
   function ($stateProvider, $urlRouterProvider) {
 
@@ -85,29 +85,8 @@ config(['$stateProvider', '$urlRouterProvider',
       .state('read-doc', {
         url: '/r/:docId',
         templateUrl: 'partials/read-doc.html',
-        controller: ['$scope', '$stateParams', '$state', 'Read',
-        function (  $scope,   $stateParams,   $state, Read) {
-          var docId = $stateParams.docId;
-          Read.getPubDoc(docId).then(function  (res) {
-            $scope.readDoc = res.data;
-          });
-
-          $scope.heart = function () {
-            Read.updatePubDoc(docId, 'heart');
-          };
-          $scope.up_vote = function () {
-            Read.updatePubDoc(docId, 'up_vote');
-          };
-          $scope.view = function () {
-            Read.updatePubDoc(docId, 'view');
-          };
-
-          $scope.view();
-
-
-
-                  }]
-                })
+ 
+      })
 
 /*
       WRITE

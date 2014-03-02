@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('wrdz')
-.controller('ReadCtrl', function ($scope, Read, $state) {
+angular.module('read')
+.controller('ReadCtrl', function ($scope, Read, $state, PubDoc, $stateParams) {
 
   $scope.moment = moment;
 
@@ -39,6 +39,28 @@ angular.module('wrdz')
       $scope.docs = newValue;
     }
   });
+
+
+  ////
+
+
+
+        var docId = $stateParams.docId;
+          Read.getPubDoc(docId).then(function  (res) {
+            $scope.readDoc = res.data;
+          });
+
+          $scope.heart = function () {
+            PubDoc.update(docId, 'heart', true);
+          };
+          $scope.up_vote = function () {
+            PubDoc.update(docId, 'up_vote', true);
+          };
+          $scope.view = function () {
+            PubDoc.update(docId, 'view', true);
+          };
+
+          $scope.view();
 
 
 });

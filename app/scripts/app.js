@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('wrdz', [
+angular.module('vendor', [
   'ngCookies',
   'ngResource',
   'ngAnimate',
@@ -10,6 +10,28 @@ angular.module('wrdz', [
   'perfect_scrollbar',
   'ui.bootstrap',
   'ui.router'
+  ]);
+
+angular.module('read', []);
+angular.module('write', []);
+angular.module('talk', []);
+angular.module('models', []);
+angular.module('me', []);
+angular.module('shared', []);
+
+
+angular.module('wrdz', [
+
+  'vendor',
+  'read',
+  'write',
+  'talk',
+  'me',
+  'read',
+  'models',
+  'shared'
+
+
 ])
   .config( function($locationProvider) {
     $locationProvider.html5Mode(true);
