@@ -71,6 +71,10 @@ module.exports = function (grunt) {
       }
     },
 
+    nodeunit : {
+      all: ['test/node/*_test.js']
+    },
+
 
     open: {
       server: {
@@ -423,7 +427,7 @@ module.exports = function (grunt) {
     'concurrent:test',
     'autoprefixer',
     'protractor',
-    'karma'
+    // 'karma'
   ]);
 
   grunt.registerTask('build', [
