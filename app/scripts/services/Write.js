@@ -5,7 +5,7 @@
   */
 
   angular.module('write')
-  .factory('Write', function ($http, User, UserDoc) {
+  .factory('Write', function ($http, User, PubDoc, UserDoc) {
 
 /*
       Service Logic and declarations
@@ -70,24 +70,12 @@
 
     publishDoc : function (isAnon, user) {
       var data = {
-        doc : {
-          title: current_doc.title,
-          body: current_doc.body,
-          
-        },
-        id: current_doc._id
+        id: current_doc._id,
+        is_anon : isAnon
       }
 
-      if (isAnon) {
-        data.doc.is_anon = true;
-        data.doc.author = 'Anonymous'
+      return PubDoc.create(data);
 
-      } else {
-        data.doc.is_anon = false;
-        data.doc.author = user.username;
-      }
-
-      return $http.post('/pubDocs', data);
     },
 
     // User

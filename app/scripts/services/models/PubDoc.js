@@ -16,8 +16,9 @@ angular.module('models')
     // Public API here
     return {
 
-      create : function () {
-        return $http.get('/pubDocs');
+      create : function (data) {
+
+        return $http.post('/pubDocs', data);
       },
 
       update: function (docId, type, bool) {

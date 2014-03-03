@@ -8,8 +8,15 @@
                 <div id='' class="write-column-left col-sm-2 show-for-medium-up text-left ">
                     <button ng-click='newDoc()' class='btn btn-jo'><span class="ion-compose icon"></span> &nbsp;&nbsp;&nbsp;New</button>   
 
+                    <div ng-show='currentDoc.is_published' id="write-pub-info">
+                        Votes : {{currentDoc.pub_doc.up_votes}}
+                        <br>
+                        Hearts : {{currentDoc.pub_doc.hearts}}
+                        Views : {{currentDoc.pub_doc.views}}
 
-                    <button class='btn-jo' ng-click='publishBox = !publishBox'><span class="ion-eye icon"></span> &nbsp;&nbsp;&nbsp;Publish</button>
+                    </div>
+
+                    <button class='btn-jo' ng-hide='currentDoc.is_published' ng-click='publishBox = !publishBox'><span class="ion-eye icon"></span> &nbsp;&nbsp;&nbsp;Publish</button>
 
                     <div ng-show="publishBox" class="panel publish-box">
                         <div ng-click="publishBox = !publishBox" class=" right icon ion-close"></div>

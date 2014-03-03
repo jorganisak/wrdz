@@ -72,25 +72,25 @@ angular.module('read')
 
 
   ////
+    // FOR READ ITEM VIEW
 
 
+        // var docId = $stateParams.docId;
+        //   Read.getPubDoc(docId).then(function  (res) {
+        //     $scope.readDoc = res.data;
+        //   });
 
-        var docId = $stateParams.docId;
-          Read.getPubDoc(docId).then(function  (res) {
-            $scope.readDoc = res.data;
-          });
+        //   $scope.heart = function () {
+        //     PubDoc.update(docId, 'heart', true);
+        //   };
+        //   $scope.up_vote = function () {
+        //     PubDoc.update(docId, 'up_vote', true);
+        //   };
+        //   $scope.view = function () {
+        //     PubDoc.update(docId, 'view', true);
+        //   };
 
-          $scope.heart = function () {
-            PubDoc.update(docId, 'heart', true);
-          };
-          $scope.up_vote = function () {
-            PubDoc.update(docId, 'up_vote', true);
-          };
-          $scope.view = function () {
-            PubDoc.update(docId, 'view', true);
-          };
-
-          $scope.view();
+        //   $scope.view();
 
 
 });

@@ -133,7 +133,7 @@ blockquote {
 }
 
 #top-nav-write.activeTopNav {
-  color: rgba(32, 209, 0, 1);
+  color: rgba(0, 119, 27, 1);
   /* text-shadow: 1px 0px 0px silver; */
   transition: all .2s ease;
 }
@@ -780,10 +780,10 @@ h3 {
 .activeTopNav {
   color: black;
   transition: all .2s ease-in-out;
-  font-weight: 600;
+  font-weight: 800;
   opacity: 0.9 !important;
   font-style: normal;
-  /* padding-top: 4px; */
+  padding-top: 0px;
   /* font-size: 1.6em; */
 }
 
@@ -1025,18 +1025,4 @@ h3 {
 .jo-tab {
   font-size: 1em;
   font-family: 'Roboto', sans-serif;
-}
-
-.nav-tabs > .jo-tab.active > a {
-  /* border-top-color: white; */
-}
-
-.nav-tabs > li.jo-active-tab > a,
-.nav-tabs > li.jo-active-tab > a:hover,
-.nav-tabs > li.jo-active-tab > a:focus {
-  color: #555;
-  cursor: default;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-bottom-color: transparent;
 }

@@ -1,6 +1,11 @@
 <div ng-controller="ReadCtrl">
 
-    <tabset class='jo-tabset'>
+   
+
+
+        <div id="read-list-body" class='row'>
+            <div id='read-list-left ' class="col-sm-2 text-left">
+                 <tabset vertical='true' type='"pills"' class='jo-tabset'>
 
         <tab ng-repeat="tab in tabs" class='jo-tab' ui-sref='{{"read." + tab.title | lowercase}}' active='tab.active' heading='{{tab.title}}'></tab>
 
@@ -8,14 +13,11 @@
     </tabset>
 
 
-
-
-        <div id="read-list-body" class='row'>
-            
+            </div>
             
 
 
-            <div class="col-md-8 col-xs-10 col-md-offset-2">
+            <div class="col-md-8 col-xs-10 ">
 
                 <div id='read-list-right' class="col-md-10 col-md-offset-1 col-xs-12">
                     
@@ -25,7 +27,7 @@
                             <div class="row">
                                 <div class="col-sm-8 ">
                                     <div class="read-list-title">
-                                        {{doc.title}}
+                                        {{doc.doc.title}}
                                     </div>
 
 
@@ -52,7 +54,7 @@
 
 
                                     <div class="read-list-author">
-                                        <a href="">{{doc.author}}</a>
+                                        <a href="">{{doc.author.username}}</a>
                                     </div>
 
                                 </div>
