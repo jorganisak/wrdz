@@ -1,19 +1,19 @@
 
  <div ng-controller="NavbarCtrl" id="header">
             <div id='top-nav' class="col-md-12">
-                <div ui-sref-active='active-top-nav' ui-sref="write" id='top-nav-write' class="top-nav-item col-xs-3 col-sm-3  col-md-2">
+                <div ui-sref-active='activeTopNav' ui-sref="write" id='top-nav-write' class="top-nav-item col-xs-3 col-sm-3  col-md-2">
                     write
                 </div>
-                <div ui-sref-active='active-top-nav' ui-sref="read" id='top-nav-read' class="top-nav-item  col-xs-3 col-sm-3  col-md-2">
+                <div ng-class="{activeTopNav: $state.includes('read')}" ui-sref="read" id='top-nav-read' class="top-nav-item  col-xs-3 col-sm-3  col-md-2">
                     read
                 </div>
                 <div ui-sref="landing" id='wrdz-headline' class=" hidden-xs hidden-sm col-md-4">
                     wrdz
                 </div>
-                <div ui-sref-active='active-top-nav' id='top-nav-inbox' ui-sref='talk' class=" top-nav-item col-xs-3 col-sm-3 col-md-2">
+                <div ui-sref-active='activeTopNav' id='top-nav-inbox' ui-sref='talk' class=" top-nav-item col-xs-3 col-sm-3 col-md-2">
                     talk &nbsp; <span class="label label-success">42</span>
                 </div>
-                <div ui-sref-active='active-top-nav' ui-sref="profile" id='top-nav-profile' class=" top-nav-item col-xs-3 col-sm-3 col-md-2">
+                <div ui-sref-active='activeTopNav' ui-sref="profile" id='top-nav-profile' class=" top-nav-item col-xs-3 col-sm-3 col-md-2">
                     me
                 </div>
         </div>

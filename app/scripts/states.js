@@ -4,7 +4,7 @@ angular.module('shared').
 config(['$stateProvider', '$urlRouterProvider',
   function ($stateProvider, $urlRouterProvider) {
 
-    // $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/');
 
     $stateProvider
 
@@ -78,13 +78,30 @@ config(['$stateProvider', '$urlRouterProvider',
       */
 
       .state('read', {
-        url: '/read',
-        templateUrl: 'partials/read.html'
+        url: '/r',
+        templateUrl: 'partials/read/read.html'
+      })
+      .state('read.front', {
+        url: '',
+
+        templateUrl: 'partials/read/read.html'
+      })
+      .state('read.new', {
+        url: '/n',
+        templateUrl: 'partials/read/read.html'
+      })
+      .state('read.following', {
+        url: '/f',
+        templateUrl: 'partials/read/read.html'
+      })
+      .state('read.topics', {
+        url: '/t',
+        templateUrl: 'partials/read/read.html'
       })
 
-      .state('read-doc', {
-        url: '/r/:docId',
-        templateUrl: 'partials/read-doc.html',
+      .state('read.doc', {
+        url: '/:docId',
+        templateUrl: 'partials/read/read-doc.html',
  
       })
 
@@ -93,7 +110,7 @@ config(['$stateProvider', '$urlRouterProvider',
       */
 
       .state('write', {
-        url: '/write',
+        url: '/w',
         templateUrl: 'partials/write.html'
       })
 
@@ -118,7 +135,7 @@ config(['$stateProvider', '$urlRouterProvider',
       */
 
       .state('talk', {
-        url: '/talk',
+        url: '/t',
         templateUrl: 'partials/talk.html'
       })
 
