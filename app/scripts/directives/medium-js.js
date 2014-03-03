@@ -9,7 +9,7 @@ angular.module('wrdz').directive('mediumEditor', function ($timeout) {
       if (iAttrs.options) {
         opts = angular.fromJson(iAttrs.options);
       }
-      var placeholder = opts.placeholder || 'Type here';
+      var placeholder = opts.placeholder;
       iElement.on('blur keypress keydown keyup change', function () {
         scope.$apply(function () {
           if (iElement.html() == '<p><br></p>' || iElement.html() == '' || iElement.html() =='<br>') {

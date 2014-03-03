@@ -21,6 +21,8 @@ angular.module('models')
       },
 
       update: function (docId, type, data) {
+        
+
         var send = {'data' : data };
 
         // res.status = 200 on good, 400 bad

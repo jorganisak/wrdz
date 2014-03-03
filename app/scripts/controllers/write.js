@@ -32,7 +32,7 @@
 
 angular.module('write')
 
-  .controller('WriteCtrl', function ($scope, User, Write, $state) {
+  .controller('WriteCtrl', function ($scope, User, Write, $state, $timeout) {
 
 /*
     Utils
@@ -111,13 +111,15 @@ angular.module('write')
         $scope.currentDoc = newValue;
         // console.log(newValue)
         $scope.hasTitle = newValue.has_title;
+        $timeout(function () {
+          focusContent();
+        }, 200)
       }
     });
 
 /*
     UX Functions
     */
-
 
     // Not using this at the moment but... 
 

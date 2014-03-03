@@ -1,3 +1,14 @@
+/* 
+  LANDING
+ */
+
+.big-header {
+  font-size: 4rem;
+  margin-top: 35px;
+  font-family: Source Sans Pro;
+  letter-spacing: 1px;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -46,7 +57,7 @@ blockquote {
 
 #header {
   text-align: center;
-  opacity: 0.7;
+  opacity: 0.4;
   /* background-color: rgb(159, 33, 243); */
   transition: all .2s ease-in-out;
 }
@@ -83,25 +94,25 @@ blockquote {
 }
 
 .top-nav-item {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1.35em;
-  font-variant: small-caps;
-  font-style: italic;
-  opacity: 0.5;
+  font-family: 'Open sans', sans-serif;
+  font-size: 1.33rem;
+  /* font-variant: small-caps; */
+  /* font-style: italic; */
+  opacity: 0.7;
   letter-spacing: 3px;
   cursor: pointer;
-  /* border-top: solid 1px white; */
-  height: 90%;
-  padding: 0px 0 0 0;
-  border-top: solid 5px transparent;
-  transition: all 300ms ease;
-  transition: border-top-color 800ms ease-in;
-  text-shadow: 0px -1.3px 0px rgb(216, 245, 255);
+  height: 80%;
+  padding: 9px 0 0 0;
+  transition: all 200ms ease;
+  text-shadow: 0px -1.3px 0px rgb(222, 222, 222);
+  /* border-bottom-left-radius: 8px; */
+  /* border-bottom-right-radius: 8px; */
 }
 
 .top-nav-item:hover {
   font-style: normal;
   opacity: 1;
+  box-shadow: 0px 1px 2px -1px rgb(165, 159, 159);
   /* font-size: 1.56em; */
 }
 
@@ -120,7 +131,7 @@ blockquote {
   font-variant: normal;
   padding-bottom: 9px;
   /* opacity: 0.5; */
-  transition: all .15s ease;
+  transition: all .35s ease;
   /* box-shadow: inset 1px 0px 0px 0px gold; */
 }
 
@@ -133,7 +144,7 @@ blockquote {
 }
 
 #top-nav-write.activeTopNav {
-  color: rgba(0, 119, 27, 1);
+  color: rgba(255, 137, 0, 1);
   /* text-shadow: 1px 0px 0px silver; */
   transition: all .2s ease;
 }
@@ -164,30 +175,22 @@ blockquote {
   border-bottom: solid 1px #ffd9ad;
 }
 
-#top-nav-read:hover {
-  /* border-bottom-color: #f01c34; */
-}
-
 #top-nav-read.activeTopNav {
-  color: red;
-  /* transition: all 300ms linear; */
-}
-
-#top-nav-inbox:hover {
-  /* border-bottom-color: #48b4ed; */
+  color: rgb(213, 0, 22);
+  transition: all .2s ease;
 }
 
 #top-nav-inbox.activeTopNav {
-  color: rgba(0, 167, 255, 1);
+  color: rgba(20, 173, 35, 1);
   /* text-shadow: 1px 0px 0px silver; */
 }
 
 .activeTopNav:hover {
-  /*   border-bottom: none !important; */
+  box-shadow: none;
 }
 
 #top-nav-profile.activeTopNav {
-  border-bottom: solid 2px rgba(255, 215, 0, 0.68);
+  color: rgba(0, 5, 255, 1);
 }
 
 #top-nav-profile:hover {
@@ -205,10 +208,10 @@ blockquote {
 h4 {
   font-family: 'Roboto', sans-serif;
   /* font-style: italic; */
-  font-weight: 600;
-  line-height: 1.6;
+  /* font-weight: 600; */
+  line-height: 1.8em;
   opacity: 0.9;
-  font-size: 1.5em;
+  font-size: 1.9em;
   letter-spacing: 0.5px;
 }
 
@@ -228,7 +231,7 @@ h4 {
 
 #write-body {
   border: none;
-  margin-top: 30px;
+  margin-top: 10px;
   /* position: absolute; */
 }
 
@@ -272,20 +275,20 @@ h4 {
 
 .btn-jo:hover,
 .btn-jo:focus {
-  /* border: solid 1px rgb(219, 219, 219); */
-  background-color: rgba(0, 113, 255, 0.51);
-  color: white;
+  border: solid 1px rgb(219, 219, 219);
+  outline: none;
   /* box-shadow: inset 0px 0px 2px 0px rgb(190, 190, 190); */
   opacity: 1;
+  padding: 9px 5px;
   /* font-weight: 800; */
 }
 
 p {
   font-family: 'Source Sans Pro', serif;
-  /* font-family: 'Cambo', serif; */
-  font-size: 19px;
-  line-height: 1.5;
-  margin-bottom: 1.2em;
+  font-family: 'Cambo', serif;
+  font-size: 22px;
+  line-height: 1.35;
+  margin-bottom: 1em;
   /* opacity: 0.9; */
   padding-right: 12px;
   padding-left: 5px;
@@ -301,7 +304,7 @@ li {
   /* margin-top: 10px; */
   padding: 5% 6%;
   background-color: rgba(255, 255, 255, 0.97);
-  box-shadow: 0px 1px 9px -4px black;
+  box-shadow: 0px 0px 5px -1px silver;
   border-radius: 4px;
   max-width: 684px;
   margin: 10px auto;
@@ -744,8 +747,9 @@ h3 {
 }
 
 .ion-chatbox {
-  font-size: 2.2em;
-  color: blue;
+  font-size: 1.2em;
+  /* color: blue; */
+  padding-right: 3px;
 }
 
 .read-doc-message {
@@ -778,12 +782,15 @@ h3 {
 }
 
 .activeTopNav {
-  color: black;
+  /* color: white; */
   transition: all .2s ease-in-out;
   font-weight: 800;
-  opacity: 0.9 !important;
+  text-shadow: 0px 1px 0px silver;
+  opacity: initial;
+  background-color: rgba(229, 230, 239, 0.54);
+  /* box-shadow: inset 0px -5px 0px -3px rgba(0, 0, 0, 0.88); */
   font-style: normal;
-  padding-top: 0px;
+  /* padding-top: 0px; */
   /* font-size: 1.6em; */
 }
 
@@ -819,7 +826,7 @@ h3 {
 #title-switch {
   text-align: right;
   margin-top: -37px;
-  opacity: 0.05;
+  opacity: 0.15;
   font-style: italic;
   height: 20px;
   font-size: 1.2em;
@@ -1000,7 +1007,7 @@ h3 {
 
 .read-list-left-item {
   font-family: 'Open Sans', sans-serif;
-  padding: 20px;
+  padding: 10px;
   cursor: default;
   transition: all 200ms linear;
 }
@@ -1026,5 +1033,3 @@ h3 {
   font-size: 1em;
   font-family: 'Roboto', sans-serif;
 }
-
-
