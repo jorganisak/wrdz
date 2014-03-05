@@ -111,7 +111,7 @@ config(['$stateProvider', '$urlRouterProvider',
 
       .state('write', {
         url: '/w',
-        templateUrl: 'partials/write.html'
+        templateUrl: 'partials/write/write.html'
       })
 
 

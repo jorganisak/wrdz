@@ -169,28 +169,6 @@ angular.module('write')
     };
     
 
-    // Add tag to doc with (String) as tag
-
-    $scope.newTag = function (tagTitle) {
-      if (tagTitle) {
-        $scope.newTagTitle = ''; // reset tag input form
-        var docId = $scope.currentDoc._id;
-        var tagName = tagTitle;
-        Write.newTag( tagName, docId, $scope.user ).then(function (res) {
-          if (tagArrayTest(res.data, $scope.currentDoc.tags)) $scope.currentDoc.tags.push( res.data );
-        });
-      }
-    };
-
-    $scope.removeTag = function (tagId) {
-      Write.removeTag(tagId, $scope.currentDoc._id, $scope.user);
-      for (var i = 0 ; i < $scope.currentDoc.tags.length ; i++) {
-        if ($scope.currentDoc.tags[i]._id  ==  tagId) {
-          $scope.currentDoc.tags.splice(i,1);
-        }
-      }
-    };
-
 ////////////////////////////////// MESS AROUND TOWN
 
 $scope.switchHasTitle = function () {
@@ -198,5 +176,64 @@ $scope.switchHasTitle = function () {
   Write.setCurrentDoc.hasTitle = !$scope.hasTitle;
   $scope.hasTitle = !$scope.hasTitle;
 }
+
+}).controller('WriteLeftCtrl', function  ($scope, $modal) {
+  
+  $scope.openTopicModal = function () {
+
+    var modalInstance = $modal.open({
+      templateUrl: "partials/write/topic-modal.html",
+      controller: function  ($scope, $modalInstance, userTopics, docTopics, Write) {
+        $scope.userTopics = userTopics;
+        $scope.docTopics = docTopics;
+        $scope.close = function() {
+          $modalInstance.close();
+        }; 
+
+        $scope.addTopic = function (topicTitle) {
+          return Write.updateTopics('add', topicTitle);
+        }
+      },
+      resolve: {
+        userTopics: function () {
+          return $scope.user.topics;
+        },
+
+        currentDoc : function () {
+          return $scope.currentDoc;
+        },
+
+        docTopics: function () {
+          return $scope.currentDoc.topics;
+        }
+      }
+    });
+  };
+
+  $scope.openPublishModal = function () {
+    var modalInstance = $modal.open({
+      templateUrl: "partials/write/publish-modal.html",
+      controller: function  ($scope, $modalInstance, userTopics, docTopics, doc) {
+        $scope.userTopics = userTopics;
+        $scope.docTopics = docTopics;
+        $scope.close = function() {
+          $modalInstance.close();
+        }; 
+      },
+      resolve: {
+        userTopics: function () {
+          return $scope.user.topics;
+        },
+
+        docTopics: function () {
+          return $scope.currentDoc.topics;
+        },
+
+        doc : function () {
+          return $scope.currentDoc;
+        }
+      }
+    });
+  };
 
 });

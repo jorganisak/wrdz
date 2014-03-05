@@ -5,7 +5,7 @@
   */
 
   angular.module('write')
-  .factory('Write', function ($http, User, PubDoc, UserDoc) {
+  .factory('Write', function ($http, User, PubDoc, UserDoc, Topics) {
 
 /*
       Service Logic and declarations
@@ -33,8 +33,8 @@
       @updateUserDoc
       @updateCurrentDoc
 
-    Tags:
-      @newTag
+    Topics:
+      @updateTopic
       @removeTag
 
       */
@@ -86,42 +86,10 @@
 
     },
 
+    // Topics
 
-/*
-    Topics      
-    */
-
-    // Users
-
-    newTag : function  (tagName, docId, user)  {
-      var data = {
-        type: 'addTag',
-        tag: {
-          title: tagName,
-          _docs: [docId],
-          _owner: user._id
-        }
-      }
-      return $http.post('/users/' + user._id, data)
-    },
-
-    removeTag : function  (tagId, docId, user) {
-      var data = {
-        type: 'removeTag',
-        tag: {
-          _id: tagId
-        },
-        doc_id : docId
-      }
-      // console.log('removing tag');
-      return $http.post('/users/' + user._id, data).then(function  (res) {
-        console.log(res)
-      })
-
+    updateTopics : function (type, topicTitle) {
+      return Topics.update(current_doc._id, type, topicTitle);
     }
-
-
-
-
   };
 });

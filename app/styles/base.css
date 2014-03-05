@@ -1,4 +1,102 @@
 /* 
+  DIRECTIVES
+ */
+
+/* Input add */
+
+.add-button {
+  background-color: white;
+}
+
+.add-button:hover {
+  color: green;
+}
+
+.add-button:focus,
+.add-button.active:hover,
+.add-button:active,
+.add-button.active:focus,
+add-button.active:active {
+  color: green;
+  border: none;
+  outline: none;
+}
+
+.ion-plus-circled {
+  color: gray;
+  font-size: 1.5em;
+  /* opacity: 0.5; */
+  transition: all 200ms ease;
+}
+
+/*  
+  ROUTE - ME 
+*/
+
+#me-content {
+  margin-top: 20px;
+}
+
+.me-doc-block {
+  height: 100px;
+  overflow: hidden;
+}
+
+/*  
+  ROUTE - READ 
+*/
+
+#read-list-right {
+  border: solid 1px rgba(192, 192, 192, 0.32);
+  border-radius: 4px;
+}
+
+.read-list-left-item {
+  font-family: 'Open Sans', sans-serif;
+  padding: 10px;
+  cursor: default;
+  transition: all 200ms linear;
+}
+
+.read-list-left-item:hover {
+  background-color: rgba(235, 235, 235, 0.72);
+}
+
+#read-list-left {
+  opacity: 0.8;
+  transition: all 200ms ease;
+}
+
+#read-list-left:hover {
+  opacity: 1;
+}
+
+/*
+  BOOTSTRAP OVERRIDES
+*/
+
+.jo-tab {
+  font-size: 1em;
+  font-family: 'Roboto', sans-serif;
+}
+
+.modal-content {
+  text-align: center;
+  border-radius: 2px;
+  border: none;
+  box-shadow: 0px 1px 4px 1px silver;
+}
+
+.modal-backdrop.in {
+  opacity: 0.5;
+  background-color: white;
+}
+
+.modal-backdrop {
+  background-color: white;
+}
+
+/* 
   LANDING
  */
 
@@ -110,10 +208,8 @@ blockquote {
 }
 
 .top-nav-item:hover {
-  font-style: normal;
   opacity: 1;
   box-shadow: 0px 1px 2px -1px rgb(165, 159, 159);
-  /* font-size: 1.56em; */
 }
 
 #wrdz-headline {
@@ -385,11 +481,7 @@ li {
 }
 
 h3 {
-  font-family: 'Patua One', sans-serif;
-  font-size: 4.2rem;
-  font-weight: 200;
-  line-height: 1.8;
-  opacity: 0.95;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .inbox-unread {
@@ -896,15 +988,6 @@ h3 {
   color: red;
 }
 
-.ion-plus-circled {
-  color: green;
-  font-size: 1.7em;
-  margin: 4px;
-  cursor: pointer;
-  opacity: 0.3;
-  margin-left: -20px;
-}
-
 .ion-plus-circled:hover {
   opacity: 1;
 }
@@ -981,55 +1064,4 @@ h3 {
 
 #profile-karma {
   margin-bottom: 30px;
-}
-
-/*  
-  ROUTE -  ME 
-*/
-
-#me-content {
-  margin-top: 20px;
-}
-
-.me-doc-block {
-  height: 100px;
-  overflow: hidden;
-}
-
-/*  
-  ROUTE -  READ 
-*/
-
-#read-list-right {
-  border: solid 1px rgba(192, 192, 192, 0.32);
-  border-radius: 4px;
-}
-
-.read-list-left-item {
-  font-family: 'Open Sans', sans-serif;
-  padding: 10px;
-  cursor: default;
-  transition: all 200ms linear;
-}
-
-.read-list-left-item:hover {
-  background-color: rgba(235, 235, 235, 0.72);
-}
-
-#read-list-left {
-  opacity: 0.8;
-  transition: all 200ms ease;
-}
-
-#read-list-left:hover {
-  opacity: 1;
-}
-
-/*
-  BOOTSTRAP OVERRIDES
-*/
-
-.jo-tab {
-  font-size: 1em;
-  font-family: 'Roboto', sans-serif;
 }

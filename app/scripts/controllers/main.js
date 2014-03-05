@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('wrdz')
+angular.module('shared')
   .controller('MainCtrl', function ($scope, User, $rootScope) {
     
 /*
