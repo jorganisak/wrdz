@@ -55,13 +55,10 @@
     },
 
 
-    updateUserDoc : function  (t, d) {
-      // type is either 'body' or 'title'
-      var send = {'data' : d };
-      
+    updateUserDoc : function  (type, data) {
 
       // res.status = 200 on good, 400 bad
-      return $http.post('/userDocs/' + current_doc._id  + '/?type=' + t, send)
+      return UserDoc.update(current_doc._id, type, data)
     },
 
 

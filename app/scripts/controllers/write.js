@@ -100,7 +100,8 @@ angular.module('write')
     // Does the same for the body
     $scope.$watch('currentDoc.body', function (newValue, oldValue) {
       if (newValue) {
-        Write.updateUserDoc('body', $scope.currentDoc.body);
+        var sample = document.getElementById('write-content').innerText.slice(0, 1000);
+        Write.updateUserDoc('body', {'sample': sample, 'body': $scope.currentDoc.body});
       }
     });
 

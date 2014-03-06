@@ -20,6 +20,8 @@ angular.module('models')
         return $http.get('/userDocs');
       },
 
+
+
       update: function (docId, type, data) {
         
 
