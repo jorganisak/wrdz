@@ -131,7 +131,7 @@ add-button.active:active {
   -webkit-box-shadow: inset 1px 1px 22px -3px #767676;
   background-color: #C3CFE4;
   opacity: .5;
-  border-radius: 4px;
+  border-radius: 0px;
 }
 
 a:hover,
@@ -167,7 +167,7 @@ blockquote {
 
 #header {
   text-align: center;
-  opacity: 0.4;
+  /* opacity: 0.4; */
   /* background-color: rgb(159, 33, 243); */
   transition: all .2s ease-in-out;
 }

@@ -15,11 +15,6 @@ MY WRDZ
   }
 
 
-
-
-
-
-
   $scope.currentDocs = [];
 
   $scope.docIds = [];
@@ -33,14 +28,6 @@ MY WRDZ
     }
 
   });
-
-
-
-
-
-
-
-
 
 
 /*
