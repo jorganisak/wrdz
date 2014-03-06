@@ -59,7 +59,7 @@ add-button.active:active {
 }
 
 .read-list-left-item:hover {
-  background-color: rgba(235, 235, 235, 0.72);
+  background-color: rgba(183, 196, 255, 0.72);
 }
 
 #read-list-left {
@@ -94,6 +94,18 @@ add-button.active:active {
 
 .modal-backdrop {
   background-color: white;
+}
+
+.nav-pills > li > a {
+  border-radius: 0px;
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  background-color: rgba(14, 131, 232, 0.67);
+  box-shadow: 1px 1px 4px 0px rgb(194, 192, 164);
+  text-shadow: 0px 0px 0px rgb(240, 255, 241);
 }
 
 /* 
@@ -381,7 +393,10 @@ h4 {
 
 p {
   font-family: 'Source Sans Pro', serif;
-  font-family: 'Cambo', serif;
+  /* font-family: 'Cambo', serif; */
+  font-family: 'Lusitana';
+  /* font-family: 'Noto Serif'; */
+  /* font-family: 'Tinos'; */
   font-size: 22px;
   line-height: 1.35;
   margin-bottom: 1em;
