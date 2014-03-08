@@ -1,23 +1,50 @@
 
  <div ng-controller="NavbarCtrl" id="header">
-            <div id='top-nav' class="col-md-12">
-                <div ui-sref-active='activeTopNav' ui-sref="write" id='top-nav-write' class="top-nav-item col-xs-3 col-sm-3  col-md-2">
-                    <span class="ion ion-compose"></span> write
-                </div>
-                <div ng-class="{activeTopNav: $state.includes('read')}" ui-sref="read" id='top-nav-read' class="top-nav-item  col-xs-3 col-sm-3  col-md-2">
-                    <span class="ion ion-android-note"></span> read
-                </div>
-                <div ng-hide="$state.current.name == 'landing'" ui-sref="landing" id='wrdz-headline' class=" hidden-xs hidden-sm col-md-4">
-                    wrdz
-                </div>
-           <!--      <div ng-show="$state.current.name == 'landing'" class="hidden-xs hidden-sm col-md-4">
-                    
-                </div>   -->
-                <div ui-sref-active='activeTopNav' id='top-nav-inbox' ui-sref='talk' class=" top-nav-item col-xs-3 col-sm-3 col-md-2">
-                    <span class="ion ion-chatbox"></span> talk &nbsp; (45)
-                </div>
-                <div ui-sref-active='activeTopNav' ui-sref="profile" id='top-nav-profile' class=" top-nav-item col-xs-3 col-sm-3 col-md-2">
-                    <span class="ion ion-person"></span> me
-                </div>
+
+    <!-- 
+        User Nav
+     -->
+
+    <div ng-show="user" id='top-nav' class="col-md-12">
+
+        <div ui-sref-active='activeTopNav' ui-sref="write" id='top-nav-write' class="top-nav-item col-xs-3 col-sm-3  col-md-2">
+            <span class="ion ion-compose"></span> write
+        </div>
+
+        <div ng-class="{activeTopNav: $state.includes('read')}" ui-sref="read" id='top-nav-read' class="top-nav-item  col-xs-3 col-sm-3  col-md-2">
+            <span class="ion ion-android-note"></span> read
+        </div>
+
+        <div id='wrdz-headline' class=" hidden-xs hidden-sm col-md-4">
+             wrdz
+        </div>
+
+        <div ui-sref-active='activeTopNav' id='top-nav-inbox' ui-sref='talk' class=" top-nav-item col-xs-3 col-sm-3 col-md-2">
+            <span class="ion ion-chatbox"></span> talk &nbsp; (45)
+        </div>
+
+        <div ui-sref-active='activeTopNav' ui-sref="profile" id='top-nav-profile' class=" top-nav-item col-xs-3 col-sm-3 col-md-2">
+            <span class="ion ion-person"></span> me
         </div>
     </div>
+
+    <!-- 
+        No User Nav
+     -->
+    
+    <div ng-hide="user || $state.current.name === 'landing'" id='top-nav' class="col-md-12">
+
+        <div id='wrdz-headline' class=" hidden-xs hidden-sm col-md-offset-4 col-md-4">
+             wrdz
+        </div>
+
+        <div ng-click='launchLogIn()' id='top-nav-signin'  class="top-nav-auth top-nav-item col-xs-3 col-sm-3 col-md-2">
+            log in
+        </div>
+
+        <div ng-click='launchSignUp()' id='top-nav-signup' class=" top-nav-item col-xs-3 col-sm-3 col-md-2">
+            join wrdz
+        </div>
+    </div>
+
+</div>

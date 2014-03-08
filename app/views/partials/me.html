@@ -5,16 +5,16 @@
 
         <div class="btn-group btn-group-justified">
             <div class="btn-group btn-group-jo">
-            <button type="button" class="btn btn-jo  " ng-model="radioModel" btn-radio="'all'">All</button>
-                    
+                <button type="button" class="btn btn-jo  " ng-model="radioModel" btn-radio="'all'">All</button>
+
             </div>
             <div class="btn-group btn-group-jo">
-            <button type="button" class="btn btn-jo " ng-model="radioModel" btn-radio="'public'">Public</button>
+                <button type="button" class="btn btn-jo " ng-model="radioModel" btn-radio="'public'">Public</button>
                 
             </div>
             <div class="btn-group btn-group-jo">
-                
-            <button type="button" class="btn btn-jo " ng-model="radioModel" btn-radio="'hearts'"><span class="icon ion-heart"></span></button>
+
+                <button type="button" class="btn btn-jo " ng-model="radioModel" btn-radio="'hearts'"><span class="icon ion-heart"></span></button>
             </div>
         </div>
 
@@ -31,72 +31,65 @@
             <div class="well well-sm" ng-model="dt">
                 <datepicker min="minDate" show-weeks="showWeeks"></datepicker>
             </div>
-    </div>  
+        </div>  
 
 
     </div>
 
     <div id="me-right" class="col-sm-7">
 
-         <div class="btn-group btn-group-justified">
+       <div class="btn-group btn-group-justified">
         <div class="btn-group btn-group-jo">
-        <button type="button" class="btn btn-default " ng-model="radioModel" btn-radio="'all'">Date</button>
-                
+            <button type="button" class="btn btn-default " ng-model="radioModel" btn-radio="'all'">Date</button>
+
         </div>
         <div class="btn-group btn-group-jo">
-        <button type="button" class="btn btn-default " ng-model="radioModel" btn-radio="'public'">Votes</button>
+            <button type="button" class="btn btn-default " ng-model="radioModel" btn-radio="'public'">Votes</button>
             
         </div>
         <div class="btn-group btn-group-jo">
-            
-        <button type="button" class="btn btn-default " ng-model="radioModel" btn-radio="'hearts'"><span class="icon ion-heart"></span></button>
+
+            <button type="button" class="btn btn-default " ng-model="radioModel" btn-radio="'hearts'"><span class="icon ion-heart"></span></button>
         </div>
         <div class="btn-group btn-group-jo">
-            
-        <button type="button" class="btn btn-default " ng-model="radioModel" btn-radio="'hearts'">Views</button>
+
+            <button type="button" class="btn btn-default " ng-model="radioModel" btn-radio="'hearts'">Views</button>
         </div>
-        </div>
+    </div>
 
 
-        <div class="me-doc-block well">
-        
-            <div ng-show="doc.has_title">
-                            <div  id="me-card-title">
-                                {{doc.title}}
-                            </div>
-                            
-
-                        </div>
-
-            <div ng-hide="doc.has_title">
-                            <div  ng-bind-html='doc.body ' id="me-card-body">
-                                
-                            </div>
-                            
-
-                        </div>
-
-
-
+    <div class="me-doc-block well">
+        <div ng-show="doc.has_title">
+            <div  id="me-card-title">
+                {{doc.title}}
+            </div>
         </div>
 
-              <div id="write-center">
-                        
-                        
+        <div ng-hide="doc.has_title">
+            <div  ng-bind-html='doc.body ' id="me-card-body">
+            </div>
 
-                        <div ng-show="doc.has_title">
-                            <div  id="write-title">
-                                {{doc.title}}
-                            </div>
-                            
-
-                        </div>
-                <span>Archive // Edit</span>
-                <span>Hearts // Views // Likes // Topics // Date</span>
-                        <div class='text-justify'ng-bind-html="doc.body" id="write-content">
-                        </div>
-                    </div>
+        </div>
 
     </div>
 
+    <div id="write-center">
+
+        <div ng-show="doc.has_title">
+            <div  id="write-title">
+                {{doc.title}}
+            </div>
+
+
+        </div>
+        <span>Archive // Edit</span>
+        <span>Hearts // Views // Likes // Topics // Date</span>
+        <div class='text-justify'ng-bind-html="doc.body" id="write-content">
+        </div>
+    </div>
+
 </div>
+
+<button id="me-logout" class='btn btn-danger btn-jo' ng-click='logout()'>Logout</button>
+</div>
+ 

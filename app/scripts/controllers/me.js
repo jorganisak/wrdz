@@ -3,17 +3,14 @@
 angular.module('me')
 .controller('MeCtrl', function ($scope, User, $state) {
 
-
 /*
-
 MY WRDZ 
-
 */
+
   // TEMPORARY
   if ($scope.user) {
     $scope.doc = $scope.user.current_doc;
   }
-
 
   $scope.currentDocs = [];
 
@@ -48,6 +45,4 @@ LOGOUT
       });
     }
   };
-
-
 });
