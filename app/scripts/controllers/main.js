@@ -60,10 +60,10 @@ Does a few things:
               }).
               error(function(err, status, headers, config) {
                 if (err == 'Unknown user') {
-                  $scope.message = 'No user with that email.';
+                  $scope.message = 'No one has that username on wrdz!';
                 }
                 if (err == 'Invalid password') {
-                  $scope.message = 'Right email, wrong password, need link to change password here';
+                  $scope.message = 'Right username, wrong password, need link to change password here';
                 }
               });
             }

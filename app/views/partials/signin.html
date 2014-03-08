@@ -6,23 +6,34 @@
 
    
 <h4>Yeah you know the deal.  Get inside.</h4>
-<p>other social stuff has to go here too...</p>
+
 <p>{{message}}</p>
-<form name="signInForm" ng-submit="signin(userSignIn)" novalidate>
 
 
-  <input type="text" class="medium-12 columns" required ng-model="userSignIn.username" placeholder="Username">
-  <input type="password" required class="medium-12 columns" ng-model="userSignIn.password" placeholder="Password">
-  <button  type='submit' ng-disabled="signInForm.$invalid" class="button medium-6 success radius">Log In</button>
+<form name="signInForm" role='form' ng-submit="signin(userSignIn)" novalidate>
+  <br>
+  {{message}}
+  
 
-</form>
+  <div class="form-group">
+    
+  <input class='form-control' type="text" class="medium-6 columns" ng-model="userSignIn.username" required placeholder="Username">
+  </div>
+
+  <div class="form-group">
+    
+  <input class='form-control' type="password" class="medium-6 columns" ng-model="userSignIn.password" required placeholder="Password">
+  </div>
+  
+
+  <button type="submit" ng-disabled="signInForm.$invalid" class="btn btn-warning btn-jo">Log In</button>
+
+
+</form>      
+
 
 </div>
 
-
-<div class="modal-footer">
-    <button class="btn btn-primary" ng-click="close()">Done</button>
-</div>    
 
 
 

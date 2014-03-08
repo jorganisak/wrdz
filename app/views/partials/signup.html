@@ -3,28 +3,37 @@
 </div>
 
 <div class="modal-body">
+  
+<h4>You've waited too long already.</h4>
 
-<h4>Join wrdz to read and write all the thoughts there are in the world</h4>
-<h5>We're only doing this to make sure you're not a robot.  We'll never post on your behalf or any of that shit.  This is actually the last time you'll ever see your name in writing on wrdz. Seriously.</h5>
-
-<p>other social stuff has to go here too...</p>
 <a ng-click='twitter()'>Twitter</a>
-<form name="signUpForm" ng-submit="signup(userSignUp)" novalidate>
+
+<form name="signUpForm" role='form' ng-submit="signup(userSignUp)" novalidate>
   <br>
   {{message}}
-  <input  type="email" class="medium-6 columns" ng-model="userSignUp.email" required placeholder="Email">
-  <input  type="text" class="medium-6 columns" ng-model="userSignUp.username" required placeholder="Username">
-  <input type="password" class="medium-6 columns" ng-model="userSignUp.password" required placeholder="Password">
-  <button type="submit" ng-disabled="signUpForm.$invalid" class="button medium-6 success radius">Sign Up</button>
+  <div class="form-group">
+    
+  <input class='form-control' type="email" class="medium-6 columns" ng-model="userSignUp.email" required placeholder="Email">
+  </div>
+
+  <div class="form-group">
+    
+  <input class='form-control' type="text" class="medium-6 columns" ng-model="userSignUp.username" required placeholder="Username">
+  </div>
+
+  <div class="form-group">
+    
+  <input class='form-control' type="password" class="medium-6 columns" ng-model="userSignUp.password" required placeholder="Password">
+  </div>
+  
+
+  <button type="submit" ng-disabled="signUpForm.$invalid" class="btn btn-warning btn-jo">Sign Up</button>
+
 
 </form>      
 
 </div>
 
-
-<div class="modal-footer">
-    <button class="btn btn-primary" ng-click="close()">Done</button>
-</div>    
 
   
 
