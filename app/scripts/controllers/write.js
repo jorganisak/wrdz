@@ -101,6 +101,7 @@ angular.module('write')
     $scope.$watch('currentDoc.body', function (newValue, oldValue) {
       if (newValue) {
         var sample = document.getElementById('write-content').innerText.slice(0, 1000);
+        $scope.currentDoc.sample = sample;
         Write.updateUserDoc('body', {'sample': sample, 'body': $scope.currentDoc.body});
       }
     });
@@ -138,18 +139,7 @@ angular.module('write')
             //   }
             // };
 
-    // Publish doc
 
-    $scope.publish = function (isAnon) {
-      Write.publishDoc(isAnon, $scope.user).then(
-        function (res) {
-          if (res.status === 201) {
-            // console.log(res);
-            $scope.currentDoc.is_published = true;
-          }
-        }
-      );
-    }
 
     $scope.switchDoc = function (doc) {
       Write.setCurrentDoc(doc); // sets new doc on scope
@@ -214,12 +204,25 @@ $scope.switchHasTitle = function () {
   $scope.openPublishModal = function () {
     var modalInstance = $modal.open({
       templateUrl: "partials/write/publish-modal.html",
-      controller: function  ($scope, $modalInstance, userTopics, docTopics, doc) {
+      controller: function  ($scope, Write, $modalInstance, userTopics, docTopics, doc) {
         $scope.userTopics = userTopics;
         $scope.docTopics = docTopics;
         $scope.close = function() {
           $modalInstance.close();
         }; 
+
+      // Publish doc
+
+      $scope.publish = function (isAnon) {
+        Write.publishDoc(isAnon, $scope.user).then(
+          function (res) {
+            if (res.status === 201) {
+              // console.log(res);
+              doc.is_published = true;
+            }
+          }
+        );
+      }
       },
       resolve: {
         userTopics: function () {

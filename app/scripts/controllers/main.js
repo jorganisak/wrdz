@@ -56,7 +56,7 @@ Does a few things:
               success(function(user, status, headers, config) {
                 User.changeUser(user);
                 $scope.close();
-                $state.go('write');
+                $state.go('read');
               }).
               error(function(err, status, headers, config) {
                 if (err == 'Unknown user') {

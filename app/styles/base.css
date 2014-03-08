@@ -187,20 +187,17 @@ blockquote {
 
 .ion-close {
   opacity: 0.4;
-  background-color: white;
-  /* cursor: pointer; */
-  margin-left: 10px;
+  cursor: pointer;
   transition: opacity .2s ease;
-  font-size: 10px;
-  height: 16px;
-  padding: 3px 4px 2px 5px;
+  padding: 4px 4px 3px 5px;
 }
 
 .ion-close:hover {
   opacity: 1;
-  background-color: rgb(255, 139, 139);
+  background-color: rgb(255, 135, 135);
   border-radius: 23px;
   color: white;
+  text-shadow: -1px 0px 1px rgb(162, 162, 162);
 }
 
 .top-nav-item {
@@ -683,13 +680,9 @@ h3 {
 }
 
 .tag-label {
-  /* margin: 5px; */
-  padding-bottom: 3px;
-  opacity: 0.6;
-  border-radius: 4px;
-  background-color: lightgray;
-  color: black;
-  font-size: 1em;
+  /* opacity: 0.6; */
+  /* border-radius: 4px; */
+  /* color: black; */
 }
 
 #profile-body {
@@ -986,14 +979,12 @@ h3 {
 
 .tag-remove-x {
   font-size: 0.8em;
-  opacity: 0.3;
   margin-left: 7px;
-  cursor: pointer;
 }
 
 .tag-remove-x:hover {
   opacity: 1;
-  color: red;
+  color: white;
 }
 
 .ion-plus-circled:hover {
