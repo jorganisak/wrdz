@@ -233,15 +233,12 @@ blockquote {
   padding-top: 7px;
   font-weight: 800;
   letter-spacing: 3px;
-  font-style: italic;
+  /* font-style: italic; */
   cursor: default;
   font-variant: normal;
   padding-bottom: 9px;
   transition: all .35s ease;
   /* box-shadow: inset 1px 0px 0px 0px gold; */
-}
-
-#wrdz-headline:hover {
 }
 
 #top-nav-write.activeTopNav {
@@ -355,6 +352,7 @@ h4 {
 
 .btn-jo {
   padding: 7px;
+  width: 100%;
   opacity: 0.5;
   background-color: white;
   color: black;

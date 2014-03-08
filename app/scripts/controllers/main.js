@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('shared')
-  .controller('MainCtrl', function ($scope, User, $rootScope, $modal) {
-    
+.controller('MainCtrl', function ($scope, User, $rootScope, $modal, $state) {
+
 /*
 Does a few things:
   1. when loaded checks to see if user is logged in
@@ -13,8 +13,8 @@ Does a few things:
   */
 
 
-    function getUser () {
-      var u = User.isLoggedIn();
+  function getUser () {
+    var u = User.isLoggedIn();
       // gets full user, messages check is to make sure the user is not already complete
       if (u && !u.messages) {
         User.getCurrentUser(u._id).success(function  (data) {
@@ -39,71 +39,65 @@ Does a few things:
       }
     });
 
-  $scope.openTopicModal = function () {
-
-    
-  };
-
+/*
+  Two Auth methods for launching Login and Signup modals from anyhere in the app
+  They launch modals and call the User service for commnication with server
+*/
     $scope.launchLogIn = function () {
       var modalInstance = $modal.open({
-      templateUrl: "partials/signin.html",
-      controller: function  ($scope, $modalInstance, User) {
-
-        $scope.close = function() {
-          $modalInstance.close();
-        }; 
-
-        $scope.signin = function(user) {
-        if (!User.isLoggedIn()){
-          User.signin(user).
-          success(function(user, status, headers, config) {
-            User.changeUser(user);
-            $state.go('read');
-          }).
-          error(function(err, status, headers, config) {
-            if (err == 'Unknown user') {
-              $scope.message = 'No user with that email.';
+        templateUrl: "partials/signin.html",
+        controller: function  ($scope, $modalInstance, User) {
+          $scope.close = function() {
+            $modalInstance.close();
+          }; 
+          $scope.signin = function(user) {
+            if (!User.isLoggedIn()){
+              User.signin(user).
+              success(function(user, status, headers, config) {
+                User.changeUser(user);
+                $scope.close();
+                $state.go('write');
+              }).
+              error(function(err, status, headers, config) {
+                if (err == 'Unknown user') {
+                  $scope.message = 'No user with that email.';
+                }
+                if (err == 'Invalid password') {
+                  $scope.message = 'Right email, wrong password, need link to change password here';
+                }
+              });
             }
-            if (err == 'Invalid password') {
-              $scope.message = 'Right email, wrong password, need link to change password here';
-            }
-          });
-        }
-
-      };
-      },
-     
-    });
-      
+          };
+        },
+      });
     };
     $scope.launchSignUp = function () {
-            var modalInstance = $modal.open({
-      templateUrl: "partials/signup.html",
-      controller: function  ($scope, $modalInstance, User) {
+      var modalInstance = $modal.open({
+        templateUrl: "partials/signup.html",
+        controller: function  ($scope, $modalInstance, User, $http) {
+          $scope.close = function() {
+            $modalInstance.close();
+          }; 
+          $scope.signup = function (user) {
+            if (!User.isLoggedIn()) {
+              User.signup(user).
+              success(function(user, status, headers, config)
+              {
+                User.changeUser(user);
+                $state.go('read');
+              }).
+              error(function(err, status, headers, config)
+              {
+                console.log(err.errors.email.type);
+                $scope.message = 'Something went wrong...someone probably already has that email on here.';
+              });
+            }
+          };
 
-        $scope.close = function() {
-          $modalInstance.close();
-        }; 
-
-    $scope.signup = function (user) {
-      if (!User.isLoggedIn()) {
-        User.signup(user).
-          success(function(user, status, headers, config)
-          {
-            User.changeUser(user);
-            $state.go('read');
-          }).
-          error(function(err, status, headers, config)
-          {
-            console.log(err.errors.email.type);
-            $scope.message = 'Something went wrong...someone probably already has that email on here.';
-          });
-        }
-      };
-
-      },
-     
-    });
+          $scope.twitter = function () {
+            $http.get('/auth/twitter');
+          }
+        },
+      });
     };
-
   });
