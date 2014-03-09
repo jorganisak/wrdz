@@ -65,7 +65,7 @@
 
     // Published Docs
 
-    publishDoc : function (isAnon, user) {
+    publishDoc : function (isAnon) {
       var data = {
         id: current_doc._id,
         is_anon : isAnon
@@ -78,9 +78,7 @@
     // User
 
     updateCurrentDoc: function (id) {
-
       User.update('currentDoc', id);
-
     },
 
     // Topics

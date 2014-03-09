@@ -123,23 +123,6 @@ angular.module('write')
     UX Functions
     */
 
-    // Not using this at the moment but... 
-
-            // $scope.archive = function () {
-            //   if ($scope.currentDoc.title && $scope.currentDoc.body) {
-            //     Write.archiveDoc().then(
-            //       function (data) {
-            //         Profile.pushDocId(data.data._id);
-            //         Write.updateCurrentDoc('body', '', User.user);
-            //         Write.updateCurrentDoc('title', '', User.user);          
-            //       });
-            //   } else {
-            //     // { TODO } error message notifiying user
-            //     console.log('note is empty!!');
-            //   }
-            // };
-
-
 
     $scope.switchDoc = function (doc) {
       Write.setCurrentDoc(doc); // sets new doc on scope
@@ -170,6 +153,12 @@ $scope.switchHasTitle = function () {
 
 }).controller('WriteLeftCtrl', function  ($scope, $modal) {
   
+/*
+  Controller for Left Write Panel (new file?)
+  Opens Topic and Publish Modals
+  
+*/
+
   $scope.openTopicModal = function () {
 
     var modalInstance = $modal.open({
@@ -182,7 +171,10 @@ $scope.switchHasTitle = function () {
         }; 
 
         $scope.addTopic = function (topicTitle) {
-          return Write.updateTopics('add', topicTitle);
+          Write.updateTopics('add', topicTitle).then(
+            function () {
+              $scope.docTopics.push({'title': topicTitle});
+            });
         }
       },
       resolve: {
@@ -204,28 +196,28 @@ $scope.switchHasTitle = function () {
   $scope.openPublishModal = function () {
     var modalInstance = $modal.open({
       templateUrl: "partials/write/publish-modal.html",
-      controller: function  ($scope, Write, $modalInstance, userTopics, docTopics, doc) {
-        $scope.userTopics = userTopics;
+      controller: function  ($scope, Write, $modalInstance, popularTopics, docTopics, doc) {
+        $scope.userTopics = popularTopics;
         $scope.docTopics = docTopics;
         $scope.close = function() {
           $modalInstance.close();
         }; 
 
-      // Publish doc
-
-      $scope.publish = function (isAnon) {
-        Write.publishDoc(isAnon, $scope.user).then(
-          function (res) {
-            if (res.status === 201) {
-              // console.log(res);
-              doc.is_published = true;
+        // Publish doc
+        $scope.publish = function (isAnon) {
+          Write.publishDoc(isAnon).then(
+            function (res) {
+              if (res.status === 201) {
+                // console.log(res);
+                doc.is_published = true;
+              }
             }
-          }
-        );
-      }
+          );
+        }
+      
       },
       resolve: {
-        userTopics: function () {
+        popularTopics: function () {
           return $scope.user.topics;
         },
 
