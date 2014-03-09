@@ -12,47 +12,53 @@
 
     </div>
 
-
+    <div class="show-for-medium-up read-doc-message">
+        <span>Talk</span>
+        <br>
+        <br>
+        <span class="icon ion-chatbox"></span>
+    </div>
 
 
     <div class="col-sm-8 col-sm-offset-2  read-doc-center">
-        <div class="text-center read-title">
+        <div ng-show='readDoc.doc.has_title' class="text-center read-title">
             {{readDoc.doc.title}}
         </div>
 
         <div class="row">
 
-            <div class="left read-doc-author">
-                <a href="">{{readDoc.author.username}}</a>
+            <div class="col-sm-4 pull-left read-doc-author">
+                <a ng-hide='readDoc.is_anon' href="">{{readDoc.author.username}}</a>
+                <em ng-show='readDoc.is_anon'>Anonymous</em>
             </div>
-            <span class="pull-right read-doc-section-label">            
-                <span class="section-label  label">tech</span><span class="section-label  label">advertising</span></span>    </div>
-                
-                
-                
-                <div ng-bind-html='readDoc.doc.body' class="read-doc-content">
+            <div class="col-sm-8 text-right pull-right read-doc-section-label">            
 
-                </div>
+                <span ng-repeat='topic in readDoc.doc.topics'>
+                    <span class='label label-primary tag-label'>{{topic.title}}</span>
+                </span>
+            </div>    
 
-                <div class="row">
-                    <div class='col-sm-10' id="read-doc-social">
-                        <span class="col-sm-2 text-center icon ion-social-twitter"></span>
-                        <span class="icon ion-social-reddit col-sm-2 text-center "></span>
-                        
-                        <span class="icon ion-social-facebook col-sm-2 text-center "></span>
-                        <span class="icon ion-social-googleplus-outline col-sm-2 text-center "></span>
-                        <span class="icon ion-email col-sm-2 text-center left"></span>
-                    </div>
-                </div>
+        </div>
 
+        <div ng-bind-html='readDoc.doc.body' class="read-doc-content">
+
+        </div>
+
+        <br>
+        <em>{{moment(readDoc.published_at).format('DD MM YY')}}</em>
+        <br>
+        <div class="row">
+            <div class='col-sm-12' id="read-doc-social">
+                <span class="col-sm-4 text-center icon ion-social-twitter"></span>
+                <span class="icon ion-social-reddit col-sm-4 text-center "></span>
+                <span class="icon ion-email col-sm-4 text-center left"></span>
             </div>
-            <div class="col-sm-2">
-             <div class=" show-for-medium-up read-doc-message">
-                <span>Send Message</span>
-                <br>
-                <br>
-                <span class="icon ion-chatbox"></span>
-            </div>
+        </div>
+
+    </div>
+    <div class="col-sm-2">
+
+    </div>
 
 <!--
                     
@@ -64,5 +70,4 @@
                     
                 -->
             </div>
-            
-        </div>
+

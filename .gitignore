@@ -2,4 +2,6 @@ node_modules
 .tmp
 .sass-cache
 heroku
-
+app/bower_components
+public/
+views/

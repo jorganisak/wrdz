@@ -29,6 +29,14 @@ add-button.active:active {
   transition: all 200ms ease;
 }
 
+.ion-android-note {
+  color: rgb(213, 0, 22);
+}
+
+.ion-compose {
+  color: rgba(255, 137, 0, 1);
+}
+
 /*  
   ROUTE - ME 
 */
@@ -554,7 +562,8 @@ h3 {
 }
 
 #read-list-body {
-  margin-top: 25px;
+  margin-top: 15px;
+  padding-top: 10px;
 }
 
 #read-sections-body {
@@ -741,8 +750,8 @@ h3 {
 }
 
 .read-title {
-  font-family: 'Oswald', serif;
-  font-size: 2em;
+  font-family: 'Source Sans Pro', serif;
+  font-size: 3.5em;
   line-height: 1.4;
   font-weight: 700;
   letter-spacing: 0.7px;
@@ -811,7 +820,7 @@ h3 {
 }
 
 .read-doc-heart:hover {
-  font-size: 1.15em;
+  /* font-size: 1.15em; */
   box-shadow: 0px 0px 4px -1px gray;
   opacity: 1;
 }
@@ -845,19 +854,20 @@ h3 {
 
 .ion-chatbox {
   font-size: 1.2em;
-  /* color: blue; */
+  color: rgba(20, 173, 35, 1);
   padding-right: 3px;
 }
 
 .ion-person {
   font-size: 1.7rem;
+  color: rgba(0, 5, 255, 1);
 }
 
 .read-doc-message {
   position: fixed;
   border-radius: 4px;
   padding: 20px;
-  top: 10%;
+  top: 31%;
   text-align: center;
   cursor: pointer;
   opacity: 0.2;
@@ -867,7 +877,7 @@ h3 {
 .read-doc-message:hover {
   opacity: 1;
   box-shadow: 0px 0px 4px -1px gray;
-  font-size: 1.05em;
+  /* font-size: 1.05em; */
 }
 
 .read-doc-write-message {
