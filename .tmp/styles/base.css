@@ -4,6 +4,8 @@
 }
 
 #read-doc-left-fixed {
+    position: fixed;
+    top: 43%;
 }
 
 /* 
@@ -404,8 +406,8 @@ p {
   font-family: 'Lusitana';
   /* font-family: 'Noto Serif'; */
   /* font-family: 'Tinos'; */
-  font-size: 22px;
-  line-height: 1.65;
+  font-size: 21px;
+  line-height: 1.6;
   margin-bottom: 1em;
   /* opacity: 0.9; */
   padding-right: 12px;
@@ -634,7 +636,7 @@ h3 {
 
 .ion-arrow-up-a {
   color: rgba(6, 170, 0, 0.33);
-  font-size: 1.5em;
+  font-size: 1.4em;
 }
 
 .read-list-arrow {
@@ -744,7 +746,7 @@ h3 {
 }
 
 #read-doc-body {
-  margin-top: 40px;
+  margin-top: 22px;
 }
 
 .read-doc-side-nav-item {
@@ -766,10 +768,11 @@ h3 {
   padding: 0px 0px 10px 0px;
 }
 
-.read-doc-arrow-count {
-  padding-top: 5px;
-  font-family: 'Open Sans', sans-serif;
-}
+
+.read-doc-left-text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1em;
+ }
 
 .read-headline {
   font-family: 'PT Sans Narrow', sans-serif;
@@ -800,8 +803,8 @@ h3 {
 }
 
 .read-doc-heart-count {
-  padding-top: 4px;
-  padding-right: 14px;
+  /* padding-top: 4px; */
+  /* padding-right: 14px; */
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -809,21 +812,22 @@ h3 {
   font-size: 1.5em;
   text-align: left;
   line-height: 1.5;
-  padding: 25px 1% 50px 1%;
+  padding: 25px 2% 50px 2%;
   font-family: 'Lustiana', serif;
+  margin: 0 auto;
+  max-width: 670px;
 }
 
 .read-doc-heart {
-  padding: 10px 0;
+  padding: 10px 30%;
   width: 140px;
-  top: 20%;
-  border-radius: 4px;
-  /*    box-shadow: -3px 0px 4px -1px lightgray;*/
-  font-size: 1.0em;
+  border-radius: 1px;
+  text-align: center;
   transition: all .2s linear;
   cursor: pointer;
-  position: fixed;
   opacity: 0.4;
+  height: 40px;
+  margin-bottom: 20px;
 }
 
 .read-doc-heart:hover {
@@ -833,26 +837,27 @@ h3 {
 }
 
 .read-doc-arrow:hover {
-  font-size: 1.15em;
+  /* font-size: 1.15em; */
   box-shadow: 0px 0px 4px -1px gray;
   opacity: 1;
 }
 
 .read-doc-arrow {
-  padding: 10px 0;
+  padding: 10px 30%;
   width: 140px;
-  top: 4%;
-  border-radius: 4px;
-  font-size: 1.0em;
+  border-radius: 1px;
+  text-align: center;
   transition: all .2s linear;
   cursor: pointer;
-  position: fixed;
   opacity: 0.4;
+  margin-bottom: 20px;
+  height: 40px;
 }
 
 .read-doc-center {
   padding-bottom: 70px;
   padding-top: 30px;
+  padding: 30px 70px 70px 70px;
 }
 
 #read-doc-social {
@@ -871,15 +876,14 @@ h3 {
 }
 
 .read-doc-message {
-  padding: 10px 0px;
-  position: fixed;
-  border-radius: 4px;
-  top: 31%;
+  padding: 10px 30%;
+  border-radius: 1px;
   width: 140px;
   text-align: center;
   cursor: pointer;
-  opacity: 0.2;
+  opacity: 0.4;
   transition: all .2s linear;
+  height: 40px;
 }
 
 .read-doc-message:hover {
