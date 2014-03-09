@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('read')
-  .factory('Read', function ($http) {
+  .factory('Read', function ($http, PubDoc) {
 
 
     var docs = [];
@@ -23,17 +23,17 @@ angular.module('read')
         }).error();
       },
 
-      getPubDoc : function  (docId) {
-        return $http.get('pubDocs/'+ docId);
-      },
-
       updatePubDoc : function  (docId, type) {
         var data = {
           type: type
         }
         return $http.post('/pubDocs/'+ docId, data);
-      }
+      },
 
+
+      getPubDoc : function  (docId) {
+        return PubDoc.findOne(docId);
+      },
 
     };
   });

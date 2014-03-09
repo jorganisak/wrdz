@@ -164,6 +164,7 @@ $scope.switchHasTitle = function () {
 
 }).controller('WriteLeftCtrl', function  ($scope, $modal) {
   
+
 /*
   Controller for Left Write Panel (new file?)
   Opens Topic and Publish Modals
@@ -185,7 +186,7 @@ $scope.switchHasTitle = function () {
           console.log(topic);
           Write.updateTopics('remove', topic.title).then(
             function () {
-              $scope.docTopics.splice($scope.docTopics.indexOf(topic, 1));
+              $scope.docTopics.splice($scope.docTopics.indexOf(topic), 1);
             })
         };
 

@@ -191,7 +191,7 @@ blockquote {
 
 .ion-close {
   opacity: 0.4;
-  cursor: pointer;
+  /* cursor: pointer; */
   transition: opacity .2s ease;
   padding: 4px 4px 3px 5px;
 }
@@ -1007,7 +1007,7 @@ h3 {
   font-size: 1.0em;
   padding: 2px;
   margin-left: 10px;
-  cursor: pointer;
+  /* cursor: pointer; */
   padding: 2px 4px 2px 4px;
   opacity: 0.7;
 }

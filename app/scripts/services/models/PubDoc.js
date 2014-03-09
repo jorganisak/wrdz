@@ -17,7 +17,6 @@ angular.module('models')
     return {
 
       create : function (data) {
-
         return $http.post('/pubDocs', data);
       },
 
@@ -26,8 +25,11 @@ angular.module('models')
 
         // res.status = 200 on good, 400 bad
         return $http.post('/pubDocs/' + docId  + '/?type=' + type, send);
-      }
+      },
 
+      findOne : function (docId) {
+        return $http.get('/pubDocs/' + docId);
+      },
 
 
     };
