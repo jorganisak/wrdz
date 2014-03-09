@@ -1,3 +1,11 @@
+.main {
+  max-width: 105em;
+  padding: 0px 3%;
+}
+
+#read-doc-left-fixed {
+}
+
 /* 
   DIRECTIVES
  */
@@ -397,7 +405,7 @@ p {
   /* font-family: 'Noto Serif'; */
   /* font-family: 'Tinos'; */
   font-size: 22px;
-  line-height: 1.35;
+  line-height: 1.65;
   margin-bottom: 1em;
   /* opacity: 0.9; */
   padding-right: 12px;
@@ -799,9 +807,9 @@ h3 {
 
 .read-doc-content {
   font-size: 1.5em;
-  text-align: justify;
+  text-align: left;
   line-height: 1.5;
-  padding: 25px 40px 50px 40px;
+  padding: 25px 1% 50px 1%;
   font-family: 'Lustiana', serif;
 }
 
@@ -809,7 +817,6 @@ h3 {
   padding: 10px 0;
   width: 140px;
   top: 20%;
-  /*    margin-bottom: 30px;*/
   border-radius: 4px;
   /*    box-shadow: -3px 0px 4px -1px lightgray;*/
   font-size: 1.0em;
@@ -834,8 +841,7 @@ h3 {
 .read-doc-arrow {
   padding: 10px 0;
   width: 140px;
-  top: 12%;
-  /*    margin-bottom: 30px;*/
+  top: 4%;
   border-radius: 4px;
   font-size: 1.0em;
   transition: all .2s linear;
@@ -846,6 +852,7 @@ h3 {
 
 .read-doc-center {
   padding-bottom: 70px;
+  padding-top: 30px;
 }
 
 #read-doc-social {
@@ -864,10 +871,11 @@ h3 {
 }
 
 .read-doc-message {
+  padding: 10px 0px;
   position: fixed;
   border-radius: 4px;
-  padding: 20px;
   top: 31%;
+  width: 140px;
   text-align: center;
   cursor: pointer;
   opacity: 0.2;

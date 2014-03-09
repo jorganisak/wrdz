@@ -1,22 +1,23 @@
 <div id="read-doc-body">
 
-    <div ng-click='up_vote()' class=" show-for-medium-up read-doc-arrow">
-        <span  class="col-sm-6 text-center icon ion-arrow-up-a"></span>
-        <span class='col-sm-6 text-left left read-doc-arrow-count'>{{readDoc.up_votes}}</span>
-    </div>
+    <div id="read-doc-left-fixed">
+        
+        <div ng-click='up_vote()' class="read-doc-arrow">
+            <span  class="icon ion-arrow-up-a"></span>
+            <span class='read-doc-arrow-count'>{{readDoc.up_votes}}</span>
+        </div>
 
-    <div ng-click='heart()' class=" show-for-medium-up read-doc-heart">
-        <div ng-show=""></div>
-        <span class="col-sm-6 text-center  icon ion-heart"></span>
-        <span class="col-sm-6  left text-left read-doc-heart-count">{{readDoc.hearts}}</span>
+        <div ng-click='heart()' class="read-doc-heart">
+            <span class=" icon ion-heart"></span>
+            <span class="read-doc-heart-count">{{readDoc.hearts}}</span>
 
-    </div>
+        </div>
 
-    <div class="show-for-medium-up read-doc-message">
-        <span>Talk</span>
-        <br>
-        <br>
-        <span class="icon ion-chatbox"></span>
+        <div class="read-doc-message">
+            <span class="icon ion-chatbox"></span><span>Talk</span>
+            
+            
+        </div>
     </div>
 
 
@@ -47,13 +48,13 @@
         <br>
         <em>{{moment(readDoc.published_at).format('DD MM YY')}}</em>
         <br>
-        <div class="row">
+<!--         <div class="row">
             <div class='col-sm-12' id="read-doc-social">
                 <span class="col-sm-4 text-center icon ion-social-twitter"></span>
                 <span class="icon ion-social-reddit col-sm-4 text-center "></span>
                 <span class="icon ion-email col-sm-4 text-center left"></span>
             </div>
-        </div>
+        </div> -->
 
     </div>
     <div class="col-sm-2">
