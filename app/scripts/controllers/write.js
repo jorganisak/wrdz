@@ -51,6 +51,16 @@ angular.module('write')
       return res;
     }
 
+    // find doc by id in user._userDocs
+    function switchRecentDocTitle (id) {
+      angular.forEach($scope.user._userDocs, function(doc) {
+        if (doc._id === id) {
+          doc.has_title = !doc.has_title;
+        }
+      })
+    };
+
+
     // Focus content input on doc
     function focusContent() {
       document.getElementById('write-content').focus();
@@ -149,6 +159,7 @@ $scope.switchHasTitle = function () {
   Write.updateUserDoc('hasTitle', !$scope.hasTitle);
   Write.setCurrentDoc.hasTitle = !$scope.hasTitle;
   $scope.hasTitle = !$scope.hasTitle;
+  switchRecentDocTitle($scope.currentDoc._id);
 }
 
 }).controller('WriteLeftCtrl', function  ($scope, $modal) {
@@ -170,12 +181,20 @@ $scope.switchHasTitle = function () {
           $modalInstance.close();
         }; 
 
+        $scope.removeTopic = function (topic) {
+          console.log(topic);
+          Write.updateTopics('remove', topic.title).then(
+            function () {
+              $scope.docTopics.splice($scope.docTopics.indexOf(topic, 1));
+            })
+        };
+
         $scope.addTopic = function (topicTitle) {
           Write.updateTopics('add', topicTitle).then(
             function () {
               $scope.docTopics.push({'title': topicTitle});
             });
-        }
+        };
       },
       resolve: {
         userTopics: function () {
@@ -196,9 +215,10 @@ $scope.switchHasTitle = function () {
   $scope.openPublishModal = function () {
     var modalInstance = $modal.open({
       templateUrl: "partials/write/publish-modal.html",
-      controller: function  ($scope, Write, $modalInstance, popularTopics, docTopics, doc) {
+      controller: function  ($scope, Write, $modalInstance, popularTopics, docTopics, doc, username) {
         $scope.userTopics = popularTopics;
         $scope.docTopics = docTopics;
+        $scope.username = username;
         $scope.close = function() {
           $modalInstance.close();
         }; 
@@ -210,6 +230,8 @@ $scope.switchHasTitle = function () {
               if (res.status === 201) {
                 // console.log(res);
                 doc.is_published = true;
+                // TODO prompt user to share here
+                $scope.close();
               }
             }
           );
@@ -219,6 +241,10 @@ $scope.switchHasTitle = function () {
       resolve: {
         popularTopics: function () {
           return $scope.user.topics;
+        },
+
+        username : function () {
+          return $scope.user.username;
         },
 
         docTopics: function () {
