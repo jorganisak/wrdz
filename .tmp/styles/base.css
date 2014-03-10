@@ -10,8 +10,9 @@
 
 #fixed-menu-shortcut {
     position: fixed;
-    top: 3%;
+    top: 2%;
     left: 2%;
+    height: 40px;
     z-index: 100;
 
 }
@@ -223,6 +224,7 @@ blockquote {
   height: 50px;
   background-color: rgb(250, 250, 250);
   z-index: 5000;
+  /* margin-bottom: 40px; */
 }
 
 .panel {
@@ -368,7 +370,8 @@ h4 {
 
 #write-body {
   border: none;
-  margin-top: 30px;
+  margin-top: 20px;
+  padding-top: 0px;
 }
 
 .write-labels-box {
@@ -938,6 +941,7 @@ h3 {
 #write-column-left {
   top: 20%;
   min-height: 500px; 
+  max-height: 800px;
   left: 0.5%; 
   padding-left: 2%; 
   position: fixed; 
@@ -954,6 +958,7 @@ h3 {
   top: 20%;
   right: 0.5%;
   padding-left: 2%;
+  max-height: 800px;
   position: fixed;
   transition: all .1s ease-in-out;
   min-height: 500px;
