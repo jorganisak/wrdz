@@ -4,28 +4,32 @@
 }
 
 #read-doc-left-fixed {
-    position: fixed;
-    top: 43%;
+  position: fixed;
+  top: 43%;
 }
 
 #fixed-menu-shortcut {
-    position: fixed;
-    top: 2%;
-    left: 2%;
-    height: 40px;
-    z-index: 100;
-
+  position: fixed;
+  top: 2%;
+  left: 2%;
+  height: 40px;
+  z-index: 100;
 }
 
 #menu-shortcut {
   font-family: 'Roboto', sans-serif;
   font-weight: 800;
   font-size: 1.2em;
+  color: white;
   opacity: 0.5;
   background-color: #cdcccc;
   padding: 3px 10px;
-
   z-index: 100;
+}
+
+#menu-shortcut:hover {
+  opacity: 1;
+  text-decoration: none;
 }
 
 /* 
@@ -223,7 +227,7 @@ blockquote {
 #top-nav {
   height: 50px;
   background-color: rgb(250, 250, 250);
-  z-index: 5000;
+  z-index: 1000;
   /* margin-bottom: 40px; */
 }
 
@@ -256,7 +260,7 @@ blockquote {
   letter-spacing: 3px;
   cursor: pointer;
   height: 80%;
-  padding: 9px 0 0 0;
+  padding: 11px 0 0 0;
   transition: all 200ms ease;
   text-shadow: 0px -1.3px 0px rgb(222, 222, 222);
 }
@@ -355,8 +359,7 @@ h4 {
   /* letter-spacing: 0.5px; */
 }
 
-.row {
-}
+
 
 .headline {
   padding: 10px;
@@ -370,8 +373,8 @@ h4 {
 
 #write-body {
   border: none;
-  margin-top: 20px;
-  padding-top: 0px;
+  margin-top: 10px;
+  padding-top: 10px;
 }
 
 .write-labels-box {
@@ -400,7 +403,7 @@ h4 {
   border: solid 1px #cdcddd;
   margin: 13px 0px 10px 0px !important;
   transition: all .1s ease-in-out;
-  font-style: normal;
+  font-style: 1.1rem;
   font-family: 'Open Sans', sans-serif;
   letter-spacing: 1px;
   border-radius: 2px;
@@ -428,7 +431,7 @@ p {
   /* font-family: 'Noto Serif'; */
   /* font-family: 'Tinos'; */
   font-size: 21px;
-  line-height: 1.6;
+  line-height: 1.4;
   margin-bottom: 1em;
   /* opacity: 0.9; */
   padding-right: 12px;
@@ -438,7 +441,8 @@ p {
 }
 
 li {
-  font-size: 20px;
+  font-size: 19px;
+  font-family: 'Open Sans', sans serif;
 }
 
 #write-center {
@@ -604,11 +608,10 @@ h3 {
 .read-list-item {
   height: 100%;
   margin-bottom: 0px;
-  padding: 18px 22px;
-  border: solid 1px white;
+  padding: 18px 13px;
   cursor: pointer;
   transition: all .1s ease;
-  box-shadow: inset 0px -2px 4px -2px silver;
+  box-shadow: inset 0px -2px 1px -2px silver;
 }
 
 .read-list-bottom-row {
@@ -639,7 +642,7 @@ h3 {
 
 .read-list-item:hover {
   /* border: solid 1px #cdcccc; */
-  background-color: rgba(248, 248, 248, 0.56);
+  background-color: white;
 }
 
 .profile-list-item:hover {
@@ -686,7 +689,7 @@ h3 {
   font-size: 1.2em;
   /* font-weight: 700; */
   /* line-height: 1.7; */
-  padding-top: 2px;
+  /* padding-top: 2px; */
 }
 
 .profile-list-title {
@@ -706,9 +709,9 @@ h3 {
 }
 
 .read-list-arrow-count {
-  padding-top: 5px;
+  /* padding-top: 5px; */
   /* padding-right: 10px; */
-  font-family: 'Open Sans', sans-serif;
+  font-family: sans-serif;
 }
 
 .read-list-author {
@@ -719,9 +722,9 @@ h3 {
 }
 
 .read-list-heart-count {
-  padding-top: 4px;
-  padding-right: 14px;
-  font-family: 'Open Sans', sans-serif;
+  /* padding-top: 4px; */
+  /* padding-right: 14px; */
+  font-family: sans-serif;
 }
 
 .tag-label {
@@ -789,11 +792,10 @@ h3 {
   padding: 0px 0px 10px 0px;
 }
 
-
 .read-doc-left-text {
   font-family: 'Roboto', sans-serif;
   font-size: 1.1em;
- }
+}
 
 .read-headline {
   font-family: 'PT Sans Narrow', sans-serif;
@@ -833,7 +835,7 @@ h3 {
   font-size: 1.5em;
   text-align: left;
   line-height: 1.5;
-  padding: 45px 2% 50px 2%;
+  padding: 45px 0% 50px 0%;
   font-family: 'Lustiana', serif;
   margin: 0 auto;
   max-width: 670px;
@@ -878,7 +880,7 @@ h3 {
 .read-doc-center {
   padding-bottom: 70px;
   padding-top: 30px;
-  padding: 30px 70px 70px 70px;
+  padding: 30px 50px 70px 50px;
 }
 
 #read-doc-social {
@@ -939,14 +941,14 @@ h3 {
 }
 
 #write-column-left {
-  top: 20%;
-  min-height: 500px; 
+  top: 9%;
+  min-height: 500px;
   max-height: 800px;
-  left: 0.5%; 
-  padding-left: 2%; 
-  position: fixed; 
-  transition: all .1s ease-in-out;  
-  width: 14%; 
+  left: 0.5%;
+  padding-left: 2%;
+  position: fixed;
+  transition: all .1s ease-in-out;
+  width: 15%;
   max-width: 250px;
 }
 
@@ -955,13 +957,13 @@ h3 {
 }
 
 #write-column-right {
-  top: 20%;
+  top: 8%;
   right: 0.5%;
   padding-left: 2%;
   max-height: 800px;
   position: fixed;
   transition: all .1s ease-in-out;
-  min-height: 500px;
+  /* height: 770px; */
   width: 18%;
   max-width: 250px;
 }

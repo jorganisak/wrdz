@@ -105,9 +105,10 @@ Does a few things:
 
 .controller('MenuShortcutCtrl', function($scope) {
     $scope.items = [
-    "write",
-    "read",
-    "talk",
-    "me"
+    {'title':"write", 'state':"write"},
+    {'title':"read", 'state':"read.list.front"},
+    {'title':"talk", 'state':"talk"},
+    {'title':"me", 'state':"me"},
+
     ];
 });

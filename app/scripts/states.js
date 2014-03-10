@@ -25,8 +25,9 @@ config(['$stateProvider', '$urlRouterProvider',
       .state('read', {
         url: '/r',
         templateUrl: 'partials/read/read.html',
+        abstract: 'true',
         controller: ['$scope', '$state', function ($scope, $state) {
-          $state.go('read.list');
+
         }]
       })
       .state('read.list', {
@@ -53,7 +54,7 @@ config(['$stateProvider', '$urlRouterProvider',
       .state('read.doc', {
         url: '/:docId',
         templateUrl: 'partials/read/read-doc.html',
-        resolve: {
+        resolve: {  
           readDoc : ['Read','$stateParams', function(Read, $stateParams) {
             return Read.getPubDoc($stateParams.docId);
           }]
