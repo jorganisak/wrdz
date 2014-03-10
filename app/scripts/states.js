@@ -24,10 +24,9 @@ config(['$stateProvider', '$urlRouterProvider',
 
       .state('read', {
         url: '/r',
-        abstract: 'true',
         templateUrl: 'partials/read/read.html',
         controller: ['$scope', '$state', function ($scope, $state) {
-          // $state.go('read.list');
+          $state.go('read.list');
         }]
       })
       .state('read.list', {
@@ -79,13 +78,13 @@ config(['$stateProvider', '$urlRouterProvider',
       ME
       */
 
-      .state('profile', {
-        url: '/profile',
+      .state('me', {
+        url: '/m',
         templateUrl: 'partials/me.html'
       })
 
       
-      .state('profile.about', {
+      .state('me.about', {
         url: '/about',
         templateUrl: 'partials/about.html'
       })

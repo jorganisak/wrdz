@@ -100,4 +100,14 @@ Does a few things:
         },
       });
     };
-  });
+  })
+
+
+.controller('MenuShortcutCtrl', function($scope) {
+    $scope.items = [
+    "write",
+    "read",
+    "talk",
+    "me"
+    ];
+});

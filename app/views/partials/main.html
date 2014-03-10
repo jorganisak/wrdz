@@ -2,6 +2,18 @@
   
   <div class='row' ng-include="'partials/top-nav.html'"></div>
 
+  <div id='fixed-menu-shortcut' class="dropdown" ng-controller="MenuShortcutCtrl">
+    <a class='dropdown-toggle'>
+      <div id="menu-shortcut">w</div>
+    </a>
+    <ul class="dropdown-menu">
+      <li ng-repeat="choice in items">
+        <a ui-sref="{{choice}}">{{choice}}</a>
+      </li>
+    </ul>
+    
+  </div>
+
   <div  class='row' autoscroll='true' ui-view></div>
   
 </div>

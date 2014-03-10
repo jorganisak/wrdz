@@ -8,6 +8,25 @@
     top: 43%;
 }
 
+#fixed-menu-shortcut {
+    position: fixed;
+    top: 3%;
+    left: 2%;
+    z-index: 100;
+
+}
+
+#menu-shortcut {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 800;
+  font-size: 1.2em;
+  opacity: 0.5;
+  background-color: #cdcccc;
+  padding: 3px 10px;
+
+  z-index: 100;
+}
+
 /* 
   DIRECTIVES
  */
@@ -130,6 +149,10 @@ add-button.active:active {
   width: 45% !important;
 }
 
+.dropdown-menu > li > a {
+  font-family: 'Open Sans', sans-serif;
+}
+
 /* 
   LANDING
  */
@@ -190,8 +213,6 @@ blockquote {
 #header {
   text-align: center;
   /* opacity: 0.4; */
-  /* background-color: rgb(159, 33, 243); */
-  transition: all .2s ease-in-out;
 }
 
 #header:hover {
@@ -200,6 +221,8 @@ blockquote {
 
 #top-nav {
   height: 50px;
+  background-color: rgb(250, 250, 250);
+  z-index: 5000;
 }
 
 .panel {
@@ -226,7 +249,6 @@ blockquote {
 .top-nav-item {
   font-family: 'Open sans', sans-serif;
   font-size: 1.33rem;
-  /* font-variant: small-caps; */
   /* font-style: italic; */
   opacity: 0.7;
   letter-spacing: 3px;
@@ -235,8 +257,6 @@ blockquote {
   padding: 9px 0 0 0;
   transition: all 200ms ease;
   text-shadow: 0px -1.3px 0px rgb(222, 222, 222);
-  /* border-bottom-left-radius: 8px; */
-  /* border-bottom-right-radius: 8px; */
 }
 
 .top-nav-item:hover {
@@ -307,11 +327,11 @@ blockquote {
   box-shadow: none;
 }
 
-#top-nav-profile.activeTopNav {
+#top-nav-me.activeTopNav {
   color: rgba(0, 5, 255, 1);
 }
 
-#top-nav-profile:hover {
+#top-nav-me:hover {
   /* border-bottom: solid 2px gold; */
 }
 
@@ -334,7 +354,6 @@ h4 {
 }
 
 .row {
-  /* max-width: 75rem; */
 }
 
 .headline {
@@ -916,27 +935,33 @@ h3 {
   /* font-size: 1.6em; */
 }
 
-.write-column-left {
-  /* opacity: 0.4; */
-  transition: all .1s ease-in-out;
-  /* box-shadow: 5px 0px 3px -4px silver; */
-  min-height: 500px;
-  padding-left: 2%;
+#write-column-left {
+  top: 20%;
+  min-height: 500px; 
+  left: 0.5%; 
+  padding-left: 2%; 
+  position: fixed; 
+  transition: all .1s ease-in-out;  
+  width: 14%; 
+  max-width: 250px;
 }
 
-.write-column-left:hover {
+#write-column-left:hover {
   opacity: 1;
 }
 
-.write-column-right {
-  /* opacity: 0.4; */
+#write-column-right {
+  top: 20%;
+  right: 0.5%;
+  padding-left: 2%;
+  position: fixed;
   transition: all .1s ease-in-out;
-  /* box-shadow: -3px -2px 3px -2px silver; */
-  min-height: 70px;
-  /* padding: 3%; */
+  min-height: 500px;
+  width: 18%;
+  max-width: 250px;
 }
 
-.write-column-right:hover {
+#write-column-right:hover {
   opacity: 1;
 }
 
