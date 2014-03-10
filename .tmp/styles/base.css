@@ -167,7 +167,7 @@ a:hover {
 }
 
 a {
-  color: #0040B3;
+  color: #005BFF;
   /*   text-decoration: underline; */
   line-height: inherit;
   cursor: pointer;
@@ -349,8 +349,7 @@ h4 {
 
 #write-body {
   border: none;
-  margin-top: 10px;
-  /* position: absolute; */
+  margin-top: 30px;
 }
 
 .write-labels-box {
@@ -421,14 +420,14 @@ li {
 }
 
 #write-center {
-  /* margin-top: 10px; */
   padding: 5% 6%;
   background-color: rgba(255, 255, 255, 0.97);
   box-shadow: 0px 0px 5px -1px silver;
   border-radius: 4px;
   max-width: 684px;
-  margin: 10px auto;
+  margin: 10px auto 30% auto;
   /* position: relative; */
+  text-align: left;
 }
 
 #write-content {
@@ -812,7 +811,7 @@ h3 {
   font-size: 1.5em;
   text-align: left;
   line-height: 1.5;
-  padding: 25px 2% 50px 2%;
+  padding: 45px 2% 50px 2%;
   font-family: 'Lustiana', serif;
   margin: 0 auto;
   max-width: 670px;

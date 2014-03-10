@@ -32,7 +32,7 @@
 
 angular.module('write')
 
-  .controller('WriteCtrl', function ($scope, User, Write, $state, $timeout) {
+  .controller('WriteCtrl', function ($scope, Write, $state, $timeout, $window) {
 
 /*
     Utils
@@ -60,10 +60,36 @@ angular.module('write')
       })
     };
 
+    function updateRecentDoc (id) {
+      angular.forEach($scope.user._userDocs, function(doc) {
+        if (doc._id === id) {
+          doc.updated_at = Date();
+        }
+      })
+    }
+
 
     // Focus content input on doc
     function focusContent() {
-      document.getElementById('write-content').focus();
+      function placeCaretAtEnd(el) {
+          el.focus();
+          if (typeof window.getSelection != "undefined"
+                  && typeof document.createRange != "undefined") {
+              var range = document.createRange();
+              range.selectNodeContents(el);
+              range.collapse(false);
+              var sel = window.getSelection();
+              sel.removeAllRanges();
+              sel.addRange(range);
+          } else if (typeof document.body.createTextRange != "undefined") {
+              var textRange = document.body.createTextRange();
+              textRange.moveToElementText(el);
+              textRange.collapse(false);
+              textRange.select();
+          }
+          $window.scrollTo(0, el.scrollHeight);
+      }
+      placeCaretAtEnd(document.getElementById('write-content'));
     }
 
 
@@ -104,6 +130,7 @@ angular.module('write')
     $scope.$watch('currentDoc.title', function (newValue, oldValue) {
       if (newValue || newValue === '') {
         Write.updateUserDoc('title', $scope.currentDoc.title);
+        updateRecentDoc($scope.currentDoc._id);
       }
     });
 
@@ -112,6 +139,7 @@ angular.module('write')
       if (newValue) {
         var sample = document.getElementById('write-content').innerText.slice(0, 1000);
         $scope.currentDoc.sample = sample;
+        updateRecentDoc($scope.currentDoc._id);
         Write.updateUserDoc('body', {'sample': sample, 'body': $scope.currentDoc.body});
       }
     });
