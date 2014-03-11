@@ -91,12 +91,12 @@ config(['$stateProvider', '$urlRouterProvider',
       })
 
   /*
-      TALK
+      My Wrdz
       */
 
-      .state('talk', {
-        url: '/t',
-        templateUrl: 'partials/talk.html'
+      .state('mywrdz', {
+        url: '/d',
+        templateUrl: 'partials/mywrdz.html'
       })
 
 

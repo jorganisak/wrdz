@@ -107,7 +107,7 @@ Does a few things:
     $scope.items = [
     {'title':"write", 'state':"write"},
     {'title':"read", 'state':"read.list.front"},
-    {'title':"talk", 'state':"talk"},
+    {'title':"my wrdz", 'state':"mywrdz"},
     {'title':"me", 'state':"me"},
 
     ];

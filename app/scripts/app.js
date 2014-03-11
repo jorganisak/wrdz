@@ -14,7 +14,7 @@ angular.module('vendor', [
 
 angular.module('read', []);
 angular.module('write', []);
-angular.module('talk', []);
+angular.module('myWrdz', []);
 angular.module('models', []);
 angular.module('me', []);
 angular.module('shared', []);
@@ -25,7 +25,7 @@ angular.module('wrdz', [
   'vendor',
   'read',
   'write',
-  'talk',
+  'myWrdz',
   'me',
   'read',
   'models',
