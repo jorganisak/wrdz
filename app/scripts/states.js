@@ -99,5 +99,7 @@ config(['$stateProvider', '$urlRouterProvider',
         templateUrl: 'partials/mywrdz.html'
       })
 
+     
+
 
     }]);

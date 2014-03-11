@@ -21,6 +21,8 @@ angular.module('models')
         var send = {'data' : data };
         // res.status = 200 on good, 400 bad
         return $http.post('/userDocs/' + docId  + '/?type=' + type, send);
-      }
+      },
+
+      
     };
   });

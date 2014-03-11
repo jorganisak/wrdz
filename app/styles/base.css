@@ -38,6 +38,25 @@
   
 }
 
+#mywrdz-doc-show {
+  
+}
+
+.mywrdz-pub-detail {
+  
+}
+
+#mywrdz-doc-show-title {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 2em;
+  margin-bottom:20px;
+}
+
+#mywrdz-doc-show-body, p {
+  font-size: 1em;
+}
+
+
 
 /* 
 
