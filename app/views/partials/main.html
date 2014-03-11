@@ -8,7 +8,7 @@
     </a>
     <ul class="dropdown-menu">
       <li ng-repeat="choice in items">
-        <a ui-sref="{{choice.state}}">{{choice.title}}</a>
+        <a ui-sref-active="active" ui-sref="{{choice.state}}">{{choice.title}}</a>
       </li>
     </ul>
     

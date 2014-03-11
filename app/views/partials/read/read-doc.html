@@ -14,7 +14,7 @@
         </div>
 
         <div class="read-doc-message">
-            <span class="pull-left icon ion-chatbox"></span><span class='pull-right read-doc-left-text'>Talk</span>
+            <span class="pull-left glyphicon glyphicon-retweet"></span><span class='pull-right read-doc-left-text'>251</span>
             
             
         </div>
@@ -22,17 +22,13 @@
 
 
     <div class="col-sm-8 col-sm-offset-2  read-doc-center">
-        <div ng-show='readDoc.doc.has_title' class="text-center read-title">
-            {{readDoc.doc.title}}
-        </div>
-
         <div class="row">
 
-            <div class="col-sm-4 pull-left read-doc-author">
+      <!--       <div class="col-sm-4 pull-left read-doc-author">
                 <a ng-hide='readDoc.is_anon' href="">{{readDoc.author.username}}</a>
                 <em ng-show='readDoc.is_anon'>Anonymous</em>
-            </div>
-            <div class="col-sm-8 text-right pull-right read-doc-section-label">            
+            </div> -->
+            <div id='read-doc-section-label' class="col-sm-8 text-left pull-left ">            
 
                 <span ng-repeat='topic in readDoc.doc.topics'>
                     <span class='label label-primary tag-label'>{{topic.title}}</span>
@@ -40,6 +36,11 @@
             </div>    
 
         </div>
+
+        <div ng-show='readDoc.doc.has_title' class="text-center read-title">
+            {{readDoc.doc.title}}
+        </div>
+
 
         <div ng-bind-html='readDoc.doc.body' class="read-doc-content">
 
@@ -58,7 +59,21 @@
 
     </div>
     <div class="col-sm-2">
-
+        <div ng-hide='readDoc.is_anon' class='text-right' id="read-doc-right-fixed">
+            <div id="read-doc-username">
+                Earnest Hemingway
+                <!-- {{readDoc.author.username}} -->
+            </div>
+            <div id="read-doc-followers">
+                5521
+                <br>
+                <br>
+                Papa. Catcher of big fish.  I like cats, drinking and writing good stories. Writing from Key West, FL
+            </div>
+            <div id="read-doc-follow-button">
+                Follow
+            </div>
+        </div>
     </div>
 
 <!--
