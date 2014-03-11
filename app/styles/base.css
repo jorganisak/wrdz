@@ -2,6 +2,14 @@
   ROUTE - MY WRDZ
  */
  
+.scroller {
+  white-space: normal;
+  width: 370px;
+  height: 550px;
+  overflow-y: hidden;
+  position: relative;
+ }
+ 
 #mywrdz-body{
     margin-top: 30px;
   
@@ -48,12 +56,14 @@
 
 #mywrdz-doc-show-title {
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 2em;
+  font-size: 2.1em;
   margin-bottom:20px;
+  font-weight: 800;
+  line-height: 1;
 }
 
-#mywrdz-doc-show-body, p {
-  font-size: 1em;
+#mywrdz-doc-show-body > p {
+  font-size: 1.3em;
 }
 
 
