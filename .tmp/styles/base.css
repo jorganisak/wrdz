@@ -4,11 +4,14 @@
  
 .scroller {
   white-space: normal;
-  width: 370px;
-  height: 550px;
+  /* width: 370px; */
+  /* min-height: 200px; */
+  max-height: 230px;
   overflow-y: hidden;
   position: relative;
- }
+ 
+  margin-bottom: 29px;
+}
  
 #mywrdz-body{
     margin-top: 30px;
@@ -29,7 +32,8 @@
 }
 
 .mywrdz-doc-in-list {
-    height: 100%; margin-bottom: 0px; padding: 20px 33px; cursor: pointer; transition: all .1s ease; box-shadow: inset 0px -2px 1px -2px silver;
+    height: 100%; margin-bottom: 0px; 
+    padding: 18px 40px; cursor: pointer; transition: all .1s ease; box-shadow: inset 0px -2px 1px -2px silver;
   
 }
 
@@ -39,15 +43,21 @@
 }
 
 .mywrdz-list-title {
+    /* font-family: 'Open Sans', sans-serif; */
   
 }
 
 .mywrdz-list-date {
+    font-style: italic;
   
+    text-align: right;
+    margin-top: 10px;
 }
 
 #mywrdz-doc-show {
+    position: fixed;
   
+    width: 39%;
 }
 
 .mywrdz-pub-detail {
@@ -64,6 +74,10 @@
 
 #mywrdz-doc-show-body > p {
   font-size: 1.3em;
+}
+
+#mywrdz-doc-show-body {
+  /* padding-bottom: 20px; */
 }
 
 
@@ -245,9 +259,8 @@ add-button.active:active {
   font-family: 'Roboto', sans-serif;
 }
 
-.glyphicon {
-  /* color: blue; */
-  /* font-size: 1.5em; */
+.glyphicon-retweet {
+  color: blue;
 }
 
 .glyphicon-calendar {

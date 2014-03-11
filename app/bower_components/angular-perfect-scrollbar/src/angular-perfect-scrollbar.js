@@ -12,10 +12,12 @@ angular.module('perfect_scrollbar', []).directive('perfectScrollbar', function($
 			});
 
 			if ($attr.refreshOnChange) {
-				$scope.$watchCollection($attr.refreshOnChange, function(newNames, oldNames) {
+				$scope.$watch($attr.refreshOnChange, function(newNames, oldNames) {
 					// I'm not crazy about setting timeouts but it sounds like thie is unavoidable per
 					// http://stackoverflow.com/questions/11125078/is-there-a-post-render-callback-for-angular-js-directive
-					setTimeout(function() { $elem.perfectScrollbar('update'); }, 10);
+					setTimeout(function() { 
+						$elem.scrollTop(0);
+						$elem.perfectScrollbar('update'); }, 10);
 				});
 			}
 		}
