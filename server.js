@@ -31,7 +31,7 @@ require('./lib/config/routes')(app, passport);
 
 
 // Start server
-var port = Number(process.env.PORT || 5000);
+var port = Number(process.env.PORT || 3000);
 var host = process.env.IP || 'localhost';
 app.listen(port, host, function () {
   console.log('Express server listening on port %d in %s mode', port, app.get('env'));
