@@ -118,7 +118,7 @@
 
                 <div id="title-switch"  ng-hide="hasTitle" ng-click='switchHasTitle()'>add title</div>
 
-                <div medium-editor options='{"placeholder": "", "buttons": ["bold", "italic", "anchor", "header2", "orderedlist", "unorderedlist" ], "buttonLabels" : {"header2": "<b>H</b>", "italic": "<strong><em>i</em></strong>"}, "disableToolbar": false, "forcePlainText" : false, "targetBlank": true}' ng-model='currentDoc.body'  class='' id="write-content">
+                <div medium-editor options="{{mediumEditorOptions}}" ng-model='currentDoc.body'  class='' id="write-content">
 
                 </div>
             </div>

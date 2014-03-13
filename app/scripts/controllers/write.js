@@ -39,6 +39,15 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$
     //test if i is in array
     // returns true if not in array
 
+    $scope.mediumEditorOptions = angular.toJson(
+      {"placeholder": "", 
+      "buttons": ["bold", "italic", "anchor", "header2", "orderedlist", "unorderedlist" ], 
+      "buttonLabels" : {"header2": "<b>H</b>", "italic": "<strong><em>i</em></strong>"}, 
+      "disableToolbar": false, 
+      "forcePlainText" : false, 
+      "targetBlank": true}
+      );
+
     function tagArrayTest(i, a) {
       var res = true;
       angular.forEach(a, function (item) {
