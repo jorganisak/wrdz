@@ -100,6 +100,25 @@ Does a few things:
         },
       });
     };
+    $scope.feedbackModal = function () {
+          var modalInstance = $modal.open({
+            templateUrl: "partials/feedback-modal.html",
+            controller: function  ($scope, $modalInstance, $http) {
+              $scope.close = function() {
+                $modalInstance.close();
+              }; 
+              $scope.submitFeedback = function (feedback) {
+                console.log(feedback);
+                var data = {'content': feedback}
+                $scope.close();
+                return $http.post('/feedback', data);
+                
+              };
+
+              
+            },
+          });
+        };
   })
 
 

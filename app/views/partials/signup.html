@@ -12,19 +12,21 @@
 <form name="signUpForm" role='form' ng-submit="signup(userSignUp)" novalidate>
   <br>
   {{message}}
-  <div class="form-group">
+  <div class="text-left form-group">
     
-  <input class='form-control' type="email" class="medium-6 columns" ng-model="userSignUp.email" required placeholder="Email">
+    <label for="username">Username</label>
+  <input class='form-control' id='username' type="text" class="medium-6 columns" ng-model="userSignUp.username" required placeholder="">
+  </div>
+  <div class=" text-left form-group">
+    <label for="email">Email</label>
+  <input class='form-control' id='email' type="email" class="medium-6 columns" ng-model="userSignUp.email" required placeholder="">
   </div>
 
-  <div class="form-group">
-    
-  <input class='form-control' type="text" class="medium-6 columns" ng-model="userSignUp.username" required placeholder="Username">
-  </div>
 
-  <div class="form-group">
+  <div class="text-left form-group">
+    <label for="password">Password</label>
     
-  <input class='form-control' type="password" class="medium-6 columns" ng-model="userSignUp.password" required placeholder="Password">
+  <input class='form-control' id='password' type="password" class="medium-6 columns" ng-model="userSignUp.password" required placeholder="">
   </div>
   
 
