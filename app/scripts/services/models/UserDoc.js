@@ -23,8 +23,12 @@ angular.module('models')
         return $http.post('/userDocs/' + docId  + '/?type=' + type, send);
       },
 
-      list : function (argument) {
-        return $http.get('/userDocs');
+      list : function (args) {
+        var str = "";
+        for (var i=0; i<args.length; i++) {
+          str = str + '?' + args[i].type + '=' + args[i].value;
+        }
+        return $http.get('/userDocs/'+str);
       },
 
       
