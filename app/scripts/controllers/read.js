@@ -13,7 +13,7 @@ angular.module('read')
   $scope.tabs = [
     { title:"Front"},
     { title:"New" },
-    // { title:"Following" },
+    { title:"Following" },
     { title:"Topics" }    
   ];
 

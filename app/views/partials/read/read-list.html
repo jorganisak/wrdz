@@ -1,9 +1,9 @@
 <div id="read-list-body" class='row'>
     <div class="col-sm-2 text-left">
         <div id="read-list-left">
-            <tabset vertical='true' type='"pills"' class='jo-tabset'>
+            <!-- <tabset vertical='true' type='"pills"' class='jo-tabset'>
                 <tab ng-repeat="tab in tabs" class='jo-tab' ui-sref='{{"read.list." + tab.title | lowercase}}' active='tab.active' heading='{{tab.title}}'></tab>
-            </tabset>
+            </tabset> -->
         </div>
     </div>
 
@@ -23,7 +23,7 @@
                                 <span ng-hide='doc.doc.has_title'>
                                     {{doc.doc.sample | limitTo: 100}}
                                 </span>
-                            </div>
+                        </div>
                         </div>
                         <div class="col-sm-2 right ">
                             <div class="row read-list-arrow">

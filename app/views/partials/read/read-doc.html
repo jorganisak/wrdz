@@ -16,12 +16,11 @@
                     <span class="pull-right  read-doc-left-text">{{readDoc.hearts}}</span>
 
                 </div>
-
+<!-- 
                 <div  ng-class='active3' ng-click="repost()"  class="read-doc-message">
                     <span class="pull-left glyphicon glyphicon-retweet"></span><span class='pull-right read-doc-left-text'>{{readDoc.reposts}}</span>
 
-
-                </div>
+                </div> -->
             </div>
         <div class="row">
 
@@ -54,10 +53,9 @@
             
             <div ng-hide='readDoc.is_anon' class='text-right' id="read-doc-right-fixed">
                 <div id="read-doc-username">
-                    Earnest Hemingway
-                    <!-- {{readDoc.author.username}} -->
+                    {{readDoc.author.username}}
                 </div>
-                <div id="read-doc-followers">
+                <!-- <div id="read-doc-followers">
                     5521
                     <br>
                     <br>
@@ -65,7 +63,7 @@
                 </div>
                 <div id="read-doc-follow-button">
                     Follow
-                </div>
+                </div> -->
             </div>
     </div>
     <div class="col-sm-2">

@@ -56,7 +56,7 @@ Does a few things:
               success(function(user, status, headers, config) {
                 User.changeUser(user);
                 $scope.close();
-                $state.go('read');
+                $state.go('write');
               }).
               error(function(err, status, headers, config) {
                 if (err == 'Unknown user') {
@@ -84,7 +84,7 @@ Does a few things:
               success(function(user, status, headers, config)
               {
                 User.changeUser(user);
-                $state.go('read');
+                $state.go('write');
               }).
               error(function(err, status, headers, config)
               {
