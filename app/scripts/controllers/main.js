@@ -46,7 +46,7 @@ Does a few things:
     $scope.launchLogIn = function () {
       var modalInstance = $modal.open({
         templateUrl: "partials/signin.html",
-        controller: ['$csope', '$modalInstance', 'User', function  ($scope, $modalInstance, User) {
+        controller: ['$scope', '$modalInstance', 'User', function  ($scope, $modalInstance, User) {
           $scope.close = function() {
             $modalInstance.close();
           }; 
