@@ -228,6 +228,7 @@ add-button.active:active {
 
 .ion-eye {
   color: blue;
+  font-size: 1.1em;
   padding-left: 2px;
 }
 .ion-folder {

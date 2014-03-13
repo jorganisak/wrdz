@@ -67,8 +67,27 @@ angular.module('read')
   // body...
 
   $scope.isHeart = function  () {
-    
+    if ($scope.user.meta._hearts.indexOf($scope.readDoc._id) > -1) {
+      $scope.active2 = 'active';
+      return true;
+    }
+    return false;
+  } 
+  $scope.isVote = function  () {
+    if ($scope.user.meta._up_votes.indexOf($scope.readDoc._id) > -1) {
+      $scope.active1 = 'active';
+      return true;
+    }
+    return false;
   }
+  $scope.isRepost = function  () {
+    if ($scope.user.meta._reposts.indexOf($scope.readDoc._id) > -1) {
+      $scope.active3 = 'active';
+      return true;
+    }
+    return false;
+  }
+
 
   $scope.heart = function () {
     if ($scope.active2 == 'active') {
@@ -103,7 +122,7 @@ angular.module('read')
     } else {
       $scope.active3 = 'active';
       PubDoc.update($scope.readDoc._id, 'repost', true);
-      $scope.readDoc.resposts++;
+      $scope.readDoc.reposts++;
     }
   }
   
@@ -112,9 +131,29 @@ angular.module('read')
     // TODO, this can surely be worked around to
     // manufacture page views..
     if ($scope.user) {
-      PubDoc.update($scope.readDoc._id, 'view', true);
+      if ($scope.user.meta._views.indexOf($scope.readDoc._id) == -1) {
+
+        PubDoc.update($scope.readDoc._id, 'view', true);
+      }
     }
   };
 
+  function checkDoc () {
+    $scope.view();
+    $scope.isHeart();
+    $scope.isVote();
+    $scope.isRepost();
+  }
+
+
+  if ($scope.user) {
+    checkDoc();
+  }
+
+  $scope.$on('userChange', function  (evt, user) {
+    if (user) {
+      checkDoc();
+    }
+  });
 
 });
