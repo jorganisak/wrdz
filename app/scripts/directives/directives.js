@@ -2,7 +2,7 @@
 angular.module('shared').directive('joInputAdd', function () {
   return {
     restrict: 'AE',
-    templateUrl: 'partials/directives/input-add.html',
+    templateUrl: 'partials/input-add.html',
     scope: {
       name: '@name',
       onSubmit: '&onSubmit'
@@ -23,7 +23,7 @@ angular.module('shared').directive('joInputAdd', function () {
 .directive('joTopicLabel', function() {
   return {
     restrict: 'AE',
-    templateUrl: 'partials/directives/input-add.html',
+    templateUrl: 'partials/input-add.html',
     scope: {
       name: '@name',
       onSubmit: '&onSubmit'

@@ -24,7 +24,7 @@ config(['$stateProvider', '$urlRouterProvider',
 
       .state('read', {
         url: '/r',
-        templateUrl: 'partials/read/read.html',
+        templateUrl: 'partials/read.html',
         abstract: 'true',
         controller: ['$scope', '$state', function ($scope, $state) {
 
@@ -32,28 +32,28 @@ config(['$stateProvider', '$urlRouterProvider',
       })
       .state('read.list', {
         url:'',
-        templateUrl:'partials/read/read-list.html',
+        templateUrl:'partials/read-list.html',
       })
       .state('read.list.front', {
         url: '',
-        templateUrl: 'partials/read/read.html'
+        templateUrl: 'partials/read.html'
       })
       .state('read.list.new', {
         url: '/n',
-        templateUrl: 'partials/read/read.html'
+        templateUrl: 'partials/read.html'
       })
       .state('read.list.following', {
         url: '/f',
-        templateUrl: 'partials/read/read.html'
+        templateUrl: 'partials/read.html'
       })
       .state('read.list.topics', {
         url: '/t',
-        templateUrl: 'partials/read/read.html'
+        templateUrl: 'partials/read.html'
       })
 
       .state('read.doc', {
         url: '/:docId',
-        templateUrl: 'partials/read/read-doc.html',
+        templateUrl: 'partials/read-doc.html',
         resolve: {  
           readDoc : ['Read','$stateParams', function(Read, $stateParams) {
             return Read.getPubDoc($stateParams.docId);
@@ -72,7 +72,7 @@ config(['$stateProvider', '$urlRouterProvider',
 
       .state('write', {
         url: '/w',
-        templateUrl: 'partials/write/write.html'
+        templateUrl: 'partials/write.html'
       })
 
 

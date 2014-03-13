@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h3>Topics</h3>
+</div>
+
+<div class="modal-body">
+
+    <jo-input-add name="Topic" on-submit="addTopic(title)"></jo-input-add>
+   
+        <br>
+        <em>Has Topics &nbsp;&nbsp;</em>
+        <span ng-repeat="top in docTopics">
+            <span class="label label-primary tag-label">{{top.title}} <span ng-click="removeTopic(top)" class="icon tag-remove-x ion-close"></span></span>
+        </span>
+        <br>
+        <br>
+        
+        <em>Your Topics &nbsp;&nbsp;</em>
+        <span ng-repeat="top in userTopics | orderBy: '-_docs.length' | limitTo: 20">
+            <span class="label label-primary tag-label">{{top.title}} <span ng-click="addTopic(top.title)" class="icon tag-add-plus ion-plus"></span></span>
+        </span>
+        
+    
+    <br>
+
+</div>
+
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="close()">Done</button>
+</div>

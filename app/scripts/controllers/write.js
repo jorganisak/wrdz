@@ -222,7 +222,7 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$
   $scope.openTopicModal = function () {
 
     var modalInstance = $modal.open({
-      templateUrl: "partials/write/topic-modal.html",
+      templateUrl: "partials/topic-modal.html",
       controller: function  ($scope, $modalInstance, userTopics, docTopics, Write) {
         $scope.userTopics = userTopics;
         $scope.docTopics = docTopics;
@@ -263,7 +263,7 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$
 
   $scope.openPublishModal = function () {
     var modalInstance = $modal.open({
-      templateUrl: "partials/write/publish-modal.html",
+      templateUrl: "partials/publish-modal.html",
       controller: function  ($scope, Write, $modalInstance, $state, popularTopics, docTopics, doc, username) {
         $scope.userTopics = popularTopics;
         $scope.docTopics = docTopics;
