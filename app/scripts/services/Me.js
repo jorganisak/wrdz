@@ -5,7 +5,7 @@
   */
 
   angular.module('write')
-  .factory('Write', function ($http, User, UserDoc) {
+  .factory('Write', ['$http', 'User', 'UserDoc', function ($http, User, UserDoc) {
 
 /*
       Service Logic and declarations
@@ -136,4 +136,4 @@
 
 
   };
-});
+}]);

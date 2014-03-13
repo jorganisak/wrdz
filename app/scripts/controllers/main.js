@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('shared')
-.controller('MainCtrl', function ($scope, User, $rootScope, $modal, $state) {
+.controller('MainCtrl', ['$scope', 'User', '$rootScope', '$modal', '$state', function ($scope, User, $rootScope, $modal, $state) {
 
 /*
 Does a few things:
@@ -46,7 +46,7 @@ Does a few things:
     $scope.launchLogIn = function () {
       var modalInstance = $modal.open({
         templateUrl: "partials/signin.html",
-        controller: function  ($scope, $modalInstance, User) {
+        controller: ['$csope', '$modalInstance', 'User', function  ($scope, $modalInstance, User) {
           $scope.close = function() {
             $modalInstance.close();
           }; 
@@ -68,13 +68,13 @@ Does a few things:
               });
             }
           };
-        },
+        }],
       });
     };
     $scope.launchSignUp = function () {
       var modalInstance = $modal.open({
         templateUrl: "partials/signup.html",
-        controller: function  ($scope, $modalInstance, User, $http) {
+        controller: ['$scope', '$modalInstance', 'User', '$http', function  ($scope, $modalInstance, User, $http) {
           $scope.close = function() {
             $modalInstance.close();
           }; 
@@ -97,13 +97,13 @@ Does a few things:
           $scope.twitter = function () {
             $http.get('/auth/twitter');
           }
-        },
+        }],
       });
     };
     $scope.feedbackModal = function () {
           var modalInstance = $modal.open({
             templateUrl: "partials/feedback-modal.html",
-            controller: function  ($scope, $modalInstance, $http) {
+            controller: ['$scope', '$modalInstance', '$http', function  ($scope, $modalInstance, $http) {
               $scope.close = function() {
                 $modalInstance.close();
               }; 
@@ -116,13 +116,13 @@ Does a few things:
               };
 
               
-            },
+            }],
           });
         };
-  })
+  }])
 
 
-.controller('MenuShortcutCtrl', function($scope) {
+.controller('MenuShortcutCtrl', ['$scope', function($scope) {
     $scope.items = [
     {'title':"write", 'state':"write"},
     {'title':"read", 'state':"read.list.front"},
@@ -130,4 +130,4 @@ Does a few things:
     {'title':"me", 'state':"me"},
 
     ];
-});
+}]);

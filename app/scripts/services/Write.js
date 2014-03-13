@@ -5,7 +5,7 @@
   */
 
   angular.module('write')
-  .factory('Write', function ($http, User, PubDoc, UserDoc, Topics) {
+  .factory('Write', ['$http', 'User', 'PubDoc', 'UserDoc', 'Topics', function ($http, User, PubDoc, UserDoc, Topics) {
 
 /*
       Service Logic and declarations
@@ -89,4 +89,4 @@
       return Topics.update(current_doc._id, type, topicTitle);
     }
   };
-});
+}]);

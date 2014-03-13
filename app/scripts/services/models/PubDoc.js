@@ -7,7 +7,7 @@
 
 */
 angular.module('models')
-  .factory('PubDoc', function ($http) {
+  .factory('PubDoc', ['$http', function ($http) {
     // Service logic
 
 
@@ -33,4 +33,4 @@ angular.module('models')
 
 
     };
-  });
+  }]);

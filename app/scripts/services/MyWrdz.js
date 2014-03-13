@@ -5,7 +5,7 @@
   */
 
   angular.module('myWrdz')
-  .factory('MyWrdz', function ($http, User, UserDoc) {
+  .factory('MyWrdz', ['$http', 'User', 'UserDoc', function ($http, User, UserDoc) {
 
 /*
       Service Logic and declarations
@@ -52,4 +52,4 @@
 
 
     };
-});
+}]);

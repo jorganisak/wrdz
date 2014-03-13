@@ -1,5 +1,5 @@
 'use strict';
-angular.module('wrdz').directive('mediumEditor', function ($timeout) {
+angular.module('wrdz').directive('mediumEditor', ['$timeout', function ($timeout) {
   return {
     require: 'ngModel',
     restrict: 'AE',
@@ -40,4 +40,4 @@ angular.module('wrdz').directive('mediumEditor', function ($timeout) {
       };
     }
   };
-});
+}]);

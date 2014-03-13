@@ -7,7 +7,7 @@
 
 */
 angular.module('models')
-  .factory('UserDoc', function ($http) {
+  .factory('UserDoc', ['$http', function ($http) {
     // Service logic
 
     // Public API here
@@ -41,4 +41,4 @@ angular.module('models')
 
       
     };
-  });
+  }]);

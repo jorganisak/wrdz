@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('wrdz')
-  .controller('NavbarCtrl', function ($scope, $state, User) {
+  .controller('NavbarCtrl', ['$scope', '$state', 'User', function ($scope, $state, User) {
 
     $scope.$state = $state;
     
 
-  });
+  }]);

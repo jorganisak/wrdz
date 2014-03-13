@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wrdz')
-  .factory('Profile', function ($http) {
+  .factory('Profile', ['$http', function ($http) {
     // Service logic
     // ...
 
@@ -40,4 +40,4 @@ angular.module('wrdz')
       
 
     };
-  });
+  }]);

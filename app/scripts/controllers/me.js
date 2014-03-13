@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('me')
-.controller('MeCtrl', function ($scope, User, $state) {
+.controller('MeCtrl', ['$scope', 'User', '$state', function ($scope, User, $state) {
 
 /*
 MY WRDZ 
@@ -45,4 +45,4 @@ LOGOUT
       });
     }
   };
-});
+}]);

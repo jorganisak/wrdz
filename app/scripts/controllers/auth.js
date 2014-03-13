@@ -7,7 +7,7 @@
 
 angular.module('shared')
 
-  .controller('AuthCtrl', function ($scope, User, $state) {
+  .controller('AuthCtrl', ['$scope', 'User', '$state', function ($scope, User, $state) {
 
     $scope.signup = function (user) {
       if (!User.isLoggedIn()) {
@@ -43,4 +43,4 @@ angular.module('shared')
         }
 
       };
-    });
+    }]);

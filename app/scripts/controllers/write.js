@@ -30,9 +30,7 @@
 
       */
 
-angular.module('write')
-
-  .controller('WriteCtrl', function ($scope, Write, $state, $timeout, $window) {
+angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$timeout', '$window', function ($scope, Write, $state, $timeout, $window) {
 
 /*
     Utils
@@ -194,16 +192,18 @@ angular.module('write')
     }
     
 
-////////////////////////////////// MESS AROUND TOWN
+    ////////////////////////////////// MESS AROUND TOWN
 
-$scope.switchHasTitle = function () {
-  Write.updateUserDoc('hasTitle', !$scope.hasTitle);
-  Write.setCurrentDoc.hasTitle = !$scope.hasTitle;
-  $scope.hasTitle = !$scope.hasTitle;
-  switchRecentDocTitle($scope.currentDoc._id);
-}
+    $scope.switchHasTitle = function () {
+      Write.updateUserDoc('hasTitle', !$scope.hasTitle);
+      Write.setCurrentDoc.hasTitle = !$scope.hasTitle;
+      $scope.hasTitle = !$scope.hasTitle;
+      switchRecentDocTitle($scope.currentDoc._id);
+    };
 
-}).controller('WriteLeftCtrl', function  ($scope, $modal, Write) {
+}])
+
+.controller('WriteLeftCtrl', ['$scope', '$modal', 'Write', function  ($scope, $modal, Write) {
   
 
 /*
@@ -308,4 +308,4 @@ $scope.switchHasTitle = function () {
     });
   };
 
-});
+}]);

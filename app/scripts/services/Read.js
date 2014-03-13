@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('read')
-  .factory('Read', function ($http, PubDoc) {
+  .factory('Read', ['$http', 'PubDoc', function ($http, PubDoc) {
 
 
     var docs = [];
@@ -36,4 +36,4 @@ angular.module('read')
       },
 
     };
-  });
+  }]);

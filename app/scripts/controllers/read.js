@@ -6,7 +6,7 @@
     
 */
 angular.module('read')
-.controller('ReadCtrl', function ($scope, Read, $state, $stateParams, $filter ) {
+.controller('ReadCtrl', ['$scope', 'Read', '$state', '$stateParams', '$filter', function ($scope, Read, $state, $stateParams, $filter ) {
 
 
 
@@ -60,10 +60,10 @@ angular.module('read')
     }
   });
 
-})
+}])
 
 
-.controller('ReadDocCtrl', function ($scope, PubDoc) {
+.controller('ReadDocCtrl', ['$scope', 'PubDoc', function ($scope, PubDoc) {
   // body...
 
   $scope.isHeart = function  () {
@@ -156,4 +156,4 @@ angular.module('read')
     }
   });
 
-});
+}]);

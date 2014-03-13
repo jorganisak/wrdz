@@ -7,7 +7,7 @@
 
 */
 angular.module('models')
-  .factory('Topics', function ($http) {
+  .factory('Topics', ['$http', function ($http) {
     // Service logic
 
 
@@ -31,4 +31,4 @@ angular.module('models')
 
 
     };
-  });
+  }]);

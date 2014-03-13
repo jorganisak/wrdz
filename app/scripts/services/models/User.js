@@ -7,7 +7,7 @@
 
 */
 angular.module('models')
-  .factory('User', function ($http, $cookieStore, $rootScope) {
+  .factory('User', ['$http', '$cookieStore', '$rootScope', function ($http, $cookieStore, $rootScope) {
     // Service logic
 
     var currentUser = $cookieStore.get('user') || null;
@@ -64,4 +64,4 @@ angular.module('models')
 
 
     };
-  });
+  }]);

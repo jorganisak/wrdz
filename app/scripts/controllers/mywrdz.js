@@ -6,7 +6,7 @@
     
 */
 angular.module('myWrdz')
-.controller('MyWrdzCtrl', function ($scope, $state, MyWrdz, $stateParams ) {
+.controller('MyWrdzCtrl', ['$scope', '$state', 'MyWrdz', '$stateParams', function ($scope, $state, MyWrdz, $stateParams ) {
 
     $scope.moment = moment;
 
@@ -101,4 +101,4 @@ angular.module('myWrdz')
     };
 
 
-});
+}]);
