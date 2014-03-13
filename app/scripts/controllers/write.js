@@ -179,6 +179,10 @@ angular.module('write')
         focusContent();
       })
     };
+
+    $scope.goToTop = function () {
+      $window.scrollTo(0,0);
+    }
     
 
 ////////////////////////////////// MESS AROUND TOWN

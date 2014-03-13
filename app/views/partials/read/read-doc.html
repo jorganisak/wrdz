@@ -1,27 +1,28 @@
 <div id="read-doc-body">
 
-    <div id="read-doc-left-fixed">
-        
-        <div ng-click='up_vote()' class="read-doc-arrow">
-            <span  class="icon pull-left ion-arrow-up-a"></span>
-            <span class='pull-right  read-doc-left-text '>{{readDoc.up_votes}}</span>
-        </div>
-
-        <div ng-click='heart()' class="read-doc-heart">
-            <span class="pull-left icon ion-heart"></span>
-            <span class="pull-right  read-doc-left-text">{{readDoc.hearts}}</span>
-
-        </div>
-
-        <div class="read-doc-message">
-            <span class="pull-left glyphicon glyphicon-retweet"></span><span class='pull-right read-doc-left-text'>251</span>
-            
-            
-        </div>
-    </div>
 
 
     <div class="col-sm-8 col-sm-offset-2  read-doc-center">
+
+            <div id="read-doc-left-fixed">
+
+                <div  ng-class='active1' ng-click="up_vote(); active1 = 'active'; readDoc.up_votes=readDoc.up_votes+1"  class="read-doc-arrow">
+                    <span  class="icon pull-left ion-arrow-up-a"></span>
+                    <span class='pull-right  read-doc-left-text '>{{readDoc.up_votes}}</span>
+                </div>
+
+                <div ng-class='active2' ng-click="heart(); active2 = 'active'" class="read-doc-heart">
+                    <span class="pull-left icon ion-heart"></span>
+                    <span class="pull-right  read-doc-left-text">{{readDoc.hearts}}</span>
+
+                </div>
+
+                <div  ng-class='active3' ng-click="heart(); active3 = 'active'"  class="read-doc-message">
+                    <span class="pull-left glyphicon glyphicon-retweet"></span><span class='pull-right read-doc-left-text'>251</span>
+
+
+                </div>
+            </div>
         <div class="row">
 
       <!--       <div class="col-sm-4 pull-left read-doc-author">
@@ -49,31 +50,26 @@
         <br>
         <em>{{moment(readDoc.published_at).format('DD MM YY')}}</em>
         <br>
-<!--         <div class="row">
-            <div class='col-sm-12' id="read-doc-social">
-                <span class="col-sm-4 text-center icon ion-social-twitter"></span>
-                <span class="icon ion-social-reddit col-sm-4 text-center "></span>
-                <span class="icon ion-email col-sm-4 text-center left"></span>
-            </div>
-        </div> -->
 
+            
+            <div ng-hide='readDoc.is_anon' class='text-right' id="read-doc-right-fixed">
+                <div id="read-doc-username">
+                    Earnest Hemingway
+                    <!-- {{readDoc.author.username}} -->
+                </div>
+                <div id="read-doc-followers">
+                    5521
+                    <br>
+                    <br>
+                    Papa. Catcher of big fish.  I like cats, drinking and writing good stories. Writing from Key West, FL
+                </div>
+                <div id="read-doc-follow-button">
+                    Follow
+                </div>
+            </div>
     </div>
     <div class="col-sm-2">
-        <div ng-hide='readDoc.is_anon' class='text-right' id="read-doc-right-fixed">
-            <div id="read-doc-username">
-                Earnest Hemingway
-                <!-- {{readDoc.author.username}} -->
-            </div>
-            <div id="read-doc-followers">
-                5521
-                <br>
-                <br>
-                Papa. Catcher of big fish.  I like cats, drinking and writing good stories. Writing from Key West, FL
-            </div>
-            <div id="read-doc-follow-button">
-                Follow
-            </div>
-        </div>
+
     </div>
 
 <!--
