@@ -26,9 +26,17 @@ angular.module('models')
       list : function (args) {
         var str = "";
         for (var i=0; i<args.length; i++) {
-          str = str + '?' + args[i].type + '=' + args[i].value;
+          if (args[i].value instanceof Array) {
+            str = str + args[i].type + '=';
+            for (var j=0; j< args[i].value.length; j++) {
+              str = str + args[i].value[j] + '&'; 
+            }
+          } else {
+
+            str = str  + args[i].type + '=' + args[i].value + '&';
+          }
         }
-        return $http.get('/userDocs/'+str);
+        return $http.get('/userDocs/?'+str);
       },
 
       
