@@ -39,7 +39,7 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$
     //test if i is in array
     // returns true if not in array
 
-    $scope.mediumEditorOptions = angular.toJson(
+    $scope.mediumEditorOptionsBody = angular.toJson(
       {"placeholder": "", 
       "buttons": ["bold", "italic", "anchor", "header2", "orderedlist", "unorderedlist" ], 
       "buttonLabels" : {"header2": "<b>H</b>", "italic": "<strong><em>i</em></strong>"}, 
@@ -47,6 +47,14 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$
       "forcePlainText" : false, 
       "targetBlank": true}
       );
+
+    
+
+    $scope.mediumEditorOptionsTitle = angular.toJson(
+      {"placeholder": "", "disableToolbar": true, "disableReturn":true}
+      );
+
+
 
     function tagArrayTest(i, a) {
       var res = true;
@@ -232,7 +240,7 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$
 
     var modalInstance = $modal.open({
       templateUrl: "partials/topic-modal.html",
-      controller: function  ($scope, $modalInstance, userTopics, docTopics, Write) {
+      controller:  ['$scope', '$modalInstance', 'userTopics', 'docTopics', 'Write', function ($scope, $modalInstance, userTopics, docTopics, Write) {
         $scope.userTopics = userTopics;
         $scope.docTopics = docTopics;
         $scope.close = function() {
@@ -253,7 +261,7 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$
               $scope.docTopics.push({'title': topicTitle});
             });
         };
-      },
+      }],
       resolve: {
         userTopics: function () {
           return $scope.user.topics;
@@ -273,7 +281,7 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$
   $scope.openPublishModal = function () {
     var modalInstance = $modal.open({
       templateUrl: "partials/publish-modal.html",
-      controller: function  ($scope, Write, $modalInstance, $state, popularTopics, docTopics, doc, username) {
+      controller: ['$scope', 'Write', '$modalInstance', '$state', 'popularTopics', 'docTopics', 'doc', 'username', function ($scope, Write, $modalInstance, $state, popularTopics, docTopics, doc, username) {
         $scope.userTopics = popularTopics;
         $scope.docTopics = docTopics;
         $scope.username = username;
@@ -296,7 +304,7 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$
           );
         }
       
-      },
+      }],
       resolve: {
         popularTopics: function () {
           return $scope.user.topics;
