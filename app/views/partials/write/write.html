@@ -1,0 +1,151 @@
+<div id="write-body" class='' ng-controller='WriteCtrl'>
+    <div ng-hide='user' class="row text-center">
+        <h2>
+        <a ng-click='launchSignUp()'>
+            
+        Sign up for wrdz to write.
+        </a>
+        </h2>
+    </div>
+    <div ng-show='user' class="row">
+
+
+        <div ng-controller='WriteLeftCtrl' id='' class=" col-sm-2 text-left ">
+            <div id="write-column-left">
+                
+                <button ng-click='newDoc()' class='btn btn-jo'><span class="ion-compose icon"></span> &nbsp;New</button>   
+
+                <div ng-show='currentDoc.is_published' id="write-pub-info" class='panel panel-default'>
+
+                    <div ng-show='currentDoc.pub_doc.is_anon' class="text-center">
+                        <a ui-sref='read.doc({docId:currentDoc.pub_doc._id})'>
+                            
+                            <em>Anonymous</em>
+                        </a>
+                    </div>
+                    <div ng-hide='currentDoc.pub_doc.is_anon' class="text-center">
+                        <a ui-sref='read.doc({docId:currentDoc.pub_doc._id})'>
+                            <em>Public</em>
+                        </a>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-sm-3 col-sm-offset-1">
+                            <span class="icon ion-arrow-up-a"></span>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            {{currentDoc.pub_doc.up_votes}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 col-sm-offset-1">
+                            <span class="icon ion-heart"></span>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            {{currentDoc.pub_doc.hearts}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 col-sm-offset-1">
+                            <span class="icon icon ion-eye"></span>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            {{currentDoc.pub_doc.views}}
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-sm-3 col-sm-offset-1">
+                            <span class="glyphicon glyphicon-retweet"></span>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            {{currentDoc.pub_doc.reposts}}
+                        </div>
+                    </div>
+                    
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            
+                            <button ng-show='currentDoc.pub_doc.is_visible' ng-click='switchVisible()' class="btn btn-jo  btn-sm btn-warning">
+                                Unpublish
+                            </button>
+                            <button ng-hide='currentDoc.pub_doc.is_visible' ng-click='switchVisible()' class="btn btn-jo  btn-sm btn-warning">
+                                Re-publish
+                            </button>
+                            
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class='btn-jo' ng-hide='currentDoc.is_published' ng-click='openPublishModal()'><span class="ion-eye icon"></span> &nbsp;Post</button>
+               
+               <button class='btn-jo' ng-click='openTopicModal()'>
+                
+                <span class="ion-pricetags icon"></span> &nbsp;Topics
+
+                </button>
+       
+            </div>
+
+
+        </div>
+
+        <div class="col-sm-8 text-center" ng-hide='currentDoc._id'>
+            <h2>
+            You haven't written anything yet! 
+                
+            </h2>
+            <button class='btn btn-jo btn-success' ng-click='newDoc()'>
+                
+                Start writing 
+            </button>
+        </div>
+
+        <div ng-show='currentDoc._id'  class="text-center col-sm-8 pull-left column ">
+
+            <div id="write-center">
+                                   
+            <div ng-click='goToTop()' id="write-arrow-up">
+                <span class="icon ion-chevron-up"></span>
+            </div>
+                <div class='show-hide-fade' ng-show="hasTitle">
+                    <div class="" ng-click='switchHasTitle()' id="remove-title-switch"><span class="icon ion-close"></span></div>
+                    <div medium-editor options='{"placeholder": "", "disableToolbar": true, "disableReturn":true}' ng-model='currentDoc.title' id="write-title">
+                    </div>
+                </div>
+
+                <div id="title-switch"  ng-hide="hasTitle" ng-click='switchHasTitle()'>add title</div>
+
+                <div medium-editor options='{"placeholder": "", "buttons": ["bold", "italic", "anchor", "header2", "orderedlist", "unorderedlist" ], "buttonLabels" : {"header2": "<b>H</b>", "italic": "<strong><em>i</em></strong>"}, "disableToolbar": false, "forcePlainText" : false, "targetBlank": true}' ng-model='currentDoc.body'  class='' id="write-content">
+
+                </div>
+            </div>
+
+
+            
+
+        </div>
+
+        <div class="col-sm-2 pull-right ">
+            <div id="write-column-right">
+                
+                <div ng-repeat="recent_doc in user._userDocs | limitTo: 5 | orderBy : '-updated_at'">
+
+                    <div ng-click='switchDoc(recent_doc)' class="text-right write-last-item">
+                        <span ng-show='recent_doc.has_title' ng-bind-html="recent_doc.title"></span>
+                        <span ng-hide='recent_doc.has_title || !recent_doc.sample'>{{recent_doc.sample | limitTo: 50}}</span>
+
+                        
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+
+    </div>
+
+
+</div>

@@ -1,13 +1,38 @@
-<h4>Join wrdz to read and write all the thoughts there are in the world</h4>
-<h5>We're only doing this to make sure you're not a robot.  We'll never post on your behalf or any of that shit.  This is actually the last time you'll ever see your name in writing on wrdz. Seriously.</h5>
+<div class="modal-header">
+    <h3>Join Wrdz</h3>
+</div>
 
-<p>other social stuff has to go here too...</p>
-<form name="signUpForm" ng-submit="signup(userSignUp)" novalidate="">
+<div class="modal-body">
+  
+<h4>Wrdz is in beta, but I still think you'll like it.</h4>
+<h5>Use the feedback button on the bottom left to let me know what's up.</h5>
+<!-- 
+<a ng-click='twitter()'>Twitter</a> -->
+
+<form name="signUpForm" role="form" ng-submit="signup(userSignUp)" novalidate="">
   <br>
   {{message}}
-  <input type="email" class="medium-6 columns" ng-model="userSignUp.email" required="" placeholder="Email">
-  <input type="text" class="medium-6 columns" ng-model="userSignUp.username" required="" placeholder="Username">
-  <input type="password" class="medium-6 columns" ng-model="userSignUp.password" required="" placeholder="Password">
-  <button type="submit" ng-disabled="signUpForm.$invalid" class="button medium-6 success radius">Sign Up</button>
+  <div class="text-left form-group">
+    
+    <label for="username">Username</label>
+  <input class="form-control" id="username" type="text" class="medium-6 columns" ng-model="userSignUp.username" required="" placeholder="">
+  </div>
+  <div class="text-left form-group">
+    <label for="email">Email</label>
+  <input class="form-control" id="email" type="email" class="medium-6 columns" ng-model="userSignUp.email" required="" placeholder="">
+  </div>
 
-</form>
+
+  <div class="text-left form-group">
+    <label for="password">Password</label>
+    
+  <input class="form-control" id="password" type="password" class="medium-6 columns" ng-model="userSignUp.password" required="" placeholder="">
+  </div>
+  
+
+  <button type="submit" ng-disabled="signUpForm.$invalid" class="btn btn-warning btn-jo">Sign Up</button>
+
+
+</form>      
+
+</div>

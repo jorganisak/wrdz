@@ -1,0 +1,37 @@
+<div class=" text-center modal-header">
+    <span ng-click="close()" class="pull-right icon ion-close"></span>
+    <h3>Post</h3>
+</div>
+
+<div class="modal-body">
+
+    <p>Make this document public!</p>
+    <p>Other people on wrdz will be able to read this document. But don't worry, you can always post anonymously :) </p>
+
+  <!--   <jo-input-add name='Topic' add='newTag(tagName)'></jo-input-add>
+            
+    <br>
+
+    <em>Has Topics &nbsp;&nbsp;</em>
+    <span ng-repeat="top in docTopics">
+        <span class="label label-primary tag-label">{{top.title}} <span ng-click='removeTag(tag._id)' class="icon tag-remove-x ion-close"></span></span>
+    </span>
+
+    <br>
+    
+    <em>Popular Topics &nbsp;&nbsp;</em>
+    <span>
+        <span ng-repeat="top in userTopics | orderBy: '-_docs.length' | limitTo: 6">
+            <span class="label label-success tag-label">{{top.title}} <span ng-click='newTag(recentTag.title)' class="icon tag-add-plus ion-plus"></span></span>
+        </span>
+    </span> -->
+
+</div>
+
+
+<div class="modal-footer">
+    <button ng-click='publish(false)'class='half-width btn-jo btn pull-left btn-success '>Post As {{username}}</button>
+    <button ng-click='publish(true)' class='half-width btn-jo btn btn-success '>Post Anonymously</button>
+</div>      
+
+

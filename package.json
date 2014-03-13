@@ -8,6 +8,7 @@
     "ejs": "~0.8.4",
     "passport": "*",
     "passport-local": "*",
+    "passport-twitter": "*",
     "connect-mongo": "*",
     "underscore": "*",
     "connect-flash": "*",

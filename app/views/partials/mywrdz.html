@@ -1,0 +1,193 @@
+ <div ng-hide='user' class="row text-center">
+        <h2>
+        <a ng-click='launchSignUp()'>
+            
+        Sign up for wrdz.
+        </a>
+        </h2>
+    </div>
+<div ng-show='user' class="col-sm-12 " id="mywrdz-body" ng-controller='MyWrdzCtrl'>
+    <div class="row">
+
+
+
+        <div class="col-sm-6">
+            <div id="mywrdz-left">
+
+                <div class="well well-lg">
+
+                    <div class="row">
+
+                        <div class="col-sm-5">
+
+                            <div class="row">
+                              <div class="col-sm-1 glyphicon glyphicon-calendar"></div>
+                              <div class="col-sm-9">
+
+                                  <input type="text" class="form-control" show-button-bar='false' datepicker-popup="dd-MMMM-yy" max="today" show-weeks='false' ng-model="dt" is-open="opened" ng-required="true" close-text="Close" />
+                              </div>
+                          </div>
+                      </div>
+                      <div class="btn-group col-sm-3">
+
+                          <button type="button" class="btn btn-default btn-md btn-block dropdown-toggle" data-toggle="dropdown">
+                            <span class="icon ion-pricetags"></span>&nbsp;&nbsp;Topics
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li  ng-repeat="topic in topicOptions | orderBy: '-count'">
+                                <a ng-click='addTopic(topic)' href="">
+                                    {{topic.title}}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+  
+                    <div class="btn-group filter-button-group col-sm-4">
+                        <button type="button" class="btn btn-default  btn-xs" ng-model="filterModel" btn-radio="'All'">All</button>
+                        <button type="button" class="btn btn-default btn-xs" ng-model="filterModel" btn-radio="'Public'">Public</button>
+                        <button type="button" class="btn btn-default btn-xs" ng-model="filterModel" btn-radio="'Private'">Private</button>
+                    </div>
+                </div>
+                <div class="row">
+
+                   <!--  <div class="btn-group filter-button-group col-sm-2">
+
+                        <button type="button" class="btn btn-default btn-xs" ng-model="filterModel" btn-radio="'Hearts'">My <span style="font-size: 1em" class="icon ion-heart"></span>s</button>
+                    </div>
+
+                    <div class="btn-group filter-button-group col-sm-5">
+                        <button type="button" class="btn btn-default btn-xs" ng-model="sortModel" btn-radio="'Date'">Date</button>
+                        <button type="button" class="btn btn-default btn-xs" ng-model="sortModel" btn-radio="'Popularity'">Popularity</button>
+                    </div>
+ -->
+                </div>
+                <div class="row">
+                 <span ng-repeat="top in topicsModel">
+                    <span class="label label-primary tag-label">{{top.title}} <span ng-click='removeTopic(top)' class="icon tag-remove-x ion-close"></span></span>
+                </span>
+            </div>
+
+        </div> 
+
+
+        <div id="mywrdz-doc-list">
+
+            <div ng-repeat="doc in docList | orderBy: '-updated_at'">
+                <div ng-dblclick='openDocInWrite(doc)' ng-click='switchDoc(doc)' class="mywrdz-doc-in-list">
+                    <div class="row">
+                        <div class="col-sm-10">
+
+                            <div class="mywrdz-list-title">                
+                                <div ng-show='doc.has_title'>
+                                    {{doc.title}}
+                                </div>
+                                <div ng-hide='doc.has_title'>
+                                    {{doc.sample | limitTo: 140}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+
+                          <a ng-click='openDocInWrite(doc)' class='pull-right'>Open</a>
+                      </div>
+                  </div>
+
+                  <div class="mywrdz-list-date">
+                    {{moment(doc.updated_at).format("MM / DD / YY")}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+</div>
+<div class="col-sm-6">
+    <div id="mywrdz-right">
+
+
+
+
+
+        <div id="mywrdz-doc-show">
+            <div ng-show='showDoc.is_published' class="row">
+
+
+                <div  id="write-pub-info" class='panel panel-default'>
+
+                    <div class="text-center">
+                        <em ng-show='!showDoc.pub_doc.is_visible'>Not Published</em>
+                        
+                    </div>
+
+                    <div ng-show='showDoc.pub_doc.is_anon && showDoc.pub_doc.is_visible' class="text-center">
+                        <a ui-sref='read.doc({docId:showDoc.pub_doc._id})'>
+
+                            <em>Anonymous</em>
+                        </a>
+                    </div>
+                    <div ng-hide='showDoc.pub_doc.is_anon || !showDoc.pub_doc.is_visible' class="text-center">
+                        <a ui-sref='read.doc({docId:showDoc.pub_doc._id})'>
+                            <em>Public</em>
+                        </a>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <span class="icon ion-arrow-up-a"></span>
+                        </div>
+                        <div class="col-sm-2 text-right">
+                            {{showDoc.pub_doc.up_votes}}
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="icon ion-heart"></span>
+                        </div>
+                        <div class="col-sm-2 text-right">
+                            {{showDoc.pub_doc.hearts}}
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="icon icon ion-eye"></span>
+                        </div>
+                        <div class="col-sm-2 text-right">
+                            {{showDoc.pub_doc.views}}
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="glyphicon glyphicon-retweet"></span>
+                        </div>
+                        <div class="col-sm-2 text-right">
+                            {{showDoc.pub_doc.reposts}}
+                        </div>
+                    </div>
+                    
+
+                </div>
+            </div>
+
+                <span ng-repeat='topic in showDoc.topics'>
+                    <span class='label label-primary tag-label'>{{topic.title}}</span>
+                </span>
+                <div id="mywrdz-doc-show-title">
+                    <span ng-show='showDoc.has_title'>                           
+                        {{showDoc.title}}
+                    </span>
+
+                </div>
+                <div class="row">
+                </div>
+                <perfect-scrollbar class='scroller' refresh-on-change='showDoc' wheel-propogation='true' wheel-speed='50'>
+
+
+                <div ng-bind-html='showDoc.body' id="mywrdz-doc-show-body">
+
+                </div>
+
+            </perfect-scrollbar>
+
+
+        </div>
+    </div>
+</div>
+</div>
+</div>

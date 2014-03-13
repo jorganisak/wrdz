@@ -1,11 +1,20 @@
-<div class="row">
-  <div class="small-centered column medium-6">
+<div ng-hide="user" class="text-center row">
+<br>
+<br>
+<br>
+  
+  <h1>Wrdz</h1><em>beta</em>
+  <h2>A place for you to write</h2>
 
-
-    <h3>Wrdz</h3>
-    <h4 ui-sref="read">Read</h4>
-    <h4 ui-sref="write">Write</h4>
-    <h4 ui-sref="signin">Log In</h4>
-    <h4 ui-sref="signup">Join Wrdz</h4>
+<br>
+<br>
+  <div class="col-sm-6 col-sm-offset-3">
+    
+  <button ng-click="launchSignUp()" class="btn btn-jo btn-success btn-lg">Sign Up</button>
   </div>
+  
+  <div class="col-sm-6 col-sm-offset-3">
+  <button ng-click="launchLogIn()" class="btn btn-jo btn-success btn-lg">Sign In</button>
+  </div>
+
 </div>
