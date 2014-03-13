@@ -62,15 +62,7 @@ config(['$stateProvider', '$urlRouterProvider',
         controller: ['$scope', 'readDoc','PubDoc', function ($scope, readDoc, PubDoc) {
           $scope.readDoc = readDoc.data;
 
-          $scope.heart = function () {
-            PubDoc.update($scope.readDoc._id, 'heart', true);
-          };
-          $scope.up_vote = function () {
-            PubDoc.update($scope.readDoc._id, 'up_vote', true);
-          };
-          $scope.view = function () {
-            PubDoc.update($scope.readDoc._id, 'view', true);
-          };
+          
 
         }]
 

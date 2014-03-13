@@ -137,12 +137,21 @@ angular.module('write')
     // Does the same for the body
     $scope.$watch('currentDoc.body', function (newValue, oldValue) {
       if (newValue) {
-        var sample = document.getElementById('write-content').innerText.slice(0, 1000);
-        $scope.currentDoc.sample = sample;
+        var sample = getSample();
+        if (!sample) sample = $scope.currentDoc.sample;
         updateRecentDoc($scope.currentDoc._id);
         Write.updateUserDoc('body', {'sample': sample, 'body': $scope.currentDoc.body});
       }
     });
+
+    function getSample () {
+      var sample = document.getElementById('write-content').innerText.slice(0, 1000);
+      if (sample) {
+        $scope.currentDoc.sample = sample;
+        return sample;
+      }
+      return false;
+    }
 
     // Watches function result in the Write service for changes 
     // and uppdates scope accordingly

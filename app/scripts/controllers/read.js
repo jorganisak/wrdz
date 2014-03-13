@@ -6,7 +6,7 @@
     
 */
 angular.module('read')
-.controller('ReadCtrl', function ($scope, Read, $state, PubDoc, $stateParams, $rootScope, $filter ) {
+.controller('ReadCtrl', function ($scope, Read, $state, $stateParams, $filter ) {
 
 
 
@@ -14,8 +14,7 @@ angular.module('read')
     { title:"Front"},
     { title:"New" },
     { title:"Following" },
-    { title:"Topics" }
-    
+    { title:"Topics" }    
   ];
 
 
@@ -42,10 +41,6 @@ angular.module('read')
     return res;
   }
 
-  $scope.isHeart = function  () {
-    
-  }
-
   if ($scope.user) {
     $scope.seen = $scope.user.meta._views;
   }
@@ -65,11 +60,61 @@ angular.module('read')
     }
   });
 
-
-  //
-    // FOR READ ITEM VIEW
+})
 
 
+.controller('ReadDocCtrl', function ($scope, PubDoc) {
+  // body...
+
+  $scope.isHeart = function  () {
+    
+  }
+
+  $scope.heart = function () {
+    if ($scope.active2 == 'active') {
+      $scope.readDoc.hearts--;
+      $scope.active2 = null;
+      PubDoc.update($scope.readDoc._id, 'heart', false);
+    } else {
+      $scope.active2 = 'active';
+      PubDoc.update($scope.readDoc._id, 'heart', true);
+      $scope.readDoc.hearts++;
+    }
+  };
+
+  $scope.up_vote = function () {
+    if ($scope.active1 == 'active') {
+      $scope.readDoc.up_votes--;
+      $scope.active1 = null;
+      console.log($scope.active1);
+      PubDoc.update($scope.readDoc._id, 'up_vote', false);
+    } else {
+      $scope.active1 = 'active';
+      PubDoc.update($scope.readDoc._id, 'up_vote', true);
+      $scope.readDoc.up_votes++;
+    }
+  };
+
+  $scope.repost = function () {
+    if ($scope.active3 == 'active') {
+      $scope.readDoc.reposts--;
+      $scope.active3 = null;
+      PubDoc.update($scope.readDoc._id, 'repost', false);
+    } else {
+      $scope.active3 = 'active';
+      PubDoc.update($scope.readDoc._id, 'repost', true);
+      $scope.readDoc.resposts++;
+    }
+  }
+  
+  $scope.view = function () {
+    // Check if user to register view
+    // TODO, this can surely be worked around to
+    // manufacture page views..
+    if ($scope.user) {
+      PubDoc.update($scope.readDoc._id, 'view', true);
+    }
+  };
 
 
 });

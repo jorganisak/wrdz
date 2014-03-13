@@ -1,4 +1,4 @@
-<div id="read-doc-body">
+<div ng-controller='ReadDocCtrl' id="read-doc-body">
 
 
 
@@ -6,19 +6,19 @@
 
             <div id="read-doc-left-fixed">
 
-                <div  ng-class='active1' ng-click="up_vote(); active1 = 'active'; readDoc.up_votes=readDoc.up_votes+1"  class="read-doc-arrow">
+                <div  ng-class='active1' ng-click="up_vote()"  class="read-doc-arrow">
                     <span  class="icon pull-left ion-arrow-up-a"></span>
                     <span class='pull-right  read-doc-left-text '>{{readDoc.up_votes}}</span>
                 </div>
 
-                <div ng-class='active2' ng-click="heart(); active2 = 'active'" class="read-doc-heart">
+                <div ng-class='active2' ng-click="heart()" class="read-doc-heart">
                     <span class="pull-left icon ion-heart"></span>
                     <span class="pull-right  read-doc-left-text">{{readDoc.hearts}}</span>
 
                 </div>
 
-                <div  ng-class='active3' ng-click="heart(); active3 = 'active'"  class="read-doc-message">
-                    <span class="pull-left glyphicon glyphicon-retweet"></span><span class='pull-right read-doc-left-text'>251</span>
+                <div  ng-class='active3' ng-click="repost()"  class="read-doc-message">
+                    <span class="pull-left glyphicon glyphicon-retweet"></span><span class='pull-right read-doc-left-text'>{{readDoc.reposts}}</span>
 
 
                 </div>
