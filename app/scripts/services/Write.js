@@ -63,6 +63,7 @@
 
 
 
+
     // Published Docs
 
     publishDoc : function (isAnon) {
@@ -74,6 +75,7 @@
       return PubDoc.create(data);
 
     },
+
 
     // User
 

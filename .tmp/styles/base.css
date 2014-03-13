@@ -991,9 +991,9 @@ h3 {
 }
 
 .read-title {
-  font-family: 'Source Sans Pro', serif;
-  font-size: 3.3em;
-  line-height: 1.2;
+  font-family: 'Roboto', serif;
+  font-size: 3em;
+  line-height: 1;
   font-weight: 700;
   letter-spacing: 0.7px;
   padding: 30px 0px 5px 0px;

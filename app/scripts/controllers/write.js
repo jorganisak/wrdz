@@ -203,7 +203,7 @@ $scope.switchHasTitle = function () {
   switchRecentDocTitle($scope.currentDoc._id);
 }
 
-}).controller('WriteLeftCtrl', function  ($scope, $modal) {
+}).controller('WriteLeftCtrl', function  ($scope, $modal, Write) {
   
 
 /*
@@ -211,6 +211,13 @@ $scope.switchHasTitle = function () {
   Opens Topic and Publish Modals
   
 */
+
+
+  $scope.switchVisible = function () {
+    Write.updateUserDoc('pubVisible', !$scope.currentDoc.pub_doc.is_visible);
+    $scope.currentDoc.pub_doc.is_visible = !$scope.currentDoc.pub_doc.is_visible;
+
+  };
 
   $scope.openTopicModal = function () {
 
@@ -257,7 +264,7 @@ $scope.switchHasTitle = function () {
   $scope.openPublishModal = function () {
     var modalInstance = $modal.open({
       templateUrl: "partials/write/publish-modal.html",
-      controller: function  ($scope, Write, $modalInstance, popularTopics, docTopics, doc, username) {
+      controller: function  ($scope, Write, $modalInstance, $state, popularTopics, docTopics, doc, username) {
         $scope.userTopics = popularTopics;
         $scope.docTopics = docTopics;
         $scope.username = username;
@@ -270,9 +277,10 @@ $scope.switchHasTitle = function () {
           Write.publishDoc(isAnon).then(
             function (res) {
               if (res.status === 201) {
-                // console.log(res);
+                console.log(res);
                 doc.is_published = true;
                 // TODO prompt user to share here
+                $state.go('read.doc',{docId:res.data._id});
                 $scope.close();
               }
             }
