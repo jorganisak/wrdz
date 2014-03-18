@@ -2,6 +2,11 @@
   color: black;
 }
 
+h1 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 800;
+}
+
 #feedback-button {
   position: fixed;
   bottom: 0%;
@@ -10,6 +15,7 @@
   cursor: pointer;
   padding: 16px;
   transition: all 200ms linear;
+  z-index: 5000;
 }
 
 #feedback-button:hover {
@@ -56,7 +62,7 @@
 }
 
 #mywrdz-body {
-  margin-top: 30px;
+  margin-top: 70px;
 }
 
 #mywrdz-doc-list {
@@ -253,7 +259,7 @@ add-button.active:active {
 */
 
 #me-content {
-  margin-top: 20px;
+  margin-top: 70px;
 }
 
 .me-doc-block {
@@ -817,7 +823,7 @@ h3 {
 }
 
 #read-list-body {
-  margin-top: 15px;
+  margin-top: 75px;
   padding-top: 10px;
 }
 
@@ -990,7 +996,7 @@ h3 {
 }
 
 #read-doc-body {
-  /* margin-top: 22px; */
+  margin-top: 102px;
 }
 
 .read-doc-side-nav-item {
@@ -1115,7 +1121,7 @@ h3 {
 
 .read-doc-center {
   padding: 4px 30%;
-  padding-top: 30px;
+  padding-top: 80px;
   padding: 20px 50px 70px 50px;
   box-shadow: 0px 0px 3px -1px silver;
   background: linear-gradient(rgba(247, 243, 241, 0.24), rgba(255, 251, 245, 0.58), rgb(248, 248, 248));

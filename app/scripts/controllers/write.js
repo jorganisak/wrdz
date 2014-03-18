@@ -48,8 +48,6 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$
       "targetBlank": true}
       );
 
-    
-
     $scope.mediumEditorOptionsTitle = angular.toJson(
       {"placeholder": "", "disableToolbar": true, "disableReturn":true}
       );
@@ -84,27 +82,32 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$
     }
 
 
+    function placeCaretAtEnd(el) {
+        el.focus();
+        if (typeof window.getSelection != "undefined"
+                && typeof document.createRange != "undefined") {
+            var range = document.createRange();
+            range.selectNodeContents(el);
+            range.collapse(false);
+            var sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+        } else if (typeof document.body.createTextRange != "undefined") {
+            var textRange = document.body.createTextRange();
+            textRange.moveToElementText(el);
+            textRange.collapse(false);
+            textRange.select();
+        }
+        $window.scrollTo(0, el.scrollHeight);
+    }
     // Focus content input on doc
     function focusContent() {
-      function placeCaretAtEnd(el) {
-          el.focus();
-          if (typeof window.getSelection != "undefined"
-                  && typeof document.createRange != "undefined") {
-              var range = document.createRange();
-              range.selectNodeContents(el);
-              range.collapse(false);
-              var sel = window.getSelection();
-              sel.removeAllRanges();
-              sel.addRange(range);
-          } else if (typeof document.body.createTextRange != "undefined") {
-              var textRange = document.body.createTextRange();
-              textRange.moveToElementText(el);
-              textRange.collapse(false);
-              textRange.select();
-          }
-          $window.scrollTo(0, el.scrollHeight);
-      }
       placeCaretAtEnd(document.getElementById('write-content'));
+    }
+
+    function focusTitle() {
+      console.log('focusing title');
+      placeCaretAtEnd(document.getElementById('write-title'));
     }
 
 
@@ -212,10 +215,11 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$
     ////////////////////////////////// MESS AROUND TOWN
 
     $scope.switchHasTitle = function () {
+      $scope.hasTitle = !$scope.hasTitle;
       Write.updateUserDoc('hasTitle', !$scope.hasTitle);
       Write.setCurrentDoc.hasTitle = !$scope.hasTitle;
-      $scope.hasTitle = !$scope.hasTitle;
       switchRecentDocTitle($scope.currentDoc._id);
+      if ($scope.hasTitle) focusTitle();
     };
 
 }])

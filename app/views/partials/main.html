@@ -14,7 +14,7 @@
     
   </div>
 
-  <div ng-click='feedbackModal()' id="feedback-button">
+  <div ng-if="$state.current.name !== 'landing'" ng-click='feedbackModal()' id="feedback-button">
     <div id="feedback-text">
       Feedback
     </div>
