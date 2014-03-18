@@ -215,10 +215,10 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$
     ////////////////////////////////// MESS AROUND TOWN
 
     $scope.switchHasTitle = function () {
-      $scope.hasTitle = !$scope.hasTitle;
       Write.updateUserDoc('hasTitle', !$scope.hasTitle);
       Write.setCurrentDoc.hasTitle = !$scope.hasTitle;
       switchRecentDocTitle($scope.currentDoc._id);
+      $scope.hasTitle = !$scope.hasTitle;
       if ($scope.hasTitle) focusTitle();
     };
 

@@ -38,6 +38,26 @@ Does a few things:
       }
     });
 
+
+
+    $scope.signup = function (user) {
+      if (!User.isLoggedIn()) {
+        User.signup(user).
+        success(function(user, status, headers, config)
+        {
+          User.getCurrentUser(user._id).success(function  (data) {
+            User.changeUser(data.user);
+            $state.go('write');
+          }).error(function  (data) {
+            });
+        }).
+        error(function(err, status, headers, config)
+        {
+          console.log(err.errors.email.type);
+          $scope.message = 'Looks like someone already has that username. Try another?';
+        });
+      }
+    };
 /*
   Two Auth methods for launching Login and Signup modals from anyhere in the app
   They launch modals and call the User service for commnication with server
@@ -99,7 +119,7 @@ Does a few things:
               });
             }
           };
-          
+
         }],
       });
     };

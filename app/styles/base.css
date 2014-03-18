@@ -2,6 +2,10 @@
   color: black;
 }
 
+.well > p {
+  font-family: 'Open Sans', sans-serif;
+}
+
 h1 {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 800;
@@ -216,7 +220,7 @@ h1 {
 .add-button:active,
 .add-button.active:focus,
 add-button.active:active {
-  color: green;
+  color: lime;
   border: none;
   outline: none;
 }
@@ -433,7 +437,7 @@ blockquote {
 
 #top-nav {
   height: 47px;
-  background-color: rgb(250, 250, 250);
+  background-color: rgb(252, 252, 252);
   z-index: 1000;
 }
 
@@ -448,7 +452,7 @@ blockquote {
 
 .ion-close {
   opacity: 0.5;
-  /* cursor: pointer; */
+  cursor: pointer;
   transition: opacity .2s ease;
   padding: 4px 4px 3px 5px;
 }
@@ -482,19 +486,18 @@ blockquote {
 
 #wrdz-headline {
   font-family: 'patua one', serif;
-  font-family: 'Oswald ', serif;
+  /* font-family: 'Oswald ', serif; */
   font-family: 'Roboto', sans-serif;
   /* font-family: 'Cambo', serif; */
-  font-size: 1.4em;
-  padding-top: 7px;
+  font-size: 1.2em;
+  opacity: 0.8;
+  padding-top: 4px;
   font-weight: 800;
-  letter-spacing: 3px;
+  /* letter-spacing: 3px; */
   /* font-style: italic; */
   cursor: default;
-  font-variant: normal;
   padding-bottom: 9px;
   transition: all .35s ease;
-  /* box-shadow: inset 1px 0px 0px 0px gold; */
 }
 
 #top-nav-write.activeTopNav {
@@ -639,8 +642,8 @@ p {
   /* font-family: 'Noto Serif'; */
   /* font-family: 'Tinos'; */
   font-size: 20px;
-  line-height: 1.35;
-  margin-bottom: 1em;
+  line-height: 1.25;
+  margin-bottom: 0.51em;
   /* opacity: 0.9; */
   padding-right: 12px;
   padding-left: 5px;
@@ -756,7 +759,9 @@ li {
 }
 
 h3 {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 3em;
 }
 
 .inbox-unread {
@@ -1312,15 +1317,15 @@ h3 {
   font-size: 1.0em;
   padding: 2px;
   margin-left: 10px;
-  /* cursor: pointer; */
-  padding: 2px 4px 2px 4px;
+  cursor: pointer;
+  padding: 2px 3px 2px 4px;
   opacity: 0.7;
 }
 
 .tag-add-plus:hover {
   opacity: 1;
   color: white;
-  background-color: rgb(67, 210, 67);
+  background-color: rgb(0, 239, 0);
   border-radius: 32px;
 }
 
