@@ -4,7 +4,7 @@
         User Nav
      -->
 
-    <div ng-show="user" id='top-nav' class="col-md-12">
+    <div ng-if="user" id='top-nav' class="col-md-12">
 
         <div ui-sref-active='activeTopNav' ui-sref="write" id='top-nav-write' class="top-nav-item col-xs-3 col-sm-3  col-md-2">
             <span class="ion ion-compose"></span> 
@@ -39,17 +39,17 @@ wrdz
         No User Nav
      -->
     
-    <div ng-hide="user || $state.current.name === 'landing'" id='top-nav' class="col-md-12">
+    <div ng-if="!user && $state.current.name !== 'landing'" id='top-nav' class="col-md-12">
 
         <div id='wrdz-headline' class=" hidden-xs hidden-sm col-md-offset-4 col-md-4">
              wrdz
         </div>
 
-        <div ng-click='launchLogIn()' id='top-nav-signin'  class="top-nav-auth top-nav-item col-xs-3 col-sm-3 col-md-2">
+        <div ng-click='launchLogIn()' id='top-nav-signin'  class="top-nav-auth top-nav-item col-xs-6 col-sm-6 col-md-2">
             log in
         </div>
 
-        <div ng-click='launchSignUp()' id='top-nav-signup' class=" top-nav-item col-xs-3 col-sm-3 col-md-2">
+        <div ng-click='launchSignUp()' id='top-nav-signup' class=" top-nav-item col-xs-6 col-sm-6 col-md-2">
             join wrdz
         </div>
     </div>

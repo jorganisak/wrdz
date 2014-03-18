@@ -2,7 +2,7 @@
   
   <div class='row' ng-include="'partials/top-nav.html'"></div>
 
-  <div id='fixed-menu-shortcut' class="dropdown" ng-controller="MenuShortcutCtrl">
+  <div  ng-if="user" id='fixed-menu-shortcut' class="dropdown" ng-controller="MenuShortcutCtrl">
     <a class='dropdown-toggle'>
       <div id="menu-shortcut">w</div>
     </a>

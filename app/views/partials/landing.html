@@ -1,20 +1,36 @@
 <div ng-hide="user" class="text-center row">
-<br>
-<br>
-<br>
-  
-  <h1>Wrdz</h1><em>beta</em>
-  <h2>A place for you to write</h2>
-
-<br>
-<br>
-  <div class="col-sm-6 col-sm-offset-3">
+  <br>
+  <br>
+  <br>
+  <div class="container">
     
-  <button ng-click='launchSignUp()' class="btn btn-jo btn-success btn-lg">Sign Up</button>
+    <div class="row">
+      <div class="col-sm-6 text-left">
+        
+        <h1>Wrdz</h1>
+        <br>
+        <p>This is a place for you to write. </p>
+        <p>It is a tool for unloading your daily thoughts.</p>
+        <p>And if you want, you can share your ideas with the world.</p>
+        <p><a ui-sref="read.list">Read what people are writing now.</a></p>
+      </div>
+      <div class="col-sm-6">
+        
+        <div class="col-sm-6 col-sm-offset-3">
+
+          <button ng-click='launchSignUp()' class="btn btn-jo btn-success btn-lg">Sign Up</button>
+        </div>
+        
+        <div class="col-sm-6 col-sm-offset-3">
+          <button ng-click='launchLogIn()' class="btn btn-jo btn-success btn-lg">Sign In</button>
+        </div>
+
+        
+      </div>
+    </div>
   </div>
-  
-  <div class="col-sm-6 col-sm-offset-3">
-  <button ng-click='launchLogIn()' class="btn btn-jo btn-success btn-lg">Sign In</button>
-  </div>
+
+  <br>
+  <br>
 
 </div>

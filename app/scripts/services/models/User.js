@@ -10,14 +10,14 @@ angular.module('models')
   .factory('User', ['$http', '$cookieStore', '$rootScope', function ($http, $cookieStore, $rootScope) {
     // Service logic
 
-    var currentUser = $cookieStore.get('user') || null;
 
     function changeUser(user) {
       currentUser =  user;
-
       $rootScope.$broadcast('userChange', user);
     }
 
+
+    var currentUser = $cookieStore.get('user') || null;
     $cookieStore.remove('user');
 
     // Public API here
@@ -46,22 +46,17 @@ angular.module('models')
       },
 
       update: function (t, d) {
-
         var send = {'data' : d };
-
         // res.status = 200 on good, 400 bad
         return $http.post('/users/' + currentUser._id  + '/?type=' + t, send);
-
       },
 
       user: currentUser,
 
+
       getCurrentUser : function (user_id) {
         return $http.get('users/' + user_id);
-
       },
-
-
 
     };
   }]);

@@ -20,7 +20,6 @@ Does a few things:
         User.getCurrentUser(u._id).success(function  (data) {
           User.changeUser(data.user);
         }).error(function  (data) {
-          console.log(data);
         });
       }
 
@@ -54,9 +53,12 @@ Does a few things:
             if (!User.isLoggedIn()){
               User.signin(user).
               success(function(user, status, headers, config) {
-                User.changeUser(user);
-                $scope.close();
-                $state.go('write');
+                User.getCurrentUser(user._id).success(function  (data) {
+                    User.changeUser(data.user);
+                    $scope.close();
+                    $state.go('write');
+                  }).error(function  (data) {
+                  });
               }).
               error(function(err, status, headers, config) {
                 if (err == 'Unknown user') {
@@ -74,7 +76,7 @@ Does a few things:
     $scope.launchSignUp = function () {
       var modalInstance = $modal.open({
         templateUrl: "partials/signup.html",
-        controller: ['$scope', '$modalInstance', 'User', '$http', function  ($scope, $modalInstance, User, $http) {
+        controller: ['$scope', '$modalInstance', 'User', '$http', function  ($scope, $modalInstance, User) {
           $scope.close = function() {
             $modalInstance.close();
           }; 
@@ -83,42 +85,48 @@ Does a few things:
               User.signup(user).
               success(function(user, status, headers, config)
               {
-                User.changeUser(user);
-                $state.go('write');
+                User.getCurrentUser(user._id).success(function  (data) {
+                  User.changeUser(data.user);
+                  $scope.close();
+                  $state.go('write');
+                }).error(function  (data) {
+                  });
               }).
               error(function(err, status, headers, config)
               {
                 console.log(err.errors.email.type);
-                $scope.message = 'Something went wrong...someone probably already has that email on here.';
+                $scope.message = 'Looks like someone already has that username. Try another?';
               });
             }
           };
-
-          $scope.twitter = function () {
-            $http.get('/auth/twitter');
-          }
+          
         }],
       });
     };
-    $scope.feedbackModal = function () {
-          var modalInstance = $modal.open({
-            templateUrl: "partials/feedback-modal.html",
-            controller: ['$scope', '$modalInstance', '$http', function  ($scope, $modalInstance, $http) {
-              $scope.close = function() {
-                $modalInstance.close();
-              }; 
-              $scope.submitFeedback = function (feedback) {
-                console.log(feedback);
-                var data = {'content': feedback}
-                $scope.close();
-                return $http.post('/feedback', data);
-                
-              };
 
-              
-            }],
-          });
-        };
+  /*
+  Feedback Modal
+    */
+    $scope.feedbackModal = function () {
+      var modalInstance = $modal.open({
+        templateUrl: "partials/feedback-modal.html",
+        controller: ['$scope', '$modalInstance', '$http', function  ($scope, $modalInstance, $http) {
+          $scope.close = function() {
+            $modalInstance.close();
+          }; 
+          $scope.submitFeedback = function (feedback) {
+            console.log(feedback);
+            var data = {'content': feedback}
+            $scope.close();
+            return $http.post('/feedback', data);
+            
+          };
+
+          
+        }],
+      });
+    };
+
   }])
 
 

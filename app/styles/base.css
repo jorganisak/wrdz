@@ -2,15 +2,13 @@
   color: black;
 }
 
-#feedback-button{
- position:fixed;
- bottom: 0%;
-  
- left: 0%;
-  opacity:0.6;
-  cursor:pointer;
-  
- padding: 16px;
+#feedback-button {
+  position: fixed;
+  bottom: 0%;
+  left: 0%;
+  opacity: 0.6;
+  cursor: pointer;
+  padding: 16px;
   transition: all 200ms linear;
 }
 
@@ -20,9 +18,7 @@
   opacity: 1;
 }
 
-#feedback-text {
-  
-}
+
 
 /* 
   ROUTE - MY WRDZ
@@ -37,18 +33,16 @@
   cursor: pointer;
 }
 
-
 #read-doc-left-box {
- position: absolute;
- left: -22%;
- top: 18%; 
+  position: absolute;
+  left: -22%;
+  top: 18%;
 }
 
 #read-doc-right-box {
- position: absolute;
+  position: absolute;
   right: -2%;
-   
- top: 2%; 
+  top: 2%;
 }
 
 .scroller {
@@ -64,10 +58,6 @@
 #mywrdz-body {
   margin-top: 30px;
 }
-
-
-
-
 
 #mywrdz-doc-list {
   border: solid 1px rgba(192, 192, 192, 0.32);
@@ -105,8 +95,6 @@
   max-width: 560px;
 }
 
-
-
 #mywrdz-doc-show-title {
   font-family: 'Source Sans Pro', sans-serif;
   font-family: 'Roboto', sans-serif;
@@ -130,7 +118,7 @@
 
 .main {
   max-width: 105em;
-  padding: 0px 3%;
+  padding: 0px 5%;
 }
 
 #read-doc-left-fixed {
@@ -253,6 +241,7 @@ add-button.active:active {
   font-size: 1.1em;
   padding-left: 2px;
 }
+
 .ion-folder {
   font-size: 1em;
   color: rgba(20, 173, 35, 1);
@@ -426,7 +415,10 @@ blockquote {
 
 #header {
   text-align: center;
-  /* opacity: 0.4; */
+  position: absolute;
+  left: 0%;
+  width: 100%;
+  height: 90px;
 }
 
 #header:hover {
@@ -437,7 +429,6 @@ blockquote {
   height: 47px;
   background-color: rgb(250, 250, 250);
   z-index: 1000;
-  /* margin-bottom: 40px; */
 }
 
 .top-nav-title {
@@ -584,7 +575,7 @@ h4 {
 
 #write-body {
   border: none;
-  margin-top: 10px;
+  margin-top: 50px;
   padding-top: 10px;
 }
 
@@ -680,7 +671,7 @@ li {
 }
 
 .filter-button-group {
-  padding-top: 11px; 
+  padding-top: 11px;
 }
 
 #remove-title-switch {
