@@ -10,12 +10,12 @@ angular.module('read')
     // Public API here
     return {
 
-      getDocs : function  () {
+      getDocs : function () {
         return docs;
       },
 
-      refreshDocs : function  () {
-        $http.get('pubDocs/').success(function  (data) {
+      refreshDocs : function () {
+        $http.get('pubDocs/').success(function (data) {
           // console.log(data);
           docs = data;
 
@@ -23,15 +23,11 @@ angular.module('read')
         }).error();
       },
 
-      updatePubDoc : function  (docId, type) {
-        var data = {
-          type: type
-        }
-        return $http.post('/pubDocs/'+ docId, data);
+      updatePubDoc : function (docId, type, bool) {
+        return PubDoc.update(docId, type, bool);
       },
 
-
-      getPubDoc : function  (docId) {
+      getPubDoc : function (docId) {
         return PubDoc.findOne(docId);
       },
 

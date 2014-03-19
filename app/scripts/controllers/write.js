@@ -30,30 +30,28 @@
 
       */
 
-angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$timeout', '$window', function ($scope, Write, $state, $timeout, $window) {
+angular.module('write')
+  .controller('WriteCtrl', ['$scope', 'Write', '$timeout', '$window', function ($scope, Write, $timeout, $window) {
 
-/*
-    Utils
-    */
+  /*
+      Utils
+      */
 
-    //test if i is in array
-    // returns true if not in array
-
+    // TEXT EDITOR OPTIONS
     $scope.mediumEditorOptionsBody = angular.toJson(
-      {"placeholder": "", 
-      "buttons": ["bold", "italic", "anchor", "header2", "orderedlist", "unorderedlist" ], 
-      "buttonLabels" : {"header2": "<b>H</b>", "italic": "<strong><em>i</em></strong>"}, 
-      "disableToolbar": false, 
-      "forcePlainText" : false, 
-      "targetBlank": true}
-      );
+      {"placeholder": "",
+        "buttons": ["bold", "italic", "anchor", "header2", "orderedlist", "unorderedlist" ],
+        "buttonLabels" : {"header2": "<b>H</b>", "italic": "<strong><em>i</em></strong>"},
+        "disableToolbar": false,
+        "forcePlainText" : false,
+        "targetBlank": true}
+    );
 
     $scope.mediumEditorOptionsTitle = angular.toJson(
-      {"placeholder": "", "disableToolbar": true, "disableReturn":true}
-      );
+      {"placeholder": "", "disableToolbar": true, "disableReturn": true}
+    );
 
-
-
+    //
     function tagArrayTest(i, a) {
       var res = true;
       angular.forEach(a, function (item) {
@@ -65,40 +63,40 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$
     }
 
     // find doc by id in user._userDocs
-    function switchRecentDocTitle (id) {
-      angular.forEach($scope.user._userDocs, function(doc) {
+    function switchRecentDocTitle(id) {
+      angular.forEach($scope.user._userDocs, function (doc) {
         if (doc._id === id) {
           doc.has_title = !doc.has_title;
         }
-      })
-    };
+      });
+    }
 
-    function updateRecentDoc (id) {
-      angular.forEach($scope.user._userDocs, function(doc) {
+    function updateRecentDoc(id) {
+      angular.forEach($scope.user._userDocs, function (doc) {
         if (doc._id === id) {
           doc.updated_at = Date();
         }
-      })
+      });
     }
 
 
     function placeCaretAtEnd(el) {
-        el.focus();
-        if (typeof window.getSelection != "undefined"
-                && typeof document.createRange != "undefined") {
-            var range = document.createRange();
-            range.selectNodeContents(el);
-            range.collapse(false);
-            var sel = window.getSelection();
-            sel.removeAllRanges();
-            sel.addRange(range);
-        } else if (typeof document.body.createTextRange != "undefined") {
-            var textRange = document.body.createTextRange();
-            textRange.moveToElementText(el);
-            textRange.collapse(false);
-            textRange.select();
-        }
-        $window.scrollTo(0, el.scrollHeight);
+      el.focus();
+      if (typeof $window.getSelection !== "undefined"
+              && typeof document.createRange !== "undefined") {
+        var range = document.createRange();
+        range.selectNodeContents(el);
+        range.collapse(false);
+        var sel = $window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      } else if (typeof document.body.createTextRange !== "undefined") {
+        var textRange = document.body.createTextRange();
+        textRange.moveToElementText(el);
+        textRange.collapse(false);
+        textRange.select();
+      }
+      $window.scrollTo(0, el.scrollHeight);
     }
     // Focus content input on doc
     function focusContent() {
@@ -110,8 +108,16 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$
       placeCaretAtEnd(document.getElementById('write-title'));
     }
 
+    function getSample() {
+      var sample = document.getElementById('write-content').innerText.slice(0, 1000);
+      if (sample) {
+        $scope.currentDoc.sample = sample;
+        return sample;
+      }
+      return false;
+    }
 
-/*
+  /*
     Init
     */
 
@@ -124,7 +130,7 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$
     }
 
 
-/*
+  /*
     Watches
     */
 
@@ -135,7 +141,6 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$
         if (user.current_doc) {
           Write.setCurrentDoc(user.current_doc);
         } else {
-          console.log('No current Doc');
           $scope.noDoc = true;
         }
       } else {
@@ -145,7 +150,7 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$
 
     // Wates doc title input for changes and updates 
     // the doc to the server through the Write service
-    $scope.$watch('currentDoc.title', function (newValue, oldValue) {
+    $scope.$watch('currentDoc.title', function (newValue) {
       if (newValue || newValue === '') {
         Write.updateUserDoc('title', $scope.currentDoc.title);
         updateRecentDoc($scope.currentDoc._id);
@@ -153,38 +158,32 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$
     });
 
     // Does the same for the body
-    $scope.$watch('currentDoc.body', function (newValue, oldValue) {
+    $scope.$watch('currentDoc.body', function (newValue) {
       if (newValue) {
         var sample = getSample();
-        if (!sample) sample = $scope.currentDoc.sample;
+        if (!sample) {
+          sample = $scope.currentDoc.sample;
+        }
         updateRecentDoc($scope.currentDoc._id);
         Write.updateUserDoc('body', {'sample': sample, 'body': $scope.currentDoc.body});
       }
     });
 
-    function getSample () {
-      var sample = document.getElementById('write-content').innerText.slice(0, 1000);
-      if (sample) {
-        $scope.currentDoc.sample = sample;
-        return sample;
-      }
-      return false;
-    }
 
     // Watches function result in the Write service for changes 
     // and uppdates scope accordingly
-    $scope.$watch(Write.getCurrentDoc, function (newValue, oldValue) {
+    $scope.$watch(Write.getCurrentDoc, function (newValue) {
       if (newValue) {
         $scope.currentDoc = newValue;
         // console.log(newValue)
         $scope.hasTitle = newValue.has_title;
         $timeout(function () {
           focusContent();
-        }, 200)
+        }, 200);
       }
     });
 
-/*
+  /*
     UX Functions
     */
 
@@ -200,133 +199,132 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$state', '$
         // console.log(res.status);
         var doc = res.data;
         Write.setCurrentDoc(doc); // set current doc in Write service
-        Write.updateCurrentDoc (doc._id); // update User.currentDoc on server
-        $scope.user._userDocs.unshift( doc );
+        Write.updateCurrentDoc(doc._id); // update User.currentDoc on server
+        $scope.user._userDocs.unshift(doc);
         $scope.noDoc = false;
         focusContent();
-      })
+      });
     };
 
     $scope.goToTop = function () {
-      $window.scrollTo(0,0);
-    }
-    
+      $window.scrollTo(0, 0);
+    };
 
-    ////////////////////////////////// MESS AROUND TOWN
 
     $scope.switchHasTitle = function () {
       Write.updateUserDoc('hasTitle', !$scope.hasTitle);
       Write.setCurrentDoc.hasTitle = !$scope.hasTitle;
       switchRecentDocTitle($scope.currentDoc._id);
       $scope.hasTitle = !$scope.hasTitle;
-      if ($scope.hasTitle) focusTitle();
+      if ($scope.hasTitle) {
+        focusTitle();
+      }
     };
 
-}])
+  }])
 
-.controller('WriteLeftCtrl', ['$scope', '$modal', 'Write', function  ($scope, $modal, Write) {
-  
-
-/*
-  Controller for Left Write Panel (new file?)
-  Opens Topic and Publish Modals
-  
-*/
+  .controller('WriteLeftCtrl', ['$scope', '$modal', 'Write', function ($scope, $modal, Write) {
 
 
-  $scope.switchVisible = function () {
-    Write.updateUserDoc('pubVisible', !$scope.currentDoc.pub_doc.is_visible);
-    $scope.currentDoc.pub_doc.is_visible = !$scope.currentDoc.pub_doc.is_visible;
+  /*
+    Controller for Left Write Panel (new file?)
+    Opens Topic and Publish Modals
+    
+  */
 
-  };
 
-  $scope.openTopicModal = function () {
+    $scope.switchVisible = function () {
+      Write.updateUserDoc('pubVisible', !$scope.currentDoc.pub_doc.is_visible);
+      $scope.currentDoc.pub_doc.is_visible = !$scope.currentDoc.pub_doc.is_visible;
+    };
 
-    var modalInstance = $modal.open({
-      templateUrl: "partials/topic-modal.html",
-      controller:  ['$scope', '$modalInstance', 'userTopics', 'docTopics', 'Write', function ($scope, $modalInstance, userTopics, docTopics, Write) {
-        $scope.userTopics = userTopics;
-        $scope.docTopics = docTopics;
-        $scope.close = function() {
-          $modalInstance.close();
-        }; 
+    $scope.openTopicModal = function () {
+      var modalInstance = $modal.open({
+        templateUrl: "partials/topic-modal.html",
+        controller:  ['$scope', '$modalInstance', 'userTopics', 'docTopics', 'Write', function ($scope, $modalInstance, userTopics, docTopics, Write) {
+          $scope.userTopics = userTopics;
+          $scope.docTopics = docTopics;
+          $scope.close = function () {
+            $modalInstance.close();
+          };
 
-        $scope.removeTopic = function (topic) {
-          console.log(topic);
-          Write.updateTopics('remove', topic.title).then(
-            function () {
-              $scope.docTopics.splice($scope.docTopics.indexOf(topic), 1);
-            })
-        };
-
-        $scope.addTopic = function (topicTitle) {
-          Write.updateTopics('add', topicTitle).then(
-            function () {
-              $scope.docTopics.push({'title': topicTitle});
-            });
-        };
-      }],
-      resolve: {
-        userTopics: function () {
-          return $scope.user.topics;
-        },
-
-        currentDoc : function () {
-          return $scope.currentDoc;
-        },
-
-        docTopics: function () {
-          return $scope.currentDoc.topics;
-        }
-      }
-    });
-  };
-
-  $scope.openPublishModal = function () {
-    var modalInstance = $modal.open({
-      templateUrl: "partials/publish-modal.html",
-      controller: ['$scope', 'Write', '$modalInstance', '$state', 'popularTopics', 'docTopics', 'doc', 'username', function ($scope, Write, $modalInstance, $state, popularTopics, docTopics, doc, username) {
-        $scope.userTopics = popularTopics;
-        $scope.docTopics = docTopics;
-        $scope.username = username;
-        $scope.close = function() {
-          $modalInstance.close();
-        }; 
-
-        // Publish doc
-        $scope.publish = function (isAnon) {
-          Write.publishDoc(isAnon).then(
-            function (res) {
-              if (res.status === 201) {
-                console.log(res);
-                doc.is_published = true;
-                // TODO prompt user to share here
-                $state.go('read.doc',{docId:res.data._id});
-                $scope.close();
+          $scope.removeTopic = function (topic) {
+            console.log(topic);
+            Write.updateTopics('remove', topic.title).then(
+              function () {
+                $scope.docTopics.splice($scope.docTopics.indexOf(topic), 1);
               }
-            }
-          );
+            );
+          };
+
+          $scope.addTopic = function (topicTitle) {
+            Write.updateTopics('add', topicTitle).then(
+              function () {
+                $scope.docTopics.push({'title': topicTitle});
+              }
+            );
+          };
+        }],
+        resolve: {
+          userTopics: function () {
+            return $scope.user.topics;
+          },
+
+          currentDoc : function () {
+            return $scope.currentDoc;
+          },
+
+          docTopics: function () {
+            return $scope.currentDoc.topics;
+          }
         }
-      
-      }],
-      resolve: {
-        popularTopics: function () {
-          return $scope.user.topics;
-        },
+      });
+    };
 
-        username : function () {
-          return $scope.user.username;
-        },
+    $scope.openPublishModal = function () {
+      var modalInstance = $modal.open({
+        templateUrl: "partials/publish-modal.html",
+        controller: ['$scope', 'Write', '$modalInstance', '$state', 'popularTopics', 'docTopics', 'doc', 'username', function ($scope, Write, $modalInstance, $state, popularTopics, docTopics, doc, username) {
+          $scope.userTopics = popularTopics;
+          $scope.docTopics = docTopics;
+          $scope.username = username;
+          $scope.close = function () {
+            $modalInstance.close();
+          };
 
-        docTopics: function () {
-          return $scope.currentDoc.topics;
-        },
+          // Publish doc
+          $scope.publish = function (isAnon) {
+            Write.publishDoc(isAnon).then(
+              function (res) {
+                if (res.status === 201) {
+                  console.log(res);
+                  doc.is_published = true;
+                  // TODO prompt user to share here
+                  $state.go('read.doc', {docId: res.data._id});
+                  $scope.close();
+                }
+              }
+            );
+          };
+        }],
+        resolve: {
+          popularTopics: function () {
+            return $scope.user.topics;
+          },
 
-        doc : function () {
-          return $scope.currentDoc;
+          username : function () {
+            return $scope.user.username;
+          },
+
+          docTopics: function () {
+            return $scope.currentDoc.topics;
+          },
+
+          doc : function () {
+            return $scope.currentDoc;
+          }
         }
-      }
-    });
-  };
+      });
+    };
 
-}]);
+  }]);

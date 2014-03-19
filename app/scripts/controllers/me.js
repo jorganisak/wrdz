@@ -18,7 +18,7 @@ MY WRDZ
 
   $scope.$on('userChange', function  (evt, user) {
     if (user) {
-    $scope.doc = $scope.user.current_doc;
+      $scope.doc = $scope.user.current_doc;
     } else {
       // Profile.setDocIds([]);
       // Profile.setDocs([]);

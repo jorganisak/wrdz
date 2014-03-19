@@ -426,8 +426,8 @@ module.exports = function (grunt) {
     'clean:server',
     'concurrent:test',
     'autoprefixer',
-    'protractor',
-    // 'karma'
+    // 'protractor',
+    'karma'
   ]);
 
   grunt.registerTask('build', [

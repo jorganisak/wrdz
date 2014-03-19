@@ -6,7 +6,6 @@ angular.module('vendor', [
   'ngAnimate',
   'ngSanitize',
   'ngRoute',
-  'mgo-mousetrap',
   'perfect_scrollbar',
   'ui.bootstrap',
   'ui.router'

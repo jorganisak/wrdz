@@ -1,28 +1,40 @@
 'use strict';
 
+
+  beforeEach(module('models'));
+  beforeEach(module('vendor'));
+  // beforeEach(module('shared'));
+
+  // var $cookieStore;
+
+  // beforeEach(inject(function (_$cookieStore_) {
+  //   $cookieStore = _$cookieStore_;
+  // }))
+
 describe('Controller: WriteCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('templateApp'));
+  beforeEach(module('write'));
 
-  var WriteCtrl,
-    scope,
-    $httpBackend;
 
+  var scope, timeout, window, Write, ctrl;
   // Initialize the controller and a mock scope
-  beforeEach(inject(function (_$httpBackend_, $controller, $rootScope) {
-    $httpBackend = _$httpBackend_;
-    $httpBackend.expectGET('/api/awesomeThings')
-      .respond(['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']);
+  beforeEach(inject(function ($controller, $rootScope, _$timeout_, _$window_, _Write_) {
+    // Write = _Write_;
+
+    // $timeout = _$timeout_;
+    // $window = _$window_;
     scope = $rootScope.$new();
-    WriteCtrl = $controller('WriteCtrl', {
-      $scope: scope
+    ctrl = $controller('WriteCtrl', {
+      $scope: scope,
+      // Write: Write,
+      // $timeout: $timeout,
+      // $window: $window
+
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings).toBeUndefined();
-    $httpBackend.flush();
-    expect(scope.awesomeThings.length).toBe(4);
+  it('should define medium body options', function () {
+    expect(scope.mediumEditorOptionsBody).toBeDefined();
   });
 });
