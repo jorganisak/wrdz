@@ -657,13 +657,13 @@ li {
 #write-center {
   padding: 4% 4%;
   background-color: rgba(255, 248, 245, 0.38);
-  box-shadow: 0px 0px 5px -1px silver;
-  border-radius: 4px;
+  box-shadow: 0px 0px 2px -1px silver;
+  border-radius: 0px;
   max-width: 684px;
   margin: 10px auto 30% auto;
   /* position: relative; */
   text-align: left;
-  background: linear-gradient(rgba(247, 243, 241, 0.24), rgba(255, 251, 245, 0.58), rgb(248, 248, 248));
+  background: linear-gradient(rgba(247, 243, 241, 0.05), rgba(255, 251, 245, 0.28), rgba(248, 248, 248, 0.44));
 }
 
 #write-content {
@@ -1200,10 +1200,10 @@ h3 {
   min-height: 500px;
   max-height: 800px;
   left: 0.5%;
-  padding-left: 2%;
+  padding-left: 1%;
   position: fixed;
   transition: all .1s ease-in-out;
-  width: 15%;
+  width: 12%;
   max-width: 250px;
 }
 
@@ -1214,12 +1214,12 @@ h3 {
 #write-column-right {
   top: 16%;
   right: 0.5%;
-  padding-right: 2%;
+  padding-right: 1%;
   max-height: 800px;
   position: fixed;
   transition: all .1s ease-in-out;
   /* height: 770px; */
-  width: 15%;
+  width: 14%;
   max-width: 250px;
 }
 

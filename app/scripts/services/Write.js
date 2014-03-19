@@ -19,7 +19,6 @@ angular.module('write')
       updateCurrentDoc(doc._id);
       var user = User.getUser();
       user.current_doc = doc;
-      User.setUser(user);
     }
 
     function getCurrentDoc() {
@@ -31,7 +30,25 @@ angular.module('write')
     }
     
     function updateUserDoc (type, data) {
+      updateRecentDoc(current_doc._id);
       return UserDoc.update(current_doc._id, type, data);
+    }
+
+    function createNewDoc () {
+      var user = User.getUser();
+      UserDoc.create().then(function (res) {
+        var doc = res.data;
+        user._userDocs.unshift(doc);
+        setCurrentDoc(doc);
+      });
+    }
+
+    function updateRecentDoc(id) {
+      angular.forEach(User.getUser()._userDocs, function (doc) {
+        if (doc._id === id) {
+          doc.updated_at = Date();
+        }
+      });
     }
 
 /*
@@ -65,9 +82,7 @@ angular.module('write')
 
       // User Docs
 
-      createNewDoc : function () {
-        return UserDoc.create();
-      },
+      createNewDoc : createNewDoc,
 
       updateUserDoc : updateUserDoc,
 

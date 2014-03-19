@@ -31,7 +31,7 @@
       */
 
 angular.module('write')
-  .controller('WriteCtrl', ['$scope', 'Write', 'User', '$timeout', '$window', function ($scope, Write, User, $timeout, $window) {
+  .controller('WriteCtrl', ['$scope', 'Write', '$timeout', '$window', function ($scope, Write, $timeout, $window) {
 
   /*
       Utils
@@ -62,13 +62,7 @@ angular.module('write')
       return res;
     }
 
-    function updateRecentDoc(id) {
-      angular.forEach($scope.user._userDocs, function (doc) {
-        if (doc._id === id) {
-          doc.updated_at = Date();
-        }
-      });
-    }
+
 
 
     function placeCaretAtEnd(el) {
@@ -111,14 +105,14 @@ angular.module('write')
     Init
     */
 
-    // Init currentDoc if defined in Write service
-    $scope.currentDoc = Write.getCurrentDoc();
-
     // If user, set Write service current_doc to that users current
     if ($scope.user) {
       Write.setCurrentDoc($scope.user.current_doc);
     }
 
+
+    // Init currentDoc if defined in Write service
+    $scope.currentDoc = Write.getCurrentDoc();
 
   /*
     Watches
@@ -143,7 +137,6 @@ angular.module('write')
     $scope.$watch('currentDoc.title', function (newValue) {
       if (newValue || newValue === '') {
         Write.updateUserDoc('title', $scope.currentDoc.title);
-        updateRecentDoc($scope.currentDoc._id);
       }
     });
 
@@ -156,7 +149,6 @@ angular.module('write')
         } else {
           $scope.currentDoc.sample = sample;
         }
-        updateRecentDoc($scope.currentDoc._id);
         Write.updateUserDoc('body', {'sample': sample, 'body': $scope.currentDoc.body});
       }
     });
@@ -166,6 +158,7 @@ angular.module('write')
     // and uppdates scope accordingly
     $scope.$watch(Write.getCurrentDoc, function (newValue) {
       if (newValue) {
+        $scope.noDoc = false;
         $scope.currentDoc = newValue;
         $scope.hasTitle = newValue.has_title;
         $timeout(function () {
@@ -184,13 +177,7 @@ angular.module('write')
     };
 
     $scope.newDoc = function () {
-      Write.createNewDoc().then(function (res) {
-        var doc = res.data;
-        Write.setCurrentDoc(doc); // set current doc in Write service
-        $scope.user._userDocs.unshift(doc);
-        $scope.noDoc = false;
-        focusContent();
-      });
+      Write.createNewDoc();
     };
 
     $scope.goToTop = function () {

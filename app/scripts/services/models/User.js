@@ -12,6 +12,7 @@ angular.module('models')
 
 
     function changeUser(user) {
+
       currentUser =  user;
       $rootScope.$broadcast('userChange', user);
     }
@@ -45,7 +46,7 @@ angular.module('models')
         }
       },
 
-      
+
 
 /*
   SERVER CALLS 
