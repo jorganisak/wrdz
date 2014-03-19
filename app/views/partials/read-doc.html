@@ -16,18 +16,15 @@
                     <span class="pull-right  read-doc-left-text">{{readDoc.hearts}}</span>
 
                 </div>
-<!-- 
+
                 <div  ng-class='active3' ng-click="repost()"  class="read-doc-message">
                     <span class="pull-left glyphicon glyphicon-retweet"></span><span class='pull-right read-doc-left-text'>{{readDoc.reposts}}</span>
 
-                </div> -->
+                </div>
             </div>
         <div class="row">
 
-      <!--       <div class="col-sm-4 pull-left read-doc-author">
-                <a ng-hide='readDoc.is_anon' href="">{{readDoc.author.username}}</a>
-                <em ng-show='readDoc.is_anon'>Anonymous</em>
-            </div> -->
+
             <div id='read-doc-section-label' class="col-sm-8 text-left pull-left ">            
 
                 <span ng-repeat='topic in readDoc.doc.topics'>
@@ -54,9 +51,9 @@
             
             <div ng-hide='readDoc.is_anon' class='text-right' id="read-doc-right-fixed">
                 <div id="read-doc-username">
-                    {{readDoc.author.username}}
+                    <a href="">{{readDoc.author.username}}</a>
                 </div>
-                <!-- <div id="read-doc-followers">
+                <div id="read-doc-followers">
                     5521
                     <br>
                     <br>
@@ -64,21 +61,13 @@
                 </div>
                 <div id="read-doc-follow-button">
                     Follow
-                </div> -->
+                </div>
             </div>
     </div>
     <div class="col-sm-2">
 
     </div>
 
-<!--
-                    
-                    <div class="show-for-medium-up text-right read-doc-write-message">
-                        <h5>Message</h5>
-                        <textarea name="" id="message-textarea" cols="30" rows="20"></textarea>
-                        <button class='button success'>Send</button>
-                    </div>
-                    
-                -->
+
             </div>
 
