@@ -57,9 +57,13 @@
                     <br>
                     Papa. Catcher of big fish.  I like cats, drinking and writing good stories. Writing from Key West, FL
                 </div>
-                <div id="read-doc-follow-button">
+                <div ng-click='follow()' ng-hide='following' id="read-doc-follow-button">
                     Follow
                 </div>
+                <div ng-click='follow()' ng-show='following' id="read-doc-follow-button">
+                    Unfollow
+                </div>
+
             </div>
     </div>
     <div class="col-sm-2">

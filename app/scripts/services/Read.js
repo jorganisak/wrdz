@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('read')
-  .factory('Read', ['$http', 'PubDoc', function ($http, PubDoc) {
+  .factory('Read', ['$http', 'PubDoc', 'User', function ($http, PubDoc, User) {
 
 
     var docs = [];
@@ -12,6 +12,11 @@ angular.module('read')
 
       getDocs : function () {
         return docs;
+      },
+
+      followUser : function (userId, bool) {
+        var data = {userId: userId, bool : bool};
+        User.update('addFollowing', data);
       },
 
       refreshDocs : function () {

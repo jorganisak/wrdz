@@ -67,8 +67,17 @@ angular.module('read')
       }
       return false;
     };
+    $scope.isFollowing = function () {
+      if ($scope.readDoc.author) {
 
+        if ($scope.user.following.indexOf($scope.readDoc.author._id) > -1) {
+          $scope.following = true;
+        } else {
 
+          $scope.following = false;
+        }
+      }
+    };
 
     $scope.heart = function () {
       if ($scope.active2 === 'active') {
@@ -111,6 +120,7 @@ angular.module('read')
       $scope.view();
       $scope.isHeart();
       $scope.isVote();
+      $scope.isFollowing();
     }
 
 
@@ -123,5 +133,20 @@ angular.module('read')
         checkDoc();
       }
     });
+
+
+    $scope.follow = function () {
+      if ($scope.readDoc.author) {
+
+        if ($scope.following) {
+
+          Read.followUser($scope.readDoc.author._id, false);
+        } else {
+          
+          Read.followUser($scope.readDoc.author._id, true);
+        }
+        $scope.following = !$scope.following;
+      }
+    }
 
   }]);
