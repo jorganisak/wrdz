@@ -2,6 +2,30 @@
   color: black;
 }
 
+.share-button.sharer-0 label {
+  border-radius: 0px !important;
+  width: 100% !important;
+  padding-top:8px !important;
+  height: 38px !important;
+
+  background-color: rgb(202, 230, 255) !important;
+  color: white !important;
+}
+
+.share-button.sharer-0 .social.active.center {
+  margin-left: -20px !important;
+}
+.share-button.sharer-0 {
+  width: 100% !important;
+  text-align: center;
+}
+
+.btn-jo:hover > .ion-compose {
+  color: white;
+}
+#mywrdz-pub-info {
+  margin: 0 auto;
+}
 #mywrdz-right {
   position: fixed;
   width: 12%;
@@ -206,11 +230,11 @@ h1 {
   font-family: 'Open Sans', sans-serif;
   font-weight: 800;
   font-size: 1.2em;
-  border-radius: px;
+  border-radius: 5px;
   color: rgb(123, 184, 255);
   opacity: 0.5;
   border: solid 1px rgb(218, 218, 218);
-  padding: 4px 7px 2px 7px;
+  padding: 6px 9px 4px 9px;
   z-index: 100;
   transition: all;
 }
@@ -1127,7 +1151,7 @@ h3 {
 }
 
 .read-doc-heart {
-  padding: 10px 12%;
+  padding: 10px 21%;
   border-radius: 1px;
   text-align: center;
   transition: all .2s linear;
@@ -1150,7 +1174,7 @@ h3 {
 }
 
 .read-doc-arrow {
-  padding: 10px 12%;
+  padding: 10px 20%;
   border-radius: 1px;
   text-align: center;
   transition: all .2s linear;

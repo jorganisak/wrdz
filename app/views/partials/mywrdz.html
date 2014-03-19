@@ -98,7 +98,7 @@
         <div id='mywrdz-right' ng-if='showDoc'>
             
             <button ng-click='openDocInWrite(showDoc)' class="btn btn-jo">Open</button>
-            <div ng-show='showDoc.is_published' class="row">
+            <div ng-show='showDoc.is_published' id='mywrdz-pub-info' class="row">
                 
 
                 <div ng-if='showDoc.is_published' id="write-pub-info" class='panel text-center panel-default'>
@@ -146,14 +146,13 @@
                             
                         </div>
                     </div>
-                    <button class='btn-jo' ng-click='openTopicModal()'>
-                
-                    <span class="ion-pricetags icon"></span> &nbsp;Topics
-
-                    </button>
 
                 </div>
             </div>
+
+            <button class='btn-jo btn btn-sm' ng-click='openTopicModal()'>
+                <span class="ion-pricetags icon"></span> &nbsp;Topics
+            </button>
 
             <span ng-repeat='topic in showDoc.topics'>
                 <span class='label label-primary tag-label'>{{topic.title}}</span>
