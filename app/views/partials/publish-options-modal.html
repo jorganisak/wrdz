@@ -1,0 +1,35 @@
+<div class=" text-center modal-header">
+    <span ng-click="close()" class="pull-right icon ion-close"></span>
+    <h3>Options</h3>
+</div>
+
+<div class="modal-body">
+
+
+    <div ng-show='doc.pub_doc.is_visible'>
+
+        <p>This document is public.</p>
+        <p ng-if='doc.pub_doc.is_anon'>It is published <em>anonomously</em>.</p>
+        <p ng-if='!doc.pub_doc.is_anon'>It is published under your username, {{username}}.</p>
+        <a ng-click='close()' ui-sref='read.doc({docId:doc.pub_doc._id})'>See the published version.</a>
+        
+    </div>
+
+    <div ng-hide='doc.pub_doc.is_visible'>
+        <p>This document is <em>not</em> public.</p>
+        <p ng-if='!doc.pub_doc.is_anon'>It used to be published under your username, {{username}}.</p>
+        <p ng-if='doc.pub_doc.is_anon'>It used to be published <em>anonomously</em>.</p>
+    </div>
+
+
+    <br>
+    <button ng-show='doc.pub_doc.is_visible' ng-click='switchVisible()' class="btn btn-jo ">
+        Unpublish
+    </button>
+    <button ng-hide='doc.pub_doc.is_visible' ng-click='switchVisible()' class="btn btn-jo ">
+        Re-publish
+    </button>
+</div>
+
+
+

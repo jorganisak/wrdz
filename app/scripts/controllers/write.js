@@ -188,10 +188,7 @@ angular.module('write')
   */
 
 
-    $scope.switchVisible = function () {
-      Write.updateUserDoc('pubVisible', !$scope.currentDoc.pub_doc.is_visible);
-      $scope.currentDoc.pub_doc.is_visible = !$scope.currentDoc.pub_doc.is_visible;
-    };
+
 
     $scope.openTopicModal = function () {
       var modalInstance = $modal.open({
@@ -284,17 +281,30 @@ angular.module('write')
     $scope.openPubOptionsModal = function () {
       var modalInstance = $modal.open({
         templateUrl: "partials/publish-options-modal.html",
-        controller: ['$scope', 'Write', '$modalInstance', '$state', 'doc', function ($scope, Write, $modalInstance, $state, doc) {
+        controller: ['$scope', 'Write', '$modalInstance', '$state', 'doc','username', function ($scope, Write, $modalInstance, $state, doc, username) {
           $scope.close = function () {
             $modalInstance.close();
           };
 
+          $scope.doc = doc;
+
+          $scope.username = username;
+
+          $scope.switchVisible = function () {
+            Write.updateUserDoc('pubVisible', !$scope.doc.pub_doc.is_visible);
+            $scope.doc.pub_doc.is_visible = !$scope.doc.pub_doc.is_visible;
+            $scope.close();
+          };
   
         }],
         resolve: {
 
           doc : function () {
             return $scope.currentDoc;
+          },
+
+          username : function () {
+            return $scope.user.username;
           }
         }
       });
