@@ -1,5 +1,4 @@
 <div class=" text-center modal-header">
-    <span ng-click="close()" class="pull-right icon ion-close"></span>
     <h3>Options</h3>
 </div>
 
@@ -15,7 +14,7 @@
     </div>
 
     <div ng-hide='doc.pub_doc.is_visible'>
-        <p>These wrdz are <em>not</em> public.</p>
+        <p>These wrdz are <em><b>not</b></em>  &nbsp;published.</p>
         <p ng-if='!doc.pub_doc.is_anon'>They used to be published under your username, {{username}}.</p>
         <p ng-if='doc.pub_doc.is_anon'>They used to be published <em>anonomously</em>.</p>
     </div>

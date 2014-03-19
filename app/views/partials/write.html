@@ -70,6 +70,9 @@
                 <span class="ion-pricetags icon"></span> &nbsp;Topics
 
                 </button>
+                <span ng-repeat='topic in currentDoc.topics'>
+                <span class='label label-primary tag-label'>{{topic.title}}</span>
+            </span>
        
             </div>
 

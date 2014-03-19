@@ -2,6 +2,20 @@
   color: black;
 }
 
+#mywrdz-right {
+  position: fixed;
+  width: 12%;
+  right: 4%;
+}
+
+#mywrdz-left {
+  position: fixed;
+  width: 18%;
+  left: 4%;
+
+  max-width: 170px;
+}
+
 .well > p {
   font-family: 'Open Sans', sans-serif;
 }
@@ -253,7 +267,7 @@ add-button.active:active {
 }
 
 .ion-eye {
-  color: rgb(68, 85, 111);
+  color: rgb(44, 128, 255);
   font-size: 1.1em;
   padding-left: 2px;
 }
@@ -455,6 +469,7 @@ blockquote {
 .panel {
   padding: 12px 10px;
   background-color: white;
+  margin-bottom: 5px;
 }
 
 .ion-close {
@@ -860,7 +875,7 @@ h3 {
   cursor: pointer;
   transition: all .1s ease;
   border-radius:  0px !important;
-  box-shadow: inset 0px -2px 1px -2px silver;
+  border: solid 1px whitesmoke;
 }
 
 .read-list-bottom-row {
@@ -868,12 +883,10 @@ h3 {
 }
 
 .read-list-date {
-  /* margin-left: -31px; */
-  /* padding-top: 10px; */
-  font-size: 0.8em;
+  padding-top: 5px;
+  font-size: 0.9em;
   font-style: italic;
-  opacity: 0.5;
-  /* width: 100%; */
+  opacity: 0.8;
 }
 
 .profile-list-item {
@@ -892,6 +905,8 @@ h3 {
 .read-list-item:hover {
   box-shadow: 2px 1px 6px -4px black;
   background-color: white;
+  color: blue;
+  text-decoration: underline;
 }
 
 .panel-default > .panel-heading {
@@ -1245,13 +1260,12 @@ h3 {
 
 #write-column-right {
   top: 16%;
-  right: 0.5%;
-  padding-right: 1%;
+  right: 1%;
   max-height: 800px;
   position: fixed;
   transition: all .1s ease-in-out;
   opacity: 0.1;
-  width: 14%;
+  width: 12%;
   max-width: 250px;
 }
 
@@ -1296,11 +1310,9 @@ h3 {
 
 .write-last-item {
   margin: 2px 0px;
-  font-family: 'Noto Sans', sans-serif;
+  /* font-family: 'Noto Sans', sans-serif; */
   font-size: 0.9em;
   border-radius: 2px;
-  border: solid 1px white;
-  opacity: 0.7;
   padding: 10px 7px;
   cursor: pointer;
   transition: all .1s ease-in-out;
