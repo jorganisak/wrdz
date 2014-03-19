@@ -51,19 +51,9 @@ angular.module('write')
       {"placeholder": "", "disableToolbar": true, "disableReturn": true}
     );
 
-    //
-    function tagArrayTest(i, a) {
-      var res = true;
-      angular.forEach(a, function (item) {
-        if (item.title === i.title) {
-          res = false;
-        }
-      });
-      return res;
-    }
 
-
-
+    /// DOM STUFF
+    // Should be moved to directives for testing purposes
 
     function placeCaretAtEnd(el) {
       el.focus();
@@ -94,11 +84,14 @@ angular.module('write')
     }
 
     function getSample() {
-      var sample = document.getElementById('write-content').innerText.slice(0, 1000);
-      if (sample) {
-        return sample;
+      if (document.getElementById('write-content')) {
+        var sample = document.getElementById('write-content').innerText.slice(0, 1000);
+        if (sample) {
+          return sample;
+        } else {
+          return false;        
+        }
       }
-      return false;
     }
 
   /*
@@ -124,12 +117,8 @@ angular.module('write')
       if (user) {
         if (user.current_doc) {
           Write.setCurrentDoc(user.current_doc);
-        } else {
-          $scope.noDoc = true;
-        }
-      } else {
-        $scope.noUser = true;
-      }
+        } 
+      } 
     });
 
     // Wates doc title input for changes and updates 
@@ -160,7 +149,6 @@ angular.module('write')
       if (newValue) {
         $scope.noDoc = false;
         $scope.currentDoc = newValue;
-        $scope.hasTitle = newValue.has_title;
         $timeout(function () {
           focusContent();
         }, 200);
@@ -184,10 +172,8 @@ angular.module('write')
       $window.scrollTo(0, 0);
     };
 
-
     $scope.switchHasTitle = function () {
       Write.switchDocTitle($scope.currentDoc._id);
-      $scope.hasTitle = !$scope.hasTitle;
     };
 
   }])
@@ -295,5 +281,49 @@ angular.module('write')
         }
       });
     };
+    $scope.openPubOptionsModal = function () {
+      var modalInstance = $modal.open({
+        templateUrl: "partials/publish-options-modal.html",
+        controller: ['$scope', 'Write', '$modalInstance', '$state', 'popularTopics', 'docTopics', 'doc', 'username', function ($scope, Write, $modalInstance, $state, popularTopics, docTopics, doc, username) {
+          $scope.userTopics = popularTopics;
+          $scope.docTopics = docTopics;
+          $scope.username = username;
+          $scope.close = function () {
+            $modalInstance.close();
+          };
 
+          // Publish doc
+          $scope.publish = function (isAnon) {
+            Write.publishDoc(isAnon).then(
+              function (res) {
+                if (res.status === 201) {
+                  console.log(res);
+                  doc.is_published = true;
+                  // TODO prompt user to share here
+                  $state.go('read.doc', {docId: res.data._id});
+                  $scope.close();
+                }
+              }
+            );
+          };
+        }],
+        resolve: {
+          popularTopics: function () {
+            return $scope.user.topics;
+          },
+
+          username : function () {
+            return $scope.user.username;
+          },
+
+          docTopics: function () {
+            return $scope.currentDoc.topics;
+          },
+
+          doc : function () {
+            return $scope.currentDoc;
+          }
+        }
+      });
+    };
   }]);

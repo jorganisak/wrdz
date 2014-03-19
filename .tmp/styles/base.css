@@ -131,7 +131,7 @@ h1 {
 
 #read-doc-left-fixed {
   position: fixed;
-  padding-right: 3%;
+  padding-right: 5%;
   width: 16%;
   top: 55%;
   max-width: 200px;
@@ -245,7 +245,7 @@ add-button.active:active {
 }
 
 .ion-eye {
-  color: blue;
+  color: rgb(68, 85, 111);
   font-size: 1.1em;
   padding-left: 2px;
 }
@@ -316,7 +316,8 @@ add-button.active:active {
 }
 
 .glyphicon-retweet {
-  color: blue;
+  color: rgb(0, 128, 255);
+  padding-left: 2px;
 }
 
 .glyphicon-calendar {
@@ -564,9 +565,9 @@ h4 {
   font-family: 'Source Sans Pro', sans-serif;
   /* font-style: italic; */
   /* font-weight: 600; */
-  line-height: 1.8em;
+  line-height: 1.5em;
   /* opacity: 0.9; */
-  font-size: 1.9em;
+  font-size: 1.7em;
   /* letter-spacing: 0.5px; */
 }
 
@@ -626,10 +627,11 @@ h4 {
 
 .btn-jo:hover,
 .btn-jo:focus {
-  border: solid 1px rgb(160, 160, 160);
+  background-color: rgb(74, 165, 255);
   outline: none;
   /* box-shadow: inset 0px 0px 2px 0px rgb(190, 190, 190); */
   opacity: 1;
+  color: white;
   font-weight: 800;
 }
 
@@ -999,7 +1001,7 @@ h3 {
 }
 
 #read-doc-body {
-  margin-top: 102px;
+  margin-top: 60px;
 }
 
 .read-doc-side-nav-item {
@@ -1018,7 +1020,7 @@ h3 {
   line-height: 1;
   font-weight: 700;
   letter-spacing: 0.7px;
-  padding: 30px 0px 5px 0px;
+  padding: 20px 0px 0px 0px;
 }
 
 .read-doc-left-text {
@@ -1064,7 +1066,7 @@ h3 {
   font-size: 1.5em;
   text-align: left;
   line-height: 1.5;
-  padding: 15px 0% 50px 0%;
+  padding: 0px 0% 50px 0%;
   font-family: 'Lustiana', serif;
   margin: 0 auto;
   max-width: 670px;
@@ -1080,7 +1082,7 @@ h3 {
 }
 
 .read-doc-heart {
-  padding: 10px 25%;
+  padding: 10px 12%;
   border-radius: 1px;
   text-align: center;
   transition: all .2s linear;
@@ -1103,7 +1105,7 @@ h3 {
 }
 
 .read-doc-arrow {
-  padding: 10px 25%;
+  padding: 10px 12%;
   border-radius: 1px;
   text-align: center;
   transition: all .2s linear;
@@ -1124,10 +1126,9 @@ h3 {
 
 .read-doc-center {
   padding: 4px 30%;
-  padding-top: 80px;
-  padding: 20px 50px 70px 50px;
-  box-shadow: 0px 0px 3px -1px silver;
-  background: linear-gradient(rgba(247, 243, 241, 0.24), rgba(255, 251, 245, 0.58), rgb(248, 248, 248));
+  padding: 20px 30px 70px 30px;
+  box-shadow: 0px 3px 3px -1px silver;
+  background: linear-gradient(rgba(247, 243, 241, 0.06), rgba(255, 251, 245, 0.31), rgba(249, 249, 249, 0.17));
 }
 
 #read-doc-social {
