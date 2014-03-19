@@ -27,9 +27,40 @@ angular.module('models')
 
       isLoggedIn: function () {
         if (currentUser) {
-          return currentUser;
+          return true;
+        } else {
+          return false;
         }
       },
+
+      getUser: function (argument) {
+        if (currentUser) {
+          return currentUser;
+        }      
+      },
+
+      setUser: function (user) {
+        if (user) {
+          currentUser = user;
+        }
+      },
+
+      
+
+/*
+  SERVER CALLS 
+*/
+
+      update: function (t, d) {
+        var send = {'data' : d };
+        // res.status = 200 on good, 400 bad
+        return $http.post('/users/' + currentUser._id  + '/?type=' + t, send);
+      },
+
+      getCurrentUser : function (user_id) {
+        return $http.get('users/' + user_id);
+      },
+      
 
       // Auth
 
@@ -45,18 +76,6 @@ angular.module('models')
         return $http.get('/logout');
       },
 
-      update: function (t, d) {
-        var send = {'data' : d };
-        // res.status = 200 on good, 400 bad
-        return $http.post('/users/' + currentUser._id  + '/?type=' + t, send);
-      },
-
-      user: currentUser,
-
-
-      getCurrentUser : function (user_id) {
-        return $http.get('users/' + user_id);
-      },
 
     };
   }]);

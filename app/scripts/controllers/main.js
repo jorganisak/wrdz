@@ -14,7 +14,7 @@ Does a few things:
 
 
   function getUser () {
-    var u = User.isLoggedIn();
+    var u = User.getUser();
       // gets full user, messages check is to make sure the user is not already complete
       if (u && !u.messages) {
         User.getCurrentUser(u._id).success(function  (data) {

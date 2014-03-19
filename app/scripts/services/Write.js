@@ -16,12 +16,23 @@ angular.module('write')
 
     function setCurrentDoc(doc) {
       current_doc = doc;
+      updateCurrentDoc(doc._id);
+      var user = User.getUser();
+      user.current_doc = doc;
+      User.setUser(user);
     }
 
     function getCurrentDoc() {
       return current_doc;
     }
 
+    function updateCurrentDoc (id) {
+      User.update('currentDoc', id);
+    }
+    
+    function updateUserDoc (type, data) {
+      return UserDoc.update(current_doc._id, type, data);
+    }
 
 /*
     Public API here  
@@ -34,6 +45,19 @@ angular.module('write')
       getCurrentDoc : getCurrentDoc,
       setCurrentDoc : setCurrentDoc,
 
+            // find doc by id in user._userDocs
+      switchDocTitle: function (id) {
+        updateUserDoc('hasTitle', !current_doc.has_title);
+        current_doc.has_title = !current_doc.has_title;
+
+
+        angular.forEach(User.getUser._userDocs, function (doc) {
+          if (doc._id === id) {
+            doc.has_title = !doc.has_title;
+          }
+        });
+      },
+
       /*
       Docs API
       */
@@ -45,10 +69,7 @@ angular.module('write')
         return UserDoc.create();
       },
 
-      updateUserDoc : function (type, data) {
-        // res.status = 200 on good, 400 bad
-        return UserDoc.update(current_doc._id, type, data);
-      },
+      updateUserDoc : updateUserDoc,
 
 
 
@@ -66,9 +87,7 @@ angular.module('write')
 
       // User
 
-      updateCurrentDoc: function (id) {
-        User.update('currentDoc', id);
-      },
+      updateCurrentDoc: updateCurrentDoc,
 
 
       // Topics

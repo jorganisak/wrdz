@@ -41,4 +41,20 @@ describe('Controller: WriteCtrl', function () {
   it('should define medium title options', function () {
     expect(scope.mediumEditorOptionsTitle).toBeDefined();
   });
+
+
+  it('should set currentDoc from write if available', function () {
+    expect(scope.currentDoc).toEqual(Write.getCurrentDoc());
+  })
+
+  it('should change title things when title switches', function () {
+    scope.hasTitle = false;
+    Write.setCurrentDoc({'has_title':false})
+    scope.switchHasTitle();
+
+    expect(scope.hasTitle).toBe(true);
+    expect(Write.getCurrentDoc().has_title).toBe(true);
+
+
+  })
 });

@@ -31,7 +31,7 @@
       */
 
 angular.module('write')
-  .controller('WriteCtrl', ['$scope', 'Write', '$timeout', '$window', function ($scope, Write, $timeout, $window) {
+  .controller('WriteCtrl', ['$scope', 'Write', 'User', '$timeout', '$window', function ($scope, Write, User, $timeout, $window) {
 
   /*
       Utils
@@ -60,15 +60,6 @@ angular.module('write')
         }
       });
       return res;
-    }
-
-    // find doc by id in user._userDocs
-    function switchRecentDocTitle(id) {
-      angular.forEach($scope.user._userDocs, function (doc) {
-        if (doc._id === id) {
-          doc.has_title = !doc.has_title;
-        }
-      });
     }
 
     function updateRecentDoc(id) {
@@ -111,7 +102,6 @@ angular.module('write')
     function getSample() {
       var sample = document.getElementById('write-content').innerText.slice(0, 1000);
       if (sample) {
-        $scope.currentDoc.sample = sample;
         return sample;
       }
       return false;
@@ -163,6 +153,8 @@ angular.module('write')
         var sample = getSample();
         if (!sample) {
           sample = $scope.currentDoc.sample;
+        } else {
+          $scope.currentDoc.sample = sample;
         }
         updateRecentDoc($scope.currentDoc._id);
         Write.updateUserDoc('body', {'sample': sample, 'body': $scope.currentDoc.body});
@@ -175,7 +167,6 @@ angular.module('write')
     $scope.$watch(Write.getCurrentDoc, function (newValue) {
       if (newValue) {
         $scope.currentDoc = newValue;
-        // console.log(newValue)
         $scope.hasTitle = newValue.has_title;
         $timeout(function () {
           focusContent();
@@ -190,16 +181,12 @@ angular.module('write')
 
     $scope.switchDoc = function (doc) {
       Write.setCurrentDoc(doc); // sets new doc on scope
-      Write.updateCurrentDoc(doc._id); // updates User.current_doc to new _id
-      $scope.user.current_doc = doc; // updates the client user
     };
 
     $scope.newDoc = function () {
       Write.createNewDoc().then(function (res) {
-        // console.log(res.status);
         var doc = res.data;
         Write.setCurrentDoc(doc); // set current doc in Write service
-        Write.updateCurrentDoc(doc._id); // update User.currentDoc on server
         $scope.user._userDocs.unshift(doc);
         $scope.noDoc = false;
         focusContent();
@@ -212,13 +199,8 @@ angular.module('write')
 
 
     $scope.switchHasTitle = function () {
-      Write.updateUserDoc('hasTitle', !$scope.hasTitle);
-      Write.setCurrentDoc.hasTitle = !$scope.hasTitle;
-      switchRecentDocTitle($scope.currentDoc._id);
+      Write.switchDocTitle($scope.currentDoc._id);
       $scope.hasTitle = !$scope.hasTitle;
-      if ($scope.hasTitle) {
-        focusTitle();
-      }
     };
 
   }])
