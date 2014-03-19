@@ -37,8 +37,13 @@ h1 {
   z-index: 0;
   top: 2%;
   left: 16%;
+  opacity: 0.5;
   padding: 0px 10px 10px 10px;
   cursor: pointer;
+}
+
+#write-arrow-up:hover {
+  opacity:1;
 }
 
 #read-doc-left-box {
@@ -184,19 +189,23 @@ h1 {
 }
 
 #menu-shortcut {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 800;
   font-size: 1.2em;
-  color: white;
+  border-radius: 99px;
+  color: rgb(123, 184, 255);
   opacity: 0.5;
-  background-color: #cdcccc;
-  padding: 3px 10px;
+  border: solid 1px rgb(218, 218, 218);
+  padding: 4px 7px 2px 7px;
   z-index: 100;
+  transition: all;
 }
 
 #menu-shortcut:hover {
   opacity: 1;
-  text-decoration: none;
+  color: white;
+  background-color: silver;
 }
 
 /* 
@@ -882,7 +891,7 @@ h3 {
 }
 
 .ion-heart {
-  color: rgba(255, 99, 92, 0.37);
+  color: rgba(255, 11, 0, 0.46);
   font-size: 1.5em;
   /* margin-top: -20px; */
   /* margin-bottom: -20px; */
@@ -1203,8 +1212,9 @@ h3 {
   left: 0.5%;
   padding-left: 1%;
   position: fixed;
-  transition: all .1s ease-in-out;
+  transition: all .175s ease-in-out;
   width: 12%;
+  opacity: 0.1;
   max-width: 250px;
 }
 
@@ -1219,7 +1229,7 @@ h3 {
   max-height: 800px;
   position: fixed;
   transition: all .1s ease-in-out;
-  /* height: 770px; */
+  opacity: 0.1;
   width: 14%;
   max-width: 250px;
 }
