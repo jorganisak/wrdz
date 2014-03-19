@@ -27,17 +27,7 @@ angular.module('read')
 
     $scope.moment = moment;
 
-    Read.refreshDocs();
 
-    function arrayTest(docId, a) {
-      var res = false;
-      angular.forEach(a, function (item) {
-        if (docId === item._id) {
-          res = true;
-        }
-      });
-      return res;
-    }
 
     if ($scope.user) {
       $scope.seen = $scope.user.meta._views;
@@ -49,11 +39,12 @@ angular.module('read')
       }
     });
 
+
+    Read.refreshDocs();
     $scope.docs = Read.getDocs();
 
     $scope.$watch(Read.getDocs, function (newValue) {
       if (newValue) {
-        console.log('loading new docs');
         $scope.docs = newValue;
       }
     });

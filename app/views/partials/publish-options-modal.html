@@ -8,17 +8,16 @@
 
     <div ng-show='doc.pub_doc.is_visible'>
 
-        <p>This document is public.</p>
-        <p ng-if='doc.pub_doc.is_anon'>It is published <em>anonomously</em>.</p>
-        <p ng-if='!doc.pub_doc.is_anon'>It is published under your username, {{username}}.</p>
+        <p ng-if='doc.pub_doc.is_anon'>These wrdz are published <em>anonomously</em>.</p>
+        <p ng-if='!doc.pub_doc.is_anon'>These wrdz are published under your username, {{username}}.</p>
         <a ng-click='close()' ui-sref='read.doc({docId:doc.pub_doc._id})'>See the published version.</a>
         
     </div>
 
     <div ng-hide='doc.pub_doc.is_visible'>
-        <p>This document is <em>not</em> public.</p>
-        <p ng-if='!doc.pub_doc.is_anon'>It used to be published under your username, {{username}}.</p>
-        <p ng-if='doc.pub_doc.is_anon'>It used to be published <em>anonomously</em>.</p>
+        <p>These wrdz are <em>not</em> public.</p>
+        <p ng-if='!doc.pub_doc.is_anon'>They used to be published under your username, {{username}}.</p>
+        <p ng-if='doc.pub_doc.is_anon'>They used to be published <em>anonomously</em>.</p>
     </div>
 
 

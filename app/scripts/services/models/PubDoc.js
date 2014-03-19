@@ -31,6 +31,8 @@ angular.module('models')
         return $http.get('/pubDocs/' + docId);
       },
 
-
-    };
+      refresh : function () {
+        return $http.get('pubDocs/');
+      }
+    }
   }]);

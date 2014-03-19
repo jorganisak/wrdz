@@ -23,7 +23,7 @@ h1 {
 }
 
 #feedback-button:hover {
-  background-color: rgb(43, 133, 255);
+  background-color: rgb(84, 157, 255);
   color: white;
   opacity: 1;
 }
@@ -36,7 +36,7 @@ h1 {
   position: fixed;
   z-index: 0;
   top: 2%;
-  left: 16%;
+  right: 2%;
   opacity: 0.5;
   padding: 0px 10px 10px 10px;
   cursor: pointer;

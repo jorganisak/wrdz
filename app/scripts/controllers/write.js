@@ -249,8 +249,9 @@ angular.module('write')
             Write.publishDoc(isAnon).then(
               function (res) {
                 if (res.status === 201) {
-                  console.log(res);
                   doc.is_published = true;
+                  doc.pub_doc = res.data;
+                  Write.setCurrentDoc(doc);
                   // TODO prompt user to share here
                   $state.go('read.doc', {docId: res.data._id});
                   $scope.close();

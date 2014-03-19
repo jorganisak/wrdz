@@ -15,12 +15,9 @@ angular.module('read')
       },
 
       refreshDocs : function () {
-        $http.get('pubDocs/').success(function (data) {
-          // console.log(data);
-          docs = data;
-
-
-        }).error();
+        PubDoc.refresh().then(function (res) {
+          docs = res.data; 
+        })
       },
 
       updatePubDoc : function (docId, type, bool) {
