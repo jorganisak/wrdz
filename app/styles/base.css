@@ -15,6 +15,7 @@
 .share-button.sharer-0 .social.active.center {
   margin-left: -20px !important;
 }
+
 .share-button.sharer-0 {
   width: 100% !important;
   text-align: center;
@@ -23,6 +24,7 @@
 .btn-jo:hover > .ion-compose {
   color: white;
 }
+
 #mywrdz-pub-info {
   margin: 0 auto;
 }
@@ -272,7 +274,6 @@ add-button.active:active {
 .ion-plus-circled {
   color: gray;
   font-size: 1.5em;
-  /* opacity: 0.5; */
   transition: all 200ms ease;
 }
 
@@ -1042,7 +1043,7 @@ h3 {
 #profile-name {
   font-family: 'Noto Sans', sans-serif;
   font-size: 1.4em;
-  letter-spacing: px;
+
 }
 
 #profile-info {
@@ -1052,7 +1053,7 @@ h3 {
 }
 
 .profile-tab {
-  padding: px;
+
   margin: 0;
   height: 20px;
 }

@@ -45,8 +45,9 @@
               flag = false;
             } 
           }
-          if (flag) query.push({'type':type,'value':value});
-          
+          if (flag) {
+            query.push({'type':type,'value':value});
+          } 
 
           UserDoc.list(query).then( function (res) {
             docList = res.data;

@@ -1,4 +1,4 @@
-<div ng-hide='user' class="row text-center">
+<div ng-hide='user' ng-cloak class="row text-center">
     <h2>
         <a ng-click='launchSignUp()'>
 
@@ -7,7 +7,7 @@
     </h2>
 </div>
 
-<div id="mywrdz-body" class='row' ng-controller='MyWrdzCtrl'>
+<div id="mywrdz-body" ng-cloak class='row' ng-controller='MyWrdzCtrl'>
     <div class="col-sm-2 text-left">
         <div id="mywrdz-left">
             <div class="row">
@@ -28,14 +28,14 @@
             </div>
             <br>
             <br>
-            <label for="">Sort:</label>&nbsp;&nbsp;&nbsp;
+<!--             <label for="">Sort:</label>&nbsp;&nbsp;&nbsp;
 
             <div class="btn-group filter-button-group ">
                 <button type="button" class="btn btn-default btn-sm" ng-model="sortModel" btn-radio="'Date'">Date</button>
                 <button type="button" class="btn btn-default btn-sm" ng-model="sortModel" btn-radio="'Popularity'">Popularity</button>
             </div>
             <br>
-            <br>
+            <br> -->
         
             <button type="button" class="btn btn-jo btn-block dropdown-toggle" data-toggle="dropdown">
                 <span class="icon ion-pricetags"></span>&nbsp;&nbsp;Topics&nbsp;&nbsp;<span class="caret"></span>

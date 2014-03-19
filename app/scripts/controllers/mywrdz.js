@@ -18,7 +18,6 @@ angular.module('myWrdz')
     $scope.setToday();
 
     $scope.filterModel = "All";
-    // $scope.sortModel = "Date";
 
     $scope.topicsModel = [];
     $scope.topicOptions = [{}];
@@ -44,12 +43,16 @@ angular.module('myWrdz')
         for (var i=0; i<newValue.length; i++) {
           send.push(newValue[i].topicId);
         }
-        MyWrdz.updateQuery('topics', send);
+        if (send.length > 0) {
+          console.log(send)
+          MyWrdz.updateQuery('topics', send);
+        }
       }
     });
 
 
 
+    // // $scope.sortModel = "Date";
     // $scope.$watch('sortModel', function (newValue) {
     //   if (newValue) {
     //     MyWrdz.updateQuery('sort', newValue);
@@ -126,5 +129,46 @@ angular.module('myWrdz')
         }
       });
     };
+    $scope.openTopicModal = function () {
+      var modalInstance = $modal.open({
+        templateUrl: "partials/topic-modal.html",
+        controller:  ['$scope', '$modalInstance', 'userTopics', 'docTopics', 'Write', function ($scope, $modalInstance, userTopics, docTopics, Write) {
+          $scope.userTopics = userTopics;
+          $scope.docTopics = docTopics;
+          $scope.close = function () {
+            $modalInstance.close();
+          };
 
+          $scope.removeTopic = function (topic) {
+            console.log(topic);
+            Write.updateTopics('remove', topic.title).then(
+              function () {
+                $scope.docTopics.splice($scope.docTopics.indexOf(topic), 1);
+              }
+            );
+          };
+
+          $scope.addTopic = function (topicTitle) {
+            Write.updateTopics('add', topicTitle).then(
+              function () {
+                $scope.docTopics.push({'title': topicTitle});
+              }
+            );
+          };
+        }],
+        resolve: {
+          userTopics: function () {
+            return $scope.user.topics;
+          },
+
+          currentDoc : function () {
+            return $scope.showDoc;
+          },
+
+          docTopics: function () {
+            return $scope.showDoc.topics;
+          }
+        }
+      });
+    };
 }]);
