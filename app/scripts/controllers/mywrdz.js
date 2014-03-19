@@ -57,29 +57,25 @@ angular.module('myWrdz')
     // })
 
     if ($scope.user) {
-      $scope.docList = $scope.user._userDocs;
-        $scope.showDoc = $scope.user._userDocs[0];
+      MyWrdz.setList($scope.user._userDocs);
       $scope.topicOptions = $scope.user.topics;
     }
 
     $scope.$on('userChange', function (evt, user) {
       if (user) {
         if (user._userDocs) {
-          $scope.docList = $scope.user._userDocs;
-          $scope.showDoc = $scope.user._userDocs[0];
+          MyWrdz.setList($scope.user._userDocs);
           $scope.topicOptions = $scope.user.topics;
-
-        } else {
-
-        }
-      } else {
-        $scope.noUser = true;
-      }
+        } 
+      } 
     });
+
 
     $scope.$watch(MyWrdz.getList, function (newValue) {
       if (newValue) {
+        $scope.docList = [];
         $scope.docList = newValue;
+        console.log(newValue);
       }
     });
 

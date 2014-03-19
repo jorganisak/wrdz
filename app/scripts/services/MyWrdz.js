@@ -13,7 +13,7 @@
       // list of objects with obj.type and obj.value
       var query = [];
 
-      var docList;
+      var docList = [];
 
 
 /*
@@ -27,6 +27,10 @@
 
         getList : function () {
           return docList;
+        },
+
+        setList : function (list) {
+          docList = list;
         },
 
         updateList : function () {
