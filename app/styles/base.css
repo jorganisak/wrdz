@@ -301,14 +301,14 @@ add-button.active:active {
 }
 
 #read-list-left {
-  margin-left: 14%;
+  /* margin-left: 10%; */
   opacity: 0.8;
   position: fixed;
   transition: all 200ms ease;
   width: 12%;
   max-width: 140px;
   top: 13%;
-  /* left: 2%; */
+  left: 13%;
 }
 
 #read-list-left:hover {
@@ -650,7 +650,7 @@ p {
   font-family: 'Lusitana';
   /* font-family: 'Noto Serif'; */
   /* font-family: 'Tinos'; */
-  font-size: 20px;
+  font-size: 19px;
   line-height: 1.25;
   margin-bottom: 0.51em;
   /* opacity: 0.9; */

@@ -67,13 +67,7 @@ angular.module('read')
       }
       return false;
     };
-    $scope.isRepost = function () {
-      if ($scope.user.meta._reposts.indexOf($scope.readDoc._id) > -1) {
-        $scope.active3 = 'active';
-        return true;
-      }
-      return false;
-    };
+
 
 
     $scope.heart = function () {
@@ -101,17 +95,6 @@ angular.module('read')
       }
     };
 
-    $scope.repost = function () {
-      if ($scope.active3 === 'active') {
-        $scope.readDoc.reposts--;
-        $scope.active3 = null;
-        Read.updatePubDoc($scope.readDoc._id, 'repost', false);
-      } else {
-        $scope.active3 = 'active';
-        Read.updatePubDoc($scope.readDoc._id, 'repost', true);
-        $scope.readDoc.reposts++;
-      }
-    };
 
     $scope.view = function () {
       // Check if user to register view
@@ -128,7 +111,6 @@ angular.module('read')
       $scope.view();
       $scope.isHeart();
       $scope.isVote();
-      $scope.isRepost();
     }
 
 
