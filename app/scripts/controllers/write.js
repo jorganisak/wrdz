@@ -284,41 +284,14 @@ angular.module('write')
     $scope.openPubOptionsModal = function () {
       var modalInstance = $modal.open({
         templateUrl: "partials/publish-options-modal.html",
-        controller: ['$scope', 'Write', '$modalInstance', '$state', 'popularTopics', 'docTopics', 'doc', 'username', function ($scope, Write, $modalInstance, $state, popularTopics, docTopics, doc, username) {
-          $scope.userTopics = popularTopics;
-          $scope.docTopics = docTopics;
-          $scope.username = username;
+        controller: ['$scope', 'Write', '$modalInstance', '$state', 'doc', function ($scope, Write, $modalInstance, $state, doc) {
           $scope.close = function () {
             $modalInstance.close();
           };
 
-          // Publish doc
-          $scope.publish = function (isAnon) {
-            Write.publishDoc(isAnon).then(
-              function (res) {
-                if (res.status === 201) {
-                  console.log(res);
-                  doc.is_published = true;
-                  // TODO prompt user to share here
-                  $state.go('read.doc', {docId: res.data._id});
-                  $scope.close();
-                }
-              }
-            );
-          };
+  
         }],
         resolve: {
-          popularTopics: function () {
-            return $scope.user.topics;
-          },
-
-          username : function () {
-            return $scope.user.username;
-          },
-
-          docTopics: function () {
-            return $scope.currentDoc.topics;
-          },
 
           doc : function () {
             return $scope.currentDoc;
