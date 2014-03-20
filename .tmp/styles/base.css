@@ -666,7 +666,7 @@ h4 {
   border: solid 1px #cdcddd;
   margin: 9px 0px 6px 0px !important;
   transition: all .1s ease-in-out;
-  /* font-weight: 800; */
+  font-weight: 800;
   font-family: 'Open Sans', sans-serif;
   letter-spacing: 1px;
   border-radius: 2px;

@@ -97,13 +97,13 @@
       
                 <div class='show-hide-fade' ng-show="currentDoc.has_title">
                     <div class="" ng-click='switchHasTitle()' id="remove-title-switch"><span class="icon ion-close"></span></div>
-                    <div medium-editor options="{{mediumEditorOptionsTitle}}" ng-model='currentDoc.title' id="write-title">
+                    <div ng-keydown='titleChange()' medium-editor options="{{mediumEditorOptionsTitle}}" ng-model='currentDoc.title' id="write-title">
                     </div>
                 </div>
 
                 <div id="title-switch"  ng-hide="currentDoc.has_title" ng-click='switchHasTitle()'>add title</div>
 
-                <div medium-editor options="{{mediumEditorOptionsBody}}" ng-model='currentDoc.body'  class='' id="write-content">
+                <div ng-keydown='bodyChange()' medium-editor options="{{mediumEditorOptionsBody}}" ng-model='currentDoc.body'  class='' id="write-content">
 
                 </div>
                 <div ng-click='goToTop()' id="write-arrow-up">

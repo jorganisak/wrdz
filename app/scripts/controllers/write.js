@@ -115,23 +115,41 @@ angular.module('write')
     // Sets Write service doc to current from user
     $scope.$on('userChange', function (evt, user) {
       if (user) {
-        if (user.current_doc) {
-          Write.setCurrentDoc(user.current_doc);
+        if (user._userDocs[0]) {
+          Write.setCurrentDoc(user._userDocs[0]);
         } 
       } 
     });
 
     // Wates doc title input for changes and updates 
     // the doc to the server through the Write service
-    $scope.$watch('currentDoc.title', function (newValue) {
-      if (newValue || newValue === '') {
-        Write.updateUserDoc('title', $scope.currentDoc.title);
-      }
-    });
-
+    // $scope.$watch('currentDoc.title', function (newValue) {
+    //   if (newValue || newValue === '') {
+    //     Write.updateUserDoc('title', $scope.currentDoc.title);
+    //   }
+    // });
     // Does the same for the body
-    $scope.$watch('currentDoc.body', function (newValue) {
-      if (newValue) {
+    // $scope.$watch('currentDoc.body', function (newValue) {
+      // if (newValue) {
+      //   var sample = getSample();
+      //   if (!sample) {
+      //     sample = $scope.currentDoc.sample;
+      //   } else {
+      //     $scope.currentDoc.sample = sample;
+      //   }
+      //   Write.updateUserDoc('body', {'sample': sample, 'body': $scope.currentDoc.body});
+      // }
+    // });
+
+    $scope.titleChange = function () {
+      var val = $scope.currentDoc.title;
+      if (val || val === '') {
+        Write.updateUserDoc('title', val);
+      }
+    };
+    $scope.bodyChange = function () {
+      var val = $scope.currentDoc.body;
+      if (val) {
         var sample = getSample();
         if (!sample) {
           sample = $scope.currentDoc.sample;
@@ -140,7 +158,8 @@ angular.module('write')
         }
         Write.updateUserDoc('body', {'sample': sample, 'body': $scope.currentDoc.body});
       }
-    });
+    };
+
 
 
     // Watches function result in the Write service for changes 
