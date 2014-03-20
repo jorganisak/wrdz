@@ -35,15 +35,11 @@ config(['$stateProvider', '$urlRouterProvider',
         templateUrl:'partials/read-list.html',
       })
       .state('read.list.front', {
-        url: '',
-        templateUrl: 'partials/read.html'
-      })
-      .state('read.list.new', {
-        url: '/n',
+        url: '/f',
         templateUrl: 'partials/read.html'
       })
       .state('read.list.following', {
-        url: '/f',
+        url: '/l',
         templateUrl: 'partials/read.html'
       })
       .state('read.list.topics', {

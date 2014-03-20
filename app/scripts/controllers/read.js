@@ -8,26 +8,31 @@
 angular.module('read')
   .controller('ReadCtrl', ['$scope', 'Read', '$state', '$filter', function ($scope, Read, $state, $filter) {
 
+    // Implement if doc has been seen, appear very shaded
+    if ($scope.user) {
+      $scope.seen = $scope.user.meta._views;
+    }
+
+    $scope.$on('userChange', function (evt, user) {
+      if (user) {
+        $scope.seen = $scope.user.meta._views;
+        if ($scope.$state.current.name === 'read.list.following') {
+          $scope.followingFilterModel = [];
+          angular.forEach($scope.user.following, function (user) {
+            console.log(user);
+            $scope.followingFilterModel.push(user._id);
+          })
+        }
+      }
+    });
+
+    $scope.topicsFilterModel;;
+    $scope.topicsFollowingModel;
     $scope.tabs = [
       { title: "Front"},
       { title: "Following"},
       { title: "Topics"}
     ];
-
-    $scope.topicsFilterModel;;
-
-
-    // watches for url change and updates active tab
-    $scope.$watch('$state.current.url', function () {
-      angular.forEach($scope.tabs, function (tab) {
-        if ($filter('lowercase')(tab.title) === $state.current.name.slice(5)) {
-          tab.active = 'true';
-        }
-      });
-      if ($state.current.name == 'read.list.topics') {
-        Read.refreshTopics();
-      }
-    });
 
     $scope.moment = moment;
 
@@ -38,31 +43,53 @@ angular.module('read')
       }
     });
 
+
+
     $scope.$watch('topicsFilterModel', function (newValue) {
-      if (newValue) {      
+      if (newValue && $scope.$state.current.name === 'read.list.topics') {      
         Read.updateQuery('topics', newValue._id);
+      }
+    });
+    $scope.$watch('followingFilterModel', function (newValue) {
+      if (newValue && $scope.$state.current.name === 'read.list.following') {      
+        Read.updateQuery('following', newValue);
       }
     });
 
     $scope.$watch('$state.current.name', function (newValue) {
       if (newValue) {
-        if (newValue !== 'read.list.following') {
+
+        angular.forEach($scope.tabs, function (tab) {
+          if ($filter('lowercase')(tab.title) === newValue.slice(10)) {
+            console.log(newValue)
+            tab.active = true;
+          } else {
+            tab.active = false;
+          }
+        })
+
+
+        if (newValue === 'read.list.topics') {
+          Read.refreshTopics();
+
+        } else {
           Read.updateQuery('topics', '');
+
         }
+        if (newValue === 'read.list.following' && $scope.user) {
+          $scope.followingFilterModel = [];
+          angular.forEach($scope.user.following, function (user) {
+            console.log(user);
+            $scope.followingFilterModel.push(user._id);
+          })
+        } else {
+          Read.updateQuery('following', '');
+        }
+
       }
     })
 
 
-    // Implement if doc has been seen, appear very shaded
-    if ($scope.user) {
-      $scope.seen = $scope.user.meta._views;
-    }
-
-    $scope.$on('userChange', function (evt, user) {
-      if (user) {
-        $scope.seen = $scope.user.meta._views;
-      }
-    });
 
 
     // to delete
