@@ -152,7 +152,11 @@ config(['$stateProvider', '$urlRouterProvider',
         templateUrl: 'partials/mywrdz.html'
       })
 
-     
+     // Password reset
+     .state('password_reset', {
+        url: '/password_reset',
+        templateUrl: 'partials/reset-password.html'
+     })
 
 
     }]);

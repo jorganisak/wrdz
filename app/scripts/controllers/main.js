@@ -149,6 +149,23 @@ Does a few things:
         }],
       });
     };
+    $scope.forgotPasswordModal = function () {
+      var modalInstance = $modal.open({
+        templateUrl: "partials/password-modal.html",
+        controller: ['$scope', '$modalInstance', '$http', function  ($scope, $modalInstance, $http) {
+          $scope.close = function() {
+            $modalInstance.close();
+          }; 
+
+          $scope.submitEmail = function (email) {
+            $http.post('/forgot', {'email': email});
+          }
+
+
+          
+        }],
+      });
+    };
 
   }])
 
