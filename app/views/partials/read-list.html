@@ -21,7 +21,7 @@
     <div class="col-sm-2 text-right">
         <div id="read-list-right">
             <div ng-show="$state.current.name === 'read.list.topics'" >
-                <div class='read-list-right-item' ng-repeat='topic in topTopics'>
+                <div ui-sref-active='active' ui-sref='read.list.topics({topicId:topic._id})'class='read-list-right-item' ng-repeat='topic in topTopics'>
                     
                     {{topic.title}}
                 </div>

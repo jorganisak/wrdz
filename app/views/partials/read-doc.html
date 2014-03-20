@@ -26,7 +26,7 @@
             <div id='read-doc-section-label' class="col-sm-8 text-left pull-left ">            
 
                 <span ng-repeat='topic in readDoc.topics'>
-                    <span class='label label-primary tag-label'>{{topic.title}}</span>
+                    <span ui-sref='read.list.topics({topicId: topic._id})' class='label label-primary tag-label'>{{topic.title}}</span>
                 </span>
             </div>    
 

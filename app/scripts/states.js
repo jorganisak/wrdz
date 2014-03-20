@@ -79,7 +79,25 @@ config(['$stateProvider', '$urlRouterProvider',
       })
       .state('read.list.topics', {
         templateUrl: 'partials/read-list-center.html',
-        url: '/t',
+        url: '/t/:topicId',
+        resolve : {
+          query : ['$stateParams', 'Read', '$state', function ($stateParams, Read, $state) {
+            if ($stateParams.topicId) {
+              return $stateParams.topicId;
+            } else {
+              
+              
+              Read.refreshTopics().then(function (res) {
+                $state.go('read.list.topics',{topicId: res.data[0]._id}) 
+              });
+            }
+          }]
+        },
+        controller : ['$scope', 'query','Read', function ($scope, query, Read) {
+          Read.updateQuery('following', '');
+          console.log('going query');
+          Read.updateQuery('topics', query);
+        }]
       })
 
       .state('read.doc', {

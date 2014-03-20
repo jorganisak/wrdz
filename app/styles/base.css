@@ -1,12 +1,25 @@
 .btn-jo > .ion-compose {
   color: black;
 }
+.read-list-right-item.active {
+  color:white;
+  font-weight: 800;
+  background-color: rgb(113, 167, 240);
+}
+.read-list-right-item.active:hover {
+  color:white;
+  font-weight: 800;
+  background-color: rgb(113, 167, 240);
+}
+
+
 
 .read-list-right-item {
   /* height: 25px; */ 
   color: gray;
   padding: 10px 10px;
   margin: 5px 0px;
+  border-radius: 2px;
   cursor: pointer;
   transition: all 200ms linear;
   font-family: 'Roboto', sans-serif;
@@ -208,7 +221,7 @@ h1 {
   position: fixed;
   padding-right: 5%;
   width: 15%;
-  top: 55%;
+  top: 45%;
   max-width: 200px;
   left: 2%;
 }
@@ -232,8 +245,15 @@ h1 {
   font-size: 0.9em;
 }
 
-#read-doc-section-label {
+#read-doc-section-label > span > .tag-label {
   opacity: 0.3;
+  cursor: pointer;
+  transition: all 200ms linear;
+}
+
+#read-doc-section-label > span > .tag-label:hover {
+  opacity: 1;
+  box-shadow: 0px 0px 0px 1px gray;
 }
 
 #read-doc-follow-button {

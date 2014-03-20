@@ -16,8 +16,6 @@ angular.module('read')
     $scope.$on('userChange', function (evt, user) {
       if (user) {
         $scope.seen = $scope.user.meta._views;
-          $scope.init();
-
       }
     });
 
@@ -36,6 +34,7 @@ angular.module('read')
       });
     }
 
+    $scope.init();
 
     $scope.$watch('$state.current.name', function (newValue) {
       if (newValue) {
