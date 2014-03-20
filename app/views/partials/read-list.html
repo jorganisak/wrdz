@@ -9,59 +9,7 @@
 
     <div class="col-sm-8 col-xs-10">
 
-        <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-
-            <div ng-repeat="doc in docs | orderBy: '-score'">
-
-                <div ui-sref='read.doc({docId:doc._id})' class=" read-list-item">
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <div class="read-list-title">
-                                <span ng-show='doc.doc.has_title'>
-                                    {{doc.doc.title}}
-                                </span>
-                                <span ng-hide='doc.doc.has_title'>
-                                    {{doc.doc.sample | limitTo: 100}}
-                                </span>
-                        </div>
-                        </div>
-                        <div class="col-sm-2 right ">
-                            <div class="row read-list-arrow">
-                                <span class="col-sm-6  icon ion-arrow-up-a"></span>
-                                <span class='col-sm-6  text-right left read-list-arrow-count'>{{doc.up_votes}}</span>
-                            </div>
-                        </div>
-                        <div class="col-sm-2 right ">
-
-                            <div class="row read-list-heart">
-                                <span class="col-sm-6   icon ion-heart"></span>
-                                <span class="col-sm-6   left text-right read-list-heart-count">{{doc.hearts}}</span>
-                            </div>
-
-
-                        </div>
-                    </div>
-                    <div class="row read-list-bottom-row">
-                        <div class="col-sm-6 ">
-
-                            <div class="read-list-author">
-                                <a ng-hide="doc.is_anon" href="">{{doc.author.username}}</a>
-                                <span ng-show="doc.is_anon"><em>Anonymous</em></span>
-                            </div>
-
-                        </div>
-                        <div class="col-sm-6 text-right right ">
-
-                            <div class="read-list-date">
-
-                                {{moment(doc.published_at).format('MMMM Do, ha')}}
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div ui-view></div>
 
 
     </div>
@@ -79,7 +27,8 @@
                 </div>
             </div>
             <div ng-show="$state.current.name === 'read.list.following'" >
-                <div class='read-list-right-item' ng-repeat='user in user.following'>
+                <button class="btn btn-jo btn-sm" ui-sref='read.list.following({userId:null})'>All</button>
+                <div ui-sref-active='active' ui-sref='read.list.following({userId:user._id})' class='read-list-right-item' ng-repeat='user in user.following'>
                     
                 {{user.username}}
                 </div>

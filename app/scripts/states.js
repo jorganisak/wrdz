@@ -36,15 +36,50 @@ config(['$stateProvider', '$urlRouterProvider',
       })
       .state('read.list.front', {
         url: '/f',
-        templateUrl: 'partials/read.html'
+        templateUrl: 'partials/read-list-center.html',
+        controller : ['$scope','Read', function ($scope, Read) {
+
+          Read.updateQuery('following', '');
+          Read.updateQuery('topics', '');
+        }]
+
       })
       .state('read.list.following', {
-        url: '/l',
-        templateUrl: 'partials/read.html'
+        url: '/l/:userId',
+        templateUrl: 'partials/read-list-center.html',
+        resolve : {
+          query : ['$stateParams','User', function ($stateParams, User) {
+            if ($stateParams.userId) {
+              return [$stateParams.userId];
+
+            } else {
+              var a = [];
+              angular.forEach(User.getUser().following, function (user) {
+                a.push(user._id);
+              });
+              return a;
+            }
+          }]
+        },
+        controller : ['$scope', 'query','Read', '$stateParams', function ($scope, query, Read, $stateParams) {
+
+          $scope.$on('userChange', function (evt, user) {
+            if (user && !$stateParams.userId) {
+              var a = [];
+              angular.forEach(user.following, function (user) {
+                a.push(user._id);
+              });
+              Read.updateQuery('following', a)
+            }
+          });
+          Read.updateQuery('topics', '');
+          Read.updateQuery('following', query);
+        }]
+
       })
       .state('read.list.topics', {
+        templateUrl: 'partials/read-list-center.html',
         url: '/t',
-        templateUrl: 'partials/read.html'
       })
 
       .state('read.doc', {

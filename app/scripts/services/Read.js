@@ -8,8 +8,6 @@ angular.module('read')
 // list of objects with obj.type and obj.value
     var query = [];
 
-    var topTopics; 
-
 
 
     // Public API here
@@ -36,21 +34,7 @@ angular.module('read')
       //TOP TOPICS
 
       refreshTopics : function () {
-        Topics.getTop().success(function (res) {
-          topTopics = res;
-        });
-      },
-
-      getTopics : function () {
-        return topTopics;
-      },
-
-
-      // TO DELETE
-      refreshDocs : function () {
-        PubDoc.refresh().then(function (res) {
-          docList = res.data; 
-        })
+        return Topics.getTop()
       },
 
 

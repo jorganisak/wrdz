@@ -21,8 +21,6 @@ angular.module('read')
       }
     });
 
-    $scope.topicsFilterModel;
-    $scope.followingFilterModel = [];
 
     $scope.tabs = [
       { title: "Front"},
@@ -33,39 +31,19 @@ angular.module('read')
     $scope.moment = moment;
 
     $scope.init = function () {
-      Read.refreshTopics();
-      angular.forEach($scope.user.following, function (user) {
-        $scope.followingFilterModel.push(user._id);
-      })
+      Read.refreshTopics().then(function (topics) {
+        $scope.topTopics = topics.data;
+      });
     }
 
-    $scope.$watch(Read.getTopics, function (newValue) {
-      if (newValue) {
-        $scope.topTopics = newValue;
-        $scope.topicsFilterModel = newValue[0];
-      }
-    });
-
-
-
-
-    $scope.$watch('topicsFilterModel', function (newValue) {
-      if (newValue && $scope.$state.current.name === 'read.list.topics') {      
-        Read.updateQuery('topics', newValue._id);
-      }
-    });
-    $scope.$watch('followingFilterModel', function (newValue) {
-      if (newValue && $scope.$state.current.name === 'read.list.following') {      
-        Read.updateQuery('following', newValue);
-      }
-    });
 
     $scope.$watch('$state.current.name', function (newValue) {
       if (newValue) {
+        console.log(newValue)
+
 
         angular.forEach($scope.tabs, function (tab) {
           if ($filter('lowercase')(tab.title) === newValue.slice(10)) {
-            console.log(newValue)
             tab.active = true;
           } else {
             tab.active = false;
@@ -73,29 +51,8 @@ angular.module('read')
         })
 
 
-        if (newValue === 'read.list.topics') {
-          
-
-        } else {
-          Read.updateQuery('topics', '');
-
-        }
-        if (newValue === 'read.list.following') {
-          
-        } else {
-          Read.updateQuery('following', '');
-        }
-
       }
     })
-
-
-
-
-    // to delete
-    Read.refreshDocs();
-
-
 
     $scope.docs = Read.getDocs();
 

@@ -56,22 +56,25 @@ angular.module('write')
     // Should be moved to directives for testing purposes
 
     function placeCaretAtEnd(el) {
-      el.focus();
-      if (typeof $window.getSelection !== "undefined"
-              && typeof document.createRange !== "undefined") {
-        var range = document.createRange();
-        range.selectNodeContents(el);
-        range.collapse(false);
-        var sel = $window.getSelection();
-        sel.removeAllRanges();
-        sel.addRange(range);
-      } else if (typeof document.body.createTextRange !== "undefined") {
-        var textRange = document.body.createTextRange();
-        textRange.moveToElementText(el);
-        textRange.collapse(false);
-        textRange.select();
+      if (el) {
+
+        el.focus();
+        if (typeof $window.getSelection !== "undefined"
+                && typeof document.createRange !== "undefined") {
+          var range = document.createRange();
+          range.selectNodeContents(el);
+          range.collapse(false);
+          var sel = $window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        } else if (typeof document.body.createTextRange !== "undefined") {
+          var textRange = document.body.createTextRange();
+          textRange.moveToElementText(el);
+          textRange.collapse(false);
+          textRange.select();
+        }
+        $window.scrollTo(0, el.scrollHeight);
       }
-      $window.scrollTo(0, el.scrollHeight);
     }
     // Focus content input on doc
     function focusContent() {
@@ -100,7 +103,10 @@ angular.module('write')
 
     // If user, set Write service current_doc to that users current
     if ($scope.user) {
-      Write.setCurrentDoc($scope.user.current_doc);
+      if ($scope.user.current_doc) {
+
+        Write.setCurrentDoc($scope.user.current_doc);
+      }
     }
 
 
@@ -122,22 +128,29 @@ angular.module('write')
     });
 
     $scope.titleChange = function () {
-      var val = $scope.currentDoc.title;
-      if (val || val === '') {
-        Write.updateUserDoc('title', val);
-      }
+      $timeout(function () {
+
+        var val = $scope.currentDoc.title;
+        if (val || val === '') {
+          Write.updateUserDoc('title', val);
+        }
+      }, 500)
+
     };
     $scope.bodyChange = function () {
-      var val = $scope.currentDoc.body;
-      if (val) {
-        var sample = getSample();
-        if (!sample) {
-          sample = $scope.currentDoc.sample;
-        } else {
-          $scope.currentDoc.sample = sample;
+      $timeout(function () {
+        var val = $scope.currentDoc.body;
+        if (val) {
+          var sample = getSample();
+          if (!sample) {
+            sample = $scope.currentDoc.sample;
+          } else {
+            $scope.currentDoc.sample = sample;
+          }
+          Write.updateUserDoc('body', {'sample': sample, 'body': $scope.currentDoc.body});
         }
-        Write.updateUserDoc('body', {'sample': sample, 'body': $scope.currentDoc.body});
-      }
+        
+      }, 500)
     };
 
 
