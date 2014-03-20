@@ -396,7 +396,7 @@ add-button.active:active {
   transition: all 200ms ease;
   width: 12%;
   max-width: 140px;
-  top: 13%;
+  top: 18%;
   left: 13%;
 }
 

@@ -25,6 +25,7 @@ angular.module('read')
       { title: "Following", state: "read.list.following"},
       { title: "Topics", state: "read.list.topics"}
     ];
+    $scope.navType = 'pills';
 
     $scope.moment = moment;
 

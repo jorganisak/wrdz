@@ -1,21 +1,21 @@
 .btn-jo > .ion-compose {
   color: black;
 }
+
 .read-list-right-item.active {
-  color:white;
+  color: white;
   font-weight: 800;
   background-color: rgb(113, 167, 240);
 }
+
 .read-list-right-item.active:hover {
-  color:white;
+  color: white;
   font-weight: 800;
   background-color: rgb(113, 167, 240);
 }
-
-
 
 .read-list-right-item {
-  /* height: 25px; */ 
+  /* height: 25px; */
   color: gray;
   padding: 10px 10px;
   margin: 5px 0px;
@@ -26,9 +26,8 @@
 }
 
 .read-list-right-item:hover {
-    color: blue;
-  
-    background-color: rgb(235, 235, 235);
+  color: blue;
+  background-color: rgb(235, 235, 235);
 }
 
 .ion-calendar {
@@ -372,11 +371,11 @@ add-button.active:active {
 */
 
 #read-list-right {
-    position: fixed;
-    width: 12%;
-    top: 14%;
-    right: 3%;
-    max-width: 140px;
+  position: fixed;
+  width: 12%;
+  top: 14%;
+  right: 3%;
+  max-width: 140px;
 }
 
 .read-list-left-item {
@@ -397,7 +396,7 @@ add-button.active:active {
   transition: all 200ms ease;
   width: 12%;
   max-width: 140px;
-  top: 13%;
+  top: 18%;
   left: 13%;
 }
 

@@ -1,8 +1,8 @@
 <div id="read-list-body" class="row">
     <div class="col-sm-2 text-left">
         <div id="read-list-left">
-            <tabset vertical="true" type="\"pills\"" class="jo-tabset">
-                <tab ng-repeat="tab in tabs" class="jo-tab" ui-sref="{{'read.list.'+ tab.title | lowercase}}" ui-sref-active="active" active="tab.active" heading="{{tab.title}}"></tab>
+            <tabset vertical="true" type="navType" class="jo-tabset">
+                <tab ng-repeat="tab in tabs" class="jo-tab" ui-sref="{{tab.state}}" ui-sref-active="active" active="tab.active" heading="{{tab.title}}"></tab>
             </tabset>
         </div>
     </div>
