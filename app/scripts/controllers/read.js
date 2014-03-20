@@ -22,9 +22,18 @@ angular.module('read')
           tab.active = 'true';
         }
       });
+
+
+      if ($state.current.name == 'read.list.topics') {
+        Read.refreshTopics();
+      }
     });
 
     $scope.moment = moment;
+
+    $scope.$watch(Read.getTopics, function (newValue) {
+      $scope.topTopics = newValue;
+    });
 
 
     // Implement if doc has been seen, appear very shaded

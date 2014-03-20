@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('read')
-  .factory('Read', ['$http', 'PubDoc', 'User', function ($http, PubDoc, User) {
+  .factory('Read', ['$http', 'PubDoc', 'User', 'Topics', function ($http, PubDoc, User, Topics) {
 
 
     var docList = [];
 // list of objects with obj.type and obj.value
     var query = [];
+
+    var topTopics; 
 
 
 
@@ -31,6 +33,18 @@ angular.module('read')
         return PubDoc.findOne(docId);
       },
 
+      //TOP TOPICS
+
+      refreshTopics : function () {
+        Topics.getTop().success(function (res) {
+          topTopics = res;
+        });
+      },
+
+      getTopics : function () {
+        return topTopics;
+      },
+
 
       // TO DELETE
       refreshDocs : function () {
@@ -40,7 +54,7 @@ angular.module('read')
       },
 
 
-      
+
       updateQuery : function (type, value) {
         var flag = true;
         for (var i=0; i<query.length;i++) {

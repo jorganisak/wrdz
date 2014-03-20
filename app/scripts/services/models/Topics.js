@@ -26,6 +26,10 @@ angular.module('models')
 
         // res.status = 200 on good, 400 bad
         return $http.post('/topics'  + '/?type=' + type, send);
+      },
+
+      getTop : function () {
+        return $http.get('/topics');
       }
 
 
