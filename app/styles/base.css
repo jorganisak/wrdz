@@ -1282,7 +1282,7 @@ h3 {
   position: fixed;
   transition: all .175s ease-in-out;
   width: 12%;
-  opacity: 0.1;
+  opacity: 0.2;
   max-width: 250px;
 }
 
@@ -1296,7 +1296,7 @@ h3 {
   max-height: 800px;
   position: fixed;
   transition: all .1s ease-in-out;
-  opacity: 0.1;
+  opacity: 0.2;
   width: 12%;
   max-width: 250px;
 }

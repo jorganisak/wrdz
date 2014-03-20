@@ -167,9 +167,6 @@ angular.module('write')
       Write.createNewDoc();
     };
 
-    $scope.goToTop = function () {
-      $window.scrollTo(0, 0);
-    };
 
     $scope.switchHasTitle = function () {
       Write.switchDocTitle($scope.currentDoc._id);

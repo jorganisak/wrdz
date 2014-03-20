@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('shared')
-.controller('MainCtrl', ['$scope', 'User', '$rootScope', '$modal', '$state', function ($scope, User, $rootScope, $modal, $state) {
+.controller('MainCtrl', ['$scope', 'User', '$rootScope', '$modal', '$window', '$state', function ($scope, User, $rootScope, $modal, $window, $state) {
 
 /*
 Does a few things:
@@ -38,6 +38,9 @@ Does a few things:
       }
     });
 
+    $scope.goToTop = function () {
+      $window.scrollTo(0, 0);
+    };
 
 
     $scope.signup = function (user) {
