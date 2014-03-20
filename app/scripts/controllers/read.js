@@ -21,9 +21,9 @@ angular.module('read')
 
 
     $scope.tabs = [
-      { title: "Front"},
-      { title: "Following"},
-      { title: "Topics"}
+      { title: "Front", state: "read.list.front"},
+      { title: "Following", state: "read.list.following"},
+      { title: "Topics", state: "read.list.topics"}
     ];
 
     $scope.moment = moment;
