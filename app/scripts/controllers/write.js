@@ -121,26 +121,6 @@ angular.module('write')
       } 
     });
 
-    // Wates doc title input for changes and updates 
-    // the doc to the server through the Write service
-    // $scope.$watch('currentDoc.title', function (newValue) {
-    //   if (newValue || newValue === '') {
-    //     Write.updateUserDoc('title', $scope.currentDoc.title);
-    //   }
-    // });
-    // Does the same for the body
-    // $scope.$watch('currentDoc.body', function (newValue) {
-      // if (newValue) {
-      //   var sample = getSample();
-      //   if (!sample) {
-      //     sample = $scope.currentDoc.sample;
-      //   } else {
-      //     $scope.currentDoc.sample = sample;
-      //   }
-      //   Write.updateUserDoc('body', {'sample': sample, 'body': $scope.currentDoc.body});
-      // }
-    // });
-
     $scope.titleChange = function () {
       var val = $scope.currentDoc.title;
       if (val || val === '') {
@@ -205,9 +185,6 @@ angular.module('write')
     Opens Topic and Publish Modals
     
   */
-
-
-
 
     $scope.openTopicModal = function () {
       var modalInstance = $modal.open({
