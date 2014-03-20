@@ -70,8 +70,15 @@
 
 
 
-    <div id='read-list-left pull-right' class="col-sm-2 text-right">
+    <div  class="col-sm-2 text-right">
+        <div id="read-list-right">
+            <div ng-if="$state.current.name === 'read.list.topics'" ng-repeat='topic in topTopics'>
+                {{topic.title}}
+            </div>
 
+        </div>
+
+    
 
     </div>
 

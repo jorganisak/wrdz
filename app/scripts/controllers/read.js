@@ -14,6 +14,8 @@ angular.module('read')
       { title: "Topics"}
     ];
 
+    $scope.topicsFilterModel;;
+
 
     // watches for url change and updates active tab
     $scope.$watch('$state.current.url', function () {
@@ -22,8 +24,6 @@ angular.module('read')
           tab.active = 'true';
         }
       });
-
-
       if ($state.current.name == 'read.list.topics') {
         Read.refreshTopics();
       }
@@ -32,8 +32,25 @@ angular.module('read')
     $scope.moment = moment;
 
     $scope.$watch(Read.getTopics, function (newValue) {
-      $scope.topTopics = newValue;
+      if (newValue) {
+        $scope.topTopics = newValue;
+        $scope.topicsFilterModel = newValue[0];
+      }
     });
+
+    $scope.$watch('topicsFilterModel', function (newValue) {
+      if (newValue) {      
+        Read.updateQuery('topics', newValue._id);
+      }
+    });
+
+    $scope.$watch('$state.current.name', function (newValue) {
+      if (newValue) {
+        if (newValue !== 'read.list.following') {
+          Read.updateQuery('topics', '');
+        }
+      }
+    })
 
 
     // Implement if doc has been seen, appear very shaded

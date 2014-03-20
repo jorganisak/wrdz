@@ -91,9 +91,16 @@ angular.module('write')
       // Published Docs
 
       publishDoc : function (isAnon) {
+
+        var topics = [];
+        angular.forEach(current_doc.topics, function (topic) {
+          console.log(topic);
+          topics.push(topic._id);
+        });
         var data = {
           id: current_doc._id,
-          is_anon : isAnon
+          is_anon : isAnon,
+          topics: topics
         };
         return PubDoc.create(data);
 

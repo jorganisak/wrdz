@@ -204,8 +204,8 @@ angular.module('write')
 
           $scope.addTopic = function (topicTitle) {
             Write.updateTopics('add', topicTitle).then(
-              function () {
-                $scope.docTopics.push({'title': topicTitle});
+              function (res) {
+                $scope.docTopics.push(res.data);
               }
             );
           };
