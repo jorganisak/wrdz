@@ -2,9 +2,9 @@
   
   <div class="row" ng-include="'partials/top-nav.html'"></div>
 
-  <div id="fixed-menu-shortcut" class="dropdown" ng-controller="MenuShortcutCtrl">
+  <div ng-if="user" id="fixed-menu-shortcut" class="dropdown" ng-controller="MenuShortcutCtrl">
     <a class="dropdown-toggle">
-      <div id="menu-shortcut">w</div>
+      <div id="menu-shortcut">W</div>
     </a>
     <ul class="dropdown-menu">
       <li ng-repeat="choice in items">
@@ -14,7 +14,7 @@
     
   </div>
 
-  <div ng-click="feedbackModal()" id="feedback-button">
+  <div ng-if="$state.current.name !== 'landing'" ng-click="feedbackModal()" id="feedback-button">
     <div id="feedback-text">
       Feedback
     </div>

@@ -1,0 +1,30 @@
+<div class="text-center modal-header">
+    <h3>Options</h3>
+</div>
+
+<div class="modal-body">
+
+
+    <div ng-show="doc.pub_doc.is_visible">
+
+        <p ng-if="doc.pub_doc.is_anon">These wrdz are published <em>anonomously</em>.</p>
+        <p ng-if="!doc.pub_doc.is_anon">These wrdz are published under your username, {{username}}.</p>
+        <a ng-click="close()" ui-sref="read.doc({docId:doc.pub_doc._id})">See the published version.</a>
+        
+    </div>
+
+    <div ng-hide="doc.pub_doc.is_visible">
+        <p>These wrdz are <em><b>not</b></em>  &nbsp;published.</p>
+        <p ng-if="!doc.pub_doc.is_anon">They used to be published under your username, {{username}}.</p>
+        <p ng-if="doc.pub_doc.is_anon">They used to be published <em>anonomously</em>.</p>
+    </div>
+
+
+    <br>
+    <button ng-show="doc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-jo">
+        Unpublish
+    </button>
+    <button ng-hide="doc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-jo">
+        Re-publish
+    </button>
+</div>

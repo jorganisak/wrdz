@@ -15,20 +15,13 @@
                 
                 <button ng-click="newDoc()" class="btn btn-jo"><span class="ion-compose icon"></span> &nbsp;New</button>   
 
-                <div ng-show="currentDoc.is_published" id="write-pub-info" class="panel panel-default">
+                <div ng-if="currentDoc.is_published" id="write-pub-info" class="panel text-center panel-default">
 
-                    <div ng-show="currentDoc.pub_doc.is_anon" class="text-center">
-                        <a ui-sref="read.doc({docId:currentDoc.pub_doc._id})">
-                            
-                            <em>Anonymous</em>
-                        </a>
-                    </div>
-                    <div ng-hide="currentDoc.pub_doc.is_anon" class="text-center">
-                        <a ui-sref="read.doc({docId:currentDoc.pub_doc._id})">
-                            <em>Public</em>
-                        </a>
-                    </div>
+                    <em ng-show="currentDoc.pub_doc.is_visible">Public</em>
+                    <em ng-hide="currentDoc.pub_doc.is_visible">Not Public</em>
                     <br>
+                    <br>
+     
 
                     <div class="row">
                         <div class="col-sm-3 col-sm-offset-1">
@@ -54,25 +47,16 @@
                             {{currentDoc.pub_doc.views}}
                         </div>
                     </div>
-                     <div class="row">
-                        <div class="col-sm-3 col-sm-offset-1">
-                            <span class="glyphicon glyphicon-retweet"></span>
-                        </div>
-                        <div class="col-sm-6 text-right">
-                            {{currentDoc.pub_doc.reposts}}
-                        </div>
-                    </div>
+
                     
 
                     <div class="row">
                         <div class="col-sm-12">
                             
-                            <button ng-show="currentDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-jo btn-sm btn-warning">
-                                Unpublish
+                            <button ng-click="openPubOptionsModal()" class="btn btn-jo btn-sm">
+                                Options
                             </button>
-                            <button ng-hide="currentDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-jo btn-sm btn-warning">
-                                Re-publish
-                            </button>
+
                             
                         </div>
                     </div>
@@ -86,6 +70,9 @@
                 <span class="ion-pricetags icon"></span> &nbsp;Topics
 
                 </button>
+                <span ng-repeat="topic in currentDoc.topics">
+                <span class="label label-primary tag-label">{{topic.title}}</span>
+            </span>
        
             </div>
 
@@ -103,24 +90,25 @@
             </button>
         </div>
 
-        <div ng-show="currentDoc._id" class="text-center col-sm-8 pull-left column">
+        <div ng-if="currentDoc._id" class="text-center col-sm-8 pull-left column">
 
             <div id="write-center">
                                    
-            <div ng-click="goToTop()" id="write-arrow-up">
-                <span class="icon ion-chevron-up"></span>
-            </div>
-                <div class="show-hide-fade" ng-show="hasTitle">
+      
+                <div class="show-hide-fade" ng-show="currentDoc.has_title">
                     <div class="" ng-click="switchHasTitle()" id="remove-title-switch"><span class="icon ion-close"></span></div>
                     <div medium-editor="" options="{{mediumEditorOptionsTitle}}" ng-model="currentDoc.title" id="write-title">
                     </div>
                 </div>
 
-                <div id="title-switch" ng-hide="hasTitle" ng-click="switchHasTitle()">add title</div>
+                <div id="title-switch" ng-hide="currentDoc.has_title" ng-click="switchHasTitle()">add title</div>
 
                 <div medium-editor="" options="{{mediumEditorOptionsBody}}" ng-model="currentDoc.body" class="" id="write-content">
 
                 </div>
+                <div ng-click="goToTop()" id="write-arrow-up">
+                    <span class="icon ion-chevron-up"></span>
+                </div>  
             </div>
 
 

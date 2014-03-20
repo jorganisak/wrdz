@@ -7,14 +7,14 @@
     <jo-input-add name="Topic" on-submit="addTopic(title)"></jo-input-add>
    
         <br>
-        <em>Has Topics &nbsp;&nbsp;</em>
+        <em>This Has Topics</em><br>
         <span ng-repeat="top in docTopics">
             <span class="label label-primary tag-label">{{top.title}} <span ng-click="removeTopic(top)" class="icon tag-remove-x ion-close"></span></span>
         </span>
         <br>
         <br>
         
-        <em>Your Topics &nbsp;&nbsp;</em>
+        <em>Topics you use</em><br>
         <span ng-repeat="top in userTopics | orderBy: '-_docs.length' | limitTo: 20">
             <span class="label label-primary tag-label">{{top.title}} <span ng-click="addTopic(top.title)" class="icon tag-add-plus ion-plus"></span></span>
         </span>
