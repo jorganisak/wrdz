@@ -11,7 +11,7 @@
     <div class="col-sm-2 text-left">
         <div id="mywrdz-left">
             <div class="row">
-                <div class="col-sm-1 glyphicon glyphicon-calendar"></div>
+                <div class="col-sm-1 icon ion-calendar"></div>
                 <div class="col-sm-9">
 
                     <input type="text" class="form-control" show-button-bar="false" datepicker-popup="dd-MMMM-yy" max="today" show-weeks="false" ng-model="dt" is-open="opened" ng-required="true" close-text="Close">
@@ -37,8 +37,8 @@
             <br>
             <br> -->
         
-            <button type="button" class="btn btn-jo btn-block dropdown-toggle" data-toggle="dropdown">
-                <span class="icon ion-pricetags"></span>&nbsp;&nbsp;Topics&nbsp;&nbsp;<span class="caret"></span>
+            <button type="button" class="btn btn-jo btn-sm dropdown-toggle" data-toggle="dropdown">
+                <span class="icon ion-pricetags"></span>&nbsp;&nbsp;Filter Topics&nbsp;&nbsp;<span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
                 <li ng-repeat="topic in topicOptions | orderBy: '-count'">
