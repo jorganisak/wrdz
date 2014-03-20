@@ -1,12 +1,17 @@
 .btn-jo > .ion-compose {
   color: black;
 }
+#bio-textarea {
+  resize: none;
+  outline: none;
+}
 
 .share-button.sharer-0 label {
   border-radius: 0px !important;
   width: 100% !important;
-  padding-top: 8px !important;
+  padding-top:8px !important;
   height: 38px !important;
+
   background-color: rgb(202, 230, 255) !important;
   color: white !important;
 }
@@ -27,7 +32,6 @@
 #mywrdz-pub-info {
   margin: 0 auto;
 }
-
 #mywrdz-right {
   position: fixed;
   width: 12%;
@@ -38,6 +42,7 @@
   position: fixed;
   width: 18%;
   left: 4%;
+
   max-width: 170px;
 }
 
@@ -82,7 +87,7 @@ h1 {
 }
 
 #write-arrow-up:hover {
-  opacity: 1;
+  opacity:1;
 }
 
 #read-doc-left-box {
@@ -898,7 +903,7 @@ h3 {
   padding: 10px 13px;
   cursor: pointer;
   transition: all .1s ease;
-  border-radius: 0px !important;
+  border-radius:  0px !important;
   border: solid 1px whitesmoke;
 }
 
@@ -936,6 +941,8 @@ h3 {
 .panel-default > .panel-heading {
   background-color: white;
 }
+
+
 
 .me-list-item:hover {
   box-shadow: 2px 1px 6px -4px black;
@@ -1040,6 +1047,7 @@ h3 {
 #profile-name {
   font-family: 'Noto Sans', sans-serif;
   font-size: 1.4em;
+
 }
 
 #profile-info {
@@ -1049,6 +1057,7 @@ h3 {
 }
 
 .profile-tab {
+
   margin: 0;
   height: 20px;
 }

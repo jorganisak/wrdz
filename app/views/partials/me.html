@@ -8,8 +8,15 @@
     </div>
 
 <div ng-show='user' class="row text-center" id='me-content' ng-controller="MeCtrl">
+  
+  <div class="row">
+    <div class="col-sm-4">
+      <h2>Bio</h2>
 
-  <h3>Nothing to show here yet...but lots to come!</h3>
+      <textarea name="bio" ng-model='user.bio' maxlength="350" class='form-control' id="bio-textarea" cols="30" rows="10"></textarea>
+      
+    </div>
+  </div>
   <br>
   <br>
   <br>

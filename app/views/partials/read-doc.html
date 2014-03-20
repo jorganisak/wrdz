@@ -52,10 +52,10 @@
                     <a href="">{{readDoc.author.username}}</a>
                 </div>
                 <div id="read-doc-followers">
-                    5521
+                    {{readDoc.author.followers}}
                     <br>
                     <br>
-                    Papa. Catcher of big fish.  I like cats, drinking and writing good stories. Writing from Key West, FL
+                    {{readDoc.author.bio}}
                 </div>
                 <div ng-click='follow()' ng-hide='following' id="read-doc-follow-button">
                     Follow

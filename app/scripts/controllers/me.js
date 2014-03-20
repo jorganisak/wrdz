@@ -27,6 +27,11 @@ MY WRDZ
   });
 
 
+  $scope.$watch('user.bio', function (newValue) {
+    User.update('bio', newValue);
+  });
+
+
 /*
 
 LOGOUT

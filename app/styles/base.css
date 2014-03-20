@@ -1,6 +1,10 @@
 .btn-jo > .ion-compose {
   color: black;
 }
+#bio-textarea {
+  resize: none;
+  outline: none;
+}
 
 .share-button.sharer-0 label {
   border-radius: 0px !important;
