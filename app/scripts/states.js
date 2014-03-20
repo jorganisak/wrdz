@@ -96,7 +96,10 @@ config(['$stateProvider', '$urlRouterProvider',
         controller : ['$scope', 'query','Read', function ($scope, query, Read) {
           Read.updateQuery('following', '');
           console.log('going query');
-          Read.updateQuery('topics', query);
+          if (query) {
+            
+            Read.updateQuery('topics', query);
+          }
         }]
       })
 

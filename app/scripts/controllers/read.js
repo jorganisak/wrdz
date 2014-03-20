@@ -81,9 +81,17 @@ angular.module('read')
     };
     $scope.isFollowing = function () {
       if ($scope.readDoc.author) {
+        var flag = false;
+        angular.forEach($scope.user.following, function (user) {
+          if (user._id === $scope.readDoc.author._id){
+            flag = true;
+          }
+        })
 
-        if ($scope.user.following.indexOf($scope.readDoc.author._id) > -1) {
+        if (flag) {
+
           $scope.following = true;
+
         } else {
 
           $scope.following = false;
