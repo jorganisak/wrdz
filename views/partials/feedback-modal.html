@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h3>Feedback</h3>
+</div>
+
+<div class="modal-body">
+
+   
+<h4>Thanks so much for trying out wrdz.</h4>
+<h5>Let me know how I can make it better for you.</h5>
+
+
+
+<form name="feedbackForm" role="form" ng-submit="submitFeedback(feedback)" novalidate="">
+  <br>
+  
+
+  <div class="form-group">
+
+    <textarea name="feedback" class="form-control" required="" ng-model="feedback" id="" cols="30" rows="10"></textarea>
+    
+  </div>
+
+
+  <button type="submit" ng-disabled="feedbackForm.$invalid" class="btn btn-success btn-jo">Submit</button>
+
+
+</form>      
+
+
+</div>
