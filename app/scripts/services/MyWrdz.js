@@ -33,10 +33,6 @@
           docList = list;
         },
 
-        updateList : function () {
-          return UserDoc.list(query);
-        },
-
         updateQuery : function (type, value) {
           var flag = true;
           for (var i=0; i<query.length;i++) {

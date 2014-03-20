@@ -4,22 +4,22 @@
 
     <div class="col-sm-8 col-sm-offset-2  read-doc-center">
 
-            <div id="read-doc-left-fixed">
+        <div id="read-doc-left-fixed">
 
-                <div  ng-class='active1' ng-click="up_vote()"  class="read-doc-arrow">
-                    <span  class="icon pull-left ion-arrow-up-a"></span>
-                    <span class='pull-right  read-doc-left-text '>{{readDoc.up_votes}}</span>
-                </div>
+            <div  ng-class='active1' ng-click="up_vote()"  class="read-doc-arrow">
+                <span  class="icon pull-left ion-arrow-up-a"></span>
+                <span class='pull-right  read-doc-left-text '>{{readDoc.up_votes}}</span>
+            </div>
 
-                <div ng-class='active2' ng-click="heart()" class="read-doc-heart">
-                    <span class="pull-left icon ion-heart"></span>
-                    <span class="pull-right  read-doc-left-text">{{readDoc.hearts}}</span>
-
-                </div>
-
-                <share-button></share-button>
+            <div ng-class='active2' ng-click="heart()" class="read-doc-heart">
+                <span class="pull-left icon ion-heart"></span>
+                <span class="pull-right  read-doc-left-text">{{readDoc.hearts}}</span>
 
             </div>
+
+            <share-button></share-button>
+
+        </div>
         <div class="row">
 
 
@@ -34,7 +34,7 @@
 
         <div ng-show='readDoc.doc.has_title' class="text-center read-title">
             {{readDoc.doc.title}}
-        <hr>
+            <hr>
         </div>
 
 
@@ -46,30 +46,30 @@
         <em>{{moment(readDoc.published_at).format('MMMM D, YYYY')}}</em>
         <br>
 
-            
-            <div ng-hide='readDoc.is_anon' class='text-right' id="read-doc-right-fixed">
-                <div id="read-doc-username">
-                    <a href="">{{readDoc.author.username}}</a>
-                </div>
-                <div id="read-doc-followers">
-                    {{readDoc.author.followers}}
-                    <br>
-                    <br>
-                    {{readDoc.author.bio}}
-                </div>
-                <div ng-click='follow()' ng-hide='following' id="read-doc-follow-button">
-                    Follow
-                </div>
-                <div ng-click='follow()' ng-show='following' id="read-doc-follow-button">
-                    Unfollow
-                </div>
-
+        
+        <div ng-hide='readDoc.is_anon' class='text-right' id="read-doc-right-fixed">
+            <div id="read-doc-username">
+                <a href="">{{readDoc.author.username}}</a>
             </div>
+            <div id="read-doc-followers">
+                {{readDoc.author.followers}}
+                <br>
+                <br>
+                {{readDoc.author.bio}}
+            </div>
+            <div ng-click='follow()' ng-hide='following' id="read-doc-follow-button">
+                Follow
+            </div>
+            <div ng-click='follow()' ng-show='following' id="read-doc-follow-button">
+                Unfollow
+            </div>
+
+        </div>
     </div>
     <div class="col-sm-2">
 
     </div>
 
 
-            </div>
+</div>
 

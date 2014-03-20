@@ -2,6 +2,11 @@
   color: black;
 }
 
+.ion-calendar {
+  font-size: 1.6em;
+  color: blue;
+}
+
 #bio-textarea {
   resize: none;
   outline: none;

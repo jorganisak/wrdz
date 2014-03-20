@@ -10,7 +10,6 @@ angular.module('read')
 
     $scope.tabs = [
       { title: "Front"},
-      { title: "New"},
       { title: "Following"},
       { title: "Topics"}
     ];
@@ -28,7 +27,7 @@ angular.module('read')
     $scope.moment = moment;
 
 
-
+    // Implement if doc has been seen, appear very shaded
     if ($scope.user) {
       $scope.seen = $scope.user.meta._views;
     }
@@ -40,7 +39,11 @@ angular.module('read')
     });
 
 
+    // to delete
     Read.refreshDocs();
+
+
+
     $scope.docs = Read.getDocs();
 
     $scope.$watch(Read.getDocs, function (newValue) {

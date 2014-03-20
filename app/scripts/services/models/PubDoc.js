@@ -31,8 +31,25 @@ angular.module('models')
         return $http.get('/pubDocs/' + docId);
       },
 
+
+      ///TO DELETE
       refresh : function () {
         return $http.get('pubDocs/');
+      },
+
+      list : function (args) {
+        var str = "";
+        for (var i=0; i<args.length; i++) {
+          if (args[i].value instanceof Array) {
+            for (var j=0; j< args[i].value.length; j++) {
+              str = str + args[i].type + '[]=' + args[i].value[j] + '&';
+            }
+          } else {
+
+            str = str  + args[i].type + '=' + args[i].value + '&';
+          }
+        }
+        return $http.get('/pubDocs/?'+str);
       }
     }
   }]);
