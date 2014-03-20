@@ -9,7 +9,7 @@
 
     <div class="col-sm-8 col-xs-10">
 
-        <div id='read-list-right' class="col-sm-10 col-sm-offset-1 col-xs-12">
+        <div class="col-sm-10 col-sm-offset-1 col-xs-12">
 
             <div ng-repeat="doc in docs | orderBy: '-score'">
 
@@ -70,13 +70,19 @@
 
 
 
-    <div  class="col-sm-2 text-right">
+    <div class="col-sm-2 text-right">
         <div id="read-list-right">
-            <div ng-if="$state.current.name === 'read.list.topics'" ng-repeat='topic in topTopics'>
-                {{topic.title}}
+            <div ng-show="$state.current.name === 'read.list.topics'" >
+                <div class='read-list-right-item' ng-repeat='topic in topTopics'>
+                    
+                    {{topic.title}}
+                </div>
             </div>
-            <div ng-if="$state.current.name === 'read.list.following'" ng-repeat='user in user.following'>
+            <div ng-show="$state.current.name === 'read.list.following'" >
+                <div class='read-list-right-item' ng-repeat='user in user.following'>
+                    
                 {{user.username}}
+                </div>
             </div>
 
         </div>

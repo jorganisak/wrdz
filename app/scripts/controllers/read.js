@@ -16,18 +16,14 @@ angular.module('read')
     $scope.$on('userChange', function (evt, user) {
       if (user) {
         $scope.seen = $scope.user.meta._views;
-        if ($scope.$state.current.name === 'read.list.following') {
-          $scope.followingFilterModel = [];
-          angular.forEach($scope.user.following, function (user) {
-            console.log(user);
-            $scope.followingFilterModel.push(user._id);
-          })
-        }
+          $scope.init();
+
       }
     });
 
-    $scope.topicsFilterModel;;
-    $scope.topicsFollowingModel;
+    $scope.topicsFilterModel;
+    $scope.followingFilterModel = [];
+
     $scope.tabs = [
       { title: "Front"},
       { title: "Following"},
@@ -36,12 +32,20 @@ angular.module('read')
 
     $scope.moment = moment;
 
+    $scope.init = function () {
+      Read.refreshTopics();
+      angular.forEach($scope.user.following, function (user) {
+        $scope.followingFilterModel.push(user._id);
+      })
+    }
+
     $scope.$watch(Read.getTopics, function (newValue) {
       if (newValue) {
         $scope.topTopics = newValue;
         $scope.topicsFilterModel = newValue[0];
       }
     });
+
 
 
 
@@ -70,18 +74,14 @@ angular.module('read')
 
 
         if (newValue === 'read.list.topics') {
-          Read.refreshTopics();
+          
 
         } else {
           Read.updateQuery('topics', '');
 
         }
-        if (newValue === 'read.list.following' && $scope.user) {
-          $scope.followingFilterModel = [];
-          angular.forEach($scope.user.following, function (user) {
-            console.log(user);
-            $scope.followingFilterModel.push(user._id);
-          })
+        if (newValue === 'read.list.following') {
+          
         } else {
           Read.updateQuery('following', '');
         }

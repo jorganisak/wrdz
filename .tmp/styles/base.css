@@ -2,6 +2,22 @@
   color: black;
 }
 
+.read-list-right-item {
+  /* height: 25px; */ 
+  color: gray;
+  padding: 10px 10px;
+  margin: 5px 0px;
+  cursor: pointer;
+  transition: all 200ms linear;
+  font-family: 'Roboto', sans-serif;
+}
+
+.read-list-right-item:hover {
+    color: blue;
+  
+    background-color: rgb(235, 235, 235);
+}
+
 .ion-calendar {
   font-size: 1.6em;
   color: blue;
@@ -336,6 +352,11 @@ add-button.active:active {
 */
 
 #read-list-right {
+    position: fixed;
+    width: 12%;
+    top: 14%;
+    right: 3%;
+    max-width: 140px;
 }
 
 .read-list-left-item {

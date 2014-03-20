@@ -9,9 +9,11 @@ angular.module('wrdz').directive('shareButton', ['$window', function ($window) {
         opts = angular.fromJson(iAttrs.options);
       }
 
-      console.log($window.location.href)
       new Share(".share-button", {
-        url : $window.location.href
+        ui : {
+
+          flyout: 'bottom right'
+        }
       });
 
 
