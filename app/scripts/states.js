@@ -189,14 +189,17 @@ config(['$stateProvider', '$urlRouterProvider',
           }]
         },
 
-        controller: ['$scope', 'email', 'User', '$state','$location', function ($scope, email, User, $state, $location) {
+        controller: ['$scope', 'email', 'User', '$state','$timeout',  function ($scope, email, User, $state, $timeout) {
           if (!email) {
             $scope.emailFail = true;
           }
-          console.log(email);
           $scope.resetPass = function (newPass) {
             User.resetPassword(email, newPass).then(function (res) {
-                $location.path('/w');                
+                console.log(res);
+                $timeout(function () {
+                  
+                  $scope.launchLogIn();             
+                }, 1000)
             });
           }
         }]
