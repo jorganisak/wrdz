@@ -159,6 +159,7 @@ Does a few things:
 
           $scope.submitEmail = function (email) {
             $http.post('/forgot', {'email': email});
+            $scope.close();
           }
 
 

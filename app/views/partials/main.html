@@ -13,7 +13,7 @@
     </ul>
     
   </div>
-  <div ng-click='goToTop()' id="write-arrow-up">
+  <div ng-if="$state.current.name !== 'landing'" ng-click='goToTop()' id="write-arrow-up">
       <span class="icon ion-chevron-up"></span>
   </div>
   <div ng-if="$state.current.name !== 'landing'" ng-click='feedbackModal()' id="feedback-button">
