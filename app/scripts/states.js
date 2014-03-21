@@ -154,8 +154,8 @@ config(['$stateProvider', '$urlRouterProvider',
 
      // Password reset
      .state('password_reset', {
-        url: '/password_reset',
-        templateUrl: 'partials/reset-password.html'
+        url: '/reset',
+        templateUrl: 'partials/password-reset.html'
      })
 
 

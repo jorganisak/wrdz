@@ -31,7 +31,7 @@ require('./lib/config/routes')(app, passport);
 
 
 var forgot = require('password-reset-nodemailer')({
-    uri : 'http://localhost:8080/password_reset',
+    uri : 'http://localhost:9000/password_reset',
     from: 'password-robot@localhost',
     transportType: 'SMTP',
     transportOptions: {
