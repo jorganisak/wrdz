@@ -72,21 +72,36 @@ angular.module('read')
       Read.updateQuery(oldQuery);      
     };
 
+    function goToFront () {
+      Read.updateQuery([{type:'topics', value: ''}, 
+        {type:'following', value: ''}, 
+        {type:'skip', value: ''}]).then(function (res) {
+          $scope.$state.go('read.doc', {'docId': res.data[res.data.length -1 ]._id})
+        });
+    };
+
     function findNextDoc (doc) {
+      var lastDoc;
       var id = doc._id;
       var docs = Read.getDocs().docs;
-      var lastDoc;
-      angular.forEach(docs, function (doc) {
-        if (doc._id === id) {
-          checkLength(docs, doc);
-          if (lastDoc) {
-            $scope.$state.go('read.doc', {'docId':lastDoc._id});
+      if (docs.length) {
+
+        angular.forEach(docs, function (doc) {
+          if (doc._id === id) {
+            checkLength(docs, doc);
+            if (lastDoc) {
+              $scope.$state.go('read.doc', {'docId':lastDoc._id});
+            } else {
+              goToFront();
+            }
+          } else {
+            lastDoc = doc;
           }
-        } else {
-          lastDoc = doc;
-        }
-      })
-    }
+        })
+      } else {
+        goToFront();
+      }
+    };
 
     $scope.nextDoc = function () {
       findNextDoc($scope.readDoc);
