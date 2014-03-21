@@ -37,10 +37,13 @@ config(['$stateProvider', '$urlRouterProvider',
       .state('read.list.front', {
         url: '/f',
         templateUrl: 'partials/read-list-center.html',
-        controller : ['$scope','Read', function ($scope, Read) {
-
-          Read.updateQuery('following', '');
-          Read.updateQuery('topics', '');
+        resolve : {
+          docs : ['Read', function (Read) {
+            return Read.updateQuery([{type:'topics', value: ''}, {type:'following', value: ''}]);
+          }]
+        },
+        controller : ['$scope','docs', function ($scope, docs) {
+          $scope.docs = docs.data;
         }]
 
       })
@@ -48,20 +51,22 @@ config(['$stateProvider', '$urlRouterProvider',
         url: '/l/:userId',
         templateUrl: 'partials/read-list-center.html',
         resolve : {
-          query : ['$stateParams','User', function ($stateParams, User) {
+          docs : ['$stateParams','User', 'Read', function ($stateParams, User, Read) {
             if ($stateParams.userId) {
-              return [$stateParams.userId];
+              return Read.updateQuery([{type:'following', 
+                value: [$stateParams.userId]}, {type:'topics', value: ''}]);
 
             } else {
               var a = [];
               angular.forEach(User.getUser().following, function (user) {
                 a.push(user._id);
               });
-              return a;
+              return Read.updateQuery([{type:'following', 
+                value: a}, {type:'topics', value: ''}]);
             }
           }]
         },
-        controller : ['$scope', 'query','Read', '$stateParams', function ($scope, query, Read, $stateParams) {
+        controller : ['$scope', 'docs','Read', '$stateParams', function ($scope, docs, Read, $stateParams) {
 
           $scope.$on('userChange', function (evt, user) {
             if (user && !$stateParams.userId) {
@@ -69,11 +74,11 @@ config(['$stateProvider', '$urlRouterProvider',
               angular.forEach(user.following, function (user) {
                 a.push(user._id);
               });
-              Read.updateQuery('following', a)
+              Read.updateQuery([{type:'following', 
+                value: ''}, {type:'topics', value: a}])
             }
           });
-          Read.updateQuery('topics', '');
-          Read.updateQuery('following', query);
+          $scope.docs = docs.data;
         }]
 
       })
@@ -81,24 +86,21 @@ config(['$stateProvider', '$urlRouterProvider',
         templateUrl: 'partials/read-list-center.html',
         url: '/t/:topicId',
         resolve : {
-          query : ['$stateParams', 'Read', '$state', function ($stateParams, Read, $state) {
+          docs : ['$stateParams', 'Read', '$state', function ($stateParams, Read, $state) {
             if ($stateParams.topicId) {
-              return $stateParams.topicId;
+              return Read.updateQuery([{type:'following', 
+                value: ''}, {type:'topics', value: $stateParams.topicId}]);
             } else {
-              
-              
+
               Read.refreshTopics().then(function (res) {
                 $state.go('read.list.topics',{topicId: res.data[0]._id}) 
               });
             }
           }]
         },
-        controller : ['$scope', 'query','Read', function ($scope, query, Read) {
-          Read.updateQuery('following', '');
-          console.log('going query');
-          if (query) {
-            
-            Read.updateQuery('topics', query);
+        controller : ['$scope', 'docs', function ($scope, docs) {
+          if (docs) {
+              $scope.docs = docs.data;
           }
         }]
       })

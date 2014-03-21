@@ -39,21 +39,24 @@ angular.module('read')
 
 
 
-      updateQuery : function (type, value) {
-        var flag = true;
-        for (var i=0; i<query.length;i++) {
-          if (query[i].type == type) {
-            query[i].value = value;
-            flag = false;
+      updateQuery : function (newQuery) {
+        for (var j=0; j < newQuery.length; j++) {
+
+          var flag = true;
+
+          for (var i=0; i<query.length;i++) {
+            if (query[i].type == newQuery[j].type) {
+              query[i].value = newQuery[j].value;
+              flag = false;
+            } 
+          }
+          if (flag) {
+            query.push({'type': newQuery[j].type,'value': newQuery[j].value});
           } 
         }
-        if (flag) {
-          query.push({'type':type,'value':value});
-        } 
 
-        PubDoc.list(query).then( function (res) {
-          docList = res.data;
-        });
+
+        return PubDoc.list(query);
       }      
 
     };
