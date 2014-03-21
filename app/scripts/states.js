@@ -39,10 +39,11 @@ config(['$stateProvider', '$urlRouterProvider',
         templateUrl: 'partials/read-list-center.html',
         resolve : {
           docs : ['Read', function (Read) {
-            return Read.updateQuery([{type:'topics', value: ''}, {type:'following', value: ''}]);
+            return Read.updateQuery([{type:'topics', value: ''}, 
+              {type:'following', value: ''}, {type:'skip', value: ''}]);
           }]
         },
-        controller : ['$scope','docs', function ($scope, docs) {
+        controller : ['$scope','docs','Read', function ($scope, docs,Read) {
           $scope.docs = docs.data;
         }]
 
@@ -54,7 +55,7 @@ config(['$stateProvider', '$urlRouterProvider',
           docs : ['$stateParams','User', 'Read', function ($stateParams, User, Read) {
             if ($stateParams.userId) {
               return Read.updateQuery([{type:'following', 
-                value: [$stateParams.userId]}, {type:'topics', value: ''}]);
+                value: [$stateParams.userId]}, {type:'topics', value: ''}, {type:'skip', value: ''}]);
 
             } else {
               var a = [];
@@ -65,26 +66,26 @@ config(['$stateProvider', '$urlRouterProvider',
                 return false;
               }
               return Read.updateQuery([{type:'following', 
-                value: a}, {type:'topics', value: ''}]);
+                value: a}, {type:'topics', value: ''}, {type:'skip', value: ''}]);
             }
           }]
         },
         controller : ['$scope', 'docs','Read', '$stateParams', function ($scope, docs, Read, $stateParams) {
-          if (!docs) {
-
-          }
+          
           $scope.$on('userChange', function (evt, user) {
             if (user && !$stateParams.userId) {
               var a = [];
               angular.forEach(user.following, function (user) {
                 a.push(user._id);
               });
-              console.log(a);
               if (!a.length) {
                 $scope.docs = [];
               }
               Read.updateQuery([{type:'following', 
-                value: ''}, {type:'topics', value: a}])
+                value: a}, {type:'topics', value: ''}, 
+                {type:'skip', value: ''}]).then(function (res) {
+                  $scope.docs = res.data;
+                })
             }
           });
           $scope.docs = docs.data;
@@ -98,7 +99,8 @@ config(['$stateProvider', '$urlRouterProvider',
           docs : ['$stateParams', 'Read', '$state', function ($stateParams, Read, $state) {
             if ($stateParams.topicId) {
               return Read.updateQuery([{type:'following', 
-                value: ''}, {type:'topics', value: $stateParams.topicId}]);
+                value: ''}, {type:'topics', value: $stateParams.topicId}, 
+                {type:'skip', value: ''}]);
             } else {
 
               Read.refreshTopics().then(function (res) {
@@ -107,9 +109,9 @@ config(['$stateProvider', '$urlRouterProvider',
             }
           }]
         },
-        controller : ['$scope', 'docs', function ($scope, docs) {
+        controller : ['$scope', 'docs', 'Read', function ($scope, docs, Read) {
           if (docs) {
-              $scope.docs = docs.data;
+            $scope.docs = docs.data;
           }
         }]
       })

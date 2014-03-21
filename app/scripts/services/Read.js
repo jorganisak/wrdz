@@ -4,7 +4,7 @@ angular.module('read')
   .factory('Read', ['$http', 'PubDoc', 'User', 'Topics', function ($http, PubDoc, User, Topics) {
 
 
-    var docList = [];
+    var docList = {docs: [], query: []};
 // list of objects with obj.type and obj.value
     var query = [];
 
@@ -15,6 +15,9 @@ angular.module('read')
 
       getDocs : function () {
         return docList;
+      },
+      setDocs : function (docs) {
+        docList = docs;
       },
 
       followUser : function (userId, bool) {
@@ -56,7 +59,26 @@ angular.module('read')
         }
 
 
-        return PubDoc.list(query);
+
+        var d = PubDoc.list(query);
+        d.then(function (res) {
+          var toSkip = 0;
+          angular.forEach(query, function (q) {
+            if (q.type === 'skip') {
+              toSkip = q.value;
+            }
+          })
+          if (toSkip > 0) {
+
+            docList.docs = res.data.concat(docList.docs);
+          } else {
+            docList.docs = res.data;
+          }
+          docList.query = query;
+        });
+
+        return d;
+
       }      
 
     };

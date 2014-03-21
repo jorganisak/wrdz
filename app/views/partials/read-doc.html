@@ -50,26 +50,28 @@
         <br>
 
 
-        <div ng-hide='readDoc.is_anon' class='text-right' id="read-doc-right-fixed">
-            <span id="read-next-icon">
+        <div  class='text-right' id="read-doc-right-fixed">
+            <span ng-click='nextDoc(readDoc)' id="read-next-icon">
                 
                 <span class="icon ion-chevron-right"></span>
             </span>
-
-            <div id="read-doc-username">
-                <a href="">{{readDoc.author.username}}</a>
-            </div>
-            <div id="read-doc-followers">
-                {{readDoc.author.followers}}
-                <br>
-                <br>
-                {{readDoc.author.bio}}
-            </div>
-            <div ng-click='follow()' ng-hide='following' id="read-doc-follow-button">
-                Follow
-            </div>
-            <div ng-click='follow()' ng-show='following' id="read-doc-follow-button">
-                Unfollow
+            <div ng-hide='readDoc.is_anon'>
+                
+                <div id="read-doc-username">
+                    <a href="">{{readDoc.author.username}}</a>
+                </div>
+                <div id="read-doc-followers">
+                    {{readDoc.author.followers}}
+                    <br>
+                    <br>
+                    {{readDoc.author.bio}}
+                </div>
+                <div ng-click='follow()' ng-hide='following' id="read-doc-follow-button">
+                    Follow
+                </div>
+                <div ng-click='follow()' ng-show='following' id="read-doc-follow-button">
+                    Unfollow
+                </div>
             </div>
 
         </div>

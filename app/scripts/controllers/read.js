@@ -39,9 +39,6 @@ angular.module('read')
 
     $scope.$watch('$state.current.name', function (newValue) {
       if (newValue) {
-        console.log(newValue)
-
-
         angular.forEach($scope.tabs, function (tab) {
           if ($filter('lowercase')(tab.title) === newValue.slice(10)) {
             tab.active = true;
@@ -49,22 +46,52 @@ angular.module('read')
             tab.active = false;
           }
         })
-
-
       }
     })
 
-    $scope.docs = Read.getDocs();
-
-    $scope.$watch(Read.getDocs, function (newValue) {
-      if (newValue) {
-        $scope.docs = newValue;
-      }
-    });
+   
   }])
 
 
   .controller('ReadDocCtrl', ['$scope', 'Read', function ($scope, Read) {
+    function checkLength (docs, doc) {
+      var index = docs.indexOf(doc)
+      if (index < 3) {
+        loadMoreDocs(docs.length);
+      }
+    };
+
+    function loadMoreDocs (length) {
+      var oldQuery = Read.getDocs().query;
+      if (oldQuery.length > 2) {
+        oldQuery[2].value = length;
+      } else {
+
+        oldQuery.push({type:'skip', value: length}) ;
+      }
+      Read.updateQuery(oldQuery);      
+    };
+
+    function findNextDoc (doc) {
+      var id = doc._id;
+      var docs = Read.getDocs().docs;
+      var lastDoc;
+      angular.forEach(docs, function (doc) {
+        if (doc._id === id) {
+          checkLength(docs, doc);
+          if (lastDoc) {
+            $scope.$state.go('read.doc', {'docId':lastDoc._id});
+          }
+        } else {
+          lastDoc = doc;
+        }
+      })
+    }
+
+    $scope.nextDoc = function () {
+      findNextDoc($scope.readDoc);
+    };
+
 
     $scope.isHeart = function () {
       if ($scope.user.meta._hearts.indexOf($scope.readDoc._id) > -1) {
