@@ -61,19 +61,28 @@ config(['$stateProvider', '$urlRouterProvider',
               angular.forEach(User.getUser().following, function (user) {
                 a.push(user._id);
               });
+              if (!a.length) {
+                return false;
+              }
               return Read.updateQuery([{type:'following', 
                 value: a}, {type:'topics', value: ''}]);
             }
           }]
         },
         controller : ['$scope', 'docs','Read', '$stateParams', function ($scope, docs, Read, $stateParams) {
+          if (!docs) {
 
+          }
           $scope.$on('userChange', function (evt, user) {
             if (user && !$stateParams.userId) {
               var a = [];
               angular.forEach(user.following, function (user) {
                 a.push(user._id);
               });
+              console.log(a);
+              if (!a.length) {
+                $scope.docs = [];
+              }
               Read.updateQuery([{type:'following', 
                 value: ''}, {type:'topics', value: a}])
             }

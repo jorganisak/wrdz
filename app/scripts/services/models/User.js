@@ -40,6 +40,7 @@ angular.module('models')
         }      
       },
 
+      // Same as change user but no broadcast to rest of app
       setUser: function (user) {
         if (user) {
           currentUser = user;
