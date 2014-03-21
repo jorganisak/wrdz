@@ -62,6 +62,14 @@ angular.module('models')
         return $http.get('users/' + user_id);
       },
       
+      resetPassword : function (email, password) {
+        // body...
+        var res = {
+          email : email,
+          password : password
+        }
+        return $http.post('/reset', res);
+      },
 
       // Auth
 

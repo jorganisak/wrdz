@@ -154,12 +154,38 @@ config(['$stateProvider', '$urlRouterProvider',
 
      // Password reset
      .state('password_reset', {
-        url: '/password_reset',
-        // templateUrl: 'partials/password-reset.html',
-        resolve: ['$http', function ($http) {
-          $http.get('/password_reset').then(function (res) {
-            console.log(res);
-          });
+        url: '/password_reset?key',
+        templateUrl: 'partials/password-reset.html',
+        resolve: {
+          email :  ['$cookieStore', '$stateParams', function ($cookieStore, $stateParams) {
+            var cookie = $cookieStore.get('pwreset');
+            
+            if (cookie) {
+
+              var id = cookie.id.slice(0, -2);
+              var email = cookie.email;
+              var key = $stateParams.key;
+
+              if (id === key) {
+                $cookieStore.remove('pwreset');
+                return email;
+              }
+            }
+
+            return false;
+          }]
+        },
+
+        controller: ['$scope', 'email', 'User', '$state','$location', function ($scope, email, User, $state, $location) {
+          if (!email) {
+            $scope.emailFail = true;
+          }
+          console.log(email);
+          $scope.resetPass = function (newPass) {
+            User.resetPassword(email, newPass).then(function (res) {
+                $location.path('/w');                
+            });
+          }
         }]
      })
 

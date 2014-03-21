@@ -93,6 +93,30 @@ Does a few things:
               });
             }
           };
+
+
+          $scope.forgotPasswordModal = function () {
+            var modalInstance = $modal.open({
+              templateUrl: "partials/password-modal.html",
+              controller: ['$scope', '$modalInstance', '$http', '$cookieStore', function  ($scope, $modalInstance, $http, $cookieStore) {
+                $scope.close = function() {
+                  $modalInstance.close();
+                }; 
+
+                $scope.submitEmail = function (email) {
+                  $http.post('/forgot', {'email': email}).then(function (res) {
+                    $cookieStore.remove('pwreset');
+                    $cookieStore.put('pwreset', {
+                        id: res.data,
+                        email: email
+                      })
+
+                  })
+                  $scope.close();
+                }
+              }],
+            });
+          };
         }],
       });
     };
@@ -152,18 +176,22 @@ Does a few things:
     $scope.forgotPasswordModal = function () {
       var modalInstance = $modal.open({
         templateUrl: "partials/password-modal.html",
-        controller: ['$scope', '$modalInstance', '$http', function  ($scope, $modalInstance, $http) {
+        controller: ['$scope', '$modalInstance', '$http', '$cookieStore', function  ($scope, $modalInstance, $http, $cookieStore) {
           $scope.close = function() {
             $modalInstance.close();
           }; 
 
           $scope.submitEmail = function (email) {
-            $http.post('/forgot', {'email': email});
+            $http.post('/forgot', {'email': email}).then(function (res) {
+              $cookieStore.remove('pwreset');
+              $cookieStore.put('pwreset', {
+                  id: res.data,
+                  email: email
+                })
+
+            })
             $scope.close();
           }
-
-
-          
         }],
       });
     };

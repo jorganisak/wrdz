@@ -24,6 +24,7 @@
     
   <input class='form-control' type="password" class="medium-6 columns" ng-model="userSignIn.password" required placeholder="Password">
   </div>
+  <a ng-click='close(); forgotPasswordModal()' href="">Forgot your password?</a>
   
 
   <button type="submit" ng-disabled="signInForm.$invalid" class="btn btn-warning btn-jo">Log In</button>
