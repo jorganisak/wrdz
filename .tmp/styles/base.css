@@ -263,12 +263,11 @@ h1 {
   right: 5%;
   cursor: pointer;
   border-radius: 100px;
-
 }
 
 #read-next-icon:hover {
   background-color: rgba(39, 139, 255, 0.49);
-  color:white;
+  color: white;
 }
 
 .thin-modal {
