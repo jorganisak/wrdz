@@ -10,16 +10,56 @@
 <div id="mywrdz-body" ng-cloak class='row' ng-controller='MyWrdzCtrl'>
     <div class="col-sm-2 text-left">
         <div id="mywrdz-left">
-            <div class="row">
+
+            <div id="date-button-box">
+                <div class="row">
+                    <div class="col-sm-6">
+                        
+                        <button class="btn btn-sm btn-jo">Today</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-sm btn-jo">1 Week</button>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button class="btn btn-sm btn-jo">1 Month</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-sm btn-jo">Other</button>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="row mywrdz-date-box">
+                <div class="col-sm-6">0</div>
+                <div class="col-sm-6 date-box-arrows">
+                    
+                    <span class="icon pull-left ion-chevron-left"></span>
+                    <span class="icon pull-right ion-chevron-right"></span>
+                </div>
+            </div>
+            <div class="row mywrdz-date-box">
+                <div class="col-sm-6">Days</div>
+                <div class="col-sm-6 date-box-arrows">
+                    <span class="icon pull-left ion-chevron-left"></span>
+                    <span class="icon pull-right ion-chevron-right"></span>
+                </div>
+            </div>
+
+           <!--  <div class="row">
                 <div class="col-sm-1 icon ion-calendar"></div>
                 <div class="col-sm-9">
+
 
                     <input type="text" class="form-control" show-button-bar='false' datepicker-popup="dd-MMMM-yy" max="today" show-weeks='false' ng-model="dt" is-open="opened" ng-required="true" close-text="Close" />
                 </div>
             </div>
             <br>
 
-            <label for="">Filter:</label>&nbsp;&nbsp;&nbsp;
+            <label for="">Filter:</label>&nbsp;&nbsp;&nbsp; -->
 
             <div class="btn-group filter-button-group">
                 <button type="button" class="btn btn-default  btn-sm" ng-model="filterModel" btn-radio="'All'">All</button>

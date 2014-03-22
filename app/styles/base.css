@@ -2,6 +2,39 @@
   color: black;
 }
 
+.mywrdz-date-box {
+  margin: 10px 0px;
+  border: solid 1px silver;
+  padding: 6px 10px;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 3px;
+}
+
+#date-button-box > .row > .col-sm-6 {
+  padding: 0px;
+  margin: 0px;
+}
+
+#date-button-box > .row {
+  margin: 0px;
+  padding: 0px;
+  
+}
+
+#date-button-box > .row > .col-sm-6 > .btn-jo {
+  margin: 0px !important;
+}
+.date-box-arrows {
+  padding-top: 4px;
+}
+
+.date-box-arrows > .icon {
+  opacity: 0.5;
+}
+
+.date-box-arrows > .icon:hover {
+  opacity: 1;
+}
 #read-list-arrows {
   padding: 10px;
   /* margin-top: 10px; */
