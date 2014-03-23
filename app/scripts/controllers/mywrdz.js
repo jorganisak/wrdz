@@ -25,10 +25,72 @@ angular.module('myWrdz')
 
     $scope.isCollapsed = true;
 
+    var dtTypes = ['Days', 'Weeks', 'Months'];
+
+    $scope.dtCount = 0;
+    $scope.dtType = 'Days';
+
+    $scope.increaseCount = function () {
+      $scope.dtCount++;
+    };
+
+
+    $scope.decreaseCount = function () {
+      if ($scope.dtCount !== 0) {
+        $scope.dtCount--;
+      }
+    };
+
+    $scope.increaseType = function () {
+      var index = dtTypes.indexOf($scope.dtType);
+      if (index === dtTypes.length -1) {
+        $scope.dtType = dtTypes[0];
+      } else {
+        $scope.dtType = dtTypes[index + 1];
+      }
+    };
+    $scope.decreaseType = function () {
+      var index = dtTypes.indexOf($scope.dtType);
+      if (index === 0) {
+        $scope.dtType = dtTypes[dtTypes.length - 1];
+      } else {
+        $scope.dtType = dtTypes[index - 1];
+      }
+    };
+
+    $scope.getDtOther = function  () {
+      var num = $scope.dtCount;
+      var type = $scope.dtType;
+      console.log(num)
+      console.log(type)
+      if (type === 'Days') {
+        $scope.dt = $scope.today - (86400000 * num);
+      }
+      if (type === 'Weeks') {
+
+        $scope.dt = $scope.today - (604800000 * num);
+      }
+      if (type === 'Months') {
+        $scope.dt = $scope.today - (2629740000 * num);
+      }
+    };
+
+    $scope.$watch('dtCount', function (newValue) {
+      if (newValue) {
+        $scope.getDtOther();
+      }
+    });
+
+    $scope.$watch('dtType', function (newValue) {
+      if (newValue) {
+        $scope.getDtOther();
+      }
+    });
 
     $scope.$watch('dt', function (newValue) {
       if (newValue) {
-        MyWrdz.updateQuery('date', newValue.getTime() + 43000000)
+        console.log('updating date: ' +  newValue)
+        MyWrdz.updateQuery('date', newValue + 43000000)
       }
     });
     $scope.$watch('filterModel', function (newValue) {
@@ -49,15 +111,6 @@ angular.module('myWrdz')
         }
       }
     });
-
-
-
-    // // $scope.sortModel = "Date";
-    // $scope.$watch('sortModel', function (newValue) {
-    //   if (newValue) {
-    //     MyWrdz.updateQuery('sort', newValue);
-    //   }
-    // })
 
     if ($scope.user) {
       MyWrdz.setList($scope.user._userDocs);

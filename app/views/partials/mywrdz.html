@@ -14,12 +14,10 @@
             <div id="date-button-box">
                 <div class="row">
                     <div class="col-sm-6">
-                        
                         <button class="btn btn-sm btn-jo">Today</button>
                     </div>
                     <div class="col-sm-6">
                         <button class="btn btn-sm btn-jo">1 Week</button>
-                        
                     </div>
                 </div>
                 <div class="row">
@@ -27,25 +25,26 @@
                         <button class="btn btn-sm btn-jo">1 Month</button>
                     </div>
                     <div class="col-sm-6">
-                        <button class="btn btn-sm btn-jo">Other</button>
+                        <button ng-click='isCollapsed = !isCollapsed' class="btn btn-sm btn-jo">Other</button>
                     </div>
                 </div>
                 
             </div>
-
-            <div class="row mywrdz-date-box">
-                <div class="col-sm-6">0</div>
-                <div class="col-sm-6 date-box-arrows">
-                    
-                    <span class="icon pull-left ion-chevron-left"></span>
-                    <span class="icon pull-right ion-chevron-right"></span>
+            <div collapse='isCollapsed'>
+                <div class="row mywrdz-date-box">
+                    <div class="col-sm-6">{{dtCount}}</div>
+                    <div class="col-sm-6 date-box-arrows">
+                        
+                        <span ng-click="decreaseCount()" class="icon pull-left ion-chevron-left"></span>
+                        <span ng-click="increaseCount()" class="icon pull-right ion-chevron-right"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row mywrdz-date-box">
-                <div class="col-sm-6">Days</div>
-                <div class="col-sm-6 date-box-arrows">
-                    <span class="icon pull-left ion-chevron-left"></span>
-                    <span class="icon pull-right ion-chevron-right"></span>
+                <div class="row mywrdz-date-box">
+                    <div class="col-sm-6">{{dtType}}</div>
+                    <div class="col-sm-6 date-box-arrows">
+                        <span ng-click="decreaseType()" class="icon pull-left ion-chevron-left"></span>
+                        <span ng-click="increaseType()" class="icon pull-right ion-chevron-right"></span>
+                    </div>
                 </div>
             </div>
 

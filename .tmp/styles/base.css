@@ -23,6 +23,8 @@
 
 #date-button-box > .row > .col-sm-6 > .btn-jo {
   margin: 0px !important;
+  border-radius: 0px;
+  
 }
 .date-box-arrows {
   padding-top: 4px;
@@ -30,6 +32,7 @@
 
 .date-box-arrows > .icon {
   opacity: 0.5;
+  cursor: pointer;
 }
 
 .date-box-arrows > .icon:hover {
