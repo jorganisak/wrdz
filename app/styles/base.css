@@ -2,9 +2,15 @@
   color: black;
 }
 
+hr {
+  padding: 0px;
+  margin: 20px 50px 30px 50px;
+  border-color: rgb(231, 231, 235);
+}
+
 #publish-doc {
   position: absolute;
-  bottom: -21%;
+  bottom: -20px;
   width: 23%;
   right: 2%;
   opacity: 0.3;
@@ -24,9 +30,11 @@
   opacity: 0.7;
 }
 
-#landing-copy > p {
-  font-size: 1.5em;
+#landing-copy > div > p {
+  font-size: 1.2em;
+  font-family: 'Open Sans', sans-serif !important;
   padding-left: 5px;
+  padding-right: 0px;
 }
 
 .mywrdz-date-box {
@@ -639,12 +647,14 @@ blockquote {
 }
 
 #header {
+  width: 100%;;
   text-align: center;
   position: absolute;
   left: 0%;
-  width: 100%;
-  padding: 0 100px;
-  height: 39px; margin-bottom: 20px; background-color: rgb(252, 252, 252); z-index: 1000;
+  padding: 0 6%;
+  height: 67px; 
+  z-index: 110;
+  margin-bottom: 20px; background-color: rgb(252, 252, 252); 
 }
 
 #header:hover {
@@ -783,7 +793,7 @@ blockquote {
 h4 {
   font-family: 'Source Sans Pro', sans-serif;
   /* font-style: italic; */
-  /* font-weight: 600; */
+  font-weight: 800;
   line-height: 1.5em;
   /* opacity: 0.9; */
   font-size: 1.7em;
@@ -914,25 +924,26 @@ li {
 }
 
 #write-title {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Pt Sans Narrow', sans-serif;
   /* font-family: "Alegreya Sans", sans-serif; */
-  font-size: 3.5rem;
+  font-size: 4.5rem;
   text-align: left;
-  /* letter-spacing: 0.8px; */
+  text-align: center;
+  letter-spacing: 0.1px;
   line-height: 1;
   outline: none;
   transition: all 1000ms ease;
   border: none;
   border-bottom: 1px rgba(224, 224, 224, 1);
   cursor: text;
-  padding: 0px 15px 13px 15px;
-  font-weight: 600;
+  padding: 0px 15px 0px 15px;
+  /* font-weight: 600; */
   /* opacity: 0.82; */
   /* font-style: italic; */
   clear: both;
   color: rgb(34, 34, 39);
   /* text-shadow: -1px 0px 0px rgb(194, 194, 194); */
-  border-bottom-style: solid;
+  /* border-bottom-style: solid; */
 }
 
 #read-list-left > .jo-tabset {
@@ -1083,6 +1094,7 @@ h3 {
   font-size: 0.9em;
   font-style: italic;
   opacity: 0.8;
+  font-weight: 100;
 }
 
 .profile-list-item {
