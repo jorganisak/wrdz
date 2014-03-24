@@ -2,6 +2,33 @@
   color: black;
 }
 
+#publish-doc {
+  position: absolute;
+  bottom: -21%;
+  width: 23%;
+  right: 2%;
+  opacity: 0.3;
+  transition: all 200ms linear;
+  font-size: 0.81em;
+}
+
+#publish-doc:hover {
+  opacity: 1;
+  background-color: whitesmoke;
+  color: black;
+  border-color: black;
+}
+
+.archive-button:hover {
+  color: red;
+  opacity: 0.7;
+}
+
+#landing-copy > p {
+  font-size: 1.5em;
+  padding-left: 5px;
+}
+
 .mywrdz-date-box {
   margin: 10px 0px;
   border: solid 1px silver;
@@ -15,17 +42,29 @@
   margin: 0px;
 }
 
+.archive-button {
+  font-size: 0.8em;
+  opacity: 0.2;
+  cursor: pointer;
+  padding: 5px 5px 10px 5px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.archive-button > .icon {
+  font-size: 1.5em;
+  /* margin-bottom: -10px; */
+}
+
 #date-button-box > .row {
   margin: 0px;
   padding: 0px;
-  
 }
 
 #date-button-box > .row > .col-sm-6 > .btn-jo {
   margin: 0px !important;
   border-radius: 0px;
-  
 }
+
 .date-box-arrows {
   padding-top: 4px;
 }
@@ -38,6 +77,7 @@
 .date-box-arrows > .icon:hover {
   opacity: 1;
 }
+
 #read-list-arrows {
   padding: 10px;
   /* margin-top: 10px; */
@@ -106,8 +146,9 @@
   width: 100% !important;
   padding-top: 8px !important;
   height: 38px !important;
-  background-color: rgb(202, 230, 255) !important;
-  color: white !important;
+  background-color: rgb(236, 246, 255) !important;
+  color: rgb(189, 189, 189) !important;
+  /* font-size: 1em !important; */
 }
 
 .share-button.sharer-0 .social.active.center {
@@ -292,19 +333,18 @@ h1 {
 #read-next-icon {
   color: rgb(195, 206, 218);
   position: absolute;
-  font-size: 2em;
+  font-size: 1.5em;
   transition: all 400ms ease-in-out;
   top: -60%;
-  padding: 8px 18px 6px 22px;
+  padding: 8px 15px 6px 19px;
   right: 5%;
   cursor: pointer;
   border-radius: 100px;
-
 }
 
 #read-next-icon:hover {
   background-color: rgba(39, 139, 255, 0.49);
-  color:white;
+  color: white;
 }
 
 .thin-modal {
@@ -603,7 +643,8 @@ blockquote {
   position: absolute;
   left: 0%;
   width: 100%;
-  height: 90px;
+  padding: 0 100px;
+  height: 39px; margin-bottom: 20px; background-color: rgb(252, 252, 252); z-index: 1000;
 }
 
 #header:hover {
@@ -803,8 +844,7 @@ h4 {
   /* border-color: rgb(0, 255, 128); */
 }
 
-.btn-jo:hover,
-.btn-jo:focus {
+.btn-jo:hover {
   background-color: rgb(74, 165, 255);
   outline: none;
   /* box-shadow: inset 0px 0px 2px 0px rgb(190, 190, 190); */
@@ -841,7 +881,7 @@ li {
   border-radius: 0px;
   max-width: 684px;
   margin: 10px auto 30% auto;
-  /* position: relative; */
+  position: relative;
   text-align: left;
   background: linear-gradient(rgba(247, 243, 241, 0.05), rgba(255, 251, 245, 0.28), rgba(248, 248, 248, 0.44));
 }
@@ -1025,6 +1065,7 @@ h3 {
 
 .me-list-item {
   height: 100%;
+  position: relative;
   margin-bottom: 0px;
   padding: 10px 13px;
   cursor: pointer;

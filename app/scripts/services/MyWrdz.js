@@ -33,6 +33,10 @@
           docList = list;
         },
 
+        archive : function (docId) {
+          UserDoc.update(docId, 'archive', true);
+        },
+
         updateQuery : function (type, value) {
           var flag = true;
           for (var i=0; i<query.length;i++) {

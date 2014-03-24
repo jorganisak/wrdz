@@ -15,6 +15,14 @@
                 
                 <button ng-click='newDoc()' class='btn btn-jo'><span class="ion-compose icon"></span> &nbsp;New</button>   
 
+               <button class='btn-jo' ng-click='openTopicModal()'>
+                
+                <span class="ion-pricetags icon"></span> &nbsp;Topics
+
+                </button>
+                <span ng-repeat='topic in currentDoc.topics'>
+                    <span class='label label-primary tag-label'>{{topic.title}}</span>
+                </span>
                 <div ng-if='currentDoc.is_published' id="write-pub-info" class='panel text-center panel-default'>
 
                     <em ng-show='currentDoc.pub_doc.is_visible'>Public</em>
@@ -62,17 +70,6 @@
                     </div>
 
                 </div>
-
-                <button class='btn-jo' ng-hide='currentDoc.is_published' ng-click='openPublishModal()'><span class="ion-eye icon"></span> &nbsp;Post</button>
-               
-               <button class='btn-jo' ng-click='openTopicModal()'>
-                
-                <span class="ion-pricetags icon"></span> &nbsp;Topics
-
-                </button>
-                <span ng-repeat='topic in currentDoc.topics'>
-                <span class='label label-primary tag-label'>{{topic.title}}</span>
-            </span>
        
             </div>
 
@@ -106,6 +103,10 @@
                 <div ng-keydown='bodyChange()' medium-editor options="{{mediumEditorOptionsBody}}" ng-model='currentDoc.body'  class='' id="write-content">
 
                 </div>
+
+                <button ng-hide='currentDoc.is_published' ng-click='openPublishModal()' class='btn btn-jo' id="publish-doc">
+                    Spread the wrd.
+                </button>
   
             </div>
 

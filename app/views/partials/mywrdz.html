@@ -8,21 +8,21 @@
 </div>
 
 <div id="mywrdz-body" ng-cloak class='row' ng-controller='MyWrdzCtrl'>
-    <div class="col-sm-2 text-left">
+    <div class="col-sm-2 text-center">
         <div id="mywrdz-left">
 
             <div id="date-button-box">
                 <div class="row">
                     <div class="col-sm-6">
-                        <button class="btn btn-sm btn-jo">Today</button>
+                        <button ng-click='setToday()' class="btn btn-sm btn-jo">Today</button>
                     </div>
                     <div class="col-sm-6">
-                        <button class="btn btn-sm btn-jo">1 Week</button>
+                        <button ng-click="dtCount = 1; dtType = 'Weeks'" class="btn btn-sm btn-jo">1 Week</button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        <button class="btn btn-sm btn-jo">1 Month</button>
+                        <button ng-click="dtCount = 1; dtType = 'Months'" class="btn btn-sm btn-jo">1 Month</button>
                     </div>
                     <div class="col-sm-6">
                         <button ng-click='isCollapsed = !isCollapsed' class="btn btn-sm btn-jo">Other</button>
@@ -46,38 +46,16 @@
                         <span ng-click="increaseType()" class="icon pull-right ion-chevron-right"></span>
                     </div>
                 </div>
-            </div>
-
-           <!--  <div class="row">
-                <div class="col-sm-1 icon ion-calendar"></div>
-                <div class="col-sm-9">
-
-
-                    <input type="text" class="form-control" show-button-bar='false' datepicker-popup="dd-MMMM-yy" max="today" show-weeks='false' ng-model="dt" is-open="opened" ng-required="true" close-text="Close" />
-                </div>
-            </div>
-            <br>
-
-            <label for="">Filter:</label>&nbsp;&nbsp;&nbsp; -->
+            </div>     
 
             <div class="btn-group filter-button-group">
-                <button type="button" class="btn btn-default  btn-sm" ng-model="filterModel" btn-radio="'All'">All</button>
-                <button type="button" class="btn btn-default btn-sm" ng-model="filterModel" btn-radio="'Public'">Public</button>
+                <button type="button" class="btn btn-default btn-sm" ng-model="filterModel" btn-radio="'All'">All</button>
+                <button type="button" class="btn btn-default btn-sm " ng-model="filterModel" btn-radio="'Public'">Public</button>
                 <button type="button" class="btn btn-default btn-sm" ng-model="filterModel" btn-radio="'Private'">Private</button>
             </div>
-            <br>
-            <br>
-<!--             <label for="">Sort:</label>&nbsp;&nbsp;&nbsp;
-
-            <div class="btn-group filter-button-group ">
-                <button type="button" class="btn btn-default btn-sm" ng-model="sortModel" btn-radio="'Date'">Date</button>
-                <button type="button" class="btn btn-default btn-sm" ng-model="sortModel" btn-radio="'Popularity'">Popularity</button>
-            </div>
-            <br>
-            <br> -->
         
             <button type="button" class="btn btn-jo btn-sm dropdown-toggle" data-toggle="dropdown">
-                <span class="icon ion-pricetags"></span>&nbsp;&nbsp;Filter Topics&nbsp;&nbsp;<span class="caret"></span>
+                <span class="icon ion-pricetags"></span>&nbsp;&nbsp;Filter&nbsp;&nbsp;<span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
                 <li  ng-repeat="topic in topicOptions | orderBy: '-count'">
@@ -86,12 +64,14 @@
                     </a>
                 </li>
             </ul>
-
+    
             <div class="row">
                <span ng-repeat="top in topicsModel">
                     <span class="label label-primary tag-label">{{top.title}} <span ng-click='removeTopic(top)' class="icon tag-remove-x ion-close"></span></span>
                 </span>
             </div>
+
+       
         </div>
     </div>
 
@@ -100,7 +80,7 @@
         <div id='me-middle' class="col-sm-10 col-sm-offset-1 col-xs-12">
             
             <accordion close-others="true">
-                <div ng-repeat="doc in docList | orderBy: '-updated_at'">
+                <div style="position: relative;" ng-repeat="doc in docList | orderBy: '-updated_at'">
                     
 
                     <accordion-group  ng-click='switchDoc(doc)' ng-dblclick='openDocInWrite(doc)' class="me-list-item">
@@ -121,9 +101,12 @@
                         </accordion-heading>
 
                         <div ng-bind-html='doc.body' id="mywrdz-doc-show-body"></div>
-
-                        
                     </accordion-group>
+
+
+
+                    
+
                 </div>
             </accordion>
         <div class="page-arrow text-center">
@@ -199,6 +182,17 @@
             <span ng-repeat='topic in showDoc.topics'>
                 <span class='label label-primary tag-label'>{{topic.title}}</span>
             </span>
+
+            <div ng-click='archive(showDoc._id)' class="archive-button">
+                <span>
+                    
+                    Archive
+                </span>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                <span class="icon ion-ios7-filing-outline"></span>
+            </div>
         </div>
 
     </div>

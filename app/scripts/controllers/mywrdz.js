@@ -93,11 +93,6 @@ angular.module('myWrdz')
         MyWrdz.updateQuery('date', newValue + 43000000)
       }
     });
-    $scope.$watch('filterModel', function (newValue) {
-      if (newValue) {
-        MyWrdz.updateQuery('filter', newValue);
-      }
-    });
 
     $scope.$watchCollection('topicsModel', function (newValue) {
       if (newValue) {
@@ -105,10 +100,7 @@ angular.module('myWrdz')
         for (var i=0; i<newValue.length; i++) {
           send.push(newValue[i].topicId);
         }
-        if (send.length > 0) {
-          console.log(send)
-          MyWrdz.updateQuery('topics', send);
-        }
+      MyWrdz.updateQuery('topics', send);
       }
     });
 
@@ -142,12 +134,17 @@ angular.module('myWrdz')
     }
 
     $scope.removeTopic = function (topic) {
-      $scope.topicsModel.splice($scope.topicsModel.indexOf(topic), 1);
+      $scope.topicsModel.splice($scope.topicsModel.indexOf(topic._id), 1);
+      console.log($scope.topicsModel)
     }
 
     $scope.openDocInWrite = function (doc) {
       $scope.user.current_doc = doc;
       $state.go('write');
+    };
+
+    $scope.archive = function (docId) {
+      MyWrdz.archive(docId);
     };
 
 
