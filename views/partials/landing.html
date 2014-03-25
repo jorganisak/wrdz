@@ -1,55 +1,75 @@
-<div ng-hide="user" class="text-center row">
+<div ng-hide="user" id="landing-body" class="text-center row">
   <br>
   <br>
   <div class="container">
     
     <div class="row">
-      <div class="col-sm-7 text-left">
-        
-        <h1>Wrdz</h1>
-        <br>
-        <p>This is a place for you to write. </p>
-        <p>It is a tool for unloading your daily thoughts.</p>
-        <p>If you want, you can share these ideas with the world.</p>
-        <p><a ui-sref="read.list.front">Read what people are writing now.</a></p>
+
+      <div class="col-sm-10 col-sm-offset-1">
+      <div id="landing-copy" class="col-sm-6 text-left">
+          
+          <h1>wrdz</h1>
+          <br>
+          <p>Ben Franklin did it, so did . </p>
+          <p>It is a tool for unloading your daily thoughts.</p>
+          <p>If you want, you can share these ideas with the world.</p>
+          <p><a ui-sref="read.list.front">Read what people are writing now.</a></p>
+
       </div>
-      <div class="col-sm-5">
-          <div class="well">
-            
-            <p>Start Writing Today</p>
-            <form name="signUpForm" role="form" ng-submit="signup(userSignUp)" novalidate="">
-              {{message}}
-              <div class="text-left form-group">
-                
-                <label for="username">Username</label>
-              <input class="form-control" id="username" type="text" class="medium-6 columns" ng-model="userSignUp.username" required="" placeholder="">
-              </div>
-              <div class="text-left form-group">
-                <label for="email">Email</label>
-              <input class="form-control" id="email" type="email" class="medium-6 columns" ng-model="userSignUp.email" required="" placeholder="">
-              </div>
-
-
-              <div class="text-left form-group">
-                <label for="password">Password</label>
-                
-              <input class="form-control" id="password" type="password" class="medium-6 columns" ng-model="userSignUp.password" required="" placeholder="">
-              </div>
-
+      <div class="col-sm-6">
+          <div id="landing-form">
+            <div class="well">
               
+              <p ng-hide="local_auth_form">Start your wordly journey.</p>
+              
+              <a ng-hide="local_auth_form" target="_blank" href="/auth/twitter">
+                <br>
 
-              <button type="submit" ng-disabled="signUpForm.$invalid" class="btn btn-jo">Join Wrdz</button>
+                <div id="landing-twitter-signup">
+                 <span class="icon ion-social-twitter"></span> &nbsp; Sign in with Twitter 
+                </div>
+
+              </a>
+
+              <div ng-show="local_auth_form">
+                
+                <form name="signUpForm" role="form" ng-submit="signup(userSignUp)" novalidate="">
+                  {{message}}
+                  <div class="text-left form-group">
+                    
+                    <label for="username">Choose a username</label>
+                  <input class="form-control" id="username" type="text" class="medium-6 columns" ng-model="userSignUp.username" required="" placeholder="">
+                  </div>
+                  <div class="text-left form-group">
+                    <label for="email">Your email</label>
+                  <input class="form-control" id="email" type="email" class="medium-6 columns" ng-model="userSignUp.email" required="" placeholder="">
+                  </div>
 
 
-            </form>      
+                  <div class="text-left form-group">
+                    <label for="password">Password</label>
+                    
+                  <input class="form-control" id="password" type="password" class="medium-6 columns" ng-model="userSignUp.password" required="" placeholder="">
+                  </div>
+
+                  <button type="submit" ng-disabled="signUpForm.$invalid" class="btn btn-jo">Join Wrdz</button>
+                </form>      
+              </div>
+
+            </div>
+            <a ng-show="local_auth_form" ng-click="launchLogIn()" class="pull-right">Log In</a>            
+            <a ng-show="local_auth_form" ng-click="local_auth_form = !local_auth_form" class="pull-left" href="">Cancel</a>
+            <a ng-hide="local_auth_form" ng-click="local_auth_form = !local_auth_form" class="pull-right">I prefer email.</a>
+            
           </div>
           
         
         
 
         
-            <a ng-click="launchLogIn()" class="pull-right">Log In</a>
+          
       </div>
+    </div>
     </div>
   </div>
 

@@ -1,9 +1,9 @@
 <div ng-controller="ReadDocCtrl" id="read-doc-body">
 
-
-
-    <div class="col-sm-8 col-sm-offset-2 read-doc-center">
-
+    <div class="col-sm-2">
+        <div ng-click="goBack()" id="read-doc-back">
+            <span class="icon ion-arrow-return-left"></span>
+        </div>
         <div id="read-doc-left-fixed">
 
             <div ng-class="active1" ng-click="up_vote()" class="read-doc-arrow">
@@ -16,45 +16,56 @@
                 <span class="pull-right read-doc-left-text">{{readDoc.hearts}}</span>
 
             </div>
-
-            <share-button></share-button>
-
-        </div>
-        <div class="row">
-
-
-            <div id="read-doc-section-label" class="col-sm-8 text-left pull-left">            
-
-                <span ng-repeat="topic in readDoc.topics">
-                    <span ui-sref="read.list.topics({topicId: topic._id})" class="label label-primary tag-label">{{topic.title}}</span>
-                </span>
-            </div>    
-
-        </div>
-
-        <div ng-show="readDoc.doc.has_title" class="text-center read-title">
-            {{readDoc.doc.title}}
-            <hr>
-        </div>
-        <div ng-hide="readDoc.doc.has_title" class="">
-            <br>
-        </div>
-
-
-        <div ng-bind-html="readDoc.doc.body" class="read-doc-content">
-
-        </div>
-
-        <br>
-        <em>{{moment(readDoc.published_at).format('MMMM D, YYYY')}}</em>
-        <br>
-
-
-        <div class="text-right" id="read-doc-right-fixed">
-            <span ng-click="nextDoc(readDoc)" id="read-next-icon">
+            <div class="read-doc-tweet">
                 
-                <span class="icon ion-chevron-right"></span>
-            </span>
+                <span class="icon ion-social-twitter"></span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-sm-8">
+        <div class="read-doc-center">
+            
+            <div class="row">
+
+
+                <div id="read-doc-section-label" class="col-sm-8 text-left pull-left">            
+
+                    <span ng-repeat="topic in readDoc.topics">
+                        <span ui-sref="read.list.topics({topicId: topic._id})" class="label label-primary tag-label">{{topic.title}}</span>
+                    </span>
+                </div>    
+
+            </div>
+
+            <div ng-show="readDoc.doc.has_title" class="text-center read-title">
+                {{readDoc.doc.title}}
+                <hr>
+            </div>
+            <div ng-hide="readDoc.doc.has_title" class="">
+                <br>
+            </div>
+
+
+            <div ng-bind-html="readDoc.doc.body" class="read-doc-content">
+
+            </div>
+
+            <br>
+            <em>{{moment(readDoc.published_at).format('MMMM D, YYYY')}}</em>
+            <br>
+
+
+        </div>
+
+    </div>
+    <div class="col-sm-2">
+        <span ng-click="nextDoc(readDoc)" id="read-next-icon">
+            
+            <span class="icon ion-chevron-right"></span>
+        </span>
+        <div class="text-right" id="read-doc-right-fixed">
             <div ng-hide="readDoc.is_anon">
                 
                 <div id="read-doc-username">
@@ -75,8 +86,6 @@
             </div>
 
         </div>
-    </div>
-    <div class="col-sm-2">
 
     </div>
 

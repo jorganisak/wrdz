@@ -1,6 +1,7 @@
 .btn-jo > .ion-compose {
   color: black;
 }
+
 #wrdz-headline:hover {
   opacity: 0.9;
 }
@@ -52,14 +53,15 @@
   font-size: 1.2em;
   transition: all 200ms ease-in-out;
 }
+
 #landing-twitter-signup:hover {
-    background-color: rgb(50, 139, 255);
+  background-color: rgb(50, 139, 255);
   color: white;
   text-decoration: none;
-
 }
+
 #landing-form >div > a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .read-doc-tweet {

@@ -1,36 +1,60 @@
-<div class="modal-header">
+<!--   <div class="modal-header">
     <h3>Join Wrdz</h3>
 </div>
-
+ -->
 <div class="modal-body thin-modal">
-  <p>In a year, you'll wish you started today.</p>
-<!-- 
-<a ng-click='twitter()'>Twitter</a> -->
+  <h3>Ahoy Captain! </h3>
+  <p>Start your wordly journey.</p>
 
-<form name="signUpForm" role="form" ng-submit="signup(userSignUp)" novalidate="">
+
+<div id="landing-form">
+  <div class="">
+        
+    <a ng-hide="local_auth_form" target="_blank" href="/auth/twitter">
+      <br>
+
+      <div id="landing-twitter-signup">
+       <span class="icon ion-social-twitter"></span> &nbsp; Sign in with Twitter 
+      </div>
+
+    </a>
+
+    <div ng-show="local_auth_form">
+      
+      <form name="signUpForm" role="form" ng-submit="signup(userSignUp)" novalidate="">
+        <p>
+          
+          {{message}}
+        </p>
+        <div class="text-left form-group">
+          
+          <label for="username">Choose a username</label>
+        <input class="form-control" id="username" type="text" class="medium-6 columns" ng-model="userSignUp.username" required="" placeholder="">
+        </div>
+        <div class="text-left form-group">
+          <label for="email">Email</label>
+        <input class="form-control" id="email" type="email" class="medium-6 columns" ng-model="userSignUp.email" required="" placeholder="">
+        </div>
+
+
+        <div class="text-left form-group">
+          <label for="password">Password</label>
+          
+        <input class="form-control" id="password" type="password" class="medium-6 columns" ng-model="userSignUp.password" required="" placeholder="">
+        </div>
+
+        <button type="submit" ng-disabled="signUpForm.$invalid" class="btn btn-jo">Join Wrdz</button>
+      </form>      
+    </div>
+
+  </div>
   <br>
-  {{message}}
-  <div class="text-left form-group">
-    
-    <label for="username">Username</label>
-  <input class="form-control" id="username" type="text" class="medium-6 columns" ng-model="userSignUp.username" required="" placeholder="">
-  </div>
-  <div class="text-left form-group">
-    <label for="email">Email</label>
-  <input class="form-control" id="email" type="email" class="medium-6 columns" ng-model="userSignUp.email" required="" placeholder="">
-  </div>
-
-
-  <div class="text-left form-group">
-    <label for="password">Password</label>
-    
-  <input class="form-control" id="password" type="password" class="medium-6 columns" ng-model="userSignUp.password" required="" placeholder="">
-  </div>
+  <a ng-show="local_auth_form" ng-click="launchLogIn()" class="pull-right">Log In</a>            
+  <a ng-show="local_auth_form" ng-click="local_auth_form = !local_auth_form" class="pull-left" href="">Cancel</a>
+  <a ng-hide="local_auth_form" ng-click="local_auth_form = !local_auth_form" class="pull-right">I prefer email.</a>
+  <br>
   
-
-  <button type="submit" ng-disabled="signUpForm.$invalid" class="btn btn-jo">Sign Up</button>
-
-
-</form>      
+</div>
+  
 
 </div>
