@@ -121,8 +121,7 @@
 
     <div class="col-sm-2 pull-right text-right">
         <div id='mywrdz-right' ng-if='showDoc'>
-            
-            <button ng-click='openDocInWrite(showDoc)' class="btn btn-jo">Open</button>
+          
             <div ng-show='showDoc.is_published' id='mywrdz-pub-info' class="row">
                 
 
@@ -174,23 +173,30 @@
 
                 </div>
             </div>
-
-            <button class='btn-jo btn btn-sm' ng-click='openTopicModal()'>
-                <span class="ion-pricetags icon"></span> &nbsp;Topics
-            </button>
+              <div class="row">
+                <div class="col-sm-5 pull-right">
+                    
+                    <button tooltip-placement="left" tooltip="Open" ng-click='openDocInWrite(showDoc)' class="btn btn-jo">
+                        <span class="icon ion-compose"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="pull-right col-sm-5">
+                    
+                    <button tooltip-placement="left" tooltip="Topics" class='btn-jo btn btn-sm' ng-click='openTopicModal()'>
+                        <span class="ion-pricetags icon"></span>
+                    </button>
+                </div>
+            </div>
 
             <span ng-repeat='topic in showDoc.topics'>
                 <span class='label label-primary tag-label'>{{topic.title}}</span>
             </span>
 
-            <div ng-click='archive(showDoc._id)' class="archive-button">
-                <span>
-                    
-                    Archive
-                </span>
-                &nbsp;
-                &nbsp;
-                &nbsp;
+            <div  tooltip-placement="left" tooltip="Archive" ng-click='archive(showDoc._id)' class="archive-button">
+                
+
                 <span class="icon ion-ios7-filing-outline"></span>
             </div>
         </div>

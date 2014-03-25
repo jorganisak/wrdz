@@ -2,17 +2,46 @@
   color: black;
 }
 
+#archive-text {
+  font-size: 1.2em;
+  padding-right: 20px;
+  padding-top: 18px;
+}
 
+#landing-twitter-signup {
+  padding: 10px;
+  background-color: rgb(230, 230, 230);
+  border-radius: 7px;
+  color: rgb(87, 151, 255);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2em;
+  transition: all 200ms ease-in-out;
+}
+#landing-twitter-signup:hover {
+    background-color: rgb(50, 139, 255);
+  color: white;
+  text-decoration: none;
+
+}
+#landing-form >div > a {
+    text-decoration: none;
+}
 
 .read-doc-tweet {
-  padding: 10px 21%;
+  padding: 6px 21%;
   text-align: center;
   transition: all .2s linear;
   cursor: pointer;
   opacity: 0.2;
   height: 40px;
   margin-bottom: 20px;
-  font-size: 2em;
+  font-size: 1.8em;
+}
+
+#landing-form {
+  max-width: 300px;
+  position: relative;
+  margin: 10% auto;
 }
 
 .read-doc-tweet:hover {
@@ -20,8 +49,13 @@
   opacity: 1;
 }
 
+.dropdown-menu > li {
+  margin-bottom: 0px;
+  font-size: 16px;
+}
+
 li {
-  margin-bottom: 10px;
+  margin-bottom: 3px;
   font-family: 'Lusitana', sans-serif;
   font-size: 19px;
 }
@@ -56,7 +90,7 @@ hr {
   opacity: 1;
   background-color: whitesmoke;
   color: black;
-  border-color: black;
+  border-color: rgb(190, 211, 232);
 }
 
 .archive-button:hover {
@@ -87,14 +121,17 @@ hr {
 .archive-button {
   font-size: 0.8em;
   opacity: 0.2;
+  width: 40px;
   cursor: pointer;
-  padding: 5px 5px 10px 5px;
+  padding: 5px 10px;
   font-family: 'Open Sans', sans-serif;
+  float: right;
 }
 
 .archive-button > .icon {
-  font-size: 1.5em;
-  /* margin-bottom: -10px; */
+  font-size: 1.7em;
+  padding-top: 2px;
+  padding-right: 5px;
 }
 
 #date-button-box > .row {
@@ -226,7 +263,8 @@ hr {
 }
 
 .well > p {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.5em;
 }
 
 h1 {
@@ -240,13 +278,13 @@ h1 {
   left: 0%;
   opacity: 0.6;
   cursor: pointer;
-  padding: 16px;
+  padding: 3px 10px;
   transition: all 200ms linear;
   z-index: 5000;
 }
 
 #feedback-button:hover {
-  background-color: rgb(84, 157, 255);
+  background-color: rgb(141, 189, 255);
   color: white;
   opacity: 1;
 }
@@ -700,7 +738,7 @@ blockquote {
 }
 
 #top-nav {
-  height: 50px;
+  height: 42px;
   margin-bottom: 20px;
   background-color: rgb(252, 252, 252);
   z-index: 1000;
@@ -735,12 +773,11 @@ blockquote {
 .top-nav-item {
   font-family: 'Open sans', sans-serif;
   font-size: 1.33rem;
-  /* font-style: italic; */
-  opacity: 0.7;
+  opacity: 0.4;
   letter-spacing: 3px;
   cursor: pointer;
   height: 80%;
-  padding: 7px 0 0 0;
+  padding: 6px 0 0 0;
   transition: all 200ms ease;
   text-shadow: 0px -1.3px 0px rgb(222, 222, 222);
 }
@@ -753,10 +790,10 @@ blockquote {
 #wrdz-headline {
   font-family: 'patua one', serif;
   /* font-family: 'Oswald ', serif; */
-  font-family: 'Roboto', sans-serif;
+  font-family: 'source sans pro', sans-serif;
   /* font-family: 'Cambo', serif; */
   font-size: 1.2em;
-  opacity: 0.8;
+  opacity: 0.5;
   padding-top: 4px;
   font-weight: 800;
   /* letter-spacing: 3px; */
@@ -959,9 +996,9 @@ p {
 #write-title {
   /* font-family: 'Pt Sans Narrow', sans-serif; */
   font-family: "Roboto", sans-serif;
-  font-size: 4.5rem;
+  font-size: 3.5rem;
   text-align: left;
-  text-align: center;
+  /* text-align: center; */
   letter-spacing: 0.1px;
   line-height: 1;
   outline: none;
@@ -970,7 +1007,7 @@ p {
   border-bottom: 1px rgba(224, 224, 224, 1);
   cursor: text;
   padding: 0px 15px 0px 15px;
-  /* font-weight: 600; */
+  font-weight: 600;
   /* opacity: 0.82; */
   /* font-style: italic; */
   clear: both;
@@ -1468,20 +1505,16 @@ h3 {
 }
 
 .activeTopNav {
-  /* color: white; */
   transition: all .2s ease-in-out;
-  font-weight: 800;
   text-shadow: 0px 3px 18px white;
-  opacity: initial;
-  background-color: rgba(229, 230, 239, 0.54);
-  /* box-shadow: inset 0px -5px 0px -3px rgba(0, 0, 0, 0.88); */
+  background-color: white;
   font-style: normal;
-  /* padding-top: 0px; */
-  /* font-size: 1.6em; */
+  font-weight: 800;
+  opacity: 1;
 }
 
 #write-column-left {
-  top: 17%;
+  top: 100px;
   min-height: 500px;
   max-height: 800px;
   left: 0.5%;

@@ -4,8 +4,9 @@
   <div class="container">
     
     <div class="row">
+
+      <div class="col-sm-10 col-sm-offset-1">
       <div id='landing-copy' class="col-sm-6 text-left">
-        <div class="col-sm-10 col-sm-offset-2">
           
           <h1>wrdz</h1>
           <br>
@@ -13,52 +14,62 @@
           <p>It is a tool for unloading your daily thoughts.</p>
           <p>If you want, you can share these ideas with the world.</p>
           <p><a ui-sref="read.list.front">Read what people are writing now.</a></p>
-        </div>
+
       </div>
       <div class="col-sm-6 ">
-        <div class="col-sm-8 col-sm-offset-2">
-          <div class="well">
-            
-            <p>Start your wordly journey.</p>
-
-
-            <a target='_blank' href="/auth/twitter">Sign up with twitter.</a>
-
-            <form name="signUpForm" role='form' ng-submit="signup(userSignUp)" novalidate>
-              {{message}}
-              <div class="text-left form-group">
-                
-                <label for="username">Username</label>
-              <input class='form-control' id='username' type="text" class="medium-6 columns" ng-model="userSignUp.username" required placeholder="">
-              </div>
-              <div class=" text-left form-group">
-                <label for="email">Email</label>
-              <input class='form-control' id='email' type="email" class="medium-6 columns" ng-model="userSignUp.email" required placeholder="">
-              </div>
-
-
-              <div class="text-left form-group">
-                <label for="password">Password</label>
-                
-              <input class='form-control' id='password' type="password" class="medium-6 columns" ng-model="userSignUp.password" required placeholder="">
-              </div>
-
+          <div id='landing-form'>
+            <div class="well">
               
+              <p ng-hide='local_auth_form'>Start your wordly journey.</p>
+              
+              <a ng-hide='local_auth_form' target='_blank' href="/auth/twitter">
+                <br>
 
-              <button type="submit" ng-disabled="signUpForm.$invalid" class="btn btn-jo">Join Wrdz</button>
+                <div id="landing-twitter-signup">
+                 <span class="icon ion-social-twitter"></span> &nbsp; Sign in with Twitter 
+                </div>
+
+              </a>
+
+              <div ng-show='local_auth_form'>
+                
+                <form name="signUpForm" role='form' ng-submit="signup(userSignUp)" novalidate>
+                  {{message}}
+                  <div class="text-left form-group">
+                    
+                    <label for="username">Username</label>
+                  <input class='form-control' id='username' type="text" class="medium-6 columns" ng-model="userSignUp.username" required placeholder="">
+                  </div>
+                  <div class=" text-left form-group">
+                    <label for="email">Email</label>
+                  <input class='form-control' id='email' type="email" class="medium-6 columns" ng-model="userSignUp.email" required placeholder="">
+                  </div>
 
 
-            </form>      
+                  <div class="text-left form-group">
+                    <label for="password">Password</label>
+                    
+                  <input class='form-control' id='password' type="password" class="medium-6 columns" ng-model="userSignUp.password" required placeholder="">
+                  </div>
+
+                  <button type="submit" ng-disabled="signUpForm.$invalid" class="btn btn-jo">Join Wrdz</button>
+                </form>      
+              </div>
+
+            </div>
+            <a ng-show='local_auth_form' ng-click='launchLogIn()' class="pull-right">Log In</a>            
+            <a ng-show='local_auth_form' ng-click='local_auth_form = !local_auth_form' class='pull-left' href="">Cancel</a>
+            <a ng-hide='local_auth_form' ng-click='local_auth_form = !local_auth_form' class="pull-right">I prefer email.</a>
+            
           </div>
           
         
         
 
         
-            <a ng-click='launchLogIn()' class="pull-right">Log In</a>
           
-        </div>
       </div>
+    </div>
     </div>
   </div>
 

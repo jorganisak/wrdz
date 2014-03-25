@@ -42,6 +42,8 @@ Does a few things:
       $window.scrollTo(0, 0);
     };
 
+    $scope.local_auth_form = false;
+
 
     $scope.signup = function (user) {
       if (!User.isLoggedIn()) {
