@@ -55,6 +55,7 @@ angular.module('read')
 
 
   .controller('ReadDocCtrl', ['$scope', 'Read', function ($scope, Read) {
+    $scope.isCollapsed = true;
 
     $scope.nextDoc = function () {
       Read.findNextDoc($scope.readDoc);
@@ -64,6 +65,7 @@ angular.module('read')
       Read.goBack();
     };
 
+    $scope.Read = Read;
 
     $scope.isHeart = function () {
       if ($scope.user.meta._hearts.indexOf($scope.readDoc._id) > -1) {

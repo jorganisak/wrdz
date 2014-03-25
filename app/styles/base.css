@@ -1,6 +1,22 @@
 .btn-jo > .ion-compose {
   color: black;
 }
+.half-opacity {
+  opacity: 0.5;
+}
+
+#read-doc-bio {
+  font-family: 'Open Sans', sans-serif;
+  
+}
+
+.filter-button-group > .btn {
+  width: 33.33333333%;
+  font-size: 0.8em;
+  border-radius: 0px;
+  border: solid 1px rgb(234, 232, 232);
+}
+
 #wrdz-headline:hover {
   opacity: 0.9;
 }
@@ -17,6 +33,7 @@
   border-radius: 0px;
   outline: none;
   border: none;
+  background-color: rgba(249, 249, 249, 0.56);
   box-shadow: 0px 0px 2px 0px rgba(192, 192, 192, 0.36);
   margin-top: 1px;
 }
@@ -28,7 +45,7 @@
   cursor: pointer;
   position: fixed;
   left: 2%;
-  top: 19%;
+  top: 17%;
   width: 7%;
   max-width: 80px;
 }
@@ -52,14 +69,15 @@
   font-size: 1.2em;
   transition: all 200ms ease-in-out;
 }
+
 #landing-twitter-signup:hover {
-    background-color: rgb(50, 139, 255);
+  background-color: rgb(50, 139, 255);
   color: white;
   text-decoration: none;
-
 }
+
 #landing-form >div > a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .read-doc-tweet {
@@ -178,6 +196,7 @@ hr {
 #date-button-box > .row > .col-sm-6 > .btn-jo {
   margin: 0px !important;
   border-radius: 0px;
+  border: none;
 }
 
 .date-box-arrows {
@@ -445,7 +464,7 @@ h1 {
   padding-left: 2%;
   width: 15%;
   max-width: 262px;
-  top: 49%;
+  top: 40%;
   right: 3%;
 }
 
@@ -474,6 +493,7 @@ h1 {
 #read-doc-username {
   font-family: 'Open Sans', sans-serif;
   font-size: 1.2em;
+  padding: 20px 0px;
 }
 
 #read-doc-followers {
@@ -490,7 +510,7 @@ h1 {
 
 #read-doc-section-label > span > .tag-label:hover {
   opacity: 1;
-  box-shadow: 0px 0px 0px 1px gray;
+  /* box-shadow: 0px 0px 0px 1px gray; */
 }
 
 #read-doc-follow-button {
@@ -1015,7 +1035,8 @@ p {
 }
 
 .filter-button-group {
-  padding-top: 11px;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 #remove-title-switch {
@@ -1187,8 +1208,8 @@ h3 {
   height: 100%;
   position: relative;
   margin-bottom: 0px;
-  padding: 10px 13px;
-  cursor: pointer;
+  padding: 13px;
+  /* cursor: pointer; */
   transition: all .1s ease;
   border-radius: 0px !important;
   border: solid 1px whitesmoke;
@@ -1228,6 +1249,8 @@ h3 {
 
 .panel-default > .panel-heading {
   background-color: white;
+  /* height: 80px; */
+  /* padding: 0px; */
 }
 
 .me-list-item:hover {
@@ -1321,9 +1344,9 @@ h3 {
   /* opacity: 0.6; */
   /* border-radius: 4px; */
   /* color: black; */
-  font-size: 1em;
+  font-size: 0.9em;
   line-height: 2.3;
-  background-color: rgb(82, 169, 255);
+  background-color: rgb(132, 194, 255);
 }
 
 #profile-body {
@@ -1582,6 +1605,10 @@ h3 {
   opacity: 1;
 }
 
+#write-pub-info {
+    margin-bottom: 30px;
+}
+
 .write-publish-buttons {
   margin: 0 0 0 0;
   padding: 0px 9px;
@@ -1618,7 +1645,7 @@ h3 {
 
 .write-last-item {
   margin: 2px 0px;
-  /* font-family: 'Noto Sans', sans-serif; */
+  font-family: 'Open Sans', sans-serif;
   font-size: 0.9em;
   border-radius: 2px;
   padding: 10px 7px;

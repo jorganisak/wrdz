@@ -82,8 +82,7 @@ angular.module('write')
     }
 
     function focusTitle() {
-      console.log('focusing title');
-      placeCaretAtEnd(document.getElementById('write-title'));
+      placeCaretAtEnd(document.getElementById('write-title'))
     }
 
     function getSample() {
@@ -183,8 +182,44 @@ angular.module('write')
 
     $scope.switchHasTitle = function () {
       Write.switchDocTitle($scope.currentDoc._id);
+      $timeout(function () {
+        focusTitle();
+      },200)
     };
 
+
+    // MODALS 
+    $scope.openPubOptionsModal = function () {
+      var modalInstance = $modal.open({
+        templateUrl: "partials/publish-options-modal.html",
+        controller: ['$scope', 'Write', '$modalInstance', '$state', 'doc','username', function ($scope, Write, $modalInstance, $state, doc, username) {
+          $scope.close = function () {
+            $modalInstance.close();
+          };
+
+          $scope.doc = doc;
+
+          $scope.username = username;
+
+          $scope.switchVisible = function () {
+            Write.updateUserDoc('pubVisible', !$scope.doc.pub_doc.is_visible);
+            $scope.doc.pub_doc.is_visible = !$scope.doc.pub_doc.is_visible;
+            $scope.close();
+          };
+  
+        }],
+        resolve: {
+
+          doc : function () {
+            return $scope.currentDoc;
+          },
+
+          username : function () {
+            return $scope.user.username;
+          }
+        }
+      });
+    };
 
     $scope.openPublishModal = function () {
       var modalInstance = $modal.open({
@@ -244,6 +279,8 @@ angular.module('write')
     
   */
 
+      $scope.isCollapsed = true;
+
     $scope.openTopicModal = function () {
       var modalInstance = $modal.open({
         templateUrl: "partials/topic-modal.html",
@@ -288,35 +325,5 @@ angular.module('write')
     };
 
     
-    $scope.openPubOptionsModal = function () {
-      var modalInstance = $modal.open({
-        templateUrl: "partials/publish-options-modal.html",
-        controller: ['$scope', 'Write', '$modalInstance', '$state', 'doc','username', function ($scope, Write, $modalInstance, $state, doc, username) {
-          $scope.close = function () {
-            $modalInstance.close();
-          };
 
-          $scope.doc = doc;
-
-          $scope.username = username;
-
-          $scope.switchVisible = function () {
-            Write.updateUserDoc('pubVisible', !$scope.doc.pub_doc.is_visible);
-            $scope.doc.pub_doc.is_visible = !$scope.doc.pub_doc.is_visible;
-            $scope.close();
-          };
-  
-        }],
-        resolve: {
-
-          doc : function () {
-            return $scope.currentDoc;
-          },
-
-          username : function () {
-            return $scope.user.username;
-          }
-        }
-      });
-    };
   }]);

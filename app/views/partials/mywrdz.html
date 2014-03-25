@@ -11,6 +11,13 @@
     <div class="col-sm-2 text-center">
         <div id="mywrdz-left">
 
+            <div class="btn-group filter-button-group">
+                <button type="button" class="btn btn-default btn-sm" ng-model="filterModel" btn-radio="'All'">All</button>
+                <button type="button" class="btn btn-default btn-sm " ng-model="filterModel" btn-radio="'Public'">Public</button>
+                <button type="button" class="btn btn-default btn-sm" ng-model="filterModel" btn-radio="'Private'">Private</button>
+            </div>
+
+
             <div id="date-button-box">
                 <div class="row">
                     <div class="col-sm-6">
@@ -51,11 +58,6 @@
                 </div>
             </div>     
 
-            <div class="btn-group filter-button-group">
-                <button type="button" class="btn btn-default btn-sm" ng-model="filterModel" btn-radio="'All'">All</button>
-                <button type="button" class="btn btn-default btn-sm " ng-model="filterModel" btn-radio="'Public'">Public</button>
-                <button type="button" class="btn btn-default btn-sm" ng-model="filterModel" btn-radio="'Private'">Private</button>
-            </div>
         
             <button type="button" class="btn btn-jo btn-sm dropdown-toggle" data-toggle="dropdown">
                 <span class="icon ion-pricetags"></span>&nbsp;&nbsp;Filter&nbsp;&nbsp;<span class="caret"></span>
@@ -89,7 +91,7 @@
                     <accordion-group  ng-click='switchDoc(doc)' ng-dblclick='openDocInWrite(doc)' class="me-list-item">
                         <accordion-heading>
                             
-                            <div class="read-list-title">
+                            <div  class="read-list-title">
                                 <span ng-show='doc.has_title'>
                                     {{doc.title}}
                                 </span>
@@ -124,6 +126,20 @@
 
     <div class="col-sm-2 pull-right text-right">
         <div id='mywrdz-right' ng-if='showDoc'>
+             <div class="row">
+                <div class="col-sm-6 pull-left">
+                    
+                    <button tooltip-placement="left" tooltip="Open" ng-click='openDocInWrite(showDoc)' class="btn btn-jo">
+                        <span class="icon ion-edit"></span>
+                    </button>
+                </div>
+                <div class="pull-right col-sm-6">
+                    
+                    <button tooltip-placement="left" tooltip="Topics" class='btn-jo btn btn-sm' ng-click='openTopicModal()'>
+                        <span class="ion-pricetags icon"></span>
+                    </button>
+                </div>
+            </div>
           
             <div ng-show='showDoc.is_published' id='mywrdz-pub-info' class="row">
                 
@@ -176,21 +192,8 @@
 
                 </div>
             </div>
-              <div class="row">
-                <div class="col-sm-5 pull-right">
-                    
-                    <button tooltip-placement="left" tooltip="Open" ng-click='openDocInWrite(showDoc)' class="btn btn-jo">
-                        <span class="icon ion-compose"></span>
-                    </button>
-                </div>
-            </div>
+         
             <div class="row">
-                <div class="pull-right col-sm-5">
-                    
-                    <button tooltip-placement="left" tooltip="Topics" class='btn-jo btn btn-sm' ng-click='openTopicModal()'>
-                        <span class="ion-pricetags icon"></span>
-                    </button>
-                </div>
             </div>
 
             <span ng-repeat='topic in showDoc.topics'>
@@ -199,7 +202,6 @@
 
             <div  tooltip-placement="left" tooltip="Archive" ng-click='archive(showDoc._id)' class="archive-button">
                 
-
                 <span class="icon ion-ios7-filing-outline"></span>
             </div>
         </div>

@@ -110,8 +110,6 @@ angular.module('read')
       goBack: function () {
         var s = prevState;
         if (s) {
-          console.log(s.name);
-          console.log(s.params);
           $state.go(s.name, s.params)
         }
       },

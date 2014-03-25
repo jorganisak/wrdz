@@ -1,10 +1,10 @@
 <div id="write-body" ng-cloak class='' ng-controller='WriteCtrl'>
     <div ng-hide='user'  ng-cloak class="row text-center">
         <h2>
-        <a ng-click='launchSignUp()'>
-            
-        Sign up for wrdz to write.
-        </a>
+            <a ng-click='launchSignUp()'>
+
+                Sign up for wrdz to write.
+            </a>
         </h2>
     </div>
     <div ng-show='user'  ng-cloak class="row">
@@ -12,142 +12,144 @@
 
         <div ng-controller='WriteLeftCtrl' id='' class=" col-sm-2 text-left ">
             <div id="write-column-left">
-                
+
                 <div class="row">
                     <div class="col-sm-6">
-                        
-                <button tooltip-placement="right" tooltip="New" ng-click='newDoc()' class='btn btn-jo'><span class="ion-plus icon"></span></button>   
+
+                        <button tooltip-placement="right" tooltip="New" ng-click='newDoc()' class='btn btn-jo'><span class="ion-plus icon"></span></button>   
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        
 
-                   <button tooltip-placement="right" tooltip="Topics" class='btn-jo' ng-click='openTopicModal()'>
-                    
-                    <span class="ion-pricetags icon"></span>
+
+                     <button tooltip-placement="right" tooltip="Topics" class='btn-jo' ng-click='openTopicModal()'>
+
+                        <span class="ion-pricetags icon"></span>
 
                     </button>
-                    </div>
-                </div>
-
-
-                <span ng-repeat='topic in currentDoc.topics'>
-                    <span class='label label-primary tag-label'>{{topic.title}}</span>
-                </span>
-                <br>
-                <br>
-                <div ng-if='currentDoc.is_published' id="write-pub-info" class='panel text-center panel-default'>
-
-                    <em ng-show='currentDoc.pub_doc.is_visible'>Public</em>
-                    <em ng-hide='currentDoc.pub_doc.is_visible'>Not Public</em>
-                    <br>
-                    <br>
-     
-
-                    <div class="row">
-                        <div class="col-sm-3 col-sm-offset-1">
-                            <span class="icon ion-arrow-up-a"></span>
-                        </div>
-                        <div class="col-sm-6 text-right">
-                            {{currentDoc.pub_doc.up_votes}}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 col-sm-offset-1">
-                            <span class="icon ion-heart"></span>
-                        </div>
-                        <div class="col-sm-6 text-right">
-                            {{currentDoc.pub_doc.hearts}}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 col-sm-offset-1">
-                            <span class="icon icon ion-eye"></span>
-                        </div>
-                        <div class="col-sm-6 text-right">
-                            {{currentDoc.pub_doc.views}}
-                        </div>
-                    </div>
-
-                    
-
-                    <div class="row">
-                        <div class="col-sm-12">
-                            
-                            <button  ng-click='openPubOptionsModal()' class="btn btn-jo  btn-sm">
-                                Options
-                            </button>
-
-                            
-                        </div>
-                    </div>
-
-                </div>
-       
-            </div>
-
-
-        </div>
-
-        <div class="col-sm-8 text-center" ng-hide='currentDoc._id'>
-            <h2>
-            You haven't written anything yet! 
-                
-            </h2>
-            <button class='btn btn-jo btn-success' ng-click='newDoc()'>
-                
-                Start writing 
-            </button>
-        </div>
-
-        <div ng-if='currentDoc._id'  class="text-center col-sm-8 pull-left column ">
-
-            <div id="write-center">
-                                   
-      
-                <div class='show-hide-fade' ng-show="currentDoc.has_title">
-                    <div class="" ng-click='switchHasTitle()' id="remove-title-switch"><span class="icon ion-close"></span></div>
-                    <div ng-keydown='titleChange()' medium-editor options="{{mediumEditorOptionsTitle}}" ng-model='currentDoc.title' id="write-title">
-                    </div>
-                    <hr>
-                </div>
-
-                <div id="title-switch"  ng-hide="currentDoc.has_title" ng-click='switchHasTitle()'>add title</div>
-
-                <div ng-keydown='bodyChange()' medium-editor options="{{mediumEditorOptionsBody}}" ng-model='currentDoc.body'  class='' id="write-content">
-
-                </div>
-
-                <button ng-hide='currentDoc.is_published' ng-click='openPublishModal()' class='btn btn-jo' id="publish-doc">
-                    Spread these wrdz!
-                </button>
-  
-            </div>
-
-
-            
-
-        </div>
-
-        <div class="col-sm-2 pull-right ">
-            <div id="write-column-right">
-                
-                <div ng-repeat="recent_doc in user._userDocs | limitTo: 5 | orderBy : '-updated_at'">
-
-                    <div ng-click='switchDoc(recent_doc)' class="text-right write-last-item">
-                        <span ng-show='recent_doc.has_title' ng-bind-html="recent_doc.title"></span>
-                        <span ng-hide='recent_doc.has_title || !recent_doc.sample'>{{recent_doc.sample | limitTo: 50}}</span>
-
-                        
-                    </div>
                 </div>
             </div>
 
-            
+
+
+            <span ng-repeat='topic in currentDoc.topics'>
+                <span class='label label-primary tag-label'>{{topic.title}}</span>
+            </span>
+
+
         </div>
+
 
     </div>
+
+    <div class="col-sm-8 text-center" ng-hide='currentDoc._id'>
+        <h2>
+            You haven't written anything yet! 
+
+        </h2>
+        <button class='btn btn-jo btn-success' ng-click='newDoc()'>
+
+            Start writing 
+        </button>
+    </div>
+
+    <div ng-if='currentDoc._id'  class="text-center col-sm-8 pull-left column ">
+
+        <div id="write-center">
+            <div  ng-if='currentDoc.is_published' id="write-pub-info" class='panel text-center panel-default'>
+
+                <div class="row">
+                    <div class="col-sm-3">
+
+                        <em ng-show='currentDoc.pub_doc.is_visible && currentDoc.pub_doc.is_anon'>Anonymous</em>
+                        <em ng-show='currentDoc.pub_doc.is_visible && !currentDoc.pub_doc.is_anon'>Public</em>
+                        <em ng-hide='currentDoc.pub_doc.is_visible'>Not Public</em>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="col-sm-4">
+                            <span class="pull-left icon ion-arrow-up-a"></span>
+                            <div class="pull-right">
+                                {{currentDoc.pub_doc.up_votes}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="pull-left">
+                                <span class="icon ion-heart"></span>
+                            </div>
+                            <div class="pull-right">
+                                {{currentDoc.pub_doc.hearts}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+
+                            <div class="pull-left">
+                                <span class="icon icon ion-eye"></span>
+                            </div>
+                            <div class="pull-right">
+                                {{currentDoc.pub_doc.views}}
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-sm-3">
+                        <a  ng-click='openPubOptionsModal()'>
+                            Options
+                        </a>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class='show-hide-fade' ng-show="currentDoc.has_title">
+                <div class="" ng-click='switchHasTitle()' id="remove-title-switch"><span class="icon ion-close"></span></div>
+                <div ng-keydown='titleChange()' medium-editor options="{{mediumEditorOptionsTitle}}" ng-model='currentDoc.title' id="write-title">
+                </div>
+                <hr>
+            </div>
+
+            <div id="title-switch"  ng-hide="currentDoc.has_title" ng-click='switchHasTitle()'>add title</div>
+
+            <div ng-keydown='bodyChange()' medium-editor options="{{mediumEditorOptionsBody}}" ng-model='currentDoc.body'  class='' id="write-content">
+
+            </div>
+
+            <button ng-hide='currentDoc.is_published' ng-click='openPublishModal()' class='btn btn-jo' id="publish-doc">
+                Spread these wrdz!
+            </button>
+
+        </div>
+
+
+
+
+    </div>
+
+    <div class="col-sm-2 pull-right ">
+        <div id="write-column-right">
+
+            <div ng-repeat="recent_doc in user._userDocs | limitTo: 5 | orderBy : '-updated_at'">
+
+                <div ng-click='switchDoc(recent_doc)' class="text-right write-last-item">
+                    <span ng-show='recent_doc.has_title' ng-bind-html="recent_doc.title"></span>
+                    <span ng-hide='recent_doc.has_title || !recent_doc.sample'>{{recent_doc.sample | limitTo: 50}}</span>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
 
 
 </div>
