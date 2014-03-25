@@ -15,7 +15,16 @@ config(['$stateProvider', '$urlRouterProvider',
       */
       .state('landing', {
         url: '/',
-        templateUrl: 'partials/landing.html'
+        templateUrl: 'partials/landing.html',
+        controller : ['$scope','$state', function ($scope, $state) {
+          $scope.$on('userChange', function(event, user) {
+            if (user) {
+              $state.go('write')
+            } else {
+
+            }
+          });
+        }]
       })
 
 /*
@@ -39,11 +48,13 @@ config(['$stateProvider', '$urlRouterProvider',
         templateUrl: 'partials/read-list-center.html',
         resolve : {
           docs : ['Read', function (Read) {
+
             return Read.updateQuery([{type:'topics', value: ''}, 
               {type:'following', value: ''}, {type:'skip', value: ''}]);
           }]
         },
-        controller : ['$scope','docs','Read', function ($scope, docs,Read) {
+        controller : ['$scope','docs','Read', '$state', function ($scope, docs, Read, $state) {
+          Read.setPrevState($state);
           $scope.docs = docs.data;
         }]
 
@@ -51,7 +62,7 @@ config(['$stateProvider', '$urlRouterProvider',
       .state('read.list.following', {
         url: '/l/:userId',
         templateUrl: 'partials/read-list-center.html',
-        resolve : {
+        resolve : { 
           docs : ['$stateParams','User', 'Read', function ($stateParams, User, Read) {
             if ($stateParams.userId) {
               return Read.updateQuery([{type:'following', 
@@ -109,8 +120,10 @@ config(['$stateProvider', '$urlRouterProvider',
             }
           }]
         },
-        controller : ['$scope', 'docs', 'Read', function ($scope, docs, Read) {
+        controller : ['$scope', 'docs', 'Read','$state', function ($scope, docs, Read, $state) {
+
           if (docs) {
+            Read.setPrevState($state);
             $scope.docs = docs.data;
           }
         }]
@@ -125,6 +138,7 @@ config(['$stateProvider', '$urlRouterProvider',
           }]
         },
         controller: ['$scope', 'readDoc','PubDoc', function ($scope, readDoc, PubDoc) {
+
           $scope.readDoc = readDoc.data;
 
         }]

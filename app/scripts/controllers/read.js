@@ -25,6 +25,7 @@ angular.module('read')
       { title: "Following", state: "read.list.following"},
       { title: "Topics", state: "read.list.topics"}
     ];
+
     $scope.navType = 'pills';
 
     $scope.moment = moment;
@@ -54,57 +55,13 @@ angular.module('read')
 
 
   .controller('ReadDocCtrl', ['$scope', 'Read', function ($scope, Read) {
-    function checkLength (docs, doc) {
-      var index = docs.indexOf(doc)
-      if (index < 3) {
-        loadMoreDocs(docs.length);
-      }
-    };
-
-    function loadMoreDocs (length) {
-      var oldQuery = Read.getDocs().query;
-      if (oldQuery.length > 2) {
-        oldQuery[2].value = length;
-      } else {
-
-        oldQuery.push({type:'skip', value: length}) ;
-      }
-      Read.updateQuery(oldQuery);      
-    };
-
-    function goToFront () {
-      Read.updateQuery([{type:'topics', value: ''}, 
-        {type:'following', value: ''}, 
-        {type:'skip', value: ''}]).then(function (res) {
-          $scope.$state.go('read.doc', {'docId': res.data[res.data.length -1 ]._id})
-        });
-    };
-
-    function findNextDoc (doc) {
-      var lastDoc;
-      var id = doc._id;
-      var docs = Read.getDocs().docs;
-      if (docs.length) {
-
-        angular.forEach(docs, function (doc) {
-          if (doc._id === id) {
-            checkLength(docs, doc);
-            if (lastDoc) {
-              $scope.$state.go('read.doc', {'docId':lastDoc._id});
-            } else {
-              goToFront();
-            }
-          } else {
-            lastDoc = doc;
-          }
-        })
-      } else {
-        goToFront();
-      }
-    };
 
     $scope.nextDoc = function () {
-      findNextDoc($scope.readDoc);
+      Read.findNextDoc($scope.readDoc);
+    };
+
+    $scope.goBack = function () {
+      Read.goBack();
     };
 
 
