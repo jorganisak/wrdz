@@ -2,6 +2,40 @@
   color: black;
 }
 
+
+
+.read-doc-tweet {
+  padding: 10px 21%;
+  text-align: center;
+  transition: all .2s linear;
+  cursor: pointer;
+  opacity: 0.2;
+  height: 40px;
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.read-doc-tweet:hover {
+  color: rgb(0, 179, 255);
+  opacity: 1;
+}
+
+li {
+  margin-bottom: 10px;
+  font-family: 'Lusitana', sans-serif;
+  font-size: 19px;
+}
+
+#landing-body {
+  margin-top: 40px;
+}
+
+.mywrdz-date-box > .ng-binding {
+  padding-top: 5%;
+  color: gra;
+  font-family: 'Open Sans', sans-serif;
+}
+
 hr {
   padding: 0px;
   margin: 20px 50px 30px 50px;
@@ -10,7 +44,7 @@ hr {
 
 #publish-doc {
   position: absolute;
-  bottom: -20px;
+  bottom: -68px;
   width: 23%;
   right: 2%;
   opacity: 0.3;
@@ -40,7 +74,7 @@ hr {
 .mywrdz-date-box {
   margin: 10px 0px;
   border: solid 1px silver;
-  padding: 6px 10px;
+  padding: 0px 10px;
   font-family: 'Open Sans', sans-serif;
   border-radius: 3px;
 }
@@ -74,12 +108,14 @@ hr {
 }
 
 .date-box-arrows {
-  padding-top: 4px;
+  /* padding-top: 4px; */
 }
 
 .date-box-arrows > .icon {
   opacity: 0.5;
   cursor: pointer;
+  padding: 10px 6px;
+  /* height: 100%; */
 }
 
 .date-box-arrows > .icon:hover {
@@ -366,8 +402,9 @@ h1 {
 }
 
 #read-doc-followers {
-  font-style: italic;
-  font-size: 0.9em;
+  /* font-style: italic; */
+  font-size: 1em;
+  font-family: 'Open Sans', sans serif;
 }
 
 #read-doc-section-label > span > .tag-label {
@@ -647,14 +684,15 @@ blockquote {
 }
 
 #header {
-  width: 100%;;
+  width: 100%;
   text-align: center;
   position: absolute;
   left: 0%;
   padding: 0 6%;
-  height: 67px; 
+  height: 67px;
   z-index: 110;
-  margin-bottom: 20px; background-color: rgb(252, 252, 252); 
+  margin-bottom: 20px;
+  background-color: rgb(252, 252, 252);
 }
 
 #header:hover {
@@ -839,7 +877,7 @@ h4 {
   opacity: 0.7;
   background-color: white;
   color: black;
-  border: solid 1px #cdcddd;
+  border: solid 1px #DDDDF0;
   margin: 9px 0px 6px 0px !important;
   transition: all .1s ease-in-out;
   font-weight: 800;
@@ -877,11 +915,6 @@ p {
   padding-left: 5px;
   /* text-shadow: -1px 0px 0px rgba(199, 199, 199, 1); */
   text-rendering: optimizeLegibility;
-}
-
-li {
-  font-size: 15px;
-  font-family: 'Open Sans', sans-serif;
 }
 
 #write-center {
@@ -924,8 +957,8 @@ li {
 }
 
 #write-title {
-  font-family: 'Pt Sans Narrow', sans-serif;
-  /* font-family: "Alegreya Sans", sans-serif; */
+  /* font-family: 'Pt Sans Narrow', sans-serif; */
+  font-family: "Roboto", sans-serif;
   font-size: 4.5rem;
   text-align: left;
   text-align: center;
@@ -1067,11 +1100,13 @@ h3 {
 
 .read-list-item {
   height: 100%;
-  margin-bottom: 0px;
+  width: 100%;
   padding: 20px 33px;
   cursor: pointer;
   transition: all .1s ease;
   box-shadow: inset 0px -2px 1px -2px silver;
+  max-width: 570px;
+  margin: 0 auto;
 }
 
 .me-list-item {
@@ -1315,7 +1350,7 @@ h3 {
   font-size: 1.5em;
   text-align: left;
   line-height: 1.5;
-  padding: 0px 0% 50px 0%;
+  padding: 0px 3% 50px 3%;
   font-family: 'Lustiana', serif;
   margin: 0 auto;
   max-width: 670px;
@@ -1374,8 +1409,8 @@ h3 {
 }
 
 .read-doc-center {
-  padding: 4px 30%;
-  padding: 20px 30px 70px 30px;
+  margin: 0px 3%;
+  padding: 20px 3% 70px 3%;
   box-shadow: 0px 2px 2px -1px gainsboro;
   background: linear-gradient(rgba(247, 243, 241, 0.06), rgba(255, 251, 245, 0.31), rgba(249, 249, 249, 0.17));
 }

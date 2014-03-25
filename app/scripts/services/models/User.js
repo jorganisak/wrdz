@@ -86,6 +86,10 @@ angular.module('models')
         return $http.get('/logout');
       },
 
+      twitter: function () {
+        return $http.get('/auth/twitter');
+      }
+
 
     };
   }]);

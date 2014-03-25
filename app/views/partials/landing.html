@@ -1,4 +1,4 @@
-<div ng-hide="user" class="text-center row">
+<div ng-hide="user" id='landing-body' class="text-center row">
   <br>
   <br>
   <div class="container">
@@ -19,7 +19,11 @@
         <div class="col-sm-8 col-sm-offset-2">
           <div class="well">
             
-            <p>Start Writing.</p>
+            <p>Start your wordly journey.</p>
+
+
+            <a target='_blank' href="/auth/twitter">Sign up with twitter.</a>
+
             <form name="signUpForm" role='form' ng-submit="signup(userSignUp)" novalidate>
               {{message}}
               <div class="text-left form-group">

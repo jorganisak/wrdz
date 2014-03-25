@@ -13,16 +13,30 @@
         <div ng-controller='WriteLeftCtrl' id='' class=" col-sm-2 text-left ">
             <div id="write-column-left">
                 
-                <button ng-click='newDoc()' class='btn btn-jo'><span class="ion-compose icon"></span> &nbsp;New</button>   
+                <div class="row">
+                    <div class="col-sm-6">
+                        
+                <button tooltip-placement="right" tooltip="New" ng-click='newDoc()' class='btn btn-jo'><span class="ion-compose icon"></span></button>   
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        
 
-               <button class='btn-jo' ng-click='openTopicModal()'>
-                
-                <span class="ion-pricetags icon"></span> &nbsp;Topics
+                   <button tooltip-placement="right" tooltip="Topics" class='btn-jo' ng-click='openTopicModal()'>
+                    
+                    <span class="ion-pricetags icon"></span>
 
-                </button>
+                    </button>
+                    </div>
+                </div>
+
+
                 <span ng-repeat='topic in currentDoc.topics'>
                     <span class='label label-primary tag-label'>{{topic.title}}</span>
                 </span>
+                <br>
+                <br>
                 <div ng-if='currentDoc.is_published' id="write-pub-info" class='panel text-center panel-default'>
 
                     <em ng-show='currentDoc.pub_doc.is_visible'>Public</em>

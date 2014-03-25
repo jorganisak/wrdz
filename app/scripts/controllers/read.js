@@ -143,27 +143,33 @@ angular.module('read')
     };
 
     $scope.heart = function () {
-      if ($scope.active2 === 'active') {
-        $scope.readDoc.hearts--;
-        $scope.active2 = null;
-        Read.updatePubDoc($scope.readDoc._id, 'heart', false);
-      } else {
-        $scope.active2 = 'active';
-        Read.updatePubDoc($scope.readDoc._id, 'heart', true);
-        $scope.readDoc.hearts++;
+      if (checkUser()) {
+        
+        if ($scope.active2 === 'active') {
+          $scope.readDoc.hearts--;
+          $scope.active2 = null;
+          Read.updatePubDoc($scope.readDoc._id, 'heart', false);
+        } else {
+          $scope.active2 = 'active';
+          Read.updatePubDoc($scope.readDoc._id, 'heart', true);
+          $scope.readDoc.hearts++;
+        }
       }
     };
 
     $scope.up_vote = function () {
-      if ($scope.active1 === 'active') {
-        $scope.readDoc.up_votes--;
-        $scope.active1 = null;
-        console.log($scope.active1);
-        Read.updatePubDoc($scope.readDoc._id, 'up_vote', false);
-      } else {
-        $scope.active1 = 'active';
-        Read.updatePubDoc($scope.readDoc._id, 'up_vote', true);
-        $scope.readDoc.up_votes++;
+      if (checkUser()) {
+
+        if ($scope.active1 === 'active') {
+          $scope.readDoc.up_votes--;
+          $scope.active1 = null;
+          console.log($scope.active1);
+          Read.updatePubDoc($scope.readDoc._id, 'up_vote', false);
+        } else {
+          $scope.active1 = 'active';
+          Read.updatePubDoc($scope.readDoc._id, 'up_vote', true);
+          $scope.readDoc.up_votes++;
+        }
       }
     };
 
@@ -197,19 +203,34 @@ angular.module('read')
       }
     });
 
+    function checkUser () {
+      if ($scope.user) {
+        return true;
+      } else {
+        $scope.launchSignUp();
+
+      }
+    }
+
 
     $scope.follow = function () {
-      if ($scope.readDoc.author) {
+      if (checkUser()) {
 
-        if ($scope.following) {
+        if ($scope.readDoc.author) {
 
-          Read.followUser($scope.readDoc.author._id, false);
-        } else {
-          
-          Read.followUser($scope.readDoc.author._id, true);
+          if ($scope.following) {
+
+            Read.followUser($scope.readDoc.author._id, false);
+            $scope.readDoc.author.followers--;
+          } else {
+            
+            Read.followUser($scope.readDoc.author._id, true);
+            $scope.readDoc.author.followers++;
+          }
+          $scope.following = !$scope.following;
         }
-        $scope.following = !$scope.following;
       }
+
     }
 
   }]);

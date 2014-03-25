@@ -94,6 +94,12 @@ angular.module('myWrdz')
       }
     });
 
+    $scope.$watch('filterModel', function (newValue) {
+      if (newValue) {
+        MyWrdz.updateQuery('filter', newValue);
+      }
+    });
+
     $scope.$watchCollection('topicsModel', function (newValue) {
       if (newValue) {
         var send = [];

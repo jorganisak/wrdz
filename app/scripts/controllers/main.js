@@ -196,6 +196,15 @@ Does a few things:
       });
     };
 
+
+    $scope.twitterAuth = function () {
+      User.twitter().success(function (res, err) {
+        console.log(res);
+        console.log(err);
+        console.log('callback')
+      });
+    }
+
   }])
 
 
