@@ -32,7 +32,10 @@
             </div>
             <div collapse='isCollapsed'>
                 <div class="row mywrdz-date-box">
-                    <div class="col-sm-6">{{dtCount}}</div>
+                    <div class="col-sm-6 no-padding text-center">
+                        <input type="text" ng-model='dtCount' class='form-control'>
+                        
+                    </div>
                     <div class="col-sm-6 date-box-arrows">
                         
                         <span ng-click="decreaseCount()" class="icon pull-left ion-chevron-left"></span>
@@ -40,7 +43,7 @@
                     </div>
                 </div>
                 <div class="row mywrdz-date-box">
-                    <div class="col-sm-6">{{dtType}}</div>
+                    <div class="col-sm-6">{{dtType}}</div> 
                     <div class="col-sm-6 date-box-arrows">
                         <span ng-click="decreaseType()" class="icon pull-left ion-chevron-left"></span>
                         <span ng-click="increaseType()" class="icon pull-right ion-chevron-right"></span>
