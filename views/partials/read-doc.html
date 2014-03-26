@@ -1,7 +1,7 @@
 <div ng-controller="ReadDocCtrl" id="read-doc-body">
 
     <div class="col-sm-2">
-        <div ng-click="goBack()" id="read-doc-back">
+        <div ng-if="Read.getPrevState().name" ng-click="goBack()" id="read-doc-back">
             <span class="icon ion-arrow-return-left"></span>
         </div>
         <div id="read-doc-left-fixed">
@@ -17,8 +17,14 @@
 
             </div>
             <div class="read-doc-tweet">
+
+                    
+                    <span twitter-button="" ng-click="open()" class="icon ion-social-twitter">
+                        
+                    </span>
                 
-                <span class="icon ion-social-twitter"></span>
+
+                
             </div>
 
         </div>
@@ -30,7 +36,7 @@
             <div class="row">
 
 
-                <div id="read-doc-section-label" class="col-sm-8 text-left pull-left">            
+                <div id="read-doc-section-label" class="text-right">            
 
                     <span ng-repeat="topic in readDoc.topics">
                         <span ui-sref="read.list.topics({topicId: topic._id})" class="label label-primary tag-label">{{topic.title}}</span>
@@ -61,27 +67,47 @@
 
     </div>
     <div class="col-sm-2">
-        <span ng-click="nextDoc(readDoc)" id="read-next-icon">
+        <span ng-show="Read.getNextDocId()" ng-click="nextDoc(readDoc)" id="read-next-icon">
             
             <span class="icon ion-chevron-right"></span>
         </span>
         <div class="text-right" id="read-doc-right-fixed">
             <div ng-hide="readDoc.is_anon">
                 
-                <div id="read-doc-username">
+                <div ng-mouseover="isCollapsed = false" id="read-doc-username">
                     <a href="">{{readDoc.author.username}}</a>
                 </div>
-                <div id="read-doc-followers">
-                    {{readDoc.author.followers}}
+
+                <div collapse="isCollapsed">
+                    
+                    <div id="read-doc-followers">
+                        <span class="half-opacity pull-left">
+                            <em>Followers: </em>
+                        </span>
+                        <span class="pull-right">
+                            
+                            {{readDoc.author.followers}}
+                        </span>
+                        <br>
+                        <span class="half-opacity pull-left">
+                            <em>Karma:</em>
+                        </span>
+                        <span class="pull-right">
+                            
+                        {{readDoc.author.karma}}
+                        </span>
+                    </div>
                     <br>
                     <br>
-                    {{readDoc.author.bio}}
-                </div>
-                <div ng-click="follow()" ng-hide="following" id="read-doc-follow-button">
-                    Follow
-                </div>
-                <div ng-click="follow()" ng-show="following" id="read-doc-follow-button">
-                    Unfollow
+                    <div id="read-doc-bio">
+                        {{readDoc.author.bio}}
+                    </div>
+                    <div ng-click="follow()" ng-hide="following" id="read-doc-follow-button">
+                        Follow
+                    </div>
+                    <div ng-click="follow()" ng-show="following" id="read-doc-follow-button">
+                        Unfollow
+                    </div>
                 </div>
             </div>
 

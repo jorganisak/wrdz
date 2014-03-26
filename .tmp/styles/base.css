@@ -1,13 +1,13 @@
 .btn-jo > .ion-compose {
   color: black;
 }
+
 .half-opacity {
   opacity: 0.5;
 }
 
 #read-doc-bio {
   font-family: 'Open Sans', sans-serif;
-  
 }
 
 .filter-button-group > .btn {
@@ -1603,6 +1603,7 @@ h3 {
   width: 12%;
   max-width: 250px;
 }
+
 .form-control:focus {
   border-color: #82C8FF;
   outline: 0;
@@ -1614,11 +1615,11 @@ h3 {
 }
 
 #write-pub-info {
-    max-width: 680px;
-    margin: 20px auto 20px auto;
-    box-shadow: 0px 0px 1px 0px silver;
-    border: none;
-    background-color: rgba(255, 255, 255, 0.65);
+  max-width: 680px;
+  margin: 20px auto 20px auto;
+  box-shadow: 0px 0px 1px 0px silver;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.65);
 }
 
 .write-publish-buttons {
