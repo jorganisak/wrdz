@@ -44,13 +44,12 @@ config(['$stateProvider', '$urlRouterProvider',
         templateUrl:'partials/read-list.html',
       })
       .state('read.list.front', {
-        url: '/f',
+        url: '/f?skip',
         templateUrl: 'partials/read-list-center.html',
         resolve : {
-          docs : ['Read', function (Read) {
-
+          docs : ['Read','$stateParams', function (Read, $stateParams) {
             return Read.updateQuery([{type:'topics', value: ''}, 
-              {type:'following', value: ''}, {type:'skip', value: ''}]);
+              {type:'following', value: ''}, {type:'skip', value: $stateParams.skip}]);
           }]
         },
         controller : ['$scope','docs','Read', '$state', function ($scope, docs, Read, $state) {
@@ -81,26 +80,32 @@ config(['$stateProvider', '$urlRouterProvider',
             }
           }]
         },
-        controller : ['$scope', 'docs','Read', '$stateParams', function ($scope, docs, Read, $stateParams) {
+        controller : ['$scope', 'docs','Read', '$stateParams','$state', 
+          function ($scope, docs, Read, $stateParams, $state) {
           
-          $scope.$on('userChange', function (evt, user) {
-            if (user && !$stateParams.userId) {
-              var a = [];
-              angular.forEach(user.following, function (user) {
-                a.push(user._id);
-              });
-              if (!a.length) {
-                $scope.docs = [];
+            $scope.$on('userChange', function (evt, user) {
+              if (user && !$stateParams.userId) {
+                var a = [];
+                angular.forEach(user.following, function (user) {
+                  a.push(user._id);
+                });
+                if (!a.length) {
+                  console.log('not following')
+                  $scope.docs = [];
+                } else {
+
+                  Read.updateQuery([{type:'following', 
+                    value: a}, {type:'topics', value: ''}, 
+                    {type:'skip', value: ''}]).then(function (res) {
+                      $scope.docs = res.data;
+                    })
+                }
               }
-              Read.updateQuery([{type:'following', 
-                value: a}, {type:'topics', value: ''}, 
-                {type:'skip', value: ''}]).then(function (res) {
-                  $scope.docs = res.data;
-                })
-            }
-          });
-          $scope.docs = docs.data;
-        }]
+            });
+            Read.setPrevState($state);
+
+            $scope.docs = docs.data;
+          }]
 
       })
       .state('read.list.topics', {

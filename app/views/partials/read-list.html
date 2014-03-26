@@ -2,12 +2,19 @@
     <div class="col-sm-2 text-left">
         <div id="read-list-left">
             <tabset vertical='true' type="navType" class='jo-tabset'>
-                <tab ng-repeat="tab in tabs" class='jo-tab' ui-sref="{{tab.state}}" ng-hide="tab.title === 'Following' && !user" ui-sref-active="active" active='tab.active' heading='{{tab.title}}'></tab>
+                <tab ng-repeat="tab in tabs" class='jo-tab' ui-sref="{{tab.state}}" ng-hide="tab.title === 'Following' && !user" active='tab.active' heading='{{tab.title}}'></tab>
             </tabset>
         </div>
     </div>
 
     <div class="col-sm-8 col-xs-10">
+
+            <div class='col-sm-8 col-sm-offset-2' ng-show="$state.current.name === 'read.list.following'" >
+                <div ng-if='!user.following.length'>
+                    <h4>You're not following anyone on wrdz...yet!</h4>
+                </div>
+            </div>
+
 
         <div ui-view></div>
 
@@ -20,24 +27,26 @@
 
     <div class="col-sm-2 text-right">
         <div id="read-list-right">
-            <div ng-show="$state.current.name === 'read.list.topics'" >
-                <div ui-sref-active='active' ui-sref='read.list.topics({topicId:topic._id})'class='read-list-right-item' ng-repeat='topic in topTopics'>
-                    
-                    {{topic.title}}
-                </div>
-            </div>
-            <div ng-show="$state.current.name === 'read.list.following'" >
 
-                <button class="btn btn-jo btn-sm" ui-sref='read.list.following({userId:null})'>All</button>
-                <div ng-if='!user.following.length'>
-                    <br>
-                    <em>You're not following anyone on wrdz...yet!</em>
+            <div ng-controller='TopicsListCtrl' ng-show="$state.current.name === 'read.list.topics'" >
+                <input type="text" placeholder='Search Topics' class="form-control" ng-model='search.title'>
+                <br>
+                <div ng-repeat='topic in data | startFrom:currentPage*pageSize | limitTo: pageSize | filter:search' >
+                    <div ui-sref-active='active' ui-sref='read.list.topics({topicId:topic._id})' class='read-list-right-item' >
+                        
+                        {{topic.title}}
+                    </div>
                 </div>
-                <div ui-sref-active='active' ui-sref='read.list.following({userId:user._id})' class='read-list-right-item' ng-repeat='user in user.following'>
-                    
-                {{user.username}}
-                </div>
+
+                <button class='btn  btn-sm pull-left' ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                        <span class="icon ion-arrow-left-b"></span>
+                </button>
+                <button class='btn btn-sm  pull-right' ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                    <span class="icon ion-arrow-right-b"></span>
+                </button>
             </div>
+
+
 
         </div>
 

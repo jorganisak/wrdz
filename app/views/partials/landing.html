@@ -10,9 +10,9 @@
           
           <h1>wrdz</h1>
           <br>
-          <p>Ben Franklin did it, so did . </p>
-          <p>It is a tool for unloading your daily thoughts.</p>
-          <p>If you want, you can share these ideas with the world.</p>
+          <p>A place for writing what matters.</p>
+          <p>Its like a diary but not lame.</p>
+          <p>FOr real, its sick.</p>
           <p><a ui-sref="read.list.front">Read what people are writing now.</a></p>
 
       </div>
@@ -31,7 +31,7 @@
 
               </a>
 
-              <div ng-show='local_auth_form'>
+              <div ng-show='local_auth_form && !landing_signin'>
                 
                 <form name="signUpForm" role='form' ng-submit="signup(userSignUp)" novalidate>
                   {{message}}
@@ -56,10 +56,42 @@
                 </form>      
               </div>
 
+              <div ng-show='local_auth_form && landing_signin'>
+      
+                <form name="signInForm" role='form' ng-submit="signin(userSignIn)" novalidate>
+                  <p>
+                    
+                    {{message}}
+                  </p>
+
+                  <div class="text-left form-group">
+                    
+                    <label for="username">Username</label>
+                    <input class='form-control' type="text" class="medium-6 columns" ng-model="userSignIn.username" required >
+                  </div>
+
+                  <div class="text-left form-group">
+                    <label for="password">Password</label>
+                    <input class='form-control' type="password" class="medium-6 columns" ng-model="userSignIn.password" required >
+                  </div>
+                  
+
+                  <button type="submit" ng-disabled="signInForm.$invalid" class="btn btn-jo">Log In</button>
+                <br>
+                <br>
+                  <div class="text-right">
+                    
+                    <a ng-click='close(); forgotPasswordModal()' href="">Forgot your password?</a>
+                  </div> 
+
+                </form>          
+              </div>
+
+
             </div>
-            <a ng-show='local_auth_form' ng-click='launchLogIn()' class="pull-right">Log In</a>            
+            <a ng-show='local_auth_form && !landing_signin' ng-click='landing_signin = true' class="pull-right">Log In</a>            
             <a ng-show='local_auth_form' ng-click='local_auth_form = !local_auth_form' class='pull-left' href="">Cancel</a>
-            <a ng-hide='local_auth_form' ng-click='local_auth_form = !local_auth_form' class="pull-right">I prefer email.</a>
+            <a ng-hide='local_auth_form' ng-click='local_auth_form = !local_auth_form; landing_signin = false' class="pull-right">I prefer email.</a>
             
           </div>
           

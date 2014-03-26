@@ -16,14 +16,14 @@
                 <div class="row">
                     <div class="col-sm-6">
 
-                        <button tooltip-placement="right" tooltip="New" ng-click='newDoc()' class='btn btn-jo'><span class="ion-plus icon"></span></button>   
+                        <button ng-click='newDoc()' class='btn btn-jo'><span class="ion-plus icon"></span></button>   
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
 
 
-                     <button tooltip-placement="right" tooltip="Topics" class='btn-jo' ng-click='openTopicModal()'>
+                     <button class='btn-jo' ng-click='openTopicModal()'>
 
                         <span class="ion-pricetags icon"></span>
 
@@ -56,14 +56,21 @@
 
     <div ng-if='currentDoc._id'  class="text-center col-sm-8 pull-left column ">
 
-        <div id="write-center">
             <div  ng-if='currentDoc.is_published' id="write-pub-info" class='panel text-center panel-default'>
 
                 <div class="row">
                     <div class="col-sm-3">
 
-                        <em ng-show='currentDoc.pub_doc.is_visible && currentDoc.pub_doc.is_anon'>Anonymous</em>
-                        <em ng-show='currentDoc.pub_doc.is_visible && !currentDoc.pub_doc.is_anon'>Public</em>
+                            <a ng-show='currentDoc.pub_doc.is_visible && currentDoc.pub_doc.is_anon' ui-sref='read.doc({docId: currentDoc.pub_doc._id})'>
+                                
+                                Anonymous
+                            </a>
+                   
+                            <a ng-show='currentDoc.pub_doc.is_visible && !currentDoc.pub_doc.is_anon' ui-sref='read.doc({docId: currentDoc.pub_doc._id})'>
+                                
+                                Public  &nbsp;<em>({{user.username}})</em>
+                            </a>
+                   
                         <em ng-hide='currentDoc.pub_doc.is_visible'>Not Public</em>
                     </div>
 
@@ -96,9 +103,15 @@
 
                     </div>
                     <div class="col-sm-3">
-                        <a  ng-click='openPubOptionsModal()'>
+                        <button ng-show="currentDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
+                            Unpublish
+                        </button>
+                        <button ng-hide="currentDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
+                            Re-publish
+                        </button>
+<!--                         <a  ng-click='openPubOptionsModal()'>
                             Options
-                        </a>
+                        </a> -->
                     </div>
                 </div>
 
@@ -106,6 +119,7 @@
 
 
             </div>
+        <div id="write-center">
 
 
             <div class='show-hide-fade' ng-show="currentDoc.has_title">

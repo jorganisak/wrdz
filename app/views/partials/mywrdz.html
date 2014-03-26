@@ -1,4 +1,4 @@
-<div ng-hide='user' ng-cloak class="row text-center">
+<div ng-if='!user' ng-cloak class="row text-center">
     <h2>
         <a ng-click='launchSignUp()'>
 
@@ -7,7 +7,7 @@
     </h2>
 </div>
 
-<div id="mywrdz-body" ng-cloak class='row' ng-controller='MyWrdzCtrl'>
+<div ng-if='user' id="mywrdz-body" ng-cloak class='row' ng-controller='MyWrdzCtrl'>
     <div class="col-sm-2 text-center">
         <div id="mywrdz-left">
 
@@ -193,12 +193,12 @@
                 </div>
             </div>
          
-            <div class="row">
-            </div>
 
             <span ng-repeat='topic in showDoc.topics'>
                 <span class='label label-primary tag-label'>{{topic.title}}</span>
             </span>
+            <br>
+
 
             <div  tooltip-placement="left" tooltip="Archive" ng-click='archive(showDoc._id)' class="archive-button">
                 

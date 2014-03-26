@@ -93,8 +93,8 @@ ShareUtils = (function() {
       width: 500,
       height: 350
     };
-    popup.top = (screen.height / 2) - (popup.height / 2);
-    popup.left = (screen.width / 2) - (popup.width / 2);
+    popup.top = (popup.height / 2);
+    popup.left = (popup.width / 2);
     return window.open(url, 'targetWindow', "toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,left=" + popup.left + ",top=" + popup.top + ",width=" + popup.width + ",height=" + popup.height);
   };
 

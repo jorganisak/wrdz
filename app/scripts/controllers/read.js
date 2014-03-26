@@ -8,6 +8,9 @@
 angular.module('read')
   .controller('ReadCtrl', ['$scope', 'Read', '$state', '$filter', function ($scope, Read, $state, $filter) {
 
+
+    $scope.Read = Read;
+
     // Implement if doc has been seen, appear very shaded
     if ($scope.user) {
       $scope.seen = $scope.user.meta._views;
@@ -21,22 +24,16 @@ angular.module('read')
 
 
     $scope.tabs = [
-      { title: "Front", state: "read.list.front"},
-      { title: "Following", state: "read.list.following"},
-      { title: "Topics", state: "read.list.topics"}
+      { title: "Front", state: "read.list.front({'skip': null})"},
+      { title: "Following", state: "read.list.following({'skip': null})"},
+      { title: "Topics", state: "read.list.topics({'skip': null})"}
     ];
 
     $scope.navType = 'pills';
 
     $scope.moment = moment;
 
-    $scope.init = function () {
-      Read.refreshTopics().then(function (topics) {
-        $scope.topTopics = topics.data;
-      });
-    }
 
-    $scope.init();
 
     $scope.$watch('$state.current.name', function (newValue) {
       if (newValue) {
@@ -50,7 +47,43 @@ angular.module('read')
       }
     })
 
+    $scope.loadNext = function () {
+        var skip = Number($scope.$stateParams.skip) + 10;
+        $scope.$state.go($scope.$state.current.name, {'skip' : skip})
+
+    };
+
+    $scope.loadPrev = function () {
+        var skip = Number($scope.$stateParams.skip) - 10;
+        $scope.$state.go($scope.$state.current.name, {'skip' : skip})
+
+    };
+
+
    
+  }])
+
+  .controller('TopicsListCtrl', ['$scope', 'Read', function ($scope, Read) {
+    var topTopics;
+    var init = function () {
+      console.log('going');
+      Read.refreshTopics().then(function (topics) {
+        topTopics = topics.data;
+        for (var i=0; i<topTopics.length ; i++) {
+          $scope.data.push(topTopics[i]);
+        }
+      });
+    }
+
+    init();
+
+    $scope.currentPage = 0;
+    $scope.pageSize = 5;
+    $scope.data = [];
+    $scope.numberOfPages = function(){
+      return Math.ceil($scope.data.length/$scope.pageSize);                
+    }
+    
   }])
 
 
@@ -58,14 +91,14 @@ angular.module('read')
     $scope.isCollapsed = true;
 
     $scope.nextDoc = function () {
-      Read.findNextDoc($scope.readDoc);
+      Read.goToNextDoc();
     };
 
     $scope.goBack = function () {
       Read.goBack();
     };
 
-    $scope.Read = Read;
+
 
     $scope.isHeart = function () {
       if ($scope.user.meta._hearts.indexOf($scope.readDoc._id) > -1) {

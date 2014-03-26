@@ -187,6 +187,11 @@ angular.module('write')
       },200)
     };
 
+    $scope.switchVisible = function () {
+      Write.updateUserDoc('pubVisible', !$scope.currentDoc.pub_doc.is_visible);
+      $scope.currentDoc.pub_doc.is_visible = !$scope.currentDoc.pub_doc.is_visible;
+    };
+
 
     // MODALS 
     $scope.openPubOptionsModal = function () {

@@ -188,7 +188,7 @@ angular.module('myWrdz')
     $scope.openTopicModal = function () {
       var modalInstance = $modal.open({
         templateUrl: "partials/topic-modal.html",
-        controller:  ['$scope', '$modalInstance', 'userTopics', 'docTopics', 'Write', function ($scope, $modalInstance, userTopics, docTopics, Write) {
+        controller:  ['$scope', '$modalInstance', 'userTopics', 'docTopics', 'Topics', 'currentDoc', function ($scope, $modalInstance, userTopics, docTopics, Topics, currentDoc) {
           $scope.userTopics = userTopics;
           $scope.docTopics = docTopics;
           $scope.close = function () {
@@ -197,7 +197,7 @@ angular.module('myWrdz')
 
           $scope.removeTopic = function (topic) {
             console.log(topic);
-            Write.updateTopics('remove', topic.title).then(
+            Topics.update(currentDoc._id, 'remove', topic.title).then(
               function () {
                 $scope.docTopics.splice($scope.docTopics.indexOf(topic), 1);
               }
@@ -205,7 +205,7 @@ angular.module('myWrdz')
           };
 
           $scope.addTopic = function (topicTitle) {
-            Write.updateTopics('add', topicTitle).then(
+            Topics.update(currentDoc._id, 'add', topicTitle).then(
               function () {
                 $scope.docTopics.push({'title': topicTitle});
               }

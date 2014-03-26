@@ -8,11 +8,11 @@ angular.module('read')
 // list of objects with obj.type and obj.value
     var query = [];
     var prevState = {};
+    var nextDocId;
 
-    function checkLength (docs, doc) {
-      var index = docs.indexOf(doc)
+    function checkLength (index) {
       if (index < 3) {
-        loadMoreDocs(docs.length);
+        loadMoreDocs(docList.docs.length);
       }
     };
 
@@ -35,27 +35,30 @@ angular.module('read')
         });
     };
 
-    function findNextDoc (doc) {
-      var lastDoc;
-      var id = doc._id;
+    function findNextDoc (id) {
       var docs = docList.docs;
       if (docs.length) {
 
         angular.forEach(docs, function (doc) {
           if (doc._id === id) {
-            checkLength(docs, doc);
-            if (lastDoc) {
-              $state.go('read.doc', {'docId':lastDoc._id});
+            var index = docs.indexOf(doc);
+
+            checkLength(index);
+
+            if (index === 0) {
+              nextDocId = null;
             } else {
-              goToFront();
+              nextDocId = docs[index - 1]._id;
+              
             }
-          } else {
-            lastDoc = doc;
-          }
+
+          } 
         })
-      } else {
-        goToFront();
       }
+    };
+
+    function goToNextDoc () {
+      $state.go('read.doc', {'docId': nextDocId});
     };
 
     function updateQuery (newQuery) {
@@ -107,6 +110,10 @@ angular.module('read')
         return prevState;
       },
 
+      getNextDocId : function () {
+        return nextDocId;
+      },
+
       goBack: function () {
         var s = prevState;
         if (s) {
@@ -117,10 +124,13 @@ angular.module('read')
       getDocs : function () {
         return docList;
       },
+
       setDocs : function (docs) {
         docList = docs;
       },
+      
       getPubDoc : function (docId) {
+        findNextDoc(docId);
         return PubDoc.findOne(docId);
       },
 
@@ -131,7 +141,7 @@ angular.module('read')
 
       updateQuery : updateQuery,
 
-      findNextDoc: findNextDoc,
+      goToNextDoc: goToNextDoc,
 
 
       updatePubDoc : function (docId, type, bool) {
