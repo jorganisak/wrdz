@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('me')
-.controller('MeCtrl', ['$scope', 'User', '$state', function ($scope, User, $state) {
+.controller('MeCtrl', ['$scope', 'User', '$state','Write',  function ($scope, User, $state, Write) {
 
 /*
 MY WRDZ 
@@ -44,6 +44,7 @@ LOGOUT
     if ( User.isLoggedIn() ) {
       User.logout().
       success( function( data ) {
+        Write.setCurrentDoc(null);
         User.changeUser(null);
         if (data == 'Logged out now.') {
           $state.go('landing');

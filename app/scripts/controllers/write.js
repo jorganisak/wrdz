@@ -105,6 +105,8 @@ angular.module('write')
       if ($scope.user.current_doc) {
 
         Write.setCurrentDoc($scope.user.current_doc);
+      } else if (!$scope.user._userDocs[0]) {
+        Write.createFirstDoc()
       }
     }
 
@@ -122,8 +124,10 @@ angular.module('write')
       if (user) {
         if (user._userDocs[0]) {
           Write.setCurrentDoc(user._userDocs[0]);
-        } 
-      } 
+        } else {
+          Write.createFirstDoc();
+        }
+      }
     });
 
     $scope.titleChange = function () {
@@ -186,6 +190,24 @@ angular.module('write')
         focusTitle();
       },200)
     };
+
+    $scope.archive = function (docId) {
+      var bool = $scope.currentDoc.is_archived;
+      Write.updateUserDoc('archive', !bool);
+      setNextDoc(docId);
+    };
+
+    function setNextDoc (docId) {
+      angular.forEach($scope.user._userDocs, function (doc) {
+        if (doc._id === docId) {
+          var index = $scope.user._userDocs.indexOf(doc);
+          var nextDoc = $scope.user._userDocs[index + 1];
+          $scope.user._userDocs.splice(index, 1);
+          Write.setCurrentDoc(nextDoc);
+        }
+      })
+    }
+
 
     $scope.switchVisible = function () {
       Write.updateUserDoc('pubVisible', !$scope.currentDoc.pub_doc.is_visible);

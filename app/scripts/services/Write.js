@@ -15,10 +15,15 @@ angular.module('write')
     var current_doc = {};
 
     function setCurrentDoc(doc) {
-      current_doc = doc;
-      updateCurrentDoc(doc._id);
-      var user = User.getUser();
-      user.current_doc = doc;
+      if (doc) {
+
+        current_doc = doc;
+        updateCurrentDoc(doc._id);
+        var user = User.getUser();
+        user.current_doc = doc;
+      } else {
+        current_doc = {};
+      }
     }
 
     function getCurrentDoc() {
@@ -43,6 +48,21 @@ angular.module('write')
       });
     }
 
+    function createFirstDoc () {
+      var user = User.getUser();
+      UserDoc.create().then(function (res) {
+        var doc = res.data;
+        doc.title = 'My First Wrdz';
+        user._userDocs.unshift(doc);
+        setCurrentDoc(doc);
+
+        updateUserDoc('title', 'My First Wrdz');
+
+        switchDocTitle(doc._id);
+
+      });
+    }
+
     function updateRecentDoc(id) {
       angular.forEach(User.getUser()._userDocs, function (doc) {
         if (doc._id === id) {
@@ -51,6 +71,17 @@ angular.module('write')
       });
     }
 
+    function switchDocTitle (id) {
+      updateUserDoc('hasTitle', !current_doc.has_title);
+      current_doc.has_title = !current_doc.has_title;
+
+
+      angular.forEach(User.getUser._userDocs, function (doc) {
+        if (doc._id === id) {
+          doc.has_title = !doc.has_title;
+        }
+      });
+    };
 /*
     Public API here  
 
@@ -58,22 +89,13 @@ angular.module('write')
 
     return {
 
+      createFirstDoc: createFirstDoc,
+
 
       getCurrentDoc : getCurrentDoc,
       setCurrentDoc : setCurrentDoc,
 
-            // find doc by id in user._userDocs
-      switchDocTitle: function (id) {
-        updateUserDoc('hasTitle', !current_doc.has_title);
-        current_doc.has_title = !current_doc.has_title;
-
-
-        angular.forEach(User.getUser._userDocs, function (doc) {
-          if (doc._id === id) {
-            doc.has_title = !doc.has_title;
-          }
-        });
-      },
+      switchDocTitle: switchDocTitle,
 
       /*
       Docs API

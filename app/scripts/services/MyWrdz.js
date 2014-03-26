@@ -33,8 +33,14 @@
           docList = list;
         },
 
-        archive : function (docId) {
-          UserDoc.update(docId, 'archive', true);
+        archive : function (docId, bool) {
+          UserDoc.update(docId, 'archive', bool);
+            angular.forEach(docList, function (doc) {
+              if (doc._id === docId) {
+                docList.splice(docList.indexOf(doc), 1);
+                
+              }
+            })
         },
 
         updateQuery : function (type, value) {

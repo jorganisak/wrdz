@@ -21,9 +21,13 @@ angular.module('myWrdz')
 
     $scope.topicsModel = [];
     $scope.topicOptions = [{}];
+    $scope.viewArchived = false;
+
+
 
 
     $scope.isCollapsed = true;
+    $scope.topicCollapse = true;
 
     var dtTypes = ['Days', 'Weeks', 'Months'];
 
@@ -61,8 +65,7 @@ angular.module('myWrdz')
     $scope.getDtOther = function  () {
       var num = $scope.dtCount;
       var type = $scope.dtType;
-      console.log(num)
-      console.log(type)
+
       if (type === 'Days') {
         $scope.dt = $scope.today - (86400000 * num);
       }
@@ -89,10 +92,13 @@ angular.module('myWrdz')
 
     $scope.$watch('dt', function (newValue) {
       if (newValue) {
-        console.log('updating date: ' +  newValue)
         MyWrdz.updateQuery('date', newValue + 43000000)
       }
     });
+
+    $scope.$watch('viewArchived', function (newValue) {
+      MyWrdz.updateQuery('archive', newValue)
+    })
 
     $scope.$watch('filterModel', function (newValue) {
       if (newValue) {
@@ -109,6 +115,7 @@ angular.module('myWrdz')
       MyWrdz.updateQuery('topics', send);
       }
     });
+    
 
     if ($scope.user) {
       MyWrdz.setList($scope.user._userDocs);
@@ -141,7 +148,6 @@ angular.module('myWrdz')
 
     $scope.removeTopic = function (topic) {
       $scope.topicsModel.splice($scope.topicsModel.indexOf(topic._id), 1);
-      console.log($scope.topicsModel)
     }
 
     $scope.openDocInWrite = function (doc) {
@@ -150,8 +156,12 @@ angular.module('myWrdz')
     };
 
     $scope.archive = function (docId) {
-      MyWrdz.archive(docId);
+      var bool = $scope.showDoc.is_archived;
+      MyWrdz.archive(docId, !bool);
+      $scope.showDoc = null;
     };
+
+   
 
 
     $scope.openPubOptionsModal = function () {
@@ -196,7 +206,6 @@ angular.module('myWrdz')
           };
 
           $scope.removeTopic = function (topic) {
-            console.log(topic);
             Topics.update(currentDoc._id, 'remove', topic.title).then(
               function () {
                 $scope.docTopics.splice($scope.docTopics.indexOf(topic), 1);
