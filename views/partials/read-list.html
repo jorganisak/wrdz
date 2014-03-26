@@ -27,6 +27,46 @@
 
     <div class="col-sm-2 text-right">
         <div id="read-list-right">
+            <div ng-controller="UsersListCtrl" ng-show="$state.current.name === 'read.list.user'">
+                
+                <div ng-mouseover="isCollapsed = false" id="read-doc-username">
+                    <a>{{author_info.username}}</a>
+                </div>
+
+                <div collapse="isCollapsed">
+                    
+                    <div id="read-doc-followers">
+                        <span class="half-opacity pull-left">
+                            <em>Followers: </em>
+                        </span>
+                        <span class="pull-right">
+                            
+                            {{author_info.followers}}
+                        </span>
+                        <br>
+                        <span class="half-opacity pull-left">
+                            <em>Karma:</em>
+                        </span>
+                        <span class="pull-right">
+                            
+                        {{author_info.karma}}
+                        </span>
+                    </div>
+                    <br>
+                    <br>
+                    <div id="read-doc-bio">
+                        {{author_info.bio}}
+                    </div>
+                    <div ng-click="follow()" ng-hide="following" id="read-doc-follow-button">
+                        Follow
+                    </div>
+                    <div ng-click="follow()" ng-show="following" id="read-doc-follow-button">
+                        Unfollow
+                    </div>
+                </div>
+            </div>
+
+
 
             <div ng-controller="TopicsListCtrl" ng-show="$state.current.name === 'read.list.topics'">
                 <input type="text" placeholder="Search Topics" class="form-control" ng-model="search.title">

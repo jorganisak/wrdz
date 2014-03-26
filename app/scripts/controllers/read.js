@@ -11,17 +11,6 @@ angular.module('read')
 
     $scope.Read = Read;
 
-    // Implement if doc has been seen, appear very shaded
-    if ($scope.user) {
-      $scope.seen = $scope.user.meta._views;
-    }
-
-    $scope.$on('userChange', function (evt, user) {
-      if (user) {
-        $scope.seen = $scope.user.meta._views;
-      }
-    });
-
 
     $scope.tabs = [
       { title: "Front", state: "read.list.front({'skip': null})"},
@@ -59,14 +48,81 @@ angular.module('read')
 
     };
 
+    // Things for read.list.user, maybe eventually move to another controller
 
+    $scope.$on('read_list_author_info', function (evt, author) {
+      console.log('author')
+      $scope.author_info = author;
+
+
+      if ($scope.user) {
+        testFollow(author._id);
+      }
+    })
+
+
+    $scope.$on('userChange', function (evt, user) {
+      if (user) {
+        if ($scope.author_info) {
+
+          testFollow($scope.author_info._id);
+        }
+      }
+    });
+
+    function testFollow (id) {
+       var flag = false;
+        angular.forEach($scope.user.following, function (user) {
+          if (user._id === id){
+            flag = true;
+          }
+        })
+        if (flag) {
+          $scope.following = true;
+        } else {
+          $scope.following = false;
+        }
+    }
+
+    function checkUser () {
+      if ($scope.user) {
+        return true;
+      } else {
+        $scope.launchSignUp();
+
+      }
+    }
+
+    $scope.follow = function () {
+      if (checkUser()) {
+
+        if ($scope.author_info) {
+
+          if ($scope.following) {
+
+            Read.followUser($scope.author_info._id, false);
+            $scope.author_info.followers--;
+          } else {
+            
+            Read.followUser($scope.author_info._id, true);
+            $scope.author_info.followers++;
+          }
+          $scope.following = !$scope.following;
+        }
+      }
+    }
+
+
+  }])
+
+  .controller('UsersListCtrl', ['$scope', 'Read', function ($scope, Read) {
    
+    
   }])
 
   .controller('TopicsListCtrl', ['$scope', 'Read', function ($scope, Read) {
     var topTopics;
     var init = function () {
-      console.log('going');
       Read.refreshTopics().then(function (topics) {
         topTopics = topics.data;
         for (var i=0; i<topTopics.length ; i++) {
@@ -85,6 +141,7 @@ angular.module('read')
     }
     
   }])
+
 
 
   .controller('ReadDocCtrl', ['$scope', 'Read', function ($scope, Read) {
@@ -205,6 +262,8 @@ angular.module('read')
     }
 
 
+
+
     $scope.follow = function () {
       if (checkUser()) {
 
@@ -222,7 +281,6 @@ angular.module('read')
           $scope.following = !$scope.following;
         }
       }
-
     }
 
   }]);

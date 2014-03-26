@@ -75,7 +75,7 @@
             <div ng-hide='readDoc.is_anon'>
                 
                 <div ng-mouseover='isCollapsed = false' id="read-doc-username">
-                    <a href="">{{readDoc.author.username}}</a>
+                    <a ui-sref="read.list.user({userId: readDoc.author._id})">{{readDoc.author.username}}</a>
                 </div>
 
                 <div collapse='isCollapsed'>

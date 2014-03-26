@@ -35,8 +35,8 @@
             <div class="row read-list-bottom-row">
                 <div class="col-sm-6 ">
 
-                    <div class="read-list-author">
-                        <a ng-hide="doc.is_anon" href="">{{doc.author.username}}</a>
+                    <div  class="read-list-author">
+                        <a  ng-click="$event.stopPropagation()" ui-sref="read.list.user({userId: doc.author._id})" ng-hide="doc.is_anon" href="">{{doc.author.username}}</a>
                         <span ng-show="doc.is_anon"><em>Anonymous</em></span>
                     </div>
 

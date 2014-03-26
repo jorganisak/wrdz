@@ -446,9 +446,10 @@ h1 {
   line-height: 1;
 }
 
-#mywrdz-doc-show-body > p {
-  font-size: 1.3em;
+#mywrdz-doc-show-body > p, #mywrdz-doc-show-body > ol > li {
+  font-size: 18px;
 }
+
 
 #mywrdz-doc-show-body {
   /* padding-bottom: 20px; */
@@ -487,7 +488,7 @@ h1 {
   font-size: 1.5em;
   transition: all 200ms ease-in-out;
   top: 19%;
-  padding: 5px 12px 3px 16px;
+  padding: 3px 10px 1px 14px;
   right: 2.6%;
   cursor: pointer;
   border-radius: 100px;
@@ -1344,7 +1345,7 @@ h3 {
 }
 
 .read-list-author {
-  font-size: 90%;
+  font-size: 95%;
   /*    font-style: italic;*/
   font-family: 'Open Sans', serif;
   padding: 0 0 0 0;
@@ -1413,7 +1414,7 @@ h3 {
   line-height: 1;
   font-weight: 700;
   letter-spacing: 0.7px;
-  padding: 30px 0px 0px 0px;
+  padding: 30px 0px 10px 0px;
 }
 
 .read-doc-left-text {

@@ -133,6 +133,33 @@ config(['$stateProvider', '$urlRouterProvider',
           }
         }]
       })
+      .state('read.list.user', {
+        templateUrl: 'partials/read-list-center.html',
+        url: '/u/:userId',
+        resolve : {
+          docs : ['$stateParams','User', 'Read', function ($stateParams, User, Read) {
+            if ($stateParams.userId) {
+              return Read.updateQuery([{type:'following', 
+                value: [$stateParams.userId]}, {type:'topics', value: ''}, {type:'skip', value: ''}]);
+
+            } else {
+              return false;
+            }
+          }]
+        },
+        controller : ['$scope', 'docs','Read', '$stateParams','$state', '$rootScope', 
+          function ($scope, docs, Read, $stateParams, $state, $rootScope) {
+          
+
+            Read.setPrevState($state);
+
+            $scope.docs = docs.data;
+            if ($scope.docs[0].author._id === $stateParams.userId) {
+              $scope.$emit('read_list_author_info', $scope.docs[0].author)
+            }
+
+          }]
+      })
 
       .state('read.doc', {
         url: '/:docId',

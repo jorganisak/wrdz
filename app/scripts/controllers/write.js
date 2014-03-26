@@ -192,7 +192,9 @@ angular.module('write')
     };
 
     $scope.archive = function (docId) {
+
       var bool = $scope.currentDoc.is_archived;
+      $scope.currentDoc.is_archived = !bool;
       Write.updateUserDoc('archive', !bool);
       setNextDoc(docId);
     };

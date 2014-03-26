@@ -36,6 +36,17 @@
             <span ng-repeat="topic in currentDoc.topics">
                 <span class="label label-primary tag-label">{{topic.title}}</span>
             </span>
+            <hr>
+
+            <div ng-if="!currentDoc.is_archived" tooltip-placement="right" tooltip="Archive" ng-click="archive(currentDoc._id)" class="pull-left archive-button">
+    
+                <span class="icon ion-ios7-filing-outline"></span>
+            </div>
+            <div ng-if="currentDoc.is_archived" tooltip-placement="right" tooltip="Un-archive" ng-click="archive(currentDoc._id)" class="pull-left archive-button">
+                
+                <span class="icon ion-reply"></span>
+            </div>
+
 
 
         </div>
