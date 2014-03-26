@@ -162,39 +162,12 @@ angular.module('myWrdz')
     };
 
    
-
-
-    $scope.openPubOptionsModal = function () {
-      var modalInstance = $modal.open({
-        templateUrl: "partials/publish-options-modal.html",
-        controller: ['$scope', 'Write', '$modalInstance', '$state', 'doc','username', function ($scope, Write, $modalInstance, $state, doc, username) {
-          $scope.close = function () {
-            $modalInstance.close();
-          };
-
-          $scope.doc = doc;
-
-          $scope.username = username;
-
-          $scope.switchVisible = function () {
-            Write.updateUserDoc('pubVisible', !$scope.doc.pub_doc.is_visible);
-            $scope.doc.pub_doc.is_visible = !$scope.doc.pub_doc.is_visible;
-            $scope.close();
-          };
-  
-        }],
-        resolve: {
-
-          doc : function () {
-            return $scope.showDoc;
-          },
-
-          username : function () {
-            return $scope.user.username;
-          }
-        }
-      });
+    $scope.switchVisible = function () {
+      MyWrdz.switchVisible($scope.showDoc._id, !$scope.showDoc.pub_doc.is_visible);
+      $scope.showDoc.pub_doc.is_visible = !$scope.showDoc.pub_doc.is_visible;
     };
+
+ 
     $scope.openTopicModal = function () {
       var modalInstance = $modal.open({
         templateUrl: "partials/topic-modal.html",

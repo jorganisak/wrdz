@@ -72,6 +72,11 @@ angular.module('models')
         return $http.post('/reset', res);
       },
 
+      testUsername: function (username) {
+        var send = {username: username};
+        return $http.post('/usernametest', send);
+      },
+
       // Auth
 
       signup: function (user) {

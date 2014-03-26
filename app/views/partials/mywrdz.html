@@ -156,7 +156,17 @@
 
                 <div ng-if='showDoc.is_published' id="write-pub-info" class='panel text-center panel-default'>
 
-                    <em ng-show='showDoc.pub_doc.is_visible'>Public</em>
+                    
+                    <a ng-show='showDoc.pub_doc.is_visible && showDoc.pub_doc.is_anon' ui-sref='read.doc({docId: showDoc.pub_doc._id})'>
+                        
+                        Anonymous
+                    </a>
+           
+                    <a ng-show='showDoc.pub_doc.is_visible && !showDoc.pub_doc.is_anon' ui-sref='read.doc({docId: showDoc.pub_doc._id})'>
+                        
+                        Public  &nbsp;<em>({{user.username}})</em>
+                    </a>
+           
                     <em ng-hide='showDoc.pub_doc.is_visible'>Not Public</em>
                     <br>
                     <br>
@@ -187,15 +197,18 @@
                         </div>
                     </div>
 
-                    
+                    <br>
 
                     <div class="row">
                         <div class="col-sm-12">
-                            
-                            <button  ng-click='openPubOptionsModal()' class="btn btn-jo  btn-sm">
-                                Options
+                             <button ng-show="showDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
+                                Unpublish
+                                </button>
+                            <button ng-hide="showDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
+                                Re-publish
                             </button>
-
+                                
+                   
                             
                         </div>
                     </div>

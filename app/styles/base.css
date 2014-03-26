@@ -1,14 +1,16 @@
 .btn-jo > .ion-compose {
   color: black;
 }
+
 .topic-add:hover {
   color: black;
 }
+
 .topic-add {
   background-color: rgb(240, 240, 240);
-  font-size: 0.9em; 
+  font-size: 0.9em;
   color: rgb(144, 144, 144);
-  line-height: 2.3; 
+  line-height: 2.3;
   cursor: pointer;
   transition: all 100ms linear;
 }
@@ -184,12 +186,12 @@ hr {
 }
 
 .archive-button {
-  font-size: 0.8em;
-  opacity: 0.2;
+  font-size: 1em;
+  opacity: 0.5;
   width: 40px;
   cursor: pointer;
   padding: 5px 10px;
-  font-family: 'Open Sans', sans-serif;
+  /* font-family: 'Open Sans', sans-serif; */
   float: right;
 }
 
@@ -446,10 +448,10 @@ h1 {
   line-height: 1;
 }
 
-#mywrdz-doc-show-body > p, #mywrdz-doc-show-body > ol > li {
+#mywrdz-doc-show-body > p,
+#mywrdz-doc-show-body > ol > li {
   font-size: 18px;
 }
-
 
 #mywrdz-doc-show-body {
   /* padding-bottom: 20px; */
@@ -800,7 +802,7 @@ blockquote {
   position: absolute;
   left: 0%;
   padding: 0 6%;
-  height: 67px;
+  height: 60px;
   z-index: 110;
   margin-bottom: 20px;
   background-color: rgb(252, 252, 252);
@@ -1614,6 +1616,7 @@ h3 {
   width: 12%;
   max-width: 250px;
 }
+
 #archive-checkbox {
   padding: 0px 10px;
   float: left;

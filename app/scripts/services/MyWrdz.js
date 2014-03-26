@@ -33,6 +33,10 @@
           docList = list;
         },
 
+        switchVisible : function (docId, bool) {
+          UserDoc.update(docId, 'pubVisible', bool);
+        },
+
         archive : function (docId, bool) {
           UserDoc.update(docId, 'archive', bool);
             angular.forEach(docList, function (doc) {

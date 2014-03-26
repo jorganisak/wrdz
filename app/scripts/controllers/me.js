@@ -1,30 +1,64 @@
 'use strict';
 
 angular.module('me')
-.controller('MeCtrl', ['$scope', 'User', '$state','Write',  function ($scope, User, $state, Write) {
+.controller('MeCtrl', ['$scope', 'User', '$state','Me', 'Write', function ($scope, User, $state, Me, Write) {
 
 /*
 MY WRDZ 
 */
+  $scope.username_ok = true;
+  $scope.change = false;
 
-  // TEMPORARY
+  $scope.Me = Me;
+
+
   if ($scope.user) {
-    $scope.doc = $scope.user.current_doc;
+    $scope.username_copy = angular.copy($scope.user.username);
   }
 
-  $scope.currentDocs = [];
-
-  $scope.docIds = [];
-
-  $scope.$on('userChange', function  (evt, user) {
+  $scope.$on('userChange', function (evt, user) {
     if (user) {
-      $scope.doc = $scope.user.current_doc;
-    } else {
-      // Profile.setDocIds([]);
-      // Profile.setDocs([]);
+      $scope.username_copy = angular.copy(user.username);
+      
     }
-
   });
+
+  $scope.usernameChange = function () {
+    $scope.change = true;
+  }
+
+  $scope.saveUsername = function () {
+    if ($scope.change && $scope.username_ok) {
+
+      var res = Me.saveUsername($scope.username_copy);
+      res.then(function (res) {
+        if (res.status === 200) {
+          User.changeUser(res.data)
+          $scope.change = false;
+
+        }
+      })
+    }
+  }
+
+  $scope.$watch('username_copy', function (newValue, oldValue) {
+    if (newValue) {
+      if (newValue === $scope.user.username) {
+        $scope.change = false;
+      }
+      var res = Me.testUsername(newValue);
+      res.then(function (res) {
+        if (res.data.message === "Username exists") {
+          $scope.username_ok = false
+        } else {
+          $scope.username_ok = true
+
+        }
+      })
+    } else {
+      $scope.username_ok = false;
+    }
+  })
 
 
   $scope.$watch('user.bio', function (newValue) {
