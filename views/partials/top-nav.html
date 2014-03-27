@@ -1,10 +1,10 @@
-<div ng-controller="NavbarCtrl" id="header">
+<div ng-controller="NavbarCtrl" class="hidden-xs" id="header">
 
     <!-- 
         User Nav
      -->
 
-    <div ng-if="user" id="top-nav" class="col-md-12">
+    <div ng-if="user" id="top-nav" class="hidden-xs col-md-12">
 
         <div ui-sref-active="activeTopNav" ui-sref="write" id="top-nav-write" class="top-nav-item col-xs-3 col-sm-3 col-md-2">
             <span class="top-nav-title">
@@ -31,6 +31,31 @@
             <span class="ion ion-person"></span> 
         </div>
     </div>
+
+<!--     <div ng-if="user" id='top-nav-sm' class=" visible-xs col-md-12">
+
+        <div ui-sref-active='activeTopNav' ui-sref="write"  class="top-nav-item-sm col-xs-3 ">
+            <span class="top-nav-title">
+                
+                WRITE
+            </span>
+        </div>
+
+        <div ng-class="{activeTopNav: $state.includes('read')}" ui-sref="read.list.front" id='top-nav-read' class="top-nav-item-sm  col-xs-3 col-sm-3  col-md-2">
+            <span class="top-nav-title">READ</span>
+        </div>
+
+
+        <div ui-sref-active='activeTopNav' id='top-nav-inbox' ui-sref='mywrdz' class=" top-nav-item-sm col-xs-3 col-sm-3 col-md-2">
+            <span class="top-nav-title">MY WRDZ</span>
+        </div>
+
+        <div ng-class="{activeTopNav: $state.includes('me')}"  ui-sref="me.profile" id='top-nav-me' class=" top-nav-item-sm col-xs-3 col-sm-3 col-md-2">
+            <span class="top-nav-title">{{user.username | uppercase}}</span>
+            &nbsp;
+            <span class="ion ion-person"></span> 
+        </div>
+    </div> -->
 
     <!-- 
         No User Nav

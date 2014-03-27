@@ -261,7 +261,8 @@ Does a few things:
     {'title':"write", 'state':"write"},
     {'title':"read", 'state':"read.list.front"},
     {'title':"my wrdz", 'state':"mywrdz"},
-    {'title':"me", 'state':"me"},
+    {'title':"me", 'state':"me.profile"},
 
     ];
+
 }]);

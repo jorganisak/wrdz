@@ -6,7 +6,7 @@
 
         <div ui-sref='read.doc({docId:doc._id})' class=" read-list-item">
             <div class="row">
-                <div class="col-sm-8">
+                <div class="col-sm-8 col-xs-6">
                     <div class="read-list-title">
                         <span ng-show='doc.doc.has_title'>
                             {{doc.doc.title}}
@@ -16,24 +16,24 @@
                         </span>
                     </div>
                 </div>
-                <div class="col-sm-2 right ">
+                <div class=" col-xs-3 col-sm-2 pull-left ">
                     <div class="row read-list-arrow">
-                        <span class="col-sm-6  icon ion-arrow-up-a"></span>
-                        <span class='col-sm-6  text-right left read-list-arrow-count'>{{doc.up_votes}}</span>
+                        <span class=" col-xs-1 icon ion-arrow-up-a"></span>
+                        <span class='col-xs-1  text-right pull-right  read-list-arrow-count'>{{doc.up_votes}}</span>
                     </div>
                 </div>
-                <div class="col-sm-2 right ">
+                <div class=" col-xs-3 col-sm-2 pull-right ">
 
                     <div class="row read-list-heart">
-                        <span class="col-sm-6   icon ion-heart"></span>
-                        <span class="col-sm-6   left text-right read-list-heart-count">{{doc.hearts}}</span>
+                        <span class="col-xs-1    icon ion-heart"></span>
+                        <span class="  col-xs-1  text-right pull-right read-list-heart-count">{{doc.hearts}}</span>
                     </div>
 
 
                 </div>
             </div>
             <div class="row read-list-bottom-row">
-                <div class="col-sm-6 ">
+                <div class="col-xs-6 ">
 
                     <div  class="read-list-author">
                         <a  ng-click="$event.stopPropagation()" ui-sref="read.list.user({userId: doc.author._id})" ng-hide="doc.is_anon" href="">{{doc.author.username}}</a>
@@ -41,7 +41,7 @@
                     </div>
 
                 </div>
-                <div class="col-sm-6 text-right right ">
+                <div class="col-xs-6 text-right right ">
 
                     <div class="read-list-date">
 

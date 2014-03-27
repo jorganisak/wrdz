@@ -3,7 +3,7 @@
     <div ng-show="user" ng-cloak="" class="row">
 
 
-        <div ng-controller="WriteLeftCtrl" id="" class="col-sm-2 text-left">
+        <div ng-controller="WriteLeftCtrl" id="" class="col-sm-2 hidden-xs text-left">
             <div id="write-column-left">
 
                 <div class="row">
@@ -48,9 +48,9 @@
     </div>
 
 
-    <div ng-if="currentDoc._id" class="text-center col-sm-8 pull-left column">
+    <div ng-if="currentDoc._id" class="text-center col-sm-8 col-xs-12 pull-left column">
 
-            <div ng-if="currentDoc.is_published" id="write-pub-info" class="panel text-center panel-default">
+            <div ng-if="currentDoc.is_published" id="write-pub-info" class="panel text-center hidden-xs panel-default">
 
                 <div class="row">
                     <div class="col-sm-3">
@@ -129,7 +129,7 @@
 
             </div>
 
-            <button ng-hide="currentDoc.is_published" ng-click="openPublishModal()" class="btn btn-jo" id="publish-doc">
+            <button ng-hide="currentDoc.is_published" ng-click="openPublishModal()" class="btn btn-jo hidden-xs" id="publish-doc">
                 Spread these wrdz!
             </button>
 
@@ -140,7 +140,7 @@
 
     </div>
 
-    <div class="col-sm-2 pull-right">
+    <div class="col-sm-2 hidden-xs pull-right">
         <div id="write-column-right">
 
             <div ng-repeat="recent_doc in user._userDocs | limitTo: 5 | orderBy : '-updated_at'">
@@ -155,6 +155,38 @@
         </div>
 
 
+    </div>
+
+    <div class="visible-xs" id="fixed-bottom-bar">
+        <div class="col-xs-4"><button ng-click="newDoc()" class="btn btn-jo"><span class="ion-plus icon"></span></button> </div>
+        <div class="col-xs-4">
+                     <button class="btn-jo" ng-click="openTopicModal()">
+
+                        <span class="ion-pricetags icon"></span>
+
+                    </button></div>
+        <div class="col-xs-4"><button ng-hide="currentDoc.is_published" ng-click="openPublishModal()" class="btn btn-jo">
+                <span class="icon ion-eye"></span>
+            </button></div>
+    </div>
+    <div class="visible-xs" id="fixed-top-bar">
+         <div class="col-xs-6 pull-right">
+            <div class="dropdown">
+                
+                <a class="btn btn-jo dropdown-toggle">
+                    <span class="icon ion-chevron-down"></span>
+                </a>  
+                <ul class="dropdown-menu pull-right">
+                <li ng-repeat="recent_doc in user._userDocs | limitTo: 5 | orderBy : '-updated_at'">
+                    <a ng-click="switchDoc(recent_doc)">
+                         <span ng-show="recent_doc.has_title" ng-bind-html="recent_doc.title"></span>
+                        <span ng-hide="recent_doc.has_title || !recent_doc.sample">{{recent_doc.sample | limitTo: 50}}</span>
+
+                    </a>
+                </li>
+              </ul>
+            </div>
+        </div>
     </div>
 
 </div>

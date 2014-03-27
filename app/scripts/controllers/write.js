@@ -298,20 +298,7 @@ angular.module('write')
       });
     };
 
-  }])
-
-  .controller('WriteLeftCtrl', ['$scope', '$modal', 'Write', function ($scope, $modal, Write) {
-
-
-  /*
-    Controller for Left Write Panel (new file?)
-    Opens Topic and Publish Modals
-    
-  */
-
-      $scope.isCollapsed = true;
-
-    $scope.openTopicModal = function () {
+        $scope.openTopicModal = function () {
       var modalInstance = $modal.open({
         templateUrl: "partials/topic-modal.html",
         controller:  ['$scope', '$modalInstance', 'userTopics', 'docTopics', 'Write', function ($scope, $modalInstance, userTopics, docTopics, Write) {
@@ -353,6 +340,21 @@ angular.module('write')
         }
       });
     };
+
+
+  }])
+
+  .controller('WriteLeftCtrl', ['$scope', '$modal', 'Write', function ($scope, $modal, Write) {
+
+
+  /*
+    Controller for Left Write Panel (new file?)
+    Opens Topic and Publish Modals
+    
+  */
+
+      $scope.isCollapsed = true;
+
 
     
 

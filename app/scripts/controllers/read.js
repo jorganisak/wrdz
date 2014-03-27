@@ -22,7 +22,7 @@ angular.module('read')
     $scope.navType = 'pills';
 
     $scope.moment = moment;
-
+    $scope.left_xs_collapsed = true;
 
 
     $scope.$watch('$state.current.name', function (newValue) {
