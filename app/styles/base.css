@@ -10,20 +10,18 @@
 }
 
 #landing-well-copy {
-  padding-top: 10px;
+  padding-top: 26px;
 }
 
 .modal-body {
- position: static;
+  position: static;
 }
 
 .modal-body > .ion-close {
-  position:absolute;
+  position: absolute;
   top: 2%;
   right: 2%;
 }
-
-
 
 #fixed-bottom-bar {
   position: fixed;
@@ -63,9 +61,11 @@ h6 {
   cursor: pointer;
   transition: all 100ms linear;
 }
+
 #landing-form > .well {
-  min-height: 164px;
+  min-height: 204px;
 }
+
 .half-opacity {
   opacity: 0.5;
 }
@@ -159,7 +159,7 @@ h6 {
 #landing-form {
   max-width: 300px;
   position: relative;
-  margin: 19% auto 0px auto;
+  margin: 7% auto 0px auto;
 }
 
 .read-doc-tweet:hover {
@@ -228,8 +228,7 @@ hr {
   font-size: 1.3em;
   font-family: 'Clear Sans', sans-serif !important;
   padding-left: 5px;
-  font-weight:300;
-  
+  font-weight: 300;
   padding-right: 0px;
 }
 
