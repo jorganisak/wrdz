@@ -6,30 +6,30 @@
 
             <br>
             <div class="btn-group filter-button-group">
-                <button type="button" class="btn btn-default btn-sm" ng-model="filterModel" btn-radio="'All'">All</button>
-                <button type="button" class="btn btn-default btn-sm " ng-model="filterModel" btn-radio="'Public'">Public</button>
-                <button type="button" class="btn btn-default btn-sm" ng-model="filterModel" btn-radio="'Private'">Private</button>
+                <button type="button" class="btn btn-default " ng-model="filterModel" btn-radio="'All'">All</button>
+                <button type="button" class="btn btn-default  " ng-model="filterModel" btn-radio="'Public'">Public</button>
+                <button type="button" class="btn btn-default" ng-model="filterModel" btn-radio="'Private'">Private</button>
             </div>
 
             <hr>
-           <button type="button" class="btn btn-jo btn-sm " ng-click="dateCollapsed = !dateCollapsed; isCollapsed = true">
+           <button type="button" class="btn btn-jo " ng-click="dateCollapsed = !dateCollapsed; isCollapsed = true">
                 <span class="icon ion-calendar"></span>&nbsp;&nbsp;Date&nbsp;&nbsp;<span class="caret"></span>
             </button>
             <div collapse='dateCollapsed' id="date-button-box">
                 <div class="row">
                     <div class="col-sm-6">
-                        <button ng-click='setToday()' class="btn btn-sm btn-jo">Today</button>
+                        <button ng-click='setToday()' class="btn btn-jo">Today</button>
                     </div>
                     <div class="col-sm-6">
-                        <button ng-click="dtCount = 1; dtType = 'Weeks'" class="btn btn-sm btn-jo">1 Week</button>
+                        <button ng-click="dtCount = 1; dtType = 'Weeks'" class="btn btn-jo">1 Week</button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        <button ng-click="dtCount = 1; dtType = 'Months'" class="btn btn-sm btn-jo">1 Month</button>
+                        <button ng-click="dtCount = 1; dtType = 'Months'" class="btn btn-jo">1 Month</button>
                     </div>
                     <div class="col-sm-6">
-                        <button ng-click='isCollapsed = !isCollapsed' class="btn btn-sm btn-jo">Other</button>
+                        <button ng-click='isCollapsed = !isCollapsed' class="btn btn-jo">Other</button>
                     </div>
                 </div>
                 
@@ -56,7 +56,7 @@
             <hr>
             </div>     
         
-            <button type="button" class="btn btn-jo btn-sm " ng-click="topicCollapse = !topicCollapse">
+            <button type="button" class="btn btn-jo " ng-click="topicCollapse = !topicCollapse">
                 <span class="icon ion-pricetags"></span>&nbsp;&nbsp;Topics&nbsp;&nbsp;<span class="caret"></span>
             </button>
             <div collapse='topicCollapse'>
@@ -76,7 +76,7 @@
                 
               <div class="checkbox">
                 <label>
-                  <input ng-model='viewArchived' type="checkbox"> <em>View Archive</em>
+                  <input ng-model='viewArchived' type="checkbox"> View Archive
                 </label>
               </div>
             </div>
@@ -88,10 +88,7 @@
 
         <div id='me-middle' class="col-sm-10 col-sm-offset-1 col-xs-12">
 
-            <div ng-if='docList.length === 0'>
-                <br>
-                <p>When you pick up your game and start writing, this is where your words will be.</p>
-            </div>
+    
             
             <accordion close-others="true">
                 <div style="position: relative;" ng-repeat="doc in docList | orderBy: '-updated_at' | startFrom:starting | limitTo: pageSize | filter:search">
@@ -126,10 +123,10 @@
 
             
 
-                <button class='btn  btn-sm pull-left' ng-hide="currentPage == 0" ng-click="currentPage=currentPage-1">
+                <button class='btn  pull-left' ng-hide="currentPage == 0" ng-click="currentPage=currentPage-1">
                         <span class="icon ion-arrow-left-b"></span>
                 </button>
-                <button class='btn btn-sm  pull-right' ng-hide="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                <button class='btn  pull-right' ng-hide="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
                     <span class="icon ion-arrow-right-b"></span>
                 </button>
         </div>
@@ -143,13 +140,13 @@
              <div class="row">
                 <div class="col-sm-6 pull-left">
                     
-                    <button tooltip-placement="left" tooltip="Open" ng-click='openDocInWrite(showDoc)' class="btn btn-jo">
+                    <button ng-click='openDocInWrite(showDoc)' class="btn btn-jo">
                         <span class="icon ion-edit"></span>
                     </button>
                 </div>
                 <div class="pull-right col-sm-6">
                     
-                    <button tooltip-placement="left" tooltip="Topics" class='btn-jo btn btn-sm' ng-click='openTopicModal()'>
+                    <button  class='btn-jo btn' ng-click='openTopicModal()'>
                         <span class="ion-pricetags icon"></span>
                     </button>
                 </div>

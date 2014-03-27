@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('shared')
-.controller('MainCtrl', ['$scope', 'User', '$rootScope', '$modal', '$window', '$state', function ($scope, User, $rootScope, $modal, $window, $state) {
+.controller('MainCtrl', ['$scope', 'User', '$rootScope', '$modal', '$window', '$state','$timeout', function ($scope, User, $rootScope, $modal, $window, $state, $timeout) {
 
 /*
 Does a few things:
@@ -65,7 +65,10 @@ Does a few things:
     };
 
     $scope.closeWindow = function () {
-      $window.close();
+      $timeout(function () {
+        console.log('closing')
+        $window.close();
+      }, 1000)
     };
 
     $scope.signin = function(user) {
@@ -181,25 +184,43 @@ Does a few things:
   /*
   Feedback Modal
     */
-    $scope.feedbackModal = function () {
+
+
+    $scope.aboutModal = function () {
       var modalInstance = $modal.open({
-        templateUrl: "partials/feedback-modal.html",
+        templateUrl: "partials/about-modal.html",
         controller: ['$scope', '$modalInstance', '$http', function  ($scope, $modalInstance, $http) {
           $scope.close = function() {
             $modalInstance.close();
           }; 
-          $scope.submitFeedback = function (feedback) {
-            console.log(feedback);
-            var data = {'content': feedback}
-            $scope.close();
-            return $http.post('/feedback', data);
-            
-          };
+          
 
+          $scope.feedbackModal = function () {
+            $scope.close();
+            var modalInstance = $modal.open({
+              templateUrl: "partials/feedback-modal.html",
+              controller: ['$scope', '$modalInstance', '$http', function  ($scope, $modalInstance, $http) {
+                $scope.close = function() {
+                  $modalInstance.close();
+                }; 
+                $scope.submitFeedback = function (feedback) {
+                  console.log(feedback);
+                  var data = {'content': feedback}
+                  $scope.close();
+                  return $http.post('/feedback', data);
+                  
+                };
+
+                
+              }],
+            });
+          };
           
         }],
       });
     };
+
+
     $scope.forgotPasswordModal = function () {
       var modalInstance = $modal.open({
         templateUrl: "partials/password-modal.html",

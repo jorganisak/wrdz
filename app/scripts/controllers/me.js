@@ -15,7 +15,7 @@ MY WRDZ
 
   $scope.tabs = [
     { title: "Profile", state: "me.profile"},
-    { title: "My Hearts", state: "me.hearts"},
+    { title: "Hearts", state: "me.hearts"},
     { title: "Following", state: "me.following"},
   ];
 
