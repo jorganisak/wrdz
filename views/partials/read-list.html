@@ -10,7 +10,7 @@
     <div class="col-sm-8 col-xs-10">
 
             <div class="col-sm-8 col-sm-offset-2" ng-show="$state.current.name === 'read.list.following'">
-                <div ng-if="!user.following.length">
+                <div class="text-center" ng-if="!user.following.length">
                     <h4>You're not following anyone on wrdz...yet!</h4>
                 </div>
             </div>
@@ -29,11 +29,11 @@
         <div id="read-list-right">
             <div ng-controller="UsersListCtrl" ng-show="$state.current.name === 'read.list.user'">
                 
-                <div ng-mouseover="isCollapsed = false" id="read-doc-username">
+                <div id="read-doc-username">
                     <a>{{author_info.username}}</a>
                 </div>
 
-                <div collapse="isCollapsed">
+                <div>
                     
                     <div id="read-doc-followers">
                         <span class="half-opacity pull-left">
@@ -70,7 +70,7 @@
 
             <div ng-controller="TopicsListCtrl" ng-show="$state.current.name === 'read.list.topics'">
                 <input type="text" placeholder="Search Topics" class="form-control" ng-model="search.title">
-                <br>
+                
                 <div ng-repeat="topic in data | startFrom:currentPage*pageSize | limitTo: pageSize | filter:search">
                     <div ui-sref-active="active" ui-sref="read.list.topics({topicId:topic._id})" class="read-list-right-item">
                         
@@ -78,10 +78,10 @@
                     </div>
                 </div>
 
-                <button class="btn btn-sm pull-left" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                <button class="btn btn-sm pull-left" ng-hide="currentPage == 0" ng-click="currentPage=currentPage-1">
                         <span class="icon ion-arrow-left-b"></span>
                 </button>
-                <button class="btn btn-sm pull-right" ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                <button class="btn btn-sm pull-right" ng-hide="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
                     <span class="icon ion-arrow-right-b"></span>
                 </button>
             </div>

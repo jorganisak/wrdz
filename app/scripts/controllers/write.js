@@ -41,7 +41,8 @@ angular.module('write')
     $scope.mediumEditorOptionsBody = angular.toJson(
       {"placeholder": "",
         "buttons": ["bold", "italic", "anchor", "header2", "orderedlist", "unorderedlist" ],
-        "buttonLabels" : {"header2": "<b>H</b>", "italic": "<strong><em>i</em></strong>"},
+        "buttonLabels" : {"header2": "<b>H</b>", "anchor": "<span><span class='icon ion-link'></span></span>",
+         "bold":"<strong>B</strong>", "italic": "<em>i</em>"},
         "disableToolbar": false,
         "forcePlainText" : false,
         "targetBlank": true}

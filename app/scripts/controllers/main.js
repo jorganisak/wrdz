@@ -64,6 +64,10 @@ Does a few things:
       }
     };
 
+    $scope.closeWindow = function () {
+      $window.close();
+    };
+
     $scope.signin = function(user) {
       if (!User.isLoggedIn()){
         User.signin(user).

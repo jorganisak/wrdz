@@ -37,6 +37,11 @@ angular.module('models')
         return $http.get('pubDocs/');
       },
 
+      getHearts : function (docIds) {
+        var data = {docIds: docIds}
+        return $http.post('pubDocs/hearts', data)
+      },
+
       list : function (args) {
         var str = "";
         for (var i=0; i<args.length; i++) {

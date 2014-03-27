@@ -5,7 +5,7 @@
   */
 
   angular.module('write')
-  .factory('Me', ['$http', 'User', 'UserDoc', function ($http, User, UserDoc) {
+  .factory('Me', ['$http', 'User', 'UserDoc','PubDoc', function ($http, User, UserDoc, PubDoc) {
 
 
 
@@ -17,7 +17,22 @@
 
       saveUsername : function (username) {
         return User.update('username', username)
-      }
+      },
+
+      getHearts : function () {
+
+        var res =  User.getUser();
+        if(!res.meta) {
+          return false;
+        }
+     
+
+        var hearts = res.meta._hearts;
+        var i = PubDoc.getHearts(hearts);
+        return i;
+
+        
+      },
 
     };
 }]);

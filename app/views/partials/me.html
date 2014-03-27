@@ -1,56 +1,24 @@
-<div ng-hide='user' class="row text-center">
-        <h2>
-        <a ng-click='launchSignUp()'>
-            
-        Sign up for wrdz.
-        </a>
-        </h2>
-</div>
+<div ng-show='user' class="row" id='me-content' ng-controller="MeCtrl">
 
-<div ng-show='user' class="" id='me-content' ng-controller="MeCtrl">
-  <div class="container-fluid">
-    
-    <div class="row">
-      <div class="col-sm-4">
-        <h4>Username</h4>
-        <div class="row">
-          <div class="col-sm-6">
-            
-             <input type="text" ng-change='usernameChange()' ng-model='username_copy' class="form-control">
-          </div>
-          <div ng-show='change' class="col-sm-2">
-            
-            <span ng-show='username_ok' class="username-indicator username-checkmark">
-            
-              <span class="icon ion-checkmark"></span>
-            </span>
-            <span ng-hide='username_ok' class="username-indicator username-x">
-            
-              <span class="icon ion-alert"></span>
-            </span>
-          </div>
-          <div  ng-show='change' class="col-sm-4">
-            <button ng-click='saveUsername()' ng-disabled='!username_ok' class="btn btn-success btn-sm">Save</button>
-          </div>
-        </div>
+  <div class="col-sm-2 text-left">
+    <div id="read-list-left">
+      <tabset vertical='true' type="navType" class='jo-tabset'>
 
-      </div>
+        <tabset vertical='true' type="navType" class='jo-tabset'>
+          <tab ng-repeat="tab in tabs" class='jo-tab' ui-sref="{{tab.state}}" active='tab.active' heading='{{tab.title}}'></tab>
+        </tabset>
+      </tabset>
     </div>
-    <div class="row">
-      <div class="col-sm-4">
-        <h4>Bio</h4>
-
-        <textarea name="bio" ng-model='user.bio' maxlength="150" class='form-control' id="bio-textarea" cols="30" rows="5"></textarea>
-        
-      </div>
-    </div>
-      <div class="pull-right col-sm-4">
-        <br>
-        <button id="me-logout" class='btn btn-danger pull-right' ng-click='logout()'>Logout</button>
-        <br>
-        <br>
-        <a id="me-logout" class=' pull-right' ng-click=''>Delete Account</a>
-      </div>
   </div>
+  <div class="col-sm-8 col-xs-10">
+    <div class='col-sm-10 col-sm-offset-1'>
+
+      <div ui-view></div>
+
+
+      
+    </div>
+  </div>
+
+
 </div>
- 

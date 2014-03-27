@@ -1,24 +1,21 @@
-<div ng-if='!user' ng-cloak class="row text-center">
-    <h2>
-        <a ng-click='launchSignUp()'>
-
-            Sign up for wrdz.
-        </a>
-    </h2>
-</div>
 
 <div ng-if='user' id="mywrdz-body" ng-cloak class='row' ng-controller='MyWrdzCtrl'>
     <div class="col-sm-2 text-center">
         <div id="mywrdz-left">
+            <input type="text" placeholder='Search' class="form-control" ng-model='search'>
 
+            <br>
             <div class="btn-group filter-button-group">
                 <button type="button" class="btn btn-default btn-sm" ng-model="filterModel" btn-radio="'All'">All</button>
                 <button type="button" class="btn btn-default btn-sm " ng-model="filterModel" btn-radio="'Public'">Public</button>
                 <button type="button" class="btn btn-default btn-sm" ng-model="filterModel" btn-radio="'Private'">Private</button>
             </div>
 
-
-            <div id="date-button-box">
+            <hr>
+           <button type="button" class="btn btn-jo btn-sm " ng-click="dateCollapsed = !dateCollapsed; isCollapsed = true">
+                <span class="icon ion-calendar"></span>&nbsp;&nbsp;Date&nbsp;&nbsp;<span class="caret"></span>
+            </button>
+            <div collapse='dateCollapsed' id="date-button-box">
                 <div class="row">
                     <div class="col-sm-6">
                         <button ng-click='setToday()' class="btn btn-sm btn-jo">Today</button>
@@ -56,11 +53,11 @@
                         <span ng-click="increaseType()" class="icon pull-right ion-chevron-right"></span>
                     </div>
                 </div>
+            <hr>
             </div>     
-
         
-            <button type="button" class="btn btn-jo btn-sm dropdown-toggle" ng-click="topicCollapse = !topicCollapse">
-                <span class="icon ion-pricetags"></span>&nbsp;&nbsp;Filter&nbsp;&nbsp;<span class="caret"></span>
+            <button type="button" class="btn btn-jo btn-sm " ng-click="topicCollapse = !topicCollapse">
+                <span class="icon ion-pricetags"></span>&nbsp;&nbsp;Topics&nbsp;&nbsp;<span class="caret"></span>
             </button>
             <div collapse='topicCollapse'>
                 <span ng-repeat="top in topicOptions">
@@ -90,9 +87,14 @@
     <div class="col-sm-8 col-xs-10">
 
         <div id='me-middle' class="col-sm-10 col-sm-offset-1 col-xs-12">
+
+            <div ng-if='docList.length === 0'>
+                <br>
+                <p>When you pick up your game and start writing, this is where your words will be.</p>
+            </div>
             
             <accordion close-others="true">
-                <div style="position: relative;" ng-repeat="doc in docList | orderBy: '-updated_at'">
+                <div style="position: relative;" ng-repeat="doc in docList | orderBy: '-updated_at' | startFrom:starting | limitTo: pageSize | filter:search">
                     
 
                     <accordion-group  ng-click='switchDoc(doc)' ng-dblclick='openDocInWrite(doc)' class="me-list-item">
@@ -121,10 +123,15 @@
 
                 </div>
             </accordion>
-        <div class="page-arrow text-center">
+
             
-            <span class="icon ion-arrow-down-b"></span>
-        </div>
+
+                <button class='btn  btn-sm pull-left' ng-hide="currentPage == 0" ng-click="currentPage=currentPage-1">
+                        <span class="icon ion-arrow-left-b"></span>
+                </button>
+                <button class='btn btn-sm  pull-right' ng-hide="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                    <span class="icon ion-arrow-right-b"></span>
+                </button>
         </div>
 
     </div>
@@ -215,7 +222,7 @@
 
                 </div>
             </div>
-         
+            <br>
 
 
             <div ng-if='!showDoc.is_archived'  tooltip-placement="left" tooltip="Archive" ng-click='archive(showDoc._id)' class="archive-button">
@@ -226,6 +233,12 @@
                 
                 <span class="icon ion-reply"></span>
             </div>
+    <!--         <br>
+            <br>
+            <div ng-if='showDoc.is_archived'  tooltip-placement="left" tooltip="Delete" ng-click='' class="archive-button">
+                            
+                <span class="icon ion-trash-b"></span>
+            </div> -->
 
         </div>
 

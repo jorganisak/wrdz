@@ -1,7 +1,7 @@
 <div ng-hide="user" id='landing-body' class="text-center row">
   <br>
   <br>
-  <div class="container">
+  <div class="container-fluid">
     
     <div class="row">
 
@@ -22,7 +22,7 @@
               
               <p ng-hide='local_auth_form'>Start your wordly journey.</p>
               
-              <a ng-hide='local_auth_form' target='_blank' href="/auth/twitter">
+              <a ng-hide='local_auth_form' target='_blank' ng-click='closeWindow()' href="/auth/twitter">
                 <br>
 
                 <div id="landing-twitter-signup">

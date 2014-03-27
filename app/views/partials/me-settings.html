@@ -1,0 +1,60 @@
+<div ng-controller='MeSettingsCtrl' class="col-sm-10 col-sm-offset-1">
+  
+    <div class="row">
+
+      
+
+
+
+      <h4>Username</h4>
+      <div class="row">
+        <div class="col-sm-6">
+
+          <input type="text" ng-change='usernameChange()' ng-model='username_copy' class="form-control">
+        </div>
+        <div ng-show='change' class="col-sm-1">
+
+          <span ng-show='username_ok' class="username-indicator username-checkmark">
+
+            <span class="icon ion-checkmark"></span>
+          </span>
+          <span ng-hide='username_ok' class="username-indicator username-x">
+
+            <span class="icon ion-alert"></span>
+          </span>
+        </div>
+        <div  ng-show='change' class="text-center col-sm-1">
+          <button ng-click='saveUsername()' ng-disabled='!username_ok' class="btn btn-success">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <h4>Bio</h4>
+
+      <textarea name="bio" ng-model='user.bio' maxlength="150" class='form-control' id="bio-textarea" cols="30" rows="4"></textarea>
+
+    </div>
+          <div class="row">
+            
+          <h4>Followers:</h4>
+          
+          <h6>{{user.followers}}</h6>
+          
+          <h4>Karma:</h4>
+      <h6>{{user.karma}}</h6>
+          
+      <a class=' ' ui-sref="read.list.user({userId: user._id})">See your public wrdz.</a>
+      </div>
+
+
+    <br>
+    <br>  
+    <div class="row">
+      
+      <button id="me-logout" class='btn btn-danger pull-right' ng-click='logout()'>Logout</button>
+      <br>
+      <br>
+      <!-- <a id="me-logout" class=' pull-right' ng-click=''>Delete Account</a> -->
+    </div>
+</div>

@@ -16,7 +16,7 @@
                 <span class="pull-right  read-doc-left-text">{{readDoc.hearts}}</span>
 
             </div>
-            <div twitter-button ng-click="open()" class="read-doc-tweet">
+            <div twitter-button ng-click="open(readDoc._id)" class="read-doc-tweet">
 
                     
                     <span  class="icon ion-social-twitter">
@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    <div class="col-sm-8">
+    <div ng-mouseenter='isCollapsed = true' class="col-sm-8">
         <div class="read-doc-center">
             
             <div class="row">
@@ -66,7 +66,7 @@
         </div>
 
     </div>
-    <div class="col-sm-2">
+    <div ng-mouseover='isCollapsed = false'  class="col-sm-2">
         <span ng-show='Read.getNextDocId()' ng-click='nextDoc(readDoc)' id="read-next-icon">
             
             <span class="icon ion-chevron-right"></span>
@@ -74,7 +74,7 @@
         <div  class='text-right' id="read-doc-right-fixed">
             <div ng-hide='readDoc.is_anon'>
                 
-                <div ng-mouseover='isCollapsed = false' id="read-doc-username">
+                <div  id="read-doc-username">
                     <a ui-sref="read.list.user({userId: readDoc.author._id})">{{readDoc.author.username}}</a>
                 </div>
 

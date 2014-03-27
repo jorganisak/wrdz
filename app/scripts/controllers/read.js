@@ -11,12 +11,13 @@ angular.module('read')
 
     $scope.Read = Read;
 
+  $scope.tabs = [
+    { title: "Front", state: "read.list.front({'skip': null})"},
+    { title: "Following", state: "read.list.following({'skip': null})"},
+    { title: "Topics", state: "read.list.topics({'skip': null})"}
+  ];
 
-    $scope.tabs = [
-      { title: "Front", state: "read.list.front({'skip': null})"},
-      { title: "Following", state: "read.list.following({'skip': null})"},
-      { title: "Topics", state: "read.list.topics({'skip': null})"}
-    ];
+
 
     $scope.navType = 'pills';
 
@@ -202,6 +203,7 @@ angular.module('read')
           $scope.active2 = 'active';
           Read.updatePubDoc($scope.readDoc._id, 'heart', true);
           $scope.readDoc.hearts++;
+          $scope.user.meta._hearts.push($scope.readDoc._id);
         }
       }
     };

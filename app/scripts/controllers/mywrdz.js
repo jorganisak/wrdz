@@ -28,6 +28,7 @@ angular.module('myWrdz')
 
     $scope.isCollapsed = true;
     $scope.topicCollapse = true;
+    $scope.dateCollapsed = true;
 
     var dtTypes = ['Days', 'Weeks', 'Months'];
 
@@ -135,8 +136,33 @@ angular.module('myWrdz')
     $scope.$watch(MyWrdz.getList, function (newValue) {
       if (newValue) {
         $scope.docList = newValue;
+        init(newValue);
       }
     });
+
+
+    $scope.pageSize = 6;
+    $scope.numberOfPages = function(){
+      return Math.ceil($scope.data.length/$scope.pageSize);                
+    }
+
+    var init = function (docs) {
+      $scope.data = [];
+      var docs = MyWrdz.getList();
+        for (var i=0; i<docs.length ; i++) {
+          $scope.data.push(docs[i]);
+        }
+      $scope.currentPage = 0;
+      $scope.starting = $scope.currentPage*$scope.pageSize
+    }
+
+    $scope.$watch('currentPage', function (newValue) {
+      $scope.starting = $scope.pageSize*newValue;
+    })
+
+
+
+
 
     $scope.switchDoc = function (doc) {
       $scope.showDoc = doc;
@@ -209,4 +235,10 @@ angular.module('myWrdz')
         }
       });
     };
-}]);
+}])
+
+  .controller('MyWrdzListCtrl', ['$scope', 'MyWrdz', function ($scope, MyWrdz) {
+
+
+    
+  }])

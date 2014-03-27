@@ -154,8 +154,11 @@ config(['$stateProvider', '$urlRouterProvider',
             Read.setPrevState($state);
 
             $scope.docs = docs.data;
-            if ($scope.docs[0].author._id === $stateParams.userId) {
-              $scope.$emit('read_list_author_info', $scope.docs[0].author)
+            if ($scope.docs[0]) {
+              
+              if ($scope.docs[0].author._id === $stateParams.userId) {
+                $scope.$emit('read_list_author_info', $scope.docs[0].author)
+              }
             }
 
           }]
@@ -193,13 +196,91 @@ config(['$stateProvider', '$urlRouterProvider',
 
       .state('me', {
         url: '/m',
-        templateUrl: 'partials/me.html'
+        templateUrl: 'partials/me.html',
+        abstract: 'true',
       })
 
       
-      .state('me.about', {
-        url: '/about',
-        templateUrl: 'partials/about.html'
+      .state('me.profile', {
+        url: '/profile',
+        templateUrl: 'partials/me-settings.html'
+      })
+       .state('me.following', {
+        url: '/f',
+        templateUrl: 'partials/me-following.html',
+        controller: ['$scope', 'User', function ($scope, User) {
+
+          $scope.unfollow = function (id) {
+            var data = {userId: id, bool : false};
+            User.update('addFollowing', data);
+            angular.forEach($scope.user.following, function (user) {
+              if (user._id === id) {
+                $scope.user.following.splice($scope.user.following.indexOf(user), 1);
+              }
+            })
+          }
+  
+        }]
+ 
+      })
+      
+      .state('me.hearts', {
+        url: '/hearts',
+        templateUrl: 'partials/me-hearts.html',
+        resolve: {
+          docs : ['Me','$state', function (Me, $state) {
+            var i = Me.getHearts();
+            if (i) {
+
+              return i;
+            } else {
+              return true;
+            }
+          }]
+        },
+        controller : ['$scope', 'docs', 'Me', function ($scope, docs, Me) {
+
+
+          $scope.currentPage = 0;
+          $scope.pageSize = 6;
+          $scope.data = [];
+          $scope.numberOfPages = function(){
+            return Math.ceil($scope.data.length/$scope.pageSize);                
+          }
+          var init = function (docs) {
+
+            if (docs.data) {
+              for (var i=0; i<docs.data.length ; i++) {
+                $scope.data.push(docs.data[i]);
+              }
+              
+            }
+
+        
+          }
+
+          init(docs);
+
+
+
+          $scope.$on('userChange', function (evt, user) {
+              if (user) {
+                
+                var i = Me.getHearts()
+                i.then(function (res) {
+                  init(res)
+
+                })
+
+            
+       
+              }
+            });
+
+
+
+        }]
+
       })
 
   /*

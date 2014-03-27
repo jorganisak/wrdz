@@ -10,8 +10,56 @@ MY WRDZ
   $scope.change = false;
 
   $scope.Me = Me;
+  $scope.moment = moment;
 
 
+  $scope.tabs = [
+    { title: "Profile", state: "me.profile"},
+    { title: "My Hearts", state: "me.hearts"},
+    { title: "Following", state: "me.following"},
+  ];
+
+  $scope.$watch('$state.current.name', function (newValue) {
+    if (newValue) {
+
+      angular.forEach($scope.tabs, function (tab) {
+        if ((tab.state) === newValue) {
+          tab.active = true;
+        } else {
+          tab.active = false;
+        }
+      })
+    }
+  })
+
+  $scope.navType = 'pills';
+
+
+
+
+/*
+
+LOGOUT
+
+*/
+  $scope.logout = function() {
+    if ( User.isLoggedIn() ) {
+      User.logout().
+      success( function( data ) {
+        Write.setCurrentDoc(null);
+        User.changeUser(null);
+        if (data == 'Logged out now.') {
+          $state.go('landing');
+        }
+      }).error(function(err) {
+        console.log(err);
+      });
+    }
+  };
+}])
+
+.controller('MeSettingsCtrl', ['$scope', 'User', 'Me', function ($scope, User, Me) {
+  
   if ($scope.user) {
     $scope.username_copy = angular.copy($scope.user.username);
   }
@@ -24,18 +72,20 @@ MY WRDZ
   });
 
   $scope.usernameChange = function () {
+    var u = $scope.username_copy;
+
+    console.log
+
     $scope.change = true;
   }
 
   $scope.saveUsername = function () {
     if ($scope.change && $scope.username_ok) {
-
       var res = Me.saveUsername($scope.username_copy);
       res.then(function (res) {
         if (res.status === 200) {
           User.changeUser(res.data)
           $scope.change = false;
-
         }
       })
     }
@@ -58,7 +108,7 @@ MY WRDZ
     } else {
       $scope.username_ok = false;
     }
-  })
+  }, true);
 
 
   $scope.$watch('user.bio', function (newValue) {
@@ -68,24 +118,5 @@ MY WRDZ
     }
   });
 
+}])
 
-/*
-
-LOGOUT
-
-*/
-  $scope.logout = function() {
-    if ( User.isLoggedIn() ) {
-      User.logout().
-      success( function( data ) {
-        Write.setCurrentDoc(null);
-        User.changeUser(null);
-        if (data == 'Logged out now.') {
-          $state.go('landing');
-        }
-      }).error(function(err) {
-        console.log(err);
-      });
-    }
-  };
-}]);

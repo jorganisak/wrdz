@@ -46,9 +46,9 @@ angular.module('shared').directive('joInputAdd', function () {
     restrict: 'AE',
     replace: true,
     controller: function ($scope, $window) {
-      var open = function() {
+      var open = function(docId) {
         console.log('going'); 
-        var url = "https://twitter.com/intent/tweet?text=" + '' + "&url=" + 'http://wrdz.herokuapp.com';
+        var url = "https://twitter.com/intent/tweet?text=" + '' + "&url=" + 'http://wrdz.co/r/' + docId;
         var popup;
         popup = {
           width: 500,
