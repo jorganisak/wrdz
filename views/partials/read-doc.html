@@ -1,0 +1,119 @@
+<div ng-controller="ReadDocCtrl" id="read-doc-body">
+
+    <div class="col-sm-2">
+        <div ng-if="Read.getPrevState().name" ng-click="goBack()" id="read-doc-back">
+            <span class="icon ion-arrow-return-left"></span>
+        </div>
+        <div id="read-doc-left-fixed">
+
+            <div ng-class="active1" ng-click="up_vote()" class="read-doc-arrow">
+                <span class="icon pull-left ion-arrow-up-a"></span>
+                <span class="pull-right read-doc-left-text">{{readDoc.up_votes}}</span>
+            </div>
+
+            <div ng-class="active2" ng-click="heart()" class="read-doc-heart">
+                <span class="pull-left icon ion-heart"></span>
+                <span class="pull-right read-doc-left-text">{{readDoc.hearts}}</span>
+
+            </div>
+            <div twitter-button="" ng-click="open(readDoc._id)" class="read-doc-tweet">
+
+                    
+                    <span class="icon ion-social-twitter">
+                        
+                    </span>
+                
+
+                
+            </div>
+
+        </div>
+    </div>
+
+    <div ng-mouseenter="isCollapsed = true" class="col-sm-8">
+        <div class="read-doc-center">
+            
+            <div class="row">
+
+
+                <div id="read-doc-section-label" class="text-right">            
+
+                    <span ng-repeat="topic in readDoc.topics">
+                        <span ui-sref="read.list.topics({topicId: topic._id})" class="label label-primary tag-label">{{topic.title}}</span>
+                    </span>
+                </div>    
+
+            </div>
+
+            <div ng-show="readDoc.doc.has_title" class="text-center read-title">
+                {{readDoc.doc.title}}
+                <hr>
+            </div>
+            <div ng-hide="readDoc.doc.has_title" class="">
+                <br>
+            </div>
+
+
+            <div ng-bind-html="readDoc.doc.body" class="read-doc-content">
+
+            </div>
+
+            <br>
+            <em>{{moment(readDoc.published_at).format('MMMM D, YYYY')}}</em>
+            <br>
+
+
+        </div>
+
+    </div>
+    <div ng-mouseover="isCollapsed = false" class="col-sm-2">
+        <span ng-show="Read.getNextDocId()" ng-click="nextDoc(readDoc)" id="read-next-icon">
+            
+            <span class="icon ion-chevron-right"></span>
+        </span>
+        <div class="text-right" id="read-doc-right-fixed">
+            <div ng-hide="readDoc.is_anon">
+                
+                <div id="read-doc-username">
+                    <a ui-sref="read.list.user({userId: readDoc.author._id})">{{readDoc.author.username}}</a>
+                </div>
+
+                <div collapse="isCollapsed">
+                    
+                    <div id="read-doc-followers">
+                        <span class="half-opacity pull-left">
+                            <em>Followers: </em>
+                        </span>
+                        <span class="pull-right">
+                            
+                            {{readDoc.author.followers}}
+                        </span>
+                        <br>
+                        <span class="half-opacity pull-left">
+                            <em>Karma:</em>
+                        </span>
+                        <span class="pull-right">
+                            
+                        {{readDoc.author.karma}}
+                        </span>
+                    </div>
+                    <br>
+                    <br>
+                    <div id="read-doc-bio">
+                        {{readDoc.author.bio}}
+                    </div>
+                    <div ng-click="follow()" ng-hide="following" id="read-doc-follow-button">
+                        Follow
+                    </div>
+                    <div ng-click="follow()" ng-show="following" id="read-doc-follow-button">
+                        Unfollow
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>

@@ -1,0 +1,111 @@
+<div ng-hide="user" id="landing-body" class="text-center row">
+  <br>
+  <br>
+  <div class="container-fluid">
+    
+    <div class="row">
+
+      <div class="col-sm-10 col-sm-offset-1">
+      <div id="landing-copy" class="col-sm-6 text-left">
+          
+          <h1>wrdz</h1>
+          <br>
+          <p>A place for writing what matters.</p>
+          <p>Its like a diary but not lame.</p>
+          <p>For real, its sick.</p>
+          <p><a ui-sref="read.list.front">Read what people are writing now.</a></p>
+
+      </div>
+      <div class="col-sm-6">
+          <div id="landing-form">
+            <div class="well">
+              
+              <p ng-hide="local_auth_form">Start your wordly journey.</p>
+              
+              <a ng-hide="local_auth_form" target="_blank" ng-click="closeWindow()" href="/auth/twitter">
+                <br>
+
+                <div id="landing-twitter-signup">
+                 <span class="icon ion-social-twitter"></span> &nbsp; Sign in with Twitter 
+                </div>
+
+              </a>
+
+              <div ng-show="local_auth_form && !landing_signin">
+                
+                <form name="signUpForm" role="form" ng-submit="signup(userSignUp)" novalidate="">
+                  {{message}}
+                  <div class="text-left form-group">
+                    
+                    <label for="username">Choose a username</label>
+                  <input class="form-control" id="username" type="text" class="medium-6 columns" ng-model="userSignUp.username" required="" placeholder="">
+                  </div>
+                  <div class="text-left form-group">
+                    <label for="email">Your email</label>
+                  <input class="form-control" id="email" type="email" class="medium-6 columns" ng-model="userSignUp.email" required="" placeholder="">
+                  </div>
+
+
+                  <div class="text-left form-group">
+                    <label for="password">Password</label>
+                    
+                  <input class="form-control" id="password" type="password" class="medium-6 columns" ng-model="userSignUp.password" required="" placeholder="">
+                  </div>
+
+                  <button type="submit" ng-disabled="signUpForm.$invalid" class="btn btn-jo">Join Wrdz</button>
+                </form>      
+              </div>
+
+              <div ng-show="local_auth_form && landing_signin">
+      
+                <form name="signInForm" role="form" ng-submit="signin(userSignIn)" novalidate="">
+                  <p>
+                    
+                    {{message}}
+                  </p>
+
+                  <div class="text-left form-group">
+                    
+                    <label for="username">Username</label>
+                    <input class="form-control" type="text" class="medium-6 columns" ng-model="userSignIn.username" required="">
+                  </div>
+
+                  <div class="text-left form-group">
+                    <label for="password">Password</label>
+                    <input class="form-control" type="password" class="medium-6 columns" ng-model="userSignIn.password" required="">
+                  </div>
+                  
+
+                  <button type="submit" ng-disabled="signInForm.$invalid" class="btn btn-jo">Log In</button>
+                <br>
+                <br>
+                  <div class="text-right">
+                    
+                    <a ng-click="close(); forgotPasswordModal()" href="">Forgot your password?</a>
+                  </div> 
+
+                </form>          
+              </div>
+
+
+            </div>
+            <a ng-show="local_auth_form && !landing_signin" ng-click="landing_signin = true" class="pull-right">Log In</a>            
+            <a ng-show="local_auth_form" ng-click="local_auth_form = !local_auth_form" class="pull-left" href="">Cancel</a>
+            <a ng-hide="local_auth_form" ng-click="local_auth_form = !local_auth_form; landing_signin = false" class="pull-right">I prefer email.</a>
+            
+          </div>
+          
+        
+        
+
+        
+          
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+</div>
