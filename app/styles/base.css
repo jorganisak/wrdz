@@ -12,18 +12,17 @@
 #fixed-bottom-bar {
   position: fixed;
   bottom: 0%;
+  left: l;
   width: 100%;
   background-color: white;
-  
 }
 
 #fixed-top-bar {
   position: fixed;
   top: 0%;
-  height:50px;
+  height: 50px;
   width: 100%;
   background-color: white;
-  
 }
 
 h6 {
@@ -444,6 +443,7 @@ h1 {
 
 #mywrdz-body {
   margin-top: 70px;
+  margin-bottom: 70px;
 }
 
 #mywrdz-doc-list {
@@ -496,7 +496,7 @@ h1 {
   position: absolute;
   border-radius: 100px;
   top: 3px;
-  left: -3%;
+  left: 50%;
 }
 
 .username-checkmark {
@@ -563,13 +563,12 @@ h1 {
   color: white;
 }
 
-  @media (min-width: 786px) {
-    .thin-modal {
-
-        width: 53%;
-        margin: 0 auto;
-    }
+@media (min-width: 786px) {
+  .thin-modal {
+    width: 53%;
+    margin: 0 auto;
   }
+}
 
 #read-doc-username {
   font-family: 'Open Sans', sans-serif;
@@ -1432,7 +1431,7 @@ h3 {
 
 #archive-checkbox {
   font-family: 'Clear Sans', sans-serif;
-  font-weight:200;
+  font-weight: 200;
 }
 
 .following-tag-label {

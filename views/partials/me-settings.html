@@ -8,11 +8,14 @@
 
       <h4>Username</h4>
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-7">
 
           <input type="text" ng-change="usernameChange()" ng-model="username_copy" class="form-control">
         </div>
-        <div ng-show="change" class="col-sm-1">
+        <div class="visible-xs">
+          <br>
+        </div>
+        <div ng-show="change" class="col-sm-2 col-xs-6">
 
           <span ng-show="username_ok" class="username-indicator username-checkmark">
 
@@ -23,10 +26,11 @@
             <span class="icon ion-alert"></span>
           </span>
         </div>
-        <div ng-show="change" class="text-center col-sm-1">
-          <button ng-click="saveUsername()" ng-disabled="!username_ok" class="btn btn-success">Save</button>
+        <div ng-show="change" class="text-center col-sm-3 col-xs-6">
+          <button ng-click="saveUsername()" ng-disabled="!username_ok" class="btn btn-block btn-success">Save</button>
         </div>
       </div>
+
     </div>
 
     <div class="row">

@@ -129,7 +129,7 @@
 
             </div>
 
-            <button ng-hide="currentDoc.is_published" ng-click="openPublishModal()" class="btn btn-jo hidden-xs" id="publish-doc">
+            <button ng-disabled="!currentDoc.body" ng-hide="currentDoc.is_published" ng-click="openPublishModal()" class="btn btn-jo hidden-xs" id="publish-doc">
                 Spread these wrdz!
             </button>
 

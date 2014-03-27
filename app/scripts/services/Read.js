@@ -11,7 +11,7 @@ angular.module('read')
     var nextDocId;
 
     function checkLength (index) {
-      if (index < 3) {
+      if (docList.docs.length - index < 3) {
         loadMoreDocs(docList.docs.length);
       }
     };
@@ -42,13 +42,13 @@ angular.module('read')
         angular.forEach(docs, function (doc) {
           if (doc._id === id) {
             var index = docs.indexOf(doc);
-
+            console.log(index);
             checkLength(index);
 
-            if (index === 0) {
+            if (index === docs.length - 1) {
               nextDocId = null;
             } else {
-              nextDocId = docs[index - 1]._id;
+              nextDocId = docs[index + 1]._id;
               
             }
 
@@ -86,7 +86,7 @@ angular.module('read')
           }
         })
         if (toSkip > 0) {
-          docList.docs = res.data.concat(docList.docs);
+          docList.docs = docList.docs.concat(res.data);
         } else {
           docList.docs = res.data;
         }
