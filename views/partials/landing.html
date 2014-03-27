@@ -16,7 +16,7 @@
           <h1>wrdz</h1>
           <br>
           <p>A place to write whatever's in your head.</p>
-          <p>Keep it to yourself, or choose to share.</p>
+          <p>Keep your wrdz private, or choose to share them.</p>
           <p><a ui-sref="read.list.front">Read what people are writing now.</a></p>
 
       </div>
@@ -24,7 +24,8 @@
           <div id="landing-form">
             <div class="well">
               
-              <p ng-hide="local_auth_form">Start your wordly journey.</p>
+              
+              <p id="landing-well-copy" ng-hide="local_auth_form">Start your wordly journey.</p>
               
               <a ng-hide="local_auth_form" target="_blank" href="/auth/twitter">
                 <br>

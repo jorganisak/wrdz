@@ -9,6 +9,22 @@
   /* border-radius: 4px; */
 }
 
+#landing-well-copy {
+  padding-top: 10px;
+}
+
+.modal-body {
+ position: static;
+}
+
+.modal-body > .ion-close {
+  position:absolute;
+  top: 2%;
+  right: 2%;
+}
+
+
+
 #fixed-bottom-bar {
   position: fixed;
   bottom: 0%;
@@ -47,7 +63,9 @@ h6 {
   cursor: pointer;
   transition: all 100ms linear;
 }
-
+#landing-form > .well {
+  min-height: 164px;
+}
 .half-opacity {
   opacity: 0.5;
 }
@@ -112,7 +130,7 @@ h6 {
   background-color: rgb(50, 139, 255);
   border-radius: 7px;
   color: white;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Clear Sans', sans-serif;
   font-size: 1.2em;
   transition: all 200ms ease-in-out;
 }
@@ -141,7 +159,7 @@ h6 {
 #landing-form {
   max-width: 300px;
   position: relative;
-  margin: 13% auto 0px auto;
+  margin: 19% auto 0px auto;
 }
 
 .read-doc-tweet:hover {
@@ -206,10 +224,12 @@ hr {
   opacity: 0.7;
 }
 
-#landing-copy > div > p {
-  font-size: 1.2em;
-  font-family: 'Open Sans', sans-serif !important;
+#landing-copy > p {
+  font-size: 1.3em;
+  font-family: 'Clear Sans', sans-serif !important;
   padding-left: 5px;
+  font-weight:300;
+  
   padding-right: 0px;
 }
 
@@ -374,7 +394,7 @@ hr {
 
 .well > p {
   font-family: 'Clear Sans', sans-serif;
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
 h1 {
