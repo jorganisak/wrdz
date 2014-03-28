@@ -4,41 +4,32 @@
 
 
         <div ng-controller='WriteLeftCtrl' id='' class=" col-sm-2 hidden-xs text-left ">
-            <div id="write-column-left">
+            <div id='write-fixed-left' class='fixed-left'>
 
-                <div class="row">
-                    <div class="col-sm-6">
+                <button ng-click='newDoc()' class='btn btn-jo fixed-left-button'><span class="ion-plus icon"></span></button>   
 
-                        <button ng-click='newDoc()' class='btn btn-jo'><span class="ion-plus icon"></span></button>   
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
+                <button class='btn fixed-left-button btn-jo' ng-click='openTopicModal()'>
+                    <span class="ion-pricetags icon"></span>
+                </button>
+                <button class='btn fixed-left-button btn-jo' ng-disabled='!currentDoc.body' ng-hide='currentDoc.is_published' ng-click='openPublishModal()'>
+                    <span class="ion-share icon"></span>
+                </button>
 
-
-                     <button class='btn-jo' ng-click='openTopicModal()'>
-
-                        <span class="ion-pricetags icon"></span>
-
-                    </button>
-                </div>
-            </div>
-
-
-
-            <span ng-repeat='topic in currentDoc.topics'>
-                <span class='label label-primary tag-label'>{{topic.title}}</span>
-            </span>
-            <hr>
-
-            <div ng-if='!currentDoc.is_archived'  tooltip-placement="right" tooltip="Archive" ng-click='archive(currentDoc._id)' class=" pull-left archive-button">
-    
-                <span class="icon ion-ios7-filing-outline"></span>
-            </div>
-            <div ng-if='currentDoc.is_archived'  tooltip-placement="right" tooltip="Un-archive" ng-click='archive(currentDoc._id)' class="pull-left archive-button">
                 
+
+
+       
+
+
+            <button ng-if='!currentDoc.is_archived'  tooltip-placement="right" tooltip="Archive" ng-click='archive(currentDoc._id)' class="btn-jo btn archive-button fixed-left-button">
+                <span class="icon ion-ios7-filing-outline"></span>
+                
+            </button>
+
+            <button ng-if='currentDoc.is_archived'  tooltip-placement="right" tooltip="Un-archive" ng-click='archive(currentDoc._id)' class="btn-jo btn archive-button fixed-left-button">
                 <span class="icon ion-reply"></span>
-            </div>
+                
+            </button>
 
 
 
@@ -49,7 +40,12 @@
 
 
     <div ng-if='currentDoc._id'  class="text-center col-sm-8 col-xs-12 pull-left column ">
-
+             <div ng-click='openTopicModal()' class="write-topic-container pull-right">
+                <span ng-repeat='topic in currentDoc.topics'>
+                    <span class='label label-primary tag-label'>{{topic.title}}</span>
+                </span>
+                
+            </div>
             <div  ng-if='currentDoc.is_published' id="write-pub-info" class='panel text-center hidden-xs panel-default'>
 
                 <div class="row">
@@ -128,11 +124,6 @@
             <div ng-keydown='bodyChange()' medium-editor options="{{mediumEditorOptionsBody}}" ng-model='currentDoc.body'  class='' id="write-content">
 
             </div>
-
-            <button ng-disabled='!currentDoc.body' ng-hide='currentDoc.is_published' ng-click='openPublishModal()' class='btn btn-jo hidden-xs' id="publish-doc">
-                Spread these wrdz!
-            </button>
-
         </div>
 
 

@@ -6,6 +6,25 @@
     <div ng-repeat="doc in docs | orderBy: '-score'">
 
         <div ui-sref='read.doc({docId:doc._id})' class=" read-list-item">
+            <div class="row read-list-bottom-row">
+                <div class="col-xs-6 ">
+
+                    <div  class="read-list-author">
+                        <a  ng-click="$event.stopPropagation()" ui-sref="read.list.user({userId: doc.author._id})" ng-hide="doc.is_anon" href="">{{doc.author.username}}</a>
+                        <span ng-show="doc.is_anon"><em>Anonymous</em></span>
+                    </div>
+
+                </div>
+                <div class="col-xs-6 text-right pull-right ">
+
+                    <div class="read-list-date">
+
+                        {{moment(doc.published_at).format('MMMM Do, ha')}}
+                    </div>
+
+                </div>
+            </div>
+            <br>
             <div class="row">
                 <div class="col-sm-8 col-xs-6">
                     <div class="read-list-title">
@@ -33,24 +52,7 @@
 
                 </div>
             </div>
-            <div class="row read-list-bottom-row">
-                <div class="col-xs-6 ">
-
-                    <div  class="read-list-author">
-                        <a  ng-click="$event.stopPropagation()" ui-sref="read.list.user({userId: doc.author._id})" ng-hide="doc.is_anon" href="">{{doc.author.username}}</a>
-                        <span ng-show="doc.is_anon"><em>Anonymous</em></span>
-                    </div>
-
-                </div>
-                <div class="col-xs-6 text-right right ">
-
-                    <div class="read-list-date">
-
-                        {{moment(doc.published_at).format('MMMM Do, ha')}}
-                    </div>
-
-                </div>
-            </div>
+            
         </div>
     </div>
 
