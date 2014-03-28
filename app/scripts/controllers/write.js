@@ -175,6 +175,20 @@ angular.module('write')
     UX Functions
     */
 
+    // $scope.showRecent = false;
+    $scope.hideRecent = function () {
+      if ($scope.showRecent === true) {
+
+        $timeout(function () {
+          if ($scope.showRecent === true) {
+
+            $scope.showRecent = false;
+          }
+        }, 2000)
+      }
+    };
+
+
 
     $scope.switchDoc = function (doc) {
       Write.setCurrentDoc(doc); // sets new doc on scope

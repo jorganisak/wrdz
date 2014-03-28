@@ -21,7 +21,6 @@ angular.module('myWrdz')
 
     $scope.topicsModel = [];
     $scope.topicOptions = [{}];
-    $scope.viewArchived = false;
 
 
 
@@ -97,9 +96,6 @@ angular.module('myWrdz')
       }
     });
 
-    $scope.$watch('viewArchived', function (newValue) {
-      MyWrdz.updateQuery('archive', newValue)
-    })
 
     $scope.$watch('filterModel', function (newValue) {
       if (newValue) {

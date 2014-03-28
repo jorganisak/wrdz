@@ -1,14 +1,74 @@
 .btn-jo > .ion-compose {
   color: black;
 }
+#write-fixed-right > button {
+  height: 10%;
+}
+
+#mywrdz-fixed-left > input {
+  border-left: none;
+  padding: 15px;
+  margin-left: 0px;
+  border-radius: 0px;
+  box-shadow: none;
+  height: 40px;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+/* color: #333; */
+background-color: #E3E3E3;
+border-color: #FFFFFF;
+}
+.btn:active, .btn.active {
+background-image: none;
+outline: 0;
+-webkit-box-shadow: inset 0 3px 5px rgba(140, 140, 140, 0.125);
+box-shadow: inset 0 3px 5px rgba(220, 220, 220, 0.125);
+}
+
+.write-left-button {
+  height: 14%;
+}
+
+#recent-docs {
+    margin-top: 60px;
+  
+    margin-right: 11px;
+    width: 270%;
+    right: 0%;
+    position: absolute;
+    max-width: 280px;
+}
+
+.fixed-right {
+  opacity: 0.8;
+  position: fixed;
+  transition: all 200ms ease;
+  width: 15%;
+  max-width: 160px;
+  top: 22%;
+  height: 100%;
+  right: 3%;
+}
+.fixed-right:hover {
+  opacity:1;
+}
 
 #write-fixed-left {
-  width: 7%;
+  width: 6%;
   left: 0%;
+  max-width: 87px;
+}
+
+button:hover > .ion-ios7-filing-outline {
+  color: red;
 }
 
 .fixed-left-button{
   border-left-color: transparent !important;
+}
+.fixed-right-button{
+  border-right-color: transparent !important;
 }
 
 button[disabled], html input[disabled] {
@@ -131,15 +191,17 @@ h6 {
 }
 
 .filter-button-group > .btn {
-  width: 33.33333333%;
-  font-size: 0.8em;
-  border-radius: 0px;
+  width: 50%;
+  font-size: 1em;
   border: solid 1px rgb(234, 232, 232);
-  padding: 8px;
+  padding: 16px;
+  border-radius: 0px;
+  font-family: 'Clear Sans', sans-serif;
+  font-weight: 100;
 }
 
 #wrdz-headline:hover {
-  opacity: 0.9;
+  /* opacity: 0.9; */
 }
 
 .no-padding {
@@ -301,19 +363,12 @@ hr {
 }
 
 .archive-button {
-  font-size: 1em;
-  opacity: 0.5;
-  width: 40px;
-  cursor: pointer;
-  padding: 5px 10px;
-  /* font-family: 'Open Sans', sans-serif; */
-  float: right;
 }
 
 .archive-button > .icon {
   font-size: 1.7em;
   padding-top: 4px;
-  padding-left: 3px;
+  padding-left: -1px;
 }
 
 #date-button-box > .row {
@@ -439,11 +494,11 @@ hr {
   right: 4%;
 }
 
-#mywrdz-left {
-  position: fixed;
-  width: 18%;
-  left: 4%;
-  max-width: 170px;
+#mywrdz-fixed-left {
+  width: 21%;
+  left:0%;
+  top: 17%;
+  max-width: 210px;
 }
 
 .well > p {
@@ -661,7 +716,6 @@ h1 {
   opacity: 0.3;
   cursor: pointer;
   transition: all 200ms linear;
-  background-color: rgb(0, 128, 255);
 }
 
 #read-doc-section-label > span > .tag-label:hover {
@@ -758,6 +812,7 @@ add-button.active:active {
 .ion-eye {
   font-size: 1.1em;
   padding-left: 2px;
+  color: blue;
 }
 
 .ion-folder {
@@ -813,6 +868,10 @@ add-button.active:active {
   top: 22%;
   height: 100%;
   left: 3%;
+}
+
+.fixed-left:hover {
+  opacity:1;
 }
 
 #read-list-left:hover {
@@ -990,25 +1049,21 @@ blockquote {
 
 .ion-close:hover {
   opacity: 1;
-  background-color: rgb(255, 135, 135);
-  box-shadow: inset 0px 0px 4px 0px rgb(198, 198, 198);
-  border-radius: 23px;
-  color: white;
-  text-shadow: -1px 0px 1px rgb(162, 162, 162);
+  color: rgb(255, 51, 51);
+  text-shadow: -1px 0px 1px rgb(255, 255, 255);
 }
 
 .top-nav-item {
-  font-family: 'Clear Sans', sans-serif;
-  font-size: 1.55rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
   color: white;
-  letter-spacing: 1px;
+  /* letter-spacing: 1px; */
   border-bottom: solid 1px transparent;
   cursor: pointer;
   height: 50px;
-  padding: 13px 0 0 0;
+  padding: 14px 0 0 0;
   transition: all 250ms linear 100ms;
-  text-shadow: 0px -1.3px 0px rgb(222, 222, 222);
-  font-weight: 100;
+  font-weight: 400;
 }
 
 .top-nav-item-sm {
@@ -1032,10 +1087,11 @@ blockquote {
 #wrdz-headline {
   cursor: default;
   transition: all .35s ease;
-  font-size: 1.25em;
+  font-size: 1.35em;
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
   padding-top: 9px;
+  text-shadow: 0px 1px 0px rgb(106, 106, 106);
 }
 
 .bottom-nav-item {
@@ -1117,13 +1173,14 @@ h4 {
 }
 
 .btn-jo {
-  padding: 10px;
+  padding: 2%;
   width: 100%;
-  min-width: 72px;
-  min-height: 65px;
-  opacity: 0.7;
+  min-width: 20px;
+  min-height: 25px;
+  max-height: 75px;
+  /* opacity: 0.8; */
   background-color: white;
-  color: rgb(126, 126, 126);
+  color: rgb(52, 52, 52);
   font-size: 1.2em;
   border: solid 1px silver;
   margin: 9px 0px 6px 0px !important;
@@ -1159,7 +1216,7 @@ h4 {
 p {
   /* padding-right: 2px; */
   /* padding-left: 5px; */
-  margin-bottom: 1.1em;
+  /* margin-bottom: 1.1em; */
   /* text-shadow: -1px 0px 0px rgba(199, 199, 199, 1); */
   text-rendering: optimizeLegibility;
 }
@@ -1182,7 +1239,7 @@ p {
 }
 
 .filter-button-group {
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   width: 100%;
 }
 
@@ -1405,7 +1462,7 @@ h3 {
 
 .ion-arrow-up-a {
   color: rgba(84, 217, 85, 1);
-  font-size: 1.6em;
+  font-size: 1.4em;
 }
 
 .read-list-arrow {
@@ -1472,7 +1529,9 @@ h3 {
 .tag-label {
   font-size: 0.9em;
   line-height: 2.3;
-  background-color: rgb(165, 210, 255);
+  color: rgb(95, 95, 95);
+  background-color: rgb(248, 248, 248);
+  border: 1px solid gray;
 }
 
 .following-tag-label:hover {
@@ -1715,7 +1774,7 @@ h3 {
 
 .activeTopNav {
     color: black;
-    box-shadow: inset 0 -55px 0 0 white;
+    box-shadow: inset 0 -55px 0 0 rgb(251, 251, 251);
     font-weight: 500;
 }
 
@@ -1736,15 +1795,11 @@ h3 {
   opacity: 1;
 }
 
-#write-column-right {
-  top: 16%;
-  right: 1%;
-  max-height: 800px;
-  position: fixed;
-  transition: all .1s ease-in-out;
-  opacity: 0.2;
-  width: 12%;
-  max-width: 250px;
+#write-fixed-right {
+  width: 6%;
+  max-width: 180px;
+  right: 0%;
+  top: 22%;
 }
 
 #archive-checkbox {
@@ -1807,18 +1862,17 @@ h3 {
 
 .write-last-item {
   margin: 2px 0px;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 0.9em;
+  font-family: 'Clear Sans', sans-serif;
+  /* font-size: 0.9em; */
   border-radius: 2px;
-  padding: 10px 7px;
+  padding: 10px;
   cursor: pointer;
   transition: all .1s ease-in-out;
 }
 
 .write-last-item:hover {
-  opacity: 1;
-  /* border: solid 1px #cdcccc; */
   background-color: rgba(205, 204, 204, 0.22);
+  /* border: solid 1px #cdcccc; */
 }
 
 #write-last-tags {
@@ -1835,13 +1889,11 @@ h3 {
 }
 
 .tag-remove-x {
-  font-size: 0.8em;
+  font-size: 0.9em;
   margin-left: 7px;
 }
 
 .tag-remove-x:hover {
-  opacity: 1;
-  color: white;
 }
 
 .ion-plus-circled:hover {
@@ -1857,15 +1909,15 @@ h3 {
   padding: 2px;
   margin-left: 10px;
   cursor: pointer;
-  padding: 2px 3px 2px 4px;
+  padding: 6px 3px 2px 4px;
   opacity: 0.7;
 }
 
 .tag-add-plus:hover {
   opacity: 1;
-  color: white;
-  background-color: rgb(0, 239, 0);
+  color: rgb(0, 181, 0);
   border-radius: 32px;
+  text-shadow: -1px 0px 1px rgb(255, 255, 255);
 }
 
 .write-recent-tag-title {

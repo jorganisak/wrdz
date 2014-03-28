@@ -3,6 +3,8 @@
 angular.module('shared')
 .controller('MainCtrl', ['$scope', 'User', '$rootScope', '$modal', '$window', '$state','$timeout', function ($scope, User, $rootScope, $modal, $window, $state, $timeout) {
 
+
+
 /*
 Does a few things:
   1. when loaded checks to see if user is logged in

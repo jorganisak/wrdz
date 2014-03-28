@@ -9,16 +9,16 @@
             <div ui-sref-active='activeTopNav' ui-sref="write" id='top-nav-write' class="top-nav-item col-xs-3 col-sm-2  medium-nav">
                 <span class="top-nav-title">
                     
-                    WRITE
+                    Write
                 </span>
             </div>
 
             <div ng-class="{activeTopNav: $state.includes('read')}" ui-sref="read.list.front" id='top-nav-read' class="top-nav-item  col-xs-3 col-sm-2  medium-nav">
-                <span class="top-nav-title">READ</span>
+                <span class="top-nav-title">Read</span>
             </div>
 
             <div ui-sref-active='activeTopNav' id='top-nav-inbox' ui-sref='mywrdz' class=" top-nav-item col-xs-3 col-sm-2 medium-nav">
-                <span class="top-nav-title">MY WRDZ</span>
+                <span class="top-nav-title">My Wrdz</span>
             </div>
 
 
@@ -64,7 +64,7 @@
         No User Nav
      -->
     
-    <div ng-if="!user && $state.current.name !== 'landing'" id='top-nav' class="col-md-12">
+    <div ng-if="!user " id='top-nav' class="col-md-12">
 
         <div id='wrdz-headline' class=" hidden-xs hidden-sm col-md-offset-4 col-md-4">
                          <span ui-sref="landing" class="top-nav-title">wrdz</span>
