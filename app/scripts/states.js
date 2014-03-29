@@ -175,7 +175,7 @@ config(['$stateProvider', '$urlRouterProvider',
         },
         controller: ['$scope', 'readDoc','PubDoc', function ($scope, readDoc, PubDoc) {
 
-          $scope.readDoc = readDoc.data;
+          $scope.doc = readDoc.data;
 
         }]
 

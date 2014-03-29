@@ -4,14 +4,25 @@
 #write-fixed-right > button {
   height: 10%;
 }
+.margin-auto {
+  margin: 0 auto;
+  max-width: 530px;
+}
+
+.panel-body {
+  padding: 20px 20px 75px 20px;
+  /* border-bottom: 1px solid; */
+  margin-bottom: 0px;
+}
 .panel {
   border: none;
 }
 
 .read-panel.active {
   background-color: white;
-  box-shadow: 0 -6px 0 black;
+  box-shadow: 0 -2px 1px 2px rgb(227, 227, 227), inset 0 -2px 1px -1px rgb(189, 189, 189);
   margin-top: -7px;
+  margin-bottom: 20px;
 }
 
 .read-panel.active > div > h4 > a .read-list-item:hover {
@@ -21,6 +32,9 @@
 .panel-title > a {
   /* padding: 50px; */
   
+}
+.panel-title > a:hover {
+  color: black;
 }
 
 
@@ -290,7 +304,7 @@ h6 {
   cursor: pointer;
   opacity: 0.2;
   height: 40px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   font-size: 1.8em;
 }
 
@@ -648,6 +662,42 @@ h1 {
   left: 50%;
 }
 
+.fixed-read-bottom-bar {
+  width: 46%;
+  position: fixed;
+  background-color: white;
+  height: 57px;
+  opacity: 0.6;
+  /* box-shadow: 0 -2px 0 0 rgb(230, 230, 230); */
+  padding-top: 9px;
+  bottom: 0;
+  left: 27%;
+  background-color: rgba(247, 247, 247, 0.27);
+  z-index: 1;
+}
+
+.fixed-read-left-bar > div {
+  position: fixed;
+  top: 70%;
+  width: 9%;
+  max-width: 140px;
+}
+
+.fixed-read-left-bar {
+  position: absolute;
+  background-color: white;
+  height: 57px;
+  opacity: 1.6;
+  /* box-shadow: 0 -2px 0 0 rgb(230, 230, 230); */
+  padding-top: 9px;
+  left: -170px;
+  background-color: rgba(247, 247, 247, 0.27);
+  z-index: 1;
+}
+.fixed-read-bottom-bar:hover {
+  opacity: 1;
+}
+
 .username-checkmark {
   color: white;
   background-color: green;
@@ -661,6 +711,7 @@ h1 {
 
 .read-body {
   padding: 10px 20px;
+  position: relative;
 }
 
 
@@ -1018,7 +1069,7 @@ blockquote {
   left: 0%;
   position: fixed;
   background: linear-gradient(to bottom, rgba(46, 46, 46, 1) 0%,rgba(25, 25, 25, 1) 100%);
-  height: 48px;
+  height: 47px;
   z-index: 110;
   top: 0%;
 }
@@ -1074,7 +1125,7 @@ blockquote {
   border-bottom: solid 1px transparent;
   cursor: pointer;
   height: 50px;
-  padding: 14px 0 0 0;
+  padding: 13px 0 0 0;
   transition: all 250ms linear 100ms;
   font-weight: 400;
 }
@@ -1446,7 +1497,7 @@ h3 {
 
 .read-list-item:hover {
   background-color: white;
-  box-shadow: inset 3px 0px 0px 0px rgb(65, 65, 65);
+  box-shadow: inset 2px 0px 0px 0px rgb(115, 115, 115);
 }
 
 .panel-default > .panel-heading {
@@ -1499,7 +1550,7 @@ h3 {
 }
 
 .read-list-title {
-  font-size: 1.3em;
+  font-size: 1.1em;
   font-weight: 300;
   line-height: 1.29;
   margin-top: -4px;
@@ -1687,11 +1738,12 @@ h3 {
   padding: 10px 21%;
   border-radius: 1px;
   text-align: center;
+  background-color: rgb(252, 252, 252);
   transition: all .3s ease-in-out;
   cursor: pointer;
   /* opacity: 0.4; */
   height: 40px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .read-doc-heart:hover {
@@ -1709,11 +1761,12 @@ h3 {
 .read-doc-arrow {
   padding: 10px 20%;
   border-radius: 1px;
+  background-color: rgb(252, 252, 252);
   text-align: center;
   transition: all .2s linear;
   cursor: pointer;
   /* opacity: 0.4; */
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   height: 40px;
 }
 

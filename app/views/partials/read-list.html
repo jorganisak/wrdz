@@ -27,7 +27,7 @@
 
     <div  class="col-sm-2 hidden-xs text-right">
         <div  id="read-list-right">
-            <div ng-controller='UsersListCtrl' ng-show="$state.current.name === 'read.list.user'">
+            <div ng-show="$state.current.name === 'read.list.user'">
                 
                 <div  id="read-doc-username">
                     <a>{{author_info.username}}</a>
@@ -109,7 +109,7 @@
                 </a>  
 
                 <div collapse='left_xs_collapsed'>
-                     <div ng-controller='UsersListCtrl' ng-show="$state.current.name === 'read.list.user'">
+                     <div  ng-show="$state.current.name === 'read.list.user'">
                 
                 <div  id="read-doc-username">
                     <a>{{author_info.username}}</a>

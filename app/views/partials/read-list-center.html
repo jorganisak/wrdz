@@ -5,13 +5,13 @@
         <span class="icon ion-arrow-up-b"></span>
     </div>
     <accordion close-others="true">
-        <div ng-repeat="doc in docs | orderBy: '-score'">
+        <div ng-controller='ReadDocCtrl' ng-repeat="doc in docs | orderBy: '-score'">
             
 
             <accordion-group ng-class="{'active': isopen}" id="{{doc._id}}" class='read-panel' is-open="isopen">
                 <accordion-heading >
                     
-                    <div  ng-dblclick='switchDoc(doc._id)'   class="read-list-item">
+                    <div  ng-dblclick='openDoc(doc._id)' ng-click='switchDoc(doc, isopen)'   class="read-list-item">
                         <div class="row read-list-bottom-row">
                             <div class="col-xs-6 ">
 
@@ -66,30 +66,52 @@
                 </accordion-heading>
 
                 <div ng-bind-html='doc.doc.body' class='read-body'></div>
-                <div class="fixed-read-bottom-bar">
-
+               <!--  <div class="fixed-read-bottom-bar">
+                    <div class="margin-auto">
+                        <div class="col-sm-4">
+                            <div  ng-class='active1' ng-click="up_vote()"  class="read-doc-arrow">
+                                <span  class="icon pull-left ion-arrow-up-a"></span>
+                                <span class='pull-right  read-doc-left-text '>{{doc.up_votes}}</span>
+                            </div>                        
+                        </div>
+                        <div class="col-sm-4">
+                            <div ng-class='active2' ng-click="heart()" class="read-doc-heart">
+                                <span class="pull-left icon ion-heart"></span>
+                                <span class="pull-right  read-doc-left-text">{{doc.hearts}}</span>
+                            </div>                        
+                        </div>
+                        <div class="col-sm-4">
+                            <div twitter-button ng-click="open(doc._id)" class="read-doc-tweet">
+                                <span  class="icon ion-social-twitter"></span>
+                            </div>
+                        </div>
+                        
+                    </div>
             
 
-                    <div class="col-sm-4">
-                        <div  ng-class='active1' ng-click="up_vote()"  class="read-doc-arrow">
-                            <span  class="icon pull-left ion-arrow-up-a"></span>
-                            <span class='pull-right  read-doc-left-text '>{{readDoc.up_votes}}</span>
-                        </div>                        
-                    </div>
-                    <div class="col-sm-4">
-                        <div ng-class='active2' ng-click="heart()" class="read-doc-heart">
-                            <span class="pull-left icon ion-heart"></span>
-                            <span class="pull-right  read-doc-left-text">{{readDoc.hearts}}</span>
-                        </div>                        
-                    </div>
-                    <div class="col-sm-4">
-                        <div twitter-button ng-click="open(readDoc._id)" class="read-doc-tweet">
-                            <span  class="icon ion-social-twitter"></span>
-                        </div>
-                    </div>
-                </div>
+                </div> -->
             </accordion-group>
 
+                 <div ng-show='readDoc._id === doc._id' class="fixed-read-left-bar">
+                    <div>
+   
+                            <div  ng-class='active1' ng-click="up_vote()"  class="read-doc-arrow">
+                                <span  class="icon  ion-arrow-up-a"></span>
+                            </div>   
+                            <br>                     
+                            <div ng-class='active2' ng-click="heart()" class="read-doc-heart">
+                                <span class=" icon ion-heart"></span>
+                            </div>                        
+                            <br>                     
+                            <div twitter-button ng-click="open(readDoc._id)" class="read-doc-tweet">
+                                <span  class="icon ion-social-twitter"></span>
+                            </div>
+                        
+                    </div>
+                        
+            
+
+                </div>
 
 
             

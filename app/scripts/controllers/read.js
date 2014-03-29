@@ -6,8 +6,9 @@
     
 */
 angular.module('read')
-  .controller('ReadCtrl', ['$scope', 'Read', '$state', '$filter',
-   function ($scope, Read, $state, $filter) {
+  .controller('ReadCtrl', ['$scope', 'Read', '$state', '$filter', '$location',
+   '$anchorScroll', '$window', '$timeout',
+   function ($scope, Read, $state, $filter, $location, $anchorScroll, $window, $timeout) {
 
 
     $scope.Read = Read;
@@ -95,9 +96,29 @@ angular.module('read')
       }
     }
 
-    $scope.switchDoc = function (docId) {
-      $scope.$state.go('read.doc', {docId : docId});
+    $scope.switchDoc = function (doc, isopen) {
+      if (!isopen){
+        $scope.readDoc = doc;
+        $timeout(function () {
+          var top = document.getElementById(doc._id).getBoundingClientRect().top
+          var h = $window.pageYOffset;
+          $('html,body').animate({
+            scrollTop: top+h-65
+          }, 200);
+          // $window.scrollTo(0, top + h - 105);
+        },600)
+      } else {
+        $scope.readDoc = null;
+      }
+
+        
     };
+
+    $scope.hideStats = true;
+    $scope.openDoc = function (docId) {
+      $scope.$state.go('read.doc', {docId : docId});
+      
+    }
 
     $scope.follow = function () {
       if (checkUser()) {
@@ -122,10 +143,7 @@ angular.module('read')
 
   }])
 
-  .controller('UsersListCtrl', ['$scope', 'Read', function ($scope, Read) {
-   
-    
-  }])
+ 
 
   .controller('TopicsListCtrl', ['$scope', 'Read', function ($scope, Read) {
     var topTopics;
@@ -165,24 +183,24 @@ angular.module('read')
 
 
     $scope.isHeart = function () {
-      if ($scope.user.meta._hearts.indexOf($scope.readDoc._id) > -1) {
+      if ($scope.user.meta._hearts.indexOf($scope.doc._id) > -1) {
         $scope.active2 = 'active';
         return true;
       }
       return false;
     };
     $scope.isVote = function () {
-      if ($scope.user.meta._up_votes.indexOf($scope.readDoc._id) > -1) {
+      if ($scope.user.meta._up_votes.indexOf($scope.doc._id) > -1) {
         $scope.active1 = 'active';
         return true;
       }
       return false;
     };
     $scope.isFollowing = function () {
-      if ($scope.readDoc.author) {
+      if ($scope.doc.author) {
         var flag = false;
         angular.forEach($scope.user.following, function (user) {
-          if (user._id === $scope.readDoc.author._id){
+          if (user._id === $scope.doc.author._id){
             flag = true;
           }
         })
@@ -202,14 +220,14 @@ angular.module('read')
       if (checkUser()) {
         
         if ($scope.active2 === 'active') {
-          $scope.readDoc.hearts--;
+          $scope.doc.hearts--;
           $scope.active2 = null;
-          Read.updatePubDoc($scope.readDoc._id, 'heart', false);
+          Read.updatePubDoc($scope.doc._id, 'heart', false);
         } else {
           $scope.active2 = 'active';
-          Read.updatePubDoc($scope.readDoc._id, 'heart', true);
-          $scope.readDoc.hearts++;
-          $scope.user.meta._hearts.push($scope.readDoc._id);
+          Read.updatePubDoc($scope.doc._id, 'heart', true);
+          $scope.doc.hearts++;
+          $scope.user.meta._hearts.push($scope.doc._id);
         }
       }
     };
@@ -218,14 +236,14 @@ angular.module('read')
       if (checkUser()) {
 
         if ($scope.active1 === 'active') {
-          $scope.readDoc.up_votes--;
+          $scope.doc.up_votes--;
           $scope.active1 = null;
           console.log($scope.active1);
-          Read.updatePubDoc($scope.readDoc._id, 'up_vote', false);
+          Read.updatePubDoc($scope.doc._id, 'up_vote', false);
         } else {
           $scope.active1 = 'active';
-          Read.updatePubDoc($scope.readDoc._id, 'up_vote', true);
-          $scope.readDoc.up_votes++;
+          Read.updatePubDoc($scope.doc._id, 'up_vote', true);
+          $scope.doc.up_votes++;
         }
       }
     };
@@ -236,8 +254,8 @@ angular.module('read')
       // TODO, this can surely be worked around to
       // manufacture page views..
       if ($scope.user) {
-        if ($scope.user.meta._views.indexOf($scope.readDoc._id) === -1) {
-          Read.updatePubDoc($scope.readDoc._id, 'view', true);
+        if ($scope.user.meta._views.indexOf($scope.doc._id) === -1) {
+          Read.updatePubDoc($scope.doc._id, 'view', true);
         }
       }
     };
@@ -275,16 +293,16 @@ angular.module('read')
     $scope.follow = function () {
       if (checkUser()) {
 
-        if ($scope.readDoc.author) {
+        if ($scope.doc.author) {
 
           if ($scope.following) {
 
-            Read.followUser($scope.readDoc.author._id, false);
-            $scope.readDoc.author.followers--;
+            Read.followUser($scope.doc.author._id, false);
+            $scope.doc.author.followers--;
           } else {
             
-            Read.followUser($scope.readDoc.author._id, true);
-            $scope.readDoc.author.followers++;
+            Read.followUser($scope.doc.author._id, true);
+            $scope.doc.author.followers++;
           }
           $scope.following = !$scope.following;
         }
