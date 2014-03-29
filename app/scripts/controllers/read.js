@@ -16,7 +16,7 @@ angular.module('read')
   $scope.tabs = [
     { title: "Front", state: "read.list.front({'skip': null})"},
     { title: "Following", state: "read.list.following({'skip': null})"},
-    { title: "Topics", state: "read.list.topics({'skip': null})"}
+    { title: "Hearts", state: "read.list.hearts({'skip': null})"}
   ];
 
 
@@ -99,6 +99,9 @@ angular.module('read')
     $scope.switchDoc = function (doc, isopen) {
       if (!isopen){
         $scope.readDoc = doc;
+        if (doc.author) {
+          $scope.$emit('read_list_author_info', doc.author)
+        }
         $timeout(function () {
           var top = document.getElementById(doc._id).getBoundingClientRect().top
           var h = $window.pageYOffset;

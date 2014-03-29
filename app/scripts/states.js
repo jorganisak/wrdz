@@ -49,7 +49,7 @@ config(['$stateProvider', '$urlRouterProvider',
         resolve : {
           docs : ['Read','$stateParams', function (Read, $stateParams) {
             return Read.updateQuery([{type:'topics', value: ''}, 
-              {type:'following', value: ''}, {type:'skip', value: $stateParams.skip}]);
+              {type:'following', value: ''}, {type:'hearts', value: ''}, {type:'skip', value: $stateParams.skip}]);
           }]
         },
         controller : ['$scope','docs','Read', '$state', function ($scope, docs, Read, $state) {
@@ -76,7 +76,7 @@ config(['$stateProvider', '$urlRouterProvider',
                 return false;
               }
               return Read.updateQuery([{type:'following', 
-                value: a}, {type:'topics', value: ''}, {type:'skip', value: ''}]);
+                value: a}, {type:'hearts', value: ''}, {type:'topics', value: ''}, {type:'skip', value: ''}]);
             }
           }]
         },
@@ -95,7 +95,7 @@ config(['$stateProvider', '$urlRouterProvider',
                 } else {
 
                   Read.updateQuery([{type:'following', 
-                    value: a}, {type:'topics', value: ''}, 
+                    value: a}, {type:'topics', value: ''}, {type:'hearts', value: ''},
                     {type:'skip', value: ''}]).then(function (res) {
                       $scope.docs = res.data;
                     })
@@ -104,6 +104,43 @@ config(['$stateProvider', '$urlRouterProvider',
             });
             Read.setPrevState($state);
 
+            $scope.docs = docs.data;
+          }]
+
+      })
+      .state('read.list.hearts', {
+        url: '/h',
+        templateUrl: 'partials/read-list-center.html',
+        resolve : { 
+          docs : ['$stateParams','User', 'Read', function ($stateParams, User, Read) {
+              var res = Read.getHearts();
+              if (res) {
+                if (!res.length) {
+                  return false;
+                }
+                console.log(res);
+                return Read.updateQuery([{type:'hearts', 
+                  value: res}, {type:'following', value: ''},{type:'topics', value: ''}, {type:'skip', value: ''}]);
+              } else {
+                return true;
+              }
+
+          }]
+        },
+        controller : ['$scope', 'docs','Read', '$stateParams','$state', 
+          function ($scope, docs, Read, $stateParams, $state) {
+          
+            $scope.$on('userChange', function (evt, user) {
+              if (user) {
+                var res = Read.getHearts();
+                Read.updateQuery([{type:'hearts', 
+                  value: res }, {type:'topics', value: ''}, {type:'following', value: ''},
+                  {type:'skip', value: ''}]).then(function (res) {
+                    $scope.docs = res.data;
+                  })
+              }
+            });
+            Read.setPrevState($state);
             $scope.docs = docs.data;
           }]
 
@@ -140,7 +177,8 @@ config(['$stateProvider', '$urlRouterProvider',
           docs : ['$stateParams','User', 'Read', function ($stateParams, User, Read) {
             if ($stateParams.userId) {
               return Read.updateQuery([{type:'following', 
-                value: [$stateParams.userId]}, {type:'topics', value: ''}, {type:'skip', value: ''}]);
+                value: [$stateParams.userId]}, {type:'topics', value: ''}, 
+                {type:'hearts', value: ''}, {type:'skip', value: ''}]);
 
             } else {
               return false;
@@ -253,28 +291,17 @@ config(['$stateProvider', '$urlRouterProvider',
             if (docs.data) {
               for (var i=0; i<docs.data.length ; i++) {
                 $scope.data.push(docs.data[i]);
-              }
-              
-            }
-
-        
+              }          
+            }      
           }
-
           init(docs);
-
-
-
           $scope.$on('userChange', function (evt, user) {
-              if (user) {
-                
+              if (user) {               
                 var i = Me.getHearts()
                 i.then(function (res) {
                   init(res)
 
                 })
-
-            
-       
               }
             });
 

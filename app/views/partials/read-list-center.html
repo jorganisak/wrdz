@@ -1,9 +1,16 @@
 
 <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-    
-    <div ng-show='$stateParams.skip' ng-click='loadPrev()' class="page-arrow text-center">    
-        <span class="icon ion-arrow-up-b"></span>
+    <div class="row">
+        
+        <div class="btn-group col-sm-5 pull-right read-filter-button-group">
+
+            <button type="button" class="btn btn-default" ng-model="readFilter" btn-radio="'Popularity'">Popular</button>
+            <button type="button" class="btn btn-default" ng-model="readFilter" btn-radio="'Date'">New</button>
+
+        </div> 
     </div>
+    <br>
+   
     <accordion close-others="true">
         <div ng-controller='ReadDocCtrl' ng-repeat="doc in docs | orderBy: '-score'">
             
@@ -65,31 +72,15 @@
 
                 </accordion-heading>
 
-                <div ng-bind-html='doc.doc.body' class='read-body'></div>
-               <!--  <div class="fixed-read-bottom-bar">
-                    <div class="margin-auto">
-                        <div class="col-sm-4">
-                            <div  ng-class='active1' ng-click="up_vote()"  class="read-doc-arrow">
-                                <span  class="icon pull-left ion-arrow-up-a"></span>
-                                <span class='pull-right  read-doc-left-text '>{{doc.up_votes}}</span>
-                            </div>                        
-                        </div>
-                        <div class="col-sm-4">
-                            <div ng-class='active2' ng-click="heart()" class="read-doc-heart">
-                                <span class="pull-left icon ion-heart"></span>
-                                <span class="pull-right  read-doc-left-text">{{doc.hearts}}</span>
-                            </div>                        
-                        </div>
-                        <div class="col-sm-4">
-                            <div twitter-button ng-click="open(doc._id)" class="read-doc-tweet">
-                                <span  class="icon ion-social-twitter"></span>
-                            </div>
-                        </div>
-                        
+                    <div ng-show='doc.doc.has_title' class="text-center read-title">
+                        {{doc.doc.title}}
+                        <hr>
                     </div>
-            
-
-                </div> -->
+                    <div ng-hide='doc.doc.has_title' class="">
+                        <br>
+                    </div>
+                <div ng-bind-html='doc.doc.body' class='read-body'></div>
+ 
             </accordion-group>
 
                  <div ng-show='readDoc._id === doc._id' class="fixed-read-left-bar">
@@ -118,10 +109,12 @@
 
         </div>
     </accordion>
+    <div ng-show='$stateParams.skip' ng-click='loadPrev(); goToTop()' class="page-arrow pull-left text-center">    
+        <span class="icon ion-arrow-left-b"></span>
+    </div>
 
-
-    <div ng-show='docs.length === 10' ng-click='loadNext()' class="page-arrow text-center">    
-        <span class="icon ion-arrow-down-b"></span>
+    <div ng-show='docs.length === 10' ng-click='loadNext(); goToTop()' class="page-arrow pull-right text-center">    
+        <span class="icon ion-arrow-right-b"></span>
     </div>
     </div>
 </div>

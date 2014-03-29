@@ -138,6 +138,19 @@ angular.module('read')
         var data = {userId: userId, bool : bool};
         User.update('addFollowing', data);
       },
+      getHearts : function () {
+
+        var res =  User.getUser();
+        if(!res.meta) {
+          return false;
+        }
+     
+
+        return res.meta._hearts;
+  
+
+        
+      },
 
       updateQuery : updateQuery,
 

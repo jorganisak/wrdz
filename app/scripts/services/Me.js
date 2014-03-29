@@ -19,20 +19,7 @@
         return User.update('username', username)
       },
 
-      getHearts : function () {
 
-        var res =  User.getUser();
-        if(!res.meta) {
-          return false;
-        }
-     
-
-        var hearts = res.meta._hearts;
-        var i = PubDoc.getHearts(hearts);
-        return i;
-
-        
-      },
 
     };
 }]);

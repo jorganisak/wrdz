@@ -27,10 +27,14 @@
 
     <div  class="col-sm-2 hidden-xs text-right">
         <div  id="read-list-right">
-            <div ng-show="$state.current.name === 'read.list.user'">
+            <div ng-show="$state.current.name === 'read.list.user' || readDoc.author.username">
                 
                 <div  id="read-doc-username">
-                    <a>{{author_info.username}}</a>
+                    <a ng-show="$state.current.name !== 'read.list.user'" ui-sref="read.list.user({userId: author_info._id})">{{author_info.username}}</a>
+                    <h6 ng-show="$state.current.name === 'read.list.user'">
+                        {{author_info.username}}
+                        </h6>
+
                 </div>
 
                 <div >
@@ -66,25 +70,6 @@
                 </div>
             </div>
 
-
-
-            <div ng-controller='TopicsListCtrl' ng-show="$state.current.name === 'read.list.topics'" >
-                <input type="text" placeholder='Search' class="form-control" ng-model='search.title'>
-                
-                <div ng-repeat='topic in data | startFrom:currentPage*pageSize | limitTo: pageSize | filter:search' >
-                    <div ui-sref-active='active' ui-sref='read.list.topics({topicId:topic._id})' class='read-list-right-item' >
-                        
-                        {{topic.title}}
-                    </div>
-                </div>
-
-                <button class='btn  btn-sm pull-left' ng-hide="currentPage == 0" ng-click="currentPage=currentPage-1">
-                        <span class="icon ion-arrow-left-b"></span>
-                </button>
-                <button class='btn btn-sm  pull-right' ng-hide="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
-                    <span class="icon ion-arrow-right-b"></span>
-                </button>
-            </div>
 
 
 
@@ -150,23 +135,6 @@
 
 
 
-            <div ng-controller='TopicsListCtrl' ng-show="$state.current.name === 'read.list.topics'" >
-                <input type="text" placeholder='Search' class="form-control" ng-model='search.title'>
-                
-                <div ng-repeat='topic in data | startFrom:currentPage*pageSize | limitTo: pageSize | filter:search' >
-                    <div ui-sref-active='active' ui-sref='read.list.topics({topicId:topic._id})' class='read-list-right-item' >
-                        
-                        {{topic.title}}
-                    </div>
-                </div>
-
-                <button class='btn  btn-sm pull-left' ng-hide="currentPage == 0" ng-click="currentPage=currentPage-1">
-                        <span class="icon ion-arrow-left-b"></span>
-                </button>
-                <button class='btn btn-sm  pull-right' ng-hide="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
-                    <span class="icon ion-arrow-right-b"></span>
-                </button>
-            </div>
                 </div>
                
 

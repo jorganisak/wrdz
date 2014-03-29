@@ -35,7 +35,7 @@
     <div ng-mouseenter='isCollapsed = true' class="col-sm-8">
         <div class="read-doc-center">
             
-            <div class="row">
+<!--             <div class="row">
 
 
                 <div id='read-doc-section-label' class="text-right ">            
@@ -45,7 +45,7 @@
                     </span>
                 </div>    
 
-            </div>
+            </div> -->
 
             <div ng-show='doc.doc.has_title' class="text-center read-title">
                 {{doc.doc.title}}
@@ -80,7 +80,7 @@
                     <a ui-sref="read.list.user({userId: doc.author._id})">{{doc.author.username}}</a>
                 </div>
 
-                <div collapse='isCollapsed'>
+                <div >
                     
                     <div id="read-doc-followers">
                         <span class="half-opacity pull-left">

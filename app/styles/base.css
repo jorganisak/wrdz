@@ -4,6 +4,10 @@
 #write-fixed-right > button {
   height: 10%;
 }
+
+.third-height {
+  height: 20.33%;
+}
 .margin-auto {
   margin: 0 auto;
   max-width: 530px;
@@ -66,7 +70,7 @@ box-shadow: inset 0 3px 5px rgba(220, 220, 220, 0.125);
 }
 
 #recent-docs {
-    margin-top: 70%;
+    margin-top: 100%;
   
     width: 270%;
     right: 0%;
@@ -124,7 +128,7 @@ button[disabled], html input[disabled] {
   width: 100%;
   text-align: right;
   padding: 0 30px;
-  margin: 0 10px 32px 10px;
+  margin: 0 10px 1% 10px;
 }
 
 #top-nav-container {
@@ -190,7 +194,7 @@ body {
 }
 
 h6 {
-  font-size: 20px;
+  font-size: 25px;
   line-height: 1.8;
 }
 
@@ -229,6 +233,17 @@ h6 {
   font-size: 1em;
   border: solid 1px rgb(234, 232, 232);
   padding: 16px;
+  border-radius: 0px;
+  font-family: 'Clear Sans', sans-serif;
+  font-weight: 100;
+}
+
+
+.read-filter-button-group > .btn {
+    width: 50%;
+  font-size: 1em;
+  border: solid 1px rgb(234, 232, 232);
+  padding: 5px 15px;
   border-radius: 0px;
   font-family: 'Clear Sans', sans-serif;
   font-weight: 100;
@@ -683,6 +698,24 @@ h1 {
   max-width: 140px;
 }
 
+.fixed-read-right-bar > div {
+  position: fixed;
+  bottom: -4%;
+  width: 5%;
+  height: 60%;
+  max-width: 140px;
+}
+.fixed-read-right-bar {
+  position: absolute;
+  background-color: white;
+  opacity: 1.6;
+  /* box-shadow: 0 -2px 0 0 rgb(230, 230, 230); */
+  padding-top: 9px;
+  right: -6px;
+  background-color: rgba(247, 247, 247, 0.27);
+  z-index: 1;
+}
+
 .fixed-read-left-bar {
   position: absolute;
   background-color: white;
@@ -735,12 +768,12 @@ h1 {
   padding-left: 2%;
   width: 15%;
   max-width: 192px;
-  top: 36%;
+  top: 28%;
   right: 3%;
 }
 
 #read-next-icon {
-  color: rgb(195, 206, 218);
+  color: rgb(218, 218, 218);
   position: fixed;
   font-size: 1.5em;
   transition: all 200ms ease-in-out;
@@ -748,12 +781,12 @@ h1 {
   padding: 3px 10px 1px 14px;
   right: 2.6%;
   cursor: pointer;
-  border-radius: 100px;
+  /* border-radius: 100px; */
 }
 
 #read-next-icon:hover {
-  background-color: rgb(124, 174, 255);
-  color: white;
+  /* background-color: rgb(124, 174, 255); */
+  color: rgb(16, 16, 16);
 }
 
 @media (min-width: 786px) {
@@ -1593,9 +1626,10 @@ h3 {
 .tag-label {
   font-size: 0.9em;
   line-height: 2.3;
-  color: rgb(95, 95, 95);
+  color: rgb(137, 137, 137);
   background-color: rgb(248, 248, 248);
-  border: 1px solid gray;
+  border: 1px solid rgb(184, 184, 184);
+  cursor: default;
 }
 
 .following-tag-label:hover {
@@ -1667,11 +1701,11 @@ h3 {
 
 .read-title {
   font-family: 'Roboto', serif;
-  font-size: 3em;
+  font-size: 2.7em;
   line-height: 1;
-  font-weight: 700;
-  /* letter-spacing: 0.7px; */
-  padding: 30px 0px 10px 0px;
+  /* font-weight: 700; */
+  /* text-align: left; */
+  padding: 30px 20px 10px 20px;
   /* font-family: 'Clear Sans'; */
 }
 

@@ -6,7 +6,8 @@
     
 */
 angular.module('myWrdz')
-.controller('MyWrdzCtrl', ['$scope','$modal', '$state', 'MyWrdz', '$stateParams', function ($scope, $modal, $state, MyWrdz, $stateParams ) {
+.controller('MyWrdzCtrl', ['$scope','$modal', '$state', 'MyWrdz', '$stateParams', '$timeout', '$window',
+  function ($scope, $modal, $state, MyWrdz, $stateParams, $timeout, $window ) {
 
     $scope.moment = moment;
 
@@ -160,8 +161,23 @@ angular.module('myWrdz')
 
 
 
-    $scope.switchDoc = function (doc) {
-      $scope.showDoc = doc;
+    $scope.switchDoc = function (doc, isopen) {
+      if (!isopen){
+        $scope.showDoc = doc;
+        if (doc.author) {
+          $scope.$emit('read_list_author_info', doc.author)
+        }
+        $timeout(function () {
+          var top = document.getElementById(doc._id).getBoundingClientRect().top
+          var h = $window.pageYOffset;
+          $('html,body').animate({
+            scrollTop: top+h-65
+          }, 200);
+          // $window.scrollTo(0, top + h - 105);
+        },600)
+      } else {
+        $scope.showDoc = null;
+      }
     }
 
     $scope.addTopic = function (topic) {
@@ -184,9 +200,9 @@ angular.module('myWrdz')
     };
 
    
-    $scope.switchVisible = function () {
-      MyWrdz.switchVisible($scope.showDoc._id, !$scope.showDoc.pub_doc.is_visible);
-      $scope.showDoc.pub_doc.is_visible = !$scope.showDoc.pub_doc.is_visible;
+    $scope.switchVisible = function (doc) {
+      MyWrdz.switchVisible(doc._id, !doc.pub_doc.is_visible);
+      doc.pub_doc.is_visible = !doc.pub_doc.is_visible;
     };
 
  
