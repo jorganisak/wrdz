@@ -169,6 +169,7 @@ config(['$stateProvider', '$urlRouterProvider',
         templateUrl: 'partials/read-doc.html',
         resolve: {  
           readDoc : ['Read','$stateParams', function(Read, $stateParams) {
+
             return Read.getPubDoc($stateParams.docId);
           }]
         },

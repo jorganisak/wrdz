@@ -6,7 +6,8 @@
     
 */
 angular.module('read')
-  .controller('ReadCtrl', ['$scope', 'Read', '$state', '$filter', function ($scope, Read, $state, $filter) {
+  .controller('ReadCtrl', ['$scope', 'Read', '$state', '$filter',
+   function ($scope, Read, $state, $filter) {
 
 
     $scope.Read = Read;
@@ -94,6 +95,10 @@ angular.module('read')
       }
     }
 
+    $scope.switchDoc = function (docId) {
+      $scope.$state.go('read.doc', {docId : docId});
+    };
+
     $scope.follow = function () {
       if (checkUser()) {
 
@@ -112,6 +117,7 @@ angular.module('read')
         }
       }
     }
+
 
 
   }])

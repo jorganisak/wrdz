@@ -4,6 +4,27 @@
 #write-fixed-right > button {
   height: 10%;
 }
+.panel {
+  border: none;
+}
+
+.read-panel.active {
+  background-color: white;
+  box-shadow: 0 -6px 0 black;
+  margin-top: -7px;
+}
+
+.read-panel.active > div > h4 > a .read-list-item:hover {
+  box-shadow:none;
+}
+
+.panel-title > a {
+  /* padding: 50px; */
+  
+}
+
+
+
 
 #mywrdz-fixed-left > input {
   border-left: none;
@@ -11,7 +32,7 @@
   margin-left: 0px;
   border-radius: 0px;
   box-shadow: none;
-  height: 40px;
+  height: 45px;
 }
 
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
@@ -31,9 +52,8 @@ box-shadow: inset 0 3px 5px rgba(220, 220, 220, 0.125);
 }
 
 #recent-docs {
-    margin-top: 60px;
+    margin-top: 70%;
   
-    margin-right: 11px;
     width: 270%;
     right: 0%;
     position: absolute;
@@ -292,7 +312,7 @@ h6 {
 
 p,
 li {
-  font-size: 23px;
+  font-size: 22px;
   font-weight: 400;
   line-height: 1.25;
   font-family: 'Linux Libertine', sans-serif;
@@ -639,18 +659,10 @@ h1 {
   padding: 3px 12px 1px 12px;
 }
 
-#mywrdz-doc-show-body > p,
-#mywrdz-doc-show-body > ol > li {
-  font-size: 19px;
+.read-body {
+  padding: 10px 20px;
 }
 
-#mywrdz-doc-show-body {
-  /* padding-bottom: 20px; */
-}
-
-/* 
-
- */
 
 .main {
   max-width: 105em;
@@ -1035,9 +1047,10 @@ blockquote {
 }
 
 .panel {
-  padding: 12px 10px;
+  /* padding: 0px 3px; */
   background-color: white;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
+  border-radius: 0px !important;
 }
 
 .ion-close {
@@ -1387,12 +1400,12 @@ h3 {
 }
 
 .read-list-item {
-  padding: 4% 5%;
   cursor: pointer;
+  background-color: #FCFCFC;
   transition: all .1s ease;
-  margin: 0 auto;
+  border-radius: 0px !important;
   font-family: 'Clear Sans', sans-serif;
-  box-shadow: 0 50px 0px -49px rgb(234, 234, 234);
+  padding: 5% 6%;
 }
 
 .me-list-item {
@@ -1415,7 +1428,7 @@ h3 {
   font-family: 'Clear Sans', sans-serif;
   font-weight: 100;
   margin-right: -5px;
-  padding-top: 6px;
+  padding-top: 3px;
 }
 
 .profile-list-item {
@@ -1433,13 +1446,12 @@ h3 {
 
 .read-list-item:hover {
   background-color: white;
-  box-shadow: inset 2px 0px 0px 0px rgb(101, 101, 101);
+  box-shadow: inset 3px 0px 0px 0px rgb(65, 65, 65);
 }
 
 .panel-default > .panel-heading {
   background-color: white;
-  /* height: 80px; */
-  /* padding: 0px; */
+  padding: 0px;
 }
 
 .me-list-item:hover {
@@ -1518,6 +1530,7 @@ h3 {
 
 .read-list-author {
     font-size: 1.2em;
+    font-weight: 100;
 }
 
 .read-list-heart-count {
@@ -1588,7 +1601,7 @@ h3 {
 }
 
 #read-doc-body {
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
 
 .read-doc-side-nav-item {
@@ -1662,7 +1675,7 @@ h3 {
 }
 
 .read-doc-heart.active {
-  background-color: rgb(255, 67, 67);
+  box-shadow: inset 240px 0px 0px 0px rgb(255, 67, 67) !important;
   color: white;
 }
 
@@ -1674,7 +1687,7 @@ h3 {
   padding: 10px 21%;
   border-radius: 1px;
   text-align: center;
-  transition: all .2s linear;
+  transition: all .3s ease-in-out;
   cursor: pointer;
   /* opacity: 0.4; */
   height: 40px;
@@ -1683,13 +1696,13 @@ h3 {
 
 .read-doc-heart:hover {
   /* font-size: 1.15em; */
-  box-shadow: 0px 0px 4px -1px gray;
+  box-shadow: inset 5px 0px 0px -1px rgb(255, 67, 67);
   opacity: 1;
 }
 
 .read-doc-arrow:hover {
   /* font-size: 1.15em; */
-  box-shadow: 0px 0px 4px -1px gray;
+  box-shadow: inset 5px 0px rgb(0, 218, 0);
   opacity: 1;
 }
 
@@ -1705,7 +1718,7 @@ h3 {
 }
 
 .read-doc-arrow.active {
-  background: rgb(78, 210, 85);
+  box-shadow: inset 240px 0px 0px 0px rgb(0, 218, 0) !important;
   color: white;
 }
 
@@ -1716,7 +1729,7 @@ h3 {
 .read-doc-center {
   margin: 0px 1%;
   padding: 20px 3% 30px 3%;
-  box-shadow: 0px 2px 2px -1px gainsboro;
+  /* box-shadow: 0px 2px 2px -1px gainsboro; */
   background: linear-gradient(rgba(247, 243, 241, 0.06), rgba(255, 251, 245, 0.31), rgba(249, 249, 249, 0.17));
 }
 
@@ -1865,7 +1878,7 @@ h3 {
   font-family: 'Clear Sans', sans-serif;
   /* font-size: 0.9em; */
   border-radius: 2px;
-  padding: 10px;
+  padding: 10px 15px 10px 10px;
   cursor: pointer;
   transition: all .1s ease-in-out;
 }
