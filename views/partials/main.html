@@ -2,40 +2,18 @@
   
   <div class="row" ng-include="'partials/top-nav.html'"></div>
 
-  <div ng-if="user" id="fixed-menu-shortcut" class="dropdown" ng-controller="MenuShortcutCtrl">
-    <a class="dropdown-toggle">
-      <div id="menu-shortcut">W</div>
-    </a>
-    <ul class="dropdown-menu">
-      <li ng-repeat="choice in items">
-        <a ui-sref-active="active" ui-sref="{{choice.state}}">{{choice.title}}</a>
-      </li>
-    </ul>
-    
-  </div>
 
-    <div ng-if="$state.current.name !== 'landing'" ng-show="!user" id="fixed-menu-shortcut" class="dropdown" ng-controller="MenuShortcutCtrl">
-    <a class="dropdown-toggle">
-      <div id="menu-shortcut">W</div>
-    </a>
-    <ul class="dropdown-menu">
-      <li>
-        <a ui-sref-active="active" ui-sref="read.list.front">read</a>
-        <a ng-click="launchLogIn()">sign in</a>
-        <a ng-click="launchSignUp()">join wrdz</a>
-      </li>
-    </ul>
-    
-  </div>
+
   <div class="hidden-xs" ng-if="$state.current.name !== 'landing'" ng-click="goToTop()" id="write-arrow-up">
       <span class="icon ion-arrow-up-b"></span>
   </div>
+
   <div class="hidden-xs" ng-click="aboutModal()" id="feedback-button">
     <div id="feedback-text">
       About Wrdz
     </div>
   </div>
 
-  <div class="row" autoscroll="true" ui-view=""></div>
+  <div id="content" autoscroll="false" ui-view=""></div>
   
 </div>

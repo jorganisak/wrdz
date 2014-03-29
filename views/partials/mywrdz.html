@@ -1,23 +1,36 @@
 <div ng-if="user" id="mywrdz-body" ng-cloak="" class="row" ng-controller="MyWrdzCtrl">
     <div class="col-sm-2 hidden-xs text-center">
-        <div id="mywrdz-left">
+        <div id="mywrdz-fixed-left" class="fixed-left">
             <input type="text" placeholder="Search" class="form-control" ng-model="search">
 
             <br>
             <div class="btn-group filter-button-group">
+
                 <button type="button" class="btn btn-default" ng-model="filterModel" btn-radio="'All'">All</button>
                 <button type="button" class="btn btn-default" ng-model="filterModel" btn-radio="'Public'">Public</button>
-                <button type="button" class="btn btn-default" ng-model="filterModel" btn-radio="'Private'">Private</button>
-            </div>
 
+            </div>
+            <div class="btn-group filter-button-group">
+                <button type="button" class="btn btn-default" ng-model="filterModel" btn-radio="'Private'">Private</button>                
+                <button type="button" class="btn btn-default" ng-model="filterModel" btn-radio="'Archive'">Archive</button>
+            </div>
             <hr>
-           <button type="button" class="btn btn-jo" ng-click="dateCollapsed = !dateCollapsed; isCollapsed = true">
-                <span class="icon ion-calendar"></span>&nbsp;&nbsp;Date&nbsp;&nbsp;<span class="caret"></span>
+            <div ng-show="date !== today">
+                {{moment(date).format('MMMM Do, YYYY')}}
+                <span ng-click="date = today" class="icon tag-remove-x ion-close"></span>
+            </div>
+            <button type="button" class="btn btn-jo" id="mywrdz-date-button" ng-click="dateCollapsed = !dateCollapsed; isCollapsed = true">
+                <span class="icon ion-calendar"></span>&nbsp;&nbsp;<span class="caret"></span>
             </button>
             <div collapse="dateCollapsed" id="date-button-box">
-                <div class="row">
+
+    
+
+                <div pickadate="" max-date="maxDate" ng-model="date"></div>
+
+                <!-- <div class="row">
                     <div class="col-sm-6">
-                        <button ng-click="setToday()" class="btn btn-jo">Today</button>
+                        <button ng-click='setToday()' class="btn btn-jo">Today</button>
                     </div>
                     <div class="col-sm-6">
                         <button ng-click="dtCount = 1; dtType = 'Weeks'" class="btn btn-jo">1 Week</button>
@@ -28,19 +41,20 @@
                         <button ng-click="dtCount = 1; dtType = 'Months'" class="btn btn-jo">1 Month</button>
                     </div>
                     <div class="col-sm-6">
-                        <button ng-click="isCollapsed = !isCollapsed" class="btn btn-jo">Other</button>
+                        <button ng-click='isCollapsed = !isCollapsed' class="btn btn-jo">Other</button>
                     </div>
-                </div>
+                </div> -->
                 
             </div>
-            <div collapse="isCollapsed">
+           <!--  <div collapse='isCollapsed'>
+
                 <div class="row mywrdz-date-box">
                     <div class="col-sm-6 no-padding text-center">
-                        <input type="text" ng-model="dtCount" class="form-control">
+                        <input type="text" ng-model='dtCount' class='form-control'>
                         
                     </div>
                     <div class="col-sm-6 date-box-arrows">
-                        
+
                         <span ng-click="decreaseCount()" class="icon pull-left ion-chevron-left"></span>
                         <span ng-click="increaseCount()" class="icon pull-right ion-chevron-right"></span>
                     </div>
@@ -52,82 +66,203 @@
                         <span ng-click="increaseType()" class="icon pull-right ion-chevron-right"></span>
                     </div>
                 </div>
-            <hr>
-            </div>     
-        
-            <button type="button" class="btn btn-jo" ng-click="topicCollapse = !topicCollapse">
-                <span class="icon ion-pricetags"></span>&nbsp;&nbsp;Topics&nbsp;&nbsp;<span class="caret"></span>
-            </button>
-            <div collapse="topicCollapse">
-                <span ng-repeat="top in topicOptions">
-                    <span ng-click="addTopic(top)" class="label topic-add label-primary">{{top.title}}</span>
-                </span>
-
-            </div>
-            <hr>
-    
-            <div class="row">
-               <span ng-repeat="top in topicsModel">
-                    <span class="label label-primary tag-label">{{top.title}} <span ng-click="removeTopic(top)" class="icon tag-remove-x ion-close"></span></span>
-                </span>
-            </div>
-            <div id="archive-checkbox">
-                
-              <div class="checkbox">
-                <label>
-                  <input ng-model="viewArchived" type="checkbox"> View Archive
-                </label>
-              </div>
-            </div>
-       
-        </div>
-    </div>
-
-    <div class="col-sm-8 col-xs-12">
-
-        <div id="me-middle" class="col-sm-10 col-sm-offset-1 col-xs-12">
-
-    
+                <hr>
+            </div>     --> 
             
-            <accordion close-others="true">
-                <div style="position: relative" ng-repeat="doc in docList | orderBy: '-updated_at' | startFrom:starting | limitTo: pageSize | filter:search">
-                    
 
-                    <accordion-group ng-click="switchDoc(doc)" ng-dblclick="openDocInWrite(doc)" class="me-list-item">
-                        <accordion-heading>
-                            
+
+    </div>
+</div>
+
+<div class="col-sm-8 col-xs-12">
+
+
+    <div id="me-middle" class="col-sm-10 col-sm-offset-1 col-xs-12">
+
+        <accordion close-others="true">
+            <div ng-repeat="doc in docList | orderBy: '-updated_at' | startFrom:starting | limitTo: pageSize | filter:search">
+
+
+                <accordion-group ng-class="{'active': isopen}" id="{{doc._id}}" class="read-panel" is-open="isopen">
+                <accordion-heading>
+
+                <div ng-dblclick="openDocInWrite(doc)" ng-click="switchDoc(doc, isopen)" class="read-list-item">
+                    <div class="row">
+                        
+                        <div class="col-xs-4 text-right pull-right">
+
+                            <div class="read-list-date">
+
+                                {{moment(doc.published_at).format('MMMM Do, ha')}}
+                            </div>
+
+                        </div>
+                        <div class="col-sm-8 col-xs-6">
                             <div class="read-list-title">
                                 <span ng-show="doc.has_title">
-                                    {{doc.title}}
+                                    <strong>
+                                        
+                                        {{doc.title}}
+                                    </strong>
                                 </span>
                                 <span ng-hide="doc.has_title">
                                     {{doc.sample | limitTo: 100}}
                                 </span>
                             </div>
-                            <div class="read-list-date">
-
-                                {{moment(doc.updated_at).format('MMMM Do, h:mma')}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-12" ng-show="doc.has_title">
+                            <div class="read-list-title">
+                                
+                                {{doc.sample | limitTo: 100}}
                             </div>
-                        </accordion-heading>
 
-                        <div ng-bind-html="doc.body" id="mywrdz-doc-show-body"></div>
-                    </accordion-group>
-
-
-
-                    
+                        </div>
+                    </div>
 
                 </div>
-            </accordion>
+
+
+
+                        </accordion-heading>
+                      
+                        <div ng-if="isopen" class="row">
+
+                            <div class="col-sm-6 pull-right">
+                                    <div class="no-padding col-sm-4">
+                                        <button ng-click="openDocInWrite(showDoc)" class="wrdz-button btn btn-jo">
+                                    <span class="icon ion-edit"></span>
+                                </button>
+                                    </div>
+                                       <div class="no-padding col-sm-4">
+                                                <button class="wrdz-button btn-jo btn" ng-click="openTopicModal()">
+                                    <span class="ion-pricetags icon"></span>
+                                </button>
+                                       </div>
+                                       <div class="no-padding col-sm-4">  
+
+                                <button ng-if="!showDoc.is_archived" ng-click="archive(showDoc._id)" class="wrdz-button btn btn-jo">
+
+                                    <span class="icon ion-ios7-filing-outline"></span>
+                                </button>
+                                <button ng-if="showDoc.is_archived" ng-click="archive(showDoc._id)" class="wrdz-button btn btn-jo">
+
+                                    <span class="icon ion-reply"></span>
+                                </button>
+                                    </div>   
+                                
+                            </div>
+                        </div>
+                 
+                
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                            <div ng-if="doc.is_published" id="write-pub-info" class="panel text-center hidden-xs panel-default">
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+
+                                        <a ng-show="doc.pub_doc.is_visible && doc.pub_doc.is_anon" ui-sref="read.doc({docId: doc.pub_doc._id})">
+
+                                            Anonymous
+                                        </a>
+
+                                        <a ng-show="doc.pub_doc.is_visible && !doc.pub_doc.is_anon" ui-sref="read.doc({docId: doc.pub_doc._id})">
+
+                                            Public
+                                        </a>
+
+                                        <em ng-hide="doc.pub_doc.is_visible">Not Public</em>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="col-sm-4">
+                                            <span class="pull-left icon ion-arrow-up-a"></span>
+                                            <div class="pull-right">
+                                                {{doc.pub_doc.up_votes}}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="pull-left">
+                                                <span class="icon ion-heart"></span>
+                                            </div>
+                                            <div class="pull-right">
+                                                {{doc.pub_doc.hearts}}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+
+                                            <div class="pull-left">
+                                                <span class="icon icon ion-eye"></span>
+                                            </div>
+                                            <div class="pull-right">
+                                                {{doc.pub_doc.views}}
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button ng-show="doc.pub_doc.is_visible" ng-click="switchVisible(doc); $event.stopPropagation()" class="btn btn-xs">
+                                            Unpublish
+                                        </button>
+                                        <button ng-hide="doc.pub_doc.is_visible" ng-click="switchVisible(doc); $event.stopPropagation()" class="btn btn-xs">
+                                            Re-publish
+                                        </button>
+                            <!--                         <a  ng-click='openPubOptionsModal()'>
+                                                        Options
+                                                    </a> -->
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+
+                                    </div>
+                        </div>
+                          <div ng-show="doc.has_title" class="text-center read-title">
+                            {{doc.title}}
+                            <hr>
+                        </div>
+                        <div ng-hide="doc.has_title" class="">
+                            <br>
+                        </div>
+                        <div ng-bind-html="doc.body" class="read-body"></div>
+
+                    </accordion-group>
+
+                    <div ng-show="showDoc" class="fixed-read-right-bar">
+                            
+                            
+
+
+              
+
+                        
+
+
+                    </div>
+
+
+
+
+                </div>
+            </accordion>    
 
             
 
-                <button class="btn pull-left" ng-hide="currentPage == 0" ng-click="currentPage=currentPage-1">
-                        <span class="icon ion-arrow-left-b"></span>
-                </button>
-                <button class="btn pull-right" ng-hide="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
-                    <span class="icon ion-arrow-right-b"></span>
-                </button>
+            <button class="btn pull-left" ng-hide="currentPage == 0" ng-click="currentPage=currentPage-1">
+                <span class="icon ion-arrow-left-b"></span>
+            </button>
+            <button class="btn pull-right" ng-hide="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                <span class="icon ion-arrow-right-b"></span>
+            </button>
         </div>
 
     </div>
@@ -135,118 +270,39 @@
 
 
     <div class="col-sm-2 pull-right hidden-xs text-right">
-        <div id="mywrdz-right" ng-if="showDoc">
-             <div class="row">
-                <div class="col-sm-6 pull-left">
+        <div id="mywrdz-right">
+
+
+            <button type="button" class="btn btn-jo half-width pull-right" ng-click="topicCollapse = !topicCollapse">
+                <span class="icon ion-pricetags"></span>&nbsp;&nbsp;<span class="caret"></span>
+            </button>
+            <br><br><br>
+            <div collapse="topicCollapse" id="topicCollapse">
+                             
+                <span topic-filter="" ng-click="addTopic(top)" ng-repeat="top in topicOptions">
+                <span ng-class="{active: active}" class="label label-primary tag-label">{{top.title}} </span>&nbsp;
                     
-                    <button ng-click="openDocInWrite(showDoc)" class="btn btn-jo">
-                        <span class="icon ion-edit"></span>
-                    </button>
-                </div>
-                <div class="pull-right col-sm-6">
-                    
-                    <button class="btn-jo btn" ng-click="openTopicModal()">
-                        <span class="ion-pricetags icon"></span>
-                    </button>
-                </div>
+                </span>
+
             </div>
-            <span ng-repeat="topic in showDoc.topics">
-                <span class="label label-primary tag-label">{{topic.title}}</span>
-            </span>
-          
-            <div ng-show="showDoc.is_published" id="mywrdz-pub-info" class="row">
-                
 
-                <div ng-if="showDoc.is_published" id="write-pub-info" class="panel text-center panel-default">
+            <div class="row">
 
-                    
-                    <a ng-show="showDoc.pub_doc.is_visible && showDoc.pub_doc.is_anon" ui-sref="read.doc({docId: showDoc.pub_doc._id})">
-                        
-                        Anonymous
-                    </a>
-           
-                    <a ng-show="showDoc.pub_doc.is_visible && !showDoc.pub_doc.is_anon" ui-sref="read.doc({docId: showDoc.pub_doc._id})">
-                        
-                        Public  &nbsp;<em>({{user.username}})</em>
-                    </a>
-           
-                    <em ng-hide="showDoc.pub_doc.is_visible">Not Public</em>
-                    <br>
-                    <br>
-     
-
-                    <div class="row">
-                        <div class="col-sm-3 col-sm-offset-1">
-                            <span class="icon ion-arrow-up-a"></span>
-                        </div>
-                        <div class="col-sm-6 text-right">
-                            {{showDoc.pub_doc.up_votes}}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 col-sm-offset-1">
-                            <span class="icon ion-heart"></span>
-                        </div>
-                        <div class="col-sm-6 text-right">
-                            {{showDoc.pub_doc.hearts}}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 col-sm-offset-1">
-                            <span class="icon icon ion-eye"></span>
-                        </div>
-                        <div class="col-sm-6 text-right">
-                            {{showDoc.pub_doc.views}}
-                        </div>
-                    </div>
-
-                    <br>
-
-                    <div class="row">
-                        <div class="col-sm-12">
-                             <button ng-show="showDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
-                                Unpublish
-                                </button>
-                            <button ng-hide="showDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
-                                Re-publish
-                            </button>
-                                
-                   
-                            
-                        </div>
-                    </div>
-
-                </div>
             </div>
-            <br>
+        </div>
+  
 
-
-            <div ng-if="!showDoc.is_archived" tooltip-placement="left" tooltip="Archive" ng-click="archive(showDoc._id)" class="archive-button">
-                
-                <span class="icon ion-ios7-filing-outline"></span>
-            </div>
-            <div ng-if="showDoc.is_archived" tooltip-placement="left" tooltip="Un-archive" ng-click="archive(showDoc._id)" class="archive-button">
-                
-                <span class="icon ion-reply"></span>
-            </div>
-    <!--         <br>
-            <br>
-            <div ng-if='showDoc.is_archived'  tooltip-placement="left" tooltip="Delete" ng-click='' class="archive-button">
-                            
-                <span class="icon ion-trash-b"></span>
-            </div> -->
 
         </div>
 
     </div>
 
     <div class="visible-xs" ng-if="showDoc" id="fixed-bottom-bar">
-   <button ng-click="openDocInWrite(showDoc)" class="btn btn-jo">
-                        <span class="icon ion-edit"></span>
-                    </button>
+     <button ng-click="openDocInWrite(showDoc)" class="btn btn-jo">
+        <span class="icon ion-edit"></span>
+    </button>
 
 
     
-      
-    </div>
+
 </div>

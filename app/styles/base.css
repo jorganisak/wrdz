@@ -5,8 +5,59 @@
   height: 10%;
 }
 
+.tag-label.active {
+  background-color: rgb(98, 98, 98);
+  color: white;
+/*   border-radius: 4px; */
+  border-color: rgb(147, 147, 147);}
+
+#topicCollapse {
+  text-align: right;
+}
+
+.mywrdz-buttons {
+  position:absolute;
+  
+  top: 0px;
+  /* height: 100%; */
+  right: -70px;
+  z-index: 51;
+}
+
+.ion-ios7-filing-outline {
+  font-size: 1.1em;
+  padding-top: 0px
+}
+
+#mywrdz-date-button {
+  width: 90%;
+  margin-left: 0%;}
+
+.pickadate-prev {
+  float: left;
+}
+
+#date-button-box {
+  /* width: 120%; */
+  /* min-width: 220px; */
+  /* right: -112%; */
+  padding-left: 5%;
+  /* background-color: white; */
+}
+.pickadate-cell > li {
+font-size: 12px;
+font-weight: 700;
+line-height: 1.55;
+font-family: 'Clear Sans', sans-serif;
+}
+
 .third-height {
-  height: 20.33%;
+  height: 14.33%;
+  min-height: 50px !important;
+  opacity: 0.4;
+  border-color: rgb(229, 229, 229) !important;
+  border-left-style: none !important;
+  box-shadow: inset 2px 0 1px -1px rgb(242, 242, 242);
 }
 .margin-auto {
   margin: 0 auto;
@@ -14,7 +65,7 @@
 }
 
 .panel-body {
-  padding: 20px 20px 75px 20px;
+  padding: 10px 20px 75px 20px;
   /* border-bottom: 1px solid; */
   margin-bottom: 0px;
 }
@@ -25,7 +76,7 @@
 .read-panel.active {
   background-color: white;
   box-shadow: 0 -2px 1px 2px rgb(227, 227, 227), inset 0 -2px 1px -1px rgb(189, 189, 189);
-  margin-top: -7px;
+  margin-top: 17px;
   margin-bottom: 20px;
 }
 
@@ -416,7 +467,7 @@ hr {
 
 .archive-button > .icon {
   font-size: 1.7em;
-  padding-top: 4px;
+  /* padding-top: 4px; */
   padding-left: -1px;
 }
 
@@ -541,6 +592,7 @@ hr {
   position: fixed;
   width: 12%;
   right: 4%;
+  top: 16%;
 }
 
 #mywrdz-fixed-left {
@@ -693,26 +745,23 @@ h1 {
 
 .fixed-read-left-bar > div {
   position: fixed;
-  top: 70%;
+  bottom: 4%;
   width: 9%;
   max-width: 140px;
 }
 
 .fixed-read-right-bar > div {
-  position: fixed;
-  bottom: -4%;
-  width: 5%;
-  height: 60%;
-  max-width: 140px;
+  position: absolute;
+  width: 50px;
+  height: 63%;
+  max-width: 161px;
+  right: 0%;
 }
 .fixed-read-right-bar {
   position: absolute;
-  background-color: white;
-  opacity: 1.6;
-  /* box-shadow: 0 -2px 0 0 rgb(230, 230, 230); */
   padding-top: 9px;
-  right: -6px;
-  background-color: rgba(247, 247, 247, 0.27);
+  top: 15%;
+  right: -13%;
   z-index: 1;
 }
 
@@ -723,7 +772,7 @@ h1 {
   opacity: 1.6;
   /* box-shadow: 0 -2px 0 0 rgb(230, 230, 230); */
   padding-top: 9px;
-  left: -170px;
+  left: -22%;
   background-color: rgba(247, 247, 247, 0.27);
   z-index: 1;
 }
@@ -1187,6 +1236,7 @@ blockquote {
   font-size: 1.35em;
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
+  color: white;
   padding-top: 9px;
   text-shadow: 0px 1px 0px rgb(106, 106, 106);
 }
@@ -1271,7 +1321,7 @@ h4 {
 
 .btn-jo {
   padding: 2%;
-  width: 100%;
+  width: 99%;
   min-width: 20px;
   min-height: 25px;
   max-height: 75px;
@@ -1280,7 +1330,7 @@ h4 {
   color: rgb(52, 52, 52);
   font-size: 1.2em;
   border: solid 1px silver;
-  margin: 9px 0px 6px 0px !important;
+  margin: 9px 0px 6px 0px;
   transition: all .2s ease-in-out;
   font-weight: 400;
   font-family: 'Clear Sans', sans-serif;
@@ -1536,6 +1586,7 @@ h3 {
 .panel-default > .panel-heading {
   background-color: white;
   padding: 0px;
+  /* position: relative; */
 }
 
 .me-list-item:hover {
@@ -1624,9 +1675,11 @@ h3 {
 }
 
 .tag-label {
-  font-size: 0.9em;
+  font-size: 0.91em;
+  padding: 3px 6px 3px 6px;
   line-height: 2.3;
-  color: rgb(137, 137, 137);
+  /* margin-right: 7px; */
+  color: rgb(99, 99, 99);
   background-color: rgb(248, 248, 248);
   border: 1px solid rgb(184, 184, 184);
   cursor: default;
@@ -1991,6 +2044,7 @@ h3 {
 .tag-remove-x {
   font-size: 0.9em;
   margin-left: 7px;
+  /* padding-right: 49px; */
 }
 
 .tag-remove-x:hover {
@@ -2075,4 +2129,11 @@ h3 {
 
 #profile-karma {
   margin-bottom: 30px;
+}
+
+.wrdz-button {
+  height: 33.333%;
+  opacity: 0.5;
+  padding: 0;
+  border: none;
 }

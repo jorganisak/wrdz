@@ -134,9 +134,11 @@ angular.module('read')
         return PubDoc.findOne(docId);
       },
 
-      followUser : function (userId, bool) {
-        var data = {userId: userId, bool : bool};
+      followUser : function (user, bool) {
+        var data = {userId: user._id, bool : bool};
         User.update('addFollowing', data);
+   
+
       },
       getHearts : function () {
 

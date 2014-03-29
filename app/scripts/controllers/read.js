@@ -98,9 +98,12 @@ angular.module('read')
 
     $scope.switchDoc = function (doc, isopen) {
       if (!isopen){
+        $scope.showStats = true;
+        $scope.hideStats = false;
         $scope.readDoc = doc;
         if (doc.author) {
           $scope.$emit('read_list_author_info', doc.author)
+          $scope.showUser = true;
         }
         $timeout(function () {
           var top = document.getElementById(doc._id).getBoundingClientRect().top
@@ -117,7 +120,6 @@ angular.module('read')
         
     };
 
-    $scope.hideStats = true;
     $scope.openDoc = function (docId) {
       $scope.$state.go('read.doc', {docId : docId});
       
@@ -130,11 +132,11 @@ angular.module('read')
 
           if ($scope.following) {
 
-            Read.followUser($scope.author_info._id, false);
+            Read.followUser($scope.author_info, false);
             $scope.author_info.followers--;
           } else {
             
-            Read.followUser($scope.author_info._id, true);
+            Read.followUser($scope.author_info, true);
             $scope.author_info.followers++;
           }
           $scope.following = !$scope.following;
@@ -300,11 +302,11 @@ angular.module('read')
 
           if ($scope.following) {
 
-            Read.followUser($scope.doc.author._id, false);
+            Read.followUser($scope.doc.author, false);
             $scope.doc.author.followers--;
           } else {
             
-            Read.followUser($scope.doc.author._id, true);
+            Read.followUser($scope.doc.author, true);
             $scope.doc.author.followers++;
           }
           $scope.following = !$scope.following;

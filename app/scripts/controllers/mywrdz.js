@@ -12,8 +12,9 @@ angular.module('myWrdz')
     $scope.moment = moment;
 
     $scope.setToday = function() {
-      $scope.dt = new Date();
-      $scope.today =  new Date();
+      $scope.date = moment(Date.now()).format('YYYY-MM-DD');
+      $scope.today =  $scope.date;
+      $scope.maxDate = $scope.today;
     };
 
     $scope.setToday();
@@ -22,6 +23,12 @@ angular.module('myWrdz')
 
     $scope.topicsModel = [];
     $scope.topicOptions = [{}];
+
+    $scope.$watch('date', function (newValue) {
+      console.log(newValue);
+      $scope.dt = moment(newValue).add('days', 1)._d;
+      console.log($scope.dt)
+    })
 
 
 
@@ -94,6 +101,7 @@ angular.module('myWrdz')
     $scope.$watch('dt', function (newValue) {
       if (newValue) {
         MyWrdz.updateQuery('date', newValue + 43000000)
+
       }
     });
 
@@ -181,12 +189,23 @@ angular.module('myWrdz')
     }
 
     $scope.addTopic = function (topic) {
-      $scope.topicsModel.push(topic);
+      var flag = true;
+      angular.forEach($scope.topicsModel, function (t) {
+        if (topic._id === t._id) {
+
+
+          $scope.topicsModel.splice($scope.topicsModel.indexOf(t), 1);
+          flag = false;
+        }
+      })
+
+      if (flag) {
+        $scope.topicsModel.push(topic);
+
+      }
     }
 
-    $scope.removeTopic = function (topic) {
-      $scope.topicsModel.splice($scope.topicsModel.indexOf(topic._id), 1);
-    }
+
 
     $scope.openDocInWrite = function (doc) {
       $scope.user.current_doc = doc;

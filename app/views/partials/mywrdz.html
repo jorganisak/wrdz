@@ -15,13 +15,21 @@
                 <button type="button" class="btn btn-default" ng-model="filterModel" btn-radio="'Private'">Private</button>                
                 <button type="button" class="btn btn-default" ng-model="filterModel" btn-radio="'Archive'">Archive</button>
             </div>
-
             <hr>
-            <button type="button" class="btn btn-jo " ng-click="dateCollapsed = !dateCollapsed; isCollapsed = true">
-                <span class="icon ion-calendar"></span>&nbsp;&nbsp;Date&nbsp;&nbsp;<span class="caret"></span>
+            <div ng-show='date !== today'>
+                {{moment(date).format('MMMM Do, YYYY')}}
+                <span ng-click="date = today" class="icon tag-remove-x ion-close"></span>
+            </div>
+            <button type="button" class="btn btn-jo " id='mywrdz-date-button' ng-click="dateCollapsed = !dateCollapsed; isCollapsed = true">
+                <span class="icon ion-calendar"></span>&nbsp;&nbsp;<span class="caret"></span>
             </button>
             <div collapse='dateCollapsed' id="date-button-box">
-                <div class="row">
+
+    
+
+                <div pickadate max-date='maxDate' ng-model='date'></div>
+
+                <!-- <div class="row">
                     <div class="col-sm-6">
                         <button ng-click='setToday()' class="btn btn-jo">Today</button>
                     </div>
@@ -36,10 +44,11 @@
                     <div class="col-sm-6">
                         <button ng-click='isCollapsed = !isCollapsed' class="btn btn-jo">Other</button>
                     </div>
-                </div>
+                </div> -->
                 
             </div>
-            <div collapse='isCollapsed'>
+           <!--  <div collapse='isCollapsed'>
+
                 <div class="row mywrdz-date-box">
                     <div class="col-sm-6 no-padding text-center">
                         <input type="text" ng-model='dtCount' class='form-control'>
@@ -59,30 +68,15 @@
                     </div>
                 </div>
                 <hr>
-            </div>     
-
-            <button type="button" class="btn btn-jo " ng-click="topicCollapse = !topicCollapse">
-                <span class="icon ion-pricetags"></span>&nbsp;&nbsp;Topics&nbsp;&nbsp;<span class="caret"></span>
-            </button>
-            <div collapse='topicCollapse'>
-                <span ng-repeat="top in topicOptions">
-                    <span ng-click='addTopic(top)' class="label topic-add label-primary ">{{top.title}}</span>
-                </span>
-
-            </div>
-            <hr>
-
-            <div class="row">
-             <span ng-repeat="top in topicsModel">
-                <span class="label label-primary tag-label">{{top.title}} <span ng-click='removeTopic(top)' class="icon tag-remove-x ion-close"></span></span>
-            </span>
-        </div>
+            </div>     --> 
+            
 
 
     </div>
 </div>
 
 <div class="col-sm-8 col-xs-12">
+
 
     <div id='me-middle' class="col-sm-10 col-sm-offset-1 col-xs-12">
 
@@ -134,13 +128,36 @@
 
 
                         </accordion-heading>
+                      
+                        <div ng-if='isopen' class="row">
 
-                        <div ng-click='openTopicModal()' class="write-topic-container pull-right">
-                            <span ng-repeat='topic in doc.topics'>
-                                <span class='label label-primary tag-label'>{{topic.title}}</span>
-                            </span>
-                            
+                            <div class="col-sm-6 pull-right">
+                                    <div class="no-padding col-sm-4">
+                                        <button ng-click='openDocInWrite(showDoc)' class="wrdz-button btn  btn-jo ">
+                                    <span class="icon ion-edit"></span>
+                                </button>
+                                    </div>
+                                       <div class="no-padding col-sm-4">
+                                                <button  class='wrdz-button btn-jo  btn ' ng-click='openTopicModal()'>
+                                    <span class="ion-pricetags icon"></span>
+                                </button>
+                                       </div>
+                                       <div class="no-padding col-sm-4">  
+
+                                <button ng-if='!showDoc.is_archived' ng-click='archive(showDoc._id)' class="wrdz-button btn  btn-jo ">
+
+                                    <span class="icon ion-ios7-filing-outline"></span>
+                                </button>
+                                <button ng-if='showDoc.is_archived' ng-click='archive(showDoc._id)' class="wrdz-button btn  btn-jo  ">
+
+                                    <span class="icon ion-reply"></span>
+                                </button>
+                                    </div>   
+                                
+                            </div>
                         </div>
+                 
+                
 
                         <div class="row">
                             <div class="col-xs-12 ">
@@ -222,28 +239,12 @@
                     </accordion-group>
 
                     <div ng-show='showDoc' class="fixed-read-right-bar">
-                        <div>
+                            
+                            
 
-
-                            <button ng-click='openDocInWrite(showDoc)' class="btn btn-jo third-height">
-                                <span class="icon ion-edit"></span>
-                            </button>
-                            <button  class='btn-jo btn third-height' ng-click='openTopicModal()'>
-                                <span class="ion-pricetags icon"></span>
-                            </button>
-
-                            <button ng-if='!showDoc.is_archived'  tooltip-placement="right" tooltip="Archive" ng-click='archive(showDoc._id)' class="btn btn-jo archive-button third-height">
-
-                                <span class="icon ion-ios7-filing-outline"></span>
-                            </button>
-                            <button ng-if='showDoc.is_archived'  tooltip-placement="right" tooltip="Un-archive" ng-click='archive(showDoc._id)' class="btn btn-jo third-height archive-button">
-
-                                <span class="icon ion-reply"></span>
-                            </button>
 
               
 
-                        </div>
                         
 
 
@@ -270,23 +271,28 @@
 
 
     <div class="col-sm-2 pull-right hidden-xs text-right">
-        <div id='mywrdz-right' ng-if='showDoc'>
-           <div class="row">
-            <div class="col-sm-6 pull-left">
-            </div>
-            <div class="pull-right col-sm-6">
+        <div id='mywrdz-right' >
 
+
+            <button type="button" class="btn btn-jo half-width pull-right " ng-click="topicCollapse = !topicCollapse">
+                <span class="icon ion-pricetags"></span>&nbsp;&nbsp;<span class="caret"></span>
+            </button>
+            <br><br><br>
+            <div collapse='topicCollapse' id='topicCollapse'>
+                             
+                <span topic-filter ng-click='addTopic(top)' ng-repeat="top in topicOptions">
+                <span ng-class='{active: active}' class="label label-primary tag-label">{{top.title}} </span>&nbsp;
+                    
+                </span>
+
+            </div>
+
+            <div class="row">
 
             </div>
         </div>
   
 
-    <!--         <br>
-            <br>
-            <div ng-if='showDoc.is_archived'  tooltip-placement="left" tooltip="Delete" ng-click='' class="archive-button">
-                            
-                <span class="icon ion-trash-b"></span>
-            </div> -->
 
         </div>
 

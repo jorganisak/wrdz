@@ -53,6 +53,8 @@ config(['$stateProvider', '$urlRouterProvider',
           }]
         },
         controller : ['$scope','docs','Read', '$state', function ($scope, docs, Read, $state) {
+          $scope.hideStats = true;
+          $scope.showUser = false;
           Read.setPrevState($state);
           $scope.docs = docs.data;
         }]
@@ -82,7 +84,9 @@ config(['$stateProvider', '$urlRouterProvider',
         },
         controller : ['$scope', 'docs','Read', '$stateParams','$state', 
           function ($scope, docs, Read, $stateParams, $state) {
-          
+            $scope.hideStats = true;
+            $scope.showUser = false;
+
             $scope.$on('userChange', function (evt, user) {
               if (user && !$stateParams.userId) {
                 var a = [];
@@ -129,7 +133,8 @@ config(['$stateProvider', '$urlRouterProvider',
         },
         controller : ['$scope', 'docs','Read', '$stateParams','$state', 
           function ($scope, docs, Read, $stateParams, $state) {
-          
+
+
             $scope.$on('userChange', function (evt, user) {
               if (user) {
                 var res = Read.getHearts();
@@ -187,7 +192,7 @@ config(['$stateProvider', '$urlRouterProvider',
         },
         controller : ['$scope', 'docs','Read', '$stateParams','$state', '$rootScope', 
           function ($scope, docs, Read, $stateParams, $state, $rootScope) {
-          
+
 
             Read.setPrevState($state);
 

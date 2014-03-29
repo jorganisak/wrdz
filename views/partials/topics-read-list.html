@@ -1,0 +1,17 @@
+<div ng-controller="TopicsListCtrl" ng-show="$state.current.name === 'read.list.topics'">
+                <input type="text" placeholder="Search" class="form-control" ng-model="search.title">
+                
+                <div ng-repeat="topic in data | startFrom:currentPage*pageSize | limitTo: pageSize | filter:search">
+                    <div ui-sref-active="active" ui-sref="read.list.topics({topicId:topic._id})" class="read-list-right-item">
+                        
+                        {{topic.title}}
+                    </div>
+                </div>
+
+                <button class="btn btn-sm pull-left" ng-hide="currentPage == 0" ng-click="currentPage=currentPage-1">
+                        <span class="icon ion-arrow-left-b"></span>
+                </button>
+                <button class="btn btn-sm pull-right" ng-hide="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                    <span class="icon ion-arrow-right-b"></span>
+                </button>
+            </div>

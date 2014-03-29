@@ -1,59 +1,118 @@
 <div class="col-sm-10 col-sm-offset-1 col-xs-12">
-    <div ng-show="$stateParams.skip" ng-click="loadPrev()" class="page-arrow text-center">    
-        <span class="icon ion-arrow-up-b"></span>
+<!--     <div class="row">
+        
+        <div class="btn-group col-sm-5 pull-right read-filter-button-group">
+
+            <button type="button" class="btn btn-default" ng-model="readFilter" btn-radio="'Popularity'">Popular</button>
+            <button type="button" class="btn btn-default" ng-model="readFilter" btn-radio="'Date'">New</button>
+
+        </div> 
     </div>
-    <div ng-repeat="doc in docs | orderBy: '-score'">
+    <br> -->
+   
+    <accordion close-others="true">
+        <div ng-controller="ReadDocCtrl" ng-repeat="doc in docs | orderBy: '-score'">
+            
 
-        <div ui-sref="read.doc({docId:doc._id})" class="read-list-item">
-            <div class="row">
-                <div class="col-sm-8 col-xs-6">
-                    <div class="read-list-title">
-                        <span ng-show="doc.doc.has_title">
-                            {{doc.doc.title}}
-                        </span>
-                        <span ng-hide="doc.doc.has_title">
-                            {{doc.doc.sample | limitTo: 100}}
-                        </span>
+            <accordion-group ng-class="{'active': isopen}" id="{{doc._id}}" class="read-panel" is-open="isopen">
+                <accordion-heading>
+                    
+                    <div ng-dblclick="openDoc(doc._id)" ng-click="switchDoc(doc, isopen)" class="read-list-item">
+                        <div class="row read-list-bottom-row">
+                            <div class="col-xs-6">
+
+                                <div class="read-list-author">
+                                    <a ng-click="$event.stopPropagation()" ui-sref="read.list.user({userId: doc.author._id})" ng-hide="doc.is_anon" href="">{{doc.author.username}}</a>
+                                    <span ng-show="doc.is_anon"><em>Anonymous</em></span>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-6 text-right pull-right">
+
+                                <div class="read-list-date">
+
+                                    {{moment(doc.published_at).format('MMMM Do, ha')}}
+                                </div>
+
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-8 col-xs-6">
+                                <div class="read-list-title">
+                                    <span ng-show="doc.doc.has_title">
+                                        {{doc.doc.title}}
+                                    </span>
+                                    <span ng-hide="doc.doc.has_title">
+                                        {{doc.doc.sample | limitTo: 100}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3 col-sm-2 pull-left">
+                                <div class="row read-list-arrow">
+                                    <span class="col-xs-1 icon ion-arrow-up-a"></span>
+                                    <span class="col-xs-1 text-right pull-right read-list-arrow-count">{{doc.up_votes}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-3 col-sm-2 pull-right">
+
+                                <div class="row read-list-heart">
+                                    <span class="col-xs-1 icon ion-heart"></span>
+                                    <span class="col-xs-1 text-right pull-right read-list-heart-count">{{doc.hearts}}</span>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        
                     </div>
-                </div>
-                <div class="col-xs-3 col-sm-2 pull-left">
-                    <div class="row read-list-arrow">
-                        <span class="col-xs-1 icon ion-arrow-up-a"></span>
-                        <span class="col-xs-1 text-right pull-right read-list-arrow-count">{{doc.up_votes}}</span>
+
+
+
+                </accordion-heading>
+
+                    <div ng-show="doc.doc.has_title" class="text-center read-title">
+                        {{doc.doc.title}}
+                        <hr>
                     </div>
-                </div>
-                <div class="col-xs-3 col-sm-2 pull-right">
-
-                    <div class="row read-list-heart">
-                        <span class="col-xs-1 icon ion-heart"></span>
-                        <span class="col-xs-1 text-right pull-right read-list-heart-count">{{doc.hearts}}</span>
+                    <div ng-hide="doc.doc.has_title" class="">
+                        <br>
                     </div>
+                <div ng-bind-html="doc.doc.body" class="read-body"></div>
+ 
+            </accordion-group>
 
-
-                </div>
-            </div>
-            <div class="row read-list-bottom-row">
-                <div class="col-xs-6">
-
-                    <div class="read-list-author">
-                        <a ng-click="$event.stopPropagation()" ui-sref="read.list.user({userId: doc.author._id})" ng-hide="doc.is_anon" href="">{{doc.author.username}}</a>
-                        <span ng-show="doc.is_anon"><em>Anonymous</em></span>
+                 <div ng-show="readDoc._id === doc._id" class="fixed-read-left-bar">
+                    <div>
+   
+                            <div ng-class="active1" ng-click="up_vote()" class="read-doc-arrow">
+                                <span class="icon ion-arrow-up-a"></span>
+                            </div>   
+                            <br>                     
+                            <div ng-class="active2" ng-click="heart()" class="read-doc-heart">
+                                <span class="icon ion-heart"></span>
+                            </div>                        
+                            <br>                     
+                            <div twitter-button="" ng-click="open(readDoc._id)" class="read-doc-tweet">
+                                <span class="icon ion-social-twitter"></span>
+                            </div>
+                        
                     </div>
+                        
+            
 
                 </div>
-                <div class="col-xs-6 text-right right">
 
-                    <div class="read-list-date">
 
-                        {{moment(doc.published_at).format('MMMM Do, ha')}}
-                    </div>
+            
 
-                </div>
-            </div>
         </div>
+    </accordion>
+    <div ng-show="$stateParams.skip" ng-click="loadPrev(); goToTop()" class="page-arrow pull-left text-center">    
+        <span class="icon ion-arrow-left-b"></span>
     </div>
 
-    <div ng-show="docs.length === 10" ng-click="loadNext()" class="page-arrow text-center">    
-        <span class="icon ion-arrow-down-b"></span>
+    <div ng-show="docs.length === 10" ng-click="loadNext(); goToTop()" class="page-arrow pull-right text-center">    
+        <span class="icon ion-arrow-right-b"></span>
     </div>
     </div>

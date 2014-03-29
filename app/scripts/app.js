@@ -8,7 +8,8 @@ angular.module('vendor', [
   'ngRoute',
   'perfect_scrollbar',
   'ui.bootstrap',
-  'ui.router'
+  'ui.router',
+  'pickadate'
   ]);
 
 angular.module('read', []);

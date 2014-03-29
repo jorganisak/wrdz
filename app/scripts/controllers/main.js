@@ -60,8 +60,9 @@ Does a few things:
         }).
         error(function(err, status, headers, config)
         {
-          console.log(err.errors.username.type === 'Username already exists');
-          $scope.message = 'Bummer. That username is taken. Try another?';
+          if (err.errors.username.type === 'Username already exists') {
+            $scope.message = 'Bummer. That username is taken. Try another?';
+          }
         });
       }
     };
@@ -173,8 +174,9 @@ Does a few things:
               }).
               error(function(err, status, headers, config)
               {
-                console.log(err.errors.email.type);
-                $scope.message = 'Looks like someone already has that username. Try another?';
+                if (err.errors.username.type === 'Username already exists') {
+                  $scope.message = 'Bummer. That username is taken. Try another?';
+                }
               });
             }
           };

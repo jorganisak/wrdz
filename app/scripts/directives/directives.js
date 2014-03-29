@@ -40,6 +40,31 @@ angular.module('shared').directive('joInputAdd', function () {
     }
   }
 })
+.directive('topicFilter', function() {
+  return {
+    restrict: 'AE',
+    link: function (scope, elem, attrs, ctrl) {
+      console
+      scope.$watchCollection('topicsModel', function (newValue) {
+        if (newValue) {
+          var flag = true;
+          angular.forEach(newValue, function (topic) {
+            if (topic._id === scope.top._id) {
+              console.log('Its me!');
+              flag = false;
+              scope.active = true;
+            } 
+          })
+          if (flag) {
+            scope.active = false;
+          }
+
+        }
+
+      })
+    }
+  }
+})
 
 .directive('twitterButton', ['$window', function($window) {
   return {
