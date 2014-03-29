@@ -1,6 +1,4 @@
 <div ng-hide="user" id='landing-body' class="text-center row">
-  <br>
-  <br>
   <div class="container-fluid">
     
     <div class="row">
@@ -11,21 +9,18 @@
           <br>
           <a ui-sref='read.list.front' href="">Read.</a>
         </div>
-      <div id='landing-copy' class="col-sm-6 hidden-xs text-left">
+      <div id='landing-copy' class="col-md-8 col-md-offset-2  col-sm-10 col-sm-offset-1 hidden-xs text-left">
+        <div medium-editor ng-model='landingCopy' options="{{mediumEditorOptionsBody}}"  class='' id="write-content">
+
           
-          <h1>wrdz</h1>
-          <br>
-          <p>A place to write whatever's in your head.</p>
-          <p>Keep your wrdz private, or choose to share them.</p>
-          <p><a ui-sref="read.list.front">Read what people are writing now.</a></p>
+        </div>
 
       </div>
-      <div class="col-sm-6 ">
+      <div class="col-sm-6 col-sm-offset-3">
           <div id='landing-form'>
-            <div class="well">
+            <div class="">
               
               
-              <p id='landing-well-copy' ng-hide='local_auth_form'>Start your wordly journey.</p>
               
               <a ng-hide='local_auth_form' target='_blank'  href="/auth/twitter">
                 <br>
@@ -96,10 +91,12 @@
             </div>
             <a ng-show='local_auth_form && !landing_signin' ng-click='landing_signin = true' class="pull-right">Log In</a>            
             <a ng-show='local_auth_form' ng-click='local_auth_form = !local_auth_form' class='pull-left' href="">Cancel</a>
+            <br>
             <a ng-hide='local_auth_form' ng-click='local_auth_form = !local_auth_form; landing_signin = false' class="pull-right">I prefer email.</a>
+            <a ui-sref='read.list.front' class="pull-left">Read wrdz.</a>
             
           </div>
-          
+
         
         
 

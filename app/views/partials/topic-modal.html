@@ -3,7 +3,7 @@
     <span ng-click="close()" class="pull-right icon ion-close"></span>
 
     <h3>Tags</h3>
-
+<br>
     <jo-input-add name='Topic' on-submit='addTopic(title)'></jo-input-add>
    
         <br>
@@ -19,9 +19,9 @@
         </div>
         <br>
         <br>
-        <div class="panel">
+        <div ng-if='user.topics.length' class="panel">
             
-            <em>Topics you use</em><br>
+            <em>Tags you use</em><br>
         <span ng-repeat="top in userTopics | orderBy: '-_docs.length' | limitTo: 20">
             <span class="label label-primary tag-label">{{top.title}} <span ng-click='addTopic(top.title)' class="icon tag-add-plus ion-plus"></span></span>
         </span>

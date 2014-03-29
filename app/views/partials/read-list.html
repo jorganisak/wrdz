@@ -2,7 +2,7 @@
     <div class="col-sm-2 hidden-xs text-left">
         <div ng-show='user' class='fixed-left'>
             <tabset vertical='true' type="navType" class='jo-tabset'>
-                <tab ng-repeat="tab in tabs" class='jo-tab' ui-sref="{{tab.state}}" ng-hide="tab.title === 'Following' && !user" active='tab.active' heading='{{tab.title}}'></tab>
+                <tab ng-repeat="tab in tabs" class='jo-tab' ui-sref="{{tab.state}}" ng-hide="tab.title === 'Following' && !user.following.length || tab.title === 'Hearts' && !user.meta._hearts.length || tab.title === 'Front' && !user.meta._hearts.length && !user.following.length"  active='tab.active' heading='{{tab.title}}'></tab>
             </tabset>
         </div>
     </div>

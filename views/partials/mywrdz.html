@@ -273,7 +273,7 @@
         <div id="mywrdz-right">
 
 
-            <button type="button" class="btn btn-jo half-width pull-right" ng-click="topicCollapse = !topicCollapse">
+            <button type="button" ng-hide="!user.topics.length" class="btn btn-jo half-width pull-right" ng-click="topicCollapse = !topicCollapse">
                 <span class="icon ion-pricetags"></span>&nbsp;&nbsp;<span class="caret"></span>
             </button>
             <br><br><br>
