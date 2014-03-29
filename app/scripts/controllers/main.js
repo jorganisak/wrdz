@@ -14,7 +14,7 @@ Does a few things:
 
   */
 
-$scope.landingCopy = "<h4>Welcome to Wrdz</h4><p><br></p><p><span style='font-size: 22px; line-height: 1.25;'>This is a web app that provides a simple and clean place to write. <br><br> <strong>(Try highlighting this text.)</strong></span><br><br></p><p><em>With Wrdz, you can:&nbsp;</em></p><p></p><ul><li>Write whatever's in your head</li><li>Store what you write for access anywhere</li><li>Easily browse and organize by date and tag</li></ul>"
+$scope.landingCopy = "<h4 style='text-align:center'>Welcome to Wrdz</h4><p><br></p><p><span style='font-size: 22px; line-height: 1.25;'>This is a web app that provides a simple and clean place to write. <br><br> <strong>(Try highlighting this text.)</strong></span><br><br></p><p><em>With Wrdz, you can:&nbsp;</em></p><p></p><ul><li>Write whatever's in your head</li><li>Store what you write for access anywhere</li><li>Easily browse and organize by date and tag</li></ul>"
 
     $scope.mediumEditorOptionsBody = angular.toJson(
       {"placeholder": "",
