@@ -1,4 +1,34 @@
 <div ng-if="user" id="mywrdz-body" ng-cloak="" class="row" ng-controller="MyWrdzCtrl">
+
+        <div class="fixed-collapse" collapse="editCollapsed">
+
+            <div class="btn-group filter-button-group">
+
+                <button type="button" class="btn btn-default" ng-model="filterModel" btn-radio="'All'">All</button>
+                <button type="button" class="btn btn-default" ng-model="filterModel" btn-radio="'Public'">Public</button>
+
+            </div>
+    
+            <div class="btn-group filter-button-group">
+                <button type="button" class="btn btn-default" ng-model="filterModel" btn-radio="'Private'">Private</button>                
+                <button type="button" class="btn btn-default" ng-model="filterModel" btn-radio="'Archive'">Archive</button>
+            </div>
+
+                <br>
+                <br>
+            <div pickadate="" max-date="maxDate" ng-model="date"></div>
+                <br>
+               
+            <span topic-filter="" ng-click="addTopic(top)" ng-repeat="top in topicOptions">
+            <span ng-class="{active: active}" class="label label-primary tag-label">{{top.title}} </span>&nbsp;
+                
+            </span>
+        
+
+        </div>
+
+
+
     <div class="col-sm-2 hidden-xs text-center">
         <div id="mywrdz-fixed-left" class="fixed-left">
             <input type="text" placeholder="Search" class="form-control" ng-model="search">
@@ -130,18 +160,18 @@
                       
                         <div ng-if="isopen" class="row">
 
-                            <div class="col-sm-6 pull-right">
-                                    <div class="no-padding col-sm-4">
+                            <div class="col-sm-6 col-xs-12 pull-right">
+                                    <div class="no-padding col-xs-4">
                                         <button ng-click="openDocInWrite(showDoc)" class="wrdz-button btn btn-jo">
                                     <span class="icon ion-edit"></span>
                                 </button>
                                     </div>
-                                       <div class="no-padding col-sm-4">
+                                       <div class="no-padding col-xs-4">
                                                 <button class="wrdz-button btn-jo btn" ng-click="openTopicModal()">
                                     <span class="ion-pricetags icon"></span>
                                 </button>
                                        </div>
-                                       <div class="no-padding col-sm-4">  
+                                       <div class="no-padding col-xs-4">  
 
                                 <button ng-if="!showDoc.is_archived" ng-click="archive(showDoc._id)" class="wrdz-button btn btn-jo">
 
@@ -236,22 +266,8 @@
                         <div ng-bind-html="doc.body" class="read-body"></div>
 
                     </accordion-group>
-
                     <div ng-show="showDoc" class="fixed-read-right-bar">
-                            
-                            
-
-
-              
-
-                        
-
-
                     </div>
-
-
-
-
                 </div>
             </accordion>    
 
@@ -295,14 +311,16 @@
 
         </div>
 
+
+        
+    <div class="visible-xs" id="fixed-bottom-bar">
+        <div ng-click="editCollapsed = !editCollapsed; goToTop()" class="col-xs-12 bottom-caret text-center">
+        <span ng-show="editCollapsed" class="icon ion-chevron-up"></span>
+        <span ng-hide="editCollapsed" class="icon ion-chevron-down"></span>
+        </div>
+        
+
     </div>
 
-    <div class="visible-xs" ng-if="showDoc" id="fixed-bottom-bar">
-     <button ng-click="openDocInWrite(showDoc)" class="btn btn-jo">
-        <span class="icon ion-edit"></span>
-    </button>
-
-
-    
 
 </div>

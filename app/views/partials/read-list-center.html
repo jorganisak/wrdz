@@ -1,5 +1,5 @@
 
-<div class="col-sm-10 col-sm-offset-1 col-xs-12">
+<div id='me-middle' class="col-sm-10 col-sm-offset-1 col-xs-12">
 <!--     <div class="row">
         
         <div class="btn-group col-sm-5 pull-right read-filter-button-group">
@@ -10,7 +10,30 @@
         </div> 
     </div>
     <br> -->
-   
+    <div class="row">
+        
+       <div ng-hide="tab.title === 'Front' && !user.meta._hearts.length && !user.following.length" class='visible-xs xs-drop-top'>
+        <div class="col-xs-6 pull-right">
+            <div class='dropdown'>
+                
+                <a class='btn btn-jo dropdown-toggle '>
+                    <span class="icon ion-chevron-down"></span>
+                </a>  
+                <ul class="dropdown-menu pull-right">
+
+
+            
+                <li ng-repeat="tab in tabs" ui-sref="{{tab.state}}" ng-hide="tab.title === 'Following' && !user.following.length || tab.title === 'Hearts' && !user.meta._hearts.length || tab.title === 'Front' && !user.meta._hearts.length && !user.following.length"  active='tab.active'>
+                    <a >
+                         {{tab.title}}
+
+                    </a>
+                </li>
+              </ul>
+            </div>
+        </div>
+    </div>
+    </div>
     <accordion close-others="true">
         <div ng-controller='ReadDocCtrl' ng-repeat="doc in docs | orderBy: '-score'">
             
@@ -23,7 +46,12 @@
                             <div class="col-xs-6 ">
 
                                 <div  class="read-list-author">
-                                    <a  ng-click="$event.stopPropagation()" ui-sref="read.list.user({userId: doc.author._id})" ng-hide="doc.is_anon" href="">{{doc.author.username}}</a>
+                                    <span ng-hide="doc.is_anon" href="">
+                                        <strong>
+                                            
+                                            {{doc.author.username}}
+                                        </strong>
+                                    </span>
                                     <span ng-show="doc.is_anon"><em>Anonymous</em></span>
                                 </div>
 
@@ -83,26 +111,50 @@
  
             </accordion-group>
 
-                 <div ng-show='readDoc._id === doc._id' class="fixed-read-left-bar">
-                    <div>
-   
-                            <div  ng-class='active1' ng-click="up_vote()"  class="read-doc-arrow">
-                                <span  class="icon  ion-arrow-up-a"></span>
-                            </div>   
-                            <br>                     
-                            <div ng-class='active2' ng-click="heart()" class="read-doc-heart">
-                                <span class=" icon ion-heart"></span>
-                            </div>                        
-                            <br>                     
-                            <div twitter-button ng-click="open(readDoc._id)" class="read-doc-tweet">
-                                <span  class="icon ion-social-twitter"></span>
-                            </div>
+                 <div ng-show='readDoc._id === doc._id' class="">
+                    <div class="hidden-xs fixed-read-left-bar">
                         
+                        <div>
+       
+                                <div  ng-class='active1' ng-click="up_vote()"  class="read-doc-arrow">
+                                    <span  class="icon  ion-arrow-up-a"></span>
+                                </div>   
+                                <br>                     
+                                <div ng-class='active2' ng-click="heart()" class="read-doc-heart">
+                                    <span class=" icon ion-heart"></span>
+                                </div>                        
+                                <br>                     
+                                <div twitter-button ng-click="open(readDoc._id)" class="read-doc-tweet">
+                                    <span  class="icon ion-social-twitter"></span>
+                                </div>
+                            
+                        </div>
                     </div>
                         
             
 
+                    <div class='visible-xs' id="fixed-bottom-bar">
+                        <div class="col-xs-3 no-padding">
+                            <div  ng-class='active1' ng-click="up_vote()"  class="read-doc-arrow">
+                                    <span  class="icon  ion-arrow-up-a"></span>
+                                </div>  
+                        </div>
+
+                        <div class="col-xs-3  no-padding">
+                            <div ng-class='active2' ng-click="heart()" class="read-doc-heart">
+                                    <span class=" icon ion-heart"></span>
+                                </div> 
+                        </div>
+                        <div class="col-xs-3  no-padding">
+                           <div twitter-button ng-click="open(readDoc._id)" class="read-doc-tweet">
+                                    <span  class="icon ion-social-twitter"></span>
+                                </div>
+                        </div>
+
+                        
+                    </div>
                 </div>
+
 
 
             
@@ -116,5 +168,8 @@
     <div ng-show='docs.length === 10' ng-click='loadNext(); goToTop()' class="page-arrow pull-right text-center">    
         <span class="icon ion-arrow-right-b"></span>
     </div>
-    </div>
+
+
+   
+
 </div>

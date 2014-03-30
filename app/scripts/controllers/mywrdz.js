@@ -36,6 +36,7 @@ angular.module('myWrdz')
     $scope.isCollapsed = true;
     $scope.topicCollapse = true;
     $scope.dateCollapsed = true;
+    $scope.editCollapsed = true;
 
     var dtTypes = ['Days', 'Weeks', 'Months'];
 
