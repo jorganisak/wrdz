@@ -2194,7 +2194,13 @@ h3 {
 .xs-drop-top > div > div > .dropdown-menu > li {
   font-size: 1.5em;
   margin-bottom: 15px;
+  width: 220px;
+  overflow: hidden;
 }
+
+.xs-drop-top > div > div > .dropdown-menu  {
+}
+
 
 #fixed-bottom-bar > div > div {
   height: 59px;

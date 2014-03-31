@@ -50,8 +50,8 @@
                         <ul class="dropdown-menu pull-right">
                         <li ng-repeat="recent_doc in user._userDocs | limitTo: 5 | orderBy : '-updated_at'">
                             <a ng-click='switchDoc(recent_doc)'>
-                                 <span ng-show='recent_doc.has_title' ng-bind-html="recent_doc.title"></span>
-                                <span ng-hide='recent_doc.has_title || !recent_doc.sample'>{{recent_doc.sample | limitTo: 50}}</span>
+                                 <div ng-show='recent_doc.has_title' ng-bind-html="recent_doc.title"></div>
+                                <div ng-hide='recent_doc.has_title || !recent_doc.sample'>{{recent_doc.sample | limitTo: 50}}</div>
 
                             </a>
                         </li>
