@@ -11,6 +11,8 @@ angular.module('myWrdz')
 
     $scope.moment = moment;
 
+ 
+
     $scope.setToday = function() {
       $scope.date = moment(Date.now()).format('YYYY-MM-DD');
       $scope.today =  $scope.date;

@@ -216,9 +216,19 @@ config(['$stateProvider', '$urlRouterProvider',
             return Read.getPubDoc($stateParams.docId);
           }]
         },
-        controller: ['$scope', 'readDoc','PubDoc', function ($scope, readDoc, PubDoc) {
+        controller: ['$scope', 'readDoc','PubDoc', '$rootScope', 
+        function ($scope, readDoc, PubDoc, $rootScope) {
 
           $scope.doc = readDoc.data;
+
+          var title = '';
+          if ($scope.doc.doc.has_title) {
+            title = $scope.doc.doc.title;
+          } else {
+            title = $scope.doc.doc.sample.slice(0, 20)
+          }
+
+          $rootScope.$broadcast('changePageTitle', title);
 
         }]
 

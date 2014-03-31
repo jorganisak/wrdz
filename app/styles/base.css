@@ -61,9 +61,10 @@
 
 .fixed-collapse {
   margin-top: -43px;
-  width: 100%; 
+  width: 100%;
   padding: 21px;
 }
+
 .third-height {
   height: 14.33%;
   min-height: 50px !important;
@@ -90,12 +91,11 @@
     border-color: rgb(242, 242, 242) !important;
     margin-bottom: 0px;
   }
-  
+
   #me-middle {
     padding: 0;
   }
 }
-
 
 .panel {
   border: none;
@@ -211,8 +211,6 @@ html input[disabled] {
   margin: 0 10px 1% 10px;
 }
 
-
-
 #top-nav-container {
   height: 100%;
   color: white;
@@ -222,8 +220,6 @@ html input[disabled] {
   max-width: 1240px;
   padding: 0 40px;
 }
-
-
 
 @media (max-width: 768px) {
   #top-nav-container {
@@ -503,8 +499,6 @@ hr {
   padding: 0px;
   margin: 0px;
 }
-
-
 
 .archive-button > .icon {
   font-size: 1.7em;
@@ -1244,14 +1238,14 @@ blockquote {
 }
 
 .top-nav-item {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.6rem;
   color: white;
-  letter-spacing: 0.2px;
+  /* letter-spacing: 0.2px; */
   border-bottom: solid 1px transparent;
   cursor: pointer;
   height: 50px;
-  padding: 13px 0 0 0;
+  padding: 14px 0 0 0;
   transition: all 250ms linear 100ms;
   font-weight: 400;
 }
@@ -1460,8 +1454,6 @@ p {
   color: rgb(34, 34, 39);
 }
 
-
-
 .side-column-right {
   padding: 0px 30px 0px 40px;
 }
@@ -1564,8 +1556,6 @@ h3 {
   padding: 8px;
   font-size: 0.9em;
 }
-
-
 
 #read-sections-body {
   margin-top: 30px;
@@ -2089,8 +2079,6 @@ h3 {
   /* padding-right: 49px; */
 }
 
-
-
 .ion-plus-circled:hover {
   opacity: 1;
 }
@@ -2185,7 +2173,6 @@ h3 {
 }
 
 .xs-drop-top > div > div > .btn {
-  
   height: 50px;
   padding-top: 13px;
   margin-right: -70px;
@@ -2198,8 +2185,6 @@ h3 {
   overflow: hidden;
 }
 
-.xs-drop-top > div > div > .dropdown-menu  {
-}
 
 
 #fixed-bottom-bar > div > div {

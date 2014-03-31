@@ -13,6 +13,26 @@ Does a few things:
   4. listener at the bottom for changes like login/signup/logout
 
   */
+     $scope.$on('changePageTitle', function (evt, title) {
+      console.log(title);
+      if (title) {
+        $scope.pageTitle = title;
+      } else {
+        $scope.pageTitle = 'wrdz';
+      }
+    })
+
+
+     $scope.$watch('$state.current.name', function (newValue ) {
+       if (newValue !== 'read.doc') {
+        
+        $scope.pageTitle = 'wrdz';
+       }
+     })
+
+
+
+    $scope.pageTitle = 'wrdz';
 
 $scope.landingCopy = "<h4 style='text-align:center'>Welcome to Wrdz</h4><p><br></p><p><span style='font-size: 22px; line-height: 1.25;'>This is a web app that provides a simple and clean place to write. <br><br> <strong>(Try highlighting this text.)</strong></span><br><br></p><p><em>With Wrdz, you can:&nbsp;</em></p><p></p><ul><li>Write whatever's in your head</li><li>Easily browse and organize by date and tag</li><li>Share your writing, anonymously if you'd like</li></ul>"
     $scope.mediumEditorOptionsBody = angular.toJson(
