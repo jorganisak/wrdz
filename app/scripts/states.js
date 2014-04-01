@@ -13,10 +13,15 @@ config(['$stateProvider', '$urlRouterProvider',
 /*
       LANDING
       */
-      .state('landing', {
+    .state('landing', {
         url: '/',
         templateUrl: 'partials/landing.html',
         controller : ['$scope','$state', function ($scope, $state) {
+
+          if ($scope.user) {
+            $state.go('write')
+          }
+
           $scope.$on('userChange', function(event, user) {
             if (user) {
               $state.go('write')
