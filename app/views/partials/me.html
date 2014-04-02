@@ -1,7 +1,7 @@
 <div ng-show='user' class="row" id='me-content' ng-controller="MeCtrl">
 
   <div class="hidden-xs col-sm-2 text-left">
-    <div id="read-list-left">
+    <div class="fixed-left">
 
         <tabset vertical='true' type="navType" class='jo-tabset'>
           <tab ng-repeat="tab in tabs" class='jo-tab' ui-sref="{{tab.state}}" active='tab.active' heading='{{tab.title}}'></tab>

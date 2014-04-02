@@ -81,7 +81,7 @@
 
 .panel-body {
   padding: 10px 20px 75px 20px;
-  border-color: rgb(242, 242, 242) !important;
+  border-color: rgba(244, 244, 244, 0.48) !important;
   margin-bottom: 0px;
 }
 
@@ -102,8 +102,8 @@
 }
 
 .read-panel.active {
-  background-color: rgba(255, 255, 255, 0.87);
-  box-shadow: 0 -2px 1px 2px rgb(244, 244, 244), inset 0 -2px 1px -1px rgb(225, 225, 225);
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0px 2px rgb(250, 250, 250), inset 0 0 5px -1px rgb(255, 255, 255);
   margin-top: 17px;
   margin-bottom: 20px;
 }
@@ -151,7 +151,7 @@
 }
 
 #recent-docs {
-  margin-top: 100%;
+  margin-top: 120%;
   width: 270%;
   right: 0%;
   position: absolute;
@@ -213,12 +213,11 @@ html input[disabled] {
 
 #top-nav-container {
   height: 100%;
-  color: white;
   position: relative;
   width: 100%;
   margin: 0 auto;
-  max-width: 1240px;
-  padding: 0 40px;
+  max-width: 1820px;
+  padding: 0 5px;
 }
 
 @media (max-width: 768px) {
@@ -1048,7 +1047,7 @@ add-button.active:active {
   transition: all 200ms ease;
   width: 15%;
   max-width: 160px;
-  top: 22%;
+  top: 12%;
   height: 100%;
   left: 3%;
 }
@@ -1188,8 +1187,8 @@ blockquote {
   text-align: center;
   left: 0%;
   position: fixed;
-  background: linear-gradient(to bottom, rgba(46, 46, 46, 1) 0%,rgba(25, 25, 25, 1) 100%);
-  height: 47px;
+  /* background: linear-gradient(to top, rgba(247, 247, 247, 1) 0%,rgba(253, 253, 253, 1) 100%); */
+  height: 44px;
   z-index: 110;
   top: 0%;
 }
@@ -1240,14 +1239,13 @@ blockquote {
 .top-nav-item {
   font-family: 'Roboto', sans-serif;
   font-size: 1.6rem;
-  color: white;
-  /* letter-spacing: 0.2px; */
-  border-bottom: solid 1px transparent;
+  color: black;
   cursor: pointer;
-  height: 50px;
-  padding: 14px 0 0 0;
-  transition: all 250ms linear 100ms;
-  font-weight: 400;
+  height: 44px;
+  padding: 10px 0 0 0;
+  transition: all 150ms linear 100ms;
+  font-weight: 100;
+  box-shadow: inset 0 -2px 1px black;
 }
 
 .top-nav-item-sm {
@@ -1265,7 +1263,7 @@ blockquote {
 
 .top-nav-item:hover {
   opacity: 1;
-  box-shadow: inset 0 -6px 0px white;
+  box-shadow: inset 0 -3px  black;
 }
 
 #wrdz-headline {
@@ -1274,7 +1272,7 @@ blockquote {
   font-size: 1.35em;
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
-  color: white;
+  color: rgb(77, 77, 77);
   padding-top: 9px;
   /* text-shadow: 0px 1px 0px rgb(106, 106, 106); */
 }
@@ -1301,7 +1299,7 @@ blockquote {
 }
 
 .activeTopNav:hover {
-  box-shadow: inset 0 -55px 0 0 white;
+  box-shadow: inset 0 -5px 0 0 rgb(0, 0, 0);
 }
 
 #top-nav-me:hover {
@@ -1316,7 +1314,7 @@ blockquote {
   max-width: 105em;
   padding: 0px 5%;
   margin: 0 auto 60px auto;
-  padding-top: 90px;
+  padding-top: 40px;
 }
 
 h4 {
@@ -1563,7 +1561,7 @@ h3 {
 
 .read-list-item {
   cursor: pointer;
-  background-color: #FCFCFC;
+  background-color: rgba(255, 255, 255, 0.91);
   transition: all 300ms ease;
   border-radius: 0px !important;
   font-family: 'Clear Sans', sans-serif;
@@ -1614,6 +1612,7 @@ h3 {
 .panel-default > .panel-heading {
   background-color: white;
   padding: 0px;
+  border-color: rgb(251, 251, 251);
   /* position: relative; */
 }
 
@@ -1958,9 +1957,9 @@ h3 {
 }
 
 .activeTopNav {
-  color: black;
-  box-shadow: inset 0 -55px 0 0 rgb(251, 251, 251);
-  font-weight: 500;
+  color: rgb(0, 0, 0);
+  box-shadow: inset 0 -5px 0 0 rgb(0, 0, 0);
+  /* font-weight: 500; */
 }
 
 #write-column-left {
@@ -1984,7 +1983,7 @@ h3 {
   width: 5%;
   max-width: 180px;
   right: 0%;
-  top: 22%;
+  top: 12%;
 }
 
 #archive-checkbox {
@@ -2184,8 +2183,6 @@ h3 {
   width: 220px;
   overflow: hidden;
 }
-
-
 
 #fixed-bottom-bar > div > div {
   height: 59px;
