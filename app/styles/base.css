@@ -364,7 +364,7 @@ h6 {
   cursor: pointer;
   position: fixed;
   left: 2%;
-  top: 17%;
+  top: 61px;
   width: 7%;
   max-width: 80px;
 }
@@ -855,7 +855,7 @@ h1 {
   padding-left: 2%;
   width: 15%;
   max-width: 192px;
-  top: 28%;
+  top: 36%;
   right: 3%;
 }
 
@@ -864,7 +864,7 @@ h1 {
   position: fixed;
   font-size: 1.5em;
   transition: all 200ms ease-in-out;
-  top: 19%;
+  top: 63px;
   padding: 3px 10px 1px 14px;
   right: 2.6%;
   cursor: pointer;
