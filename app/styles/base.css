@@ -1053,11 +1053,11 @@ add-button.active:active {
 }
 
 .fixed-left:hover {
-  opacity: 1;
+  /* opacity: 1; */
 }
 
 #read-list-left:hover {
-  opacity: 1;
+/*   opacity: 1; */
 }
 
 /*
