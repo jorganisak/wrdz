@@ -10,13 +10,20 @@
   width: 300%;
   left: -5%;
   position: absolute;
-  max-width: 270px;
+  max-width: 230px;
+}
+
+#topic-container-title {
+  margin-bottom: 10px
+  
 }
 
 .pub-info-left {
   padding: 5px;
   line-height: 2;
   margin-bottom: 0;
+  background-color: white;
+  box-shadow: none;
 }
 .tags-you-use > span > .tag-label:hover {
   color: green;
@@ -28,10 +35,11 @@
 }
 
 .side-reveal {
-  padding: 10px 0 0 20px;
-  /* background-color: gray; */
+  padding: 10px 0px;
+  color: gray;
   height: 400px;
-  font-size: 0.8em;
+  /* font-size: 0.8em; */
+  text-align: center;
 }
 
 .tag-label.active {
@@ -71,7 +79,7 @@
 }
 
 .ion-ios7-filing-outline {
-  font-size: 1.1em;
+  font-size: 1.4em;
 }
 
 #mywrdz-date-button {
@@ -206,7 +214,7 @@
   transition: all 200ms ease;
   width: 15%;
   max-width: 160px;
-  top: 50px;
+  top: 80px;
   height: 100%;
   right: 3%;
 }
@@ -247,12 +255,16 @@ html input[disabled] {
 }
 
 .write-topic-container {
-  text-align: left;
-  padding: 14px 9px;
+  padding: 8px 4px 8px 3%;
   background-color: white;
   box-shadow: none;
+  border-color: rgb(232, 232, 232);
   cursor: pointer !important;
   transition: all 200ms linear;
+  text-align: center;
+  margin-bottom: 4px;
+  font-family: 'Clear Sans', sans-serif;
+  font-weight: 100;
 }
 
 .write-topic-container:hover {
@@ -265,7 +277,7 @@ html input[disabled] {
   position: relative;
   width: 100%;
   margin: 0 auto;
-  max-width: 1820px;
+  /* max-width: 1820px; */
   padding: 0 0px;
 }
 
@@ -366,9 +378,9 @@ h6 {
 
 .filter-button-group > .btn {
   width: 50%;
-  font-size: 1em;
+  font-size: 0.9em;
   border: solid 1px rgb(234, 232, 232);
-  padding: 16px;
+  padding: 7px;
   border-radius: 0px;
   font-family: 'Clear Sans', sans-serif;
   font-weight: 100;
@@ -680,7 +692,7 @@ hr {
 #mywrdz-fixed-left {
   width: 18%;
   left: 0%;
-  /* top: 17%; */
+  top: 70px;
   max-width: 210px;
 }
 
@@ -949,12 +961,13 @@ h1 {
 
 #read-doc-follow-button {
   text-align: center;
-  padding: 5px;
+  padding: 2px;
   font-size: 0.8em;
   border: solid 1px silver;
   cursor: pointer;
   width: 50%;
-  margin-left: 53%;
+  font-weight: 100;
+  margin-left: 54%;
   opacity: 0.4;
   transition: all 75ms linear;
   margin-top: 10%;
@@ -1092,7 +1105,7 @@ add-button.active:active {
   transition: all 200ms ease;
   width: 15%;
   max-width: 160px;
-  top: 50px;
+  top: 80px;
   height: 100%;
   left: 2%;
 }
@@ -1447,7 +1460,7 @@ p {
 }
 
 #write-center {
-  padding: 7% 2%;
+  padding: 3% 2% 7% 2%;
   box-shadow: 0 0 150px -10px white, inset 0 0 70px -10px white;
   max-width: 684px;
   margin: 20px auto 30% auto;
@@ -1760,7 +1773,7 @@ h3 {
   color: rgb(99, 99, 99);
   background-color: rgb(248, 248, 248);
   border: 1px solid rgb(184, 184, 184);
-  /* cursor: default; */
+  font-family: sans-serif;
 }
 
 .following-tag-label:hover {
@@ -2200,7 +2213,7 @@ h3 {
   height: 33.333%;
   opacity: 0.5;
   padding: 0;
-  border: none;
+  border: none !important;
 }
 
 .xs-drop-top {
@@ -2233,8 +2246,8 @@ h3 {
 .write-left-button {
   margin: 5px 0;
   min-height: 40px;
-  font-size: 0.8em;
+  font-size: 0.95em;
   padding: 0px;
-  width: 64%;
+  /* width: 64%; */
   font-weight: 100;
 }

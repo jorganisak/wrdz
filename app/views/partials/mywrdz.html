@@ -50,12 +50,33 @@
                 {{moment(date).format('MMMM Do, YYYY')}}
                 <span ng-click="date = today" class="icon tag-remove-x ion-close"></span>
             </div>
-            <button type="button" class="btn btn-jo write-left-button " ng-click="dateCollapsed = !dateCollapsed; isCollapsed = true">
-                <span class="icon ion-calendar"></span>&nbsp;&nbsp;<span class="caret"></span>
-            </button>
-            <div collapse='dateCollapsed' id="date-button-box">
+            <div class="row">
+                <div class="col-sm-6 no-padding">
+                    
+                    <button type="button" class="btn btn-jo no-padding" ng-click="dateCollapsed = !dateCollapsed; isCollapsed = true; topicCollapse = true;">
+                        <span class="icon ion-calendar"></span>
+                    </button>
+                </div>
+                <div class="col-sm-6 no-padding">
+                    <button type="button" ng-hide='!user.topics.length'class="btn btn-jo no-padding" ng-click="topicCollapse = !topicCollapse; dateCollapsed = true;">
+                        <span class="icon ion-pricetags"></span>
+                    </button>
+                </div>
+                
+            </div>
 
-    
+            
+            
+            <div collapse='topicCollapse' id='topicCollapse'>
+                             
+                <span topic-filter ng-click='addTopic(top)' ng-repeat="top in topicOptions">
+                <span ng-class='{active: active}' class="label label-primary tag-label">{{top.title}} </span>&nbsp;
+                    
+                </span>
+
+            </div>
+
+            <div collapse='dateCollapsed' id="date-button-box">
 
                 <div pickadate max-date='maxDate' ng-model='date'></div>
 
@@ -298,22 +319,9 @@
                 <span class="icon ion-edit"></span>
             </button>
 
-            <button type="button" ng-hide='!user.topics.length'class="btn btn-jo fixed-right-button" ng-click="topicCollapse = !topicCollapse">
-                <span class="icon ion-pricetags"></span>&nbsp;&nbsp;<span class="caret"></span>
-            </button>
-            <br><br><br>
-            <div collapse='topicCollapse' id='topicCollapse'>
-                             
-                <span topic-filter ng-click='addTopic(top)' ng-repeat="top in topicOptions">
-                <span ng-class='{active: active}' class="label label-primary tag-label">{{top.title}} </span>&nbsp;
-                    
-                </span>
+            
 
-            </div>
-
-            <div class="row">
-
-            </div>
+           
         </div>
   
 

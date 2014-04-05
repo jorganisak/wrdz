@@ -42,7 +42,7 @@ angular.module('write')
       {"placeholder": "",
         "buttons": ["bold", "italic", "anchor", "header2", "orderedlist", "unorderedlist" ],
         "buttonLabels" : {"header2": "<b>H</b>", "anchor": "<span><span class='icon ion-link'></span></span>",
-         "bold":"<strong>B</strong>", "italic": "<em>i</em>"},
+         "bold":"<strong>b</strong>", "italic": "<em>i</em>"},
         "disableToolbar": false,
         "forcePlainText" : false,
         "targetBlank": true}
@@ -188,7 +188,7 @@ angular.module('write')
 
             $scope.showRecent = false;
           }
-        }, 1000)
+        }, 500)
       }
       if ($scope.showLeft === true) {
 
@@ -197,7 +197,7 @@ angular.module('write')
 
             $scope.showLeft = false;
           }
-        }, 1000)
+        }, 500)
       }
 
     };
