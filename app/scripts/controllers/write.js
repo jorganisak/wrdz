@@ -53,6 +53,10 @@ angular.module('write')
     );
 
 
+
+      $scope.isCollapsed = true;
+
+
     /// DOM STUFF
     // Should be moved to directives for testing purposes
 
@@ -184,8 +188,18 @@ angular.module('write')
 
             $scope.showRecent = false;
           }
-        }, 2000)
+        }, 1000)
       }
+      if ($scope.showLeft === true) {
+
+        $timeout(function () {
+          if ($scope.showLeft === true) {
+
+            $scope.showLeft = false;
+          }
+        }, 1000)
+      }
+
     };
 
 
@@ -358,18 +372,3 @@ angular.module('write')
 
   }])
 
-  .controller('WriteLeftCtrl', ['$scope', '$modal', 'Write', function ($scope, $modal, Write) {
-
-
-  /*
-    Controller for Left Write Panel (new file?)
-    Opens Topic and Publish Modals
-    
-  */
-
-      $scope.isCollapsed = true;
-
-
-    
-
-  }]);

@@ -14,4 +14,37 @@
   .show-hide-fade.ng-hide-add,
   .show-hide-fade.ng-hide-remove.ng-hide-remove-active {
     opacity:1;
+
   }
+
+.slide-right.ng-hide-remove {
+    -webkit-animation: fadeInRight 0.2s;
+    animation: fadeInRight 0.2s;
+}
+
+.slide-right.ng-hide-add {
+    -webkit-animation: fadeOutRight 0.5s;
+    animation: fadeOutRight 0.5s;
+    display: block !important;
+}
+
+.slide-left.ng-hide-remove {
+    -webkit-animation: fadeInLeft 0.2s;
+    animation: fadeInLeft 0.2s;
+}
+
+.slide-left.ng-hide-add {
+    -webkit-animation: fadeOutLeft 0.5s;
+    animation: fadeOutLeft 0.5s;
+    display: block !important;
+}
+
+
+div[ui-view].ng-enter {
+    transition: all 0.2s linear;
+    opacity: 0;
+}
+
+div[ui-view].ng-enter-active {
+    opacity: 1;
+}

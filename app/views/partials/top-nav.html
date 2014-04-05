@@ -9,7 +9,7 @@
 
             <div class="col-sm-3 col-xs-6">
                 
-            <div ui-sref-active='activeTopNav' ui-sref="write" id='top-nav-write' class="top-nav-item col-xs-4 col-sm-4 ">
+            <div ng-class="{activeTopNav: $state.includes('write') || $state.includes('mywrdz')}" ui-sref="write" id='top-nav-write' class="top-nav-item col-xs-4 col-sm-4 ">
                 <span class="top-nav-title">
                     
                     Write
@@ -28,10 +28,8 @@
             </div> -->
             <div class="col-sm-3 col-xs-6 pull-right">
 
-                <div ui-sref-active='activeTopNav' id='top-nav-inbox' ui-sref='mywrdz' class=" top-nav-item col-xs-4 col-sm-4 col-sm-offset-4">
-                    <span class="top-nav-title">My Wrdz</span>
-                </div>
-                <div ng-class="{activeTopNav: $state.includes('me')}"  ui-sref="me.profile" id='top-nav-me' class="hidden-xs top-nav-item col-xs-3 col-sm-4  ">
+
+                <div ng-class="{activeTopNav: $state.includes('me')}"  ui-sref="me.profile" id='top-nav-me' class="hidden-xs pull-right top-nav-item col-xs-3 col-sm-4  ">
                     
                     <span class="ion ion-gear-a"></span> 
                 </div>

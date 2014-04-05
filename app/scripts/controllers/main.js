@@ -34,7 +34,8 @@ Does a few things:
 
     $scope.pageTitle = 'wrdz';
 
-$scope.landingCopy = "<h4 style='text-align:center'>Welcome to Wrdz</h4><p><br></p><p><span style='font-size: 22px; line-height: 1.25;'>This is a web app that provides a simple and clean place to write. <br><br> <strong>(Try highlighting this text.)</strong></span><br><br></p><p><em>With Wrdz, you can:&nbsp;</em></p><p></p><ul><li>Write whatever's in your head</li><li>Easily browse and organize by date and tag</li><li>Share your writing, anonymously if you'd like</li></ul>"
+    $scope.landingCopy = "<h4 style='text-align:center'>Welcome to Wrdz</h4><p><br></p><p><span style='font-size: 22px; line-height: 1.25;'>This is a web app that provides a simple and clean place to write. <br><br> <strong>(Try highlighting this text.)</strong></span><br><br></p><p><em>With Wrdz, you can:&nbsp;</em></p><p></p><ul><li>Write whatever's in your head</li><li>Easily browse and organize by date and tag</li><li>Share your writing, anonymously if you'd like</li></ul>"
+    
     $scope.mediumEditorOptionsBody = angular.toJson(
       {"placeholder": "",
         "buttons": ["bold", "italic", "anchor", "header2", "orderedlist", "unorderedlist" ],
@@ -44,16 +45,16 @@ $scope.landingCopy = "<h4 style='text-align:center'>Welcome to Wrdz</h4><p><br><
         "forcePlainText" : false,
         "targetBlank": true}
     );
-  function getUser () {
-    var u = User.getUser();
-      // gets full user, messages check is to make sure the user is not already complete
-      if (u && !u.messages) {
-        User.getCurrentUser(u._id).success(function  (data) {
-          User.changeUser(data.user);
-        }).error(function  (data) {
-        });
-      }
 
+    function getUser () {
+      var u = User.getUser();
+        // gets full user, messages check is to make sure the user is not already complete
+        if (u && !u._userDocs) {
+          User.getCurrentUser(u._id).success(function  (data) {
+            User.changeUser(data.user);
+          }).error(function  (data) {
+          });
+        }
     }
 
 
@@ -287,15 +288,3 @@ $scope.landingCopy = "<h4 style='text-align:center'>Welcome to Wrdz</h4><p><br><
     }
 
   }])
-
-
-.controller('MenuShortcutCtrl', ['$scope', function($scope) {
-    $scope.items = [
-    {'title':"write", 'state':"write"},
-    {'title':"read", 'state':"read.list.front"},
-    {'title':"my wrdz", 'state':"mywrdz"},
-    {'title':"me", 'state':"me.profile"},
-
-    ];
-
-}]);

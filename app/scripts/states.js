@@ -248,6 +248,15 @@ config(['$stateProvider', '$urlRouterProvider',
         templateUrl: 'partials/write.html'
       })
 
+  /*
+      My Wrdz
+      */
+
+      .state('mywrdz', {
+        url: '/d',
+        templateUrl: 'partials/mywrdz.html'
+      })
+
 
 /*
       ME
@@ -329,15 +338,6 @@ config(['$stateProvider', '$urlRouterProvider',
 
         }]
 
-      })
-
-  /*
-      My Wrdz
-      */
-
-      .state('mywrdz', {
-        url: '/d',
-        templateUrl: 'partials/mywrdz.html'
       })
 
      // Password reset
