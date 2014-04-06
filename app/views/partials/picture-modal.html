@@ -1,0 +1,21 @@
+
+<div picture-upload class="modal-body">
+      <span ng-click="close()" class="pull-right icon ion-close"></span>
+
+
+    <h3>Share As A Picture</h3>
+
+
+
+
+    <button ng-click='publish(false)'class='half-width btn-jo btn pull-left '>Share as {{username}}</button>
+    <button ng-click='publish(true)' class='half-width btn-jo btn  '>Share Anonymously</button>
+
+    <input type="file" id='files' ng-model="files"/>
+    <div style="border:1px solid gray;width:300px;"  id="preview"><img src="/images/default.png" style="width:300px;" /></div>
+
+
+
+</div>
+
+

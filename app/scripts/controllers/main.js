@@ -255,6 +255,7 @@ Does a few things:
     };
 
 
+
     $scope.forgotPasswordModal = function () {
       var modalInstance = $modal.open({
         templateUrl: "partials/password-modal.html",
