@@ -21,6 +21,10 @@
                             
                             Tags&nbsp;&nbsp;<span class="icon ion-pricetag"></span> 
                         </div>
+
+                        <span ng-if="currentDoc.topics.length === 0">
+                            <em>No Tags</em>
+                        </span>
                  
                         <span ng-repeat="topic in currentDoc.topics">
                             <span class="label label-primary tag-label">{{topic.title}}</span>

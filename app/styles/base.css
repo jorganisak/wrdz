@@ -20,7 +20,7 @@
 }
 
 .archive-button {
-  position: relative;
+  /* position: relative; */
 }
 
 #topicCollapse > span > .tag-label:hover {
@@ -30,6 +30,7 @@
 
 #topic-container-title {
   margin-bottom: 10px;
+  font-weight: 100;
 }
 
 .pub-info-left {
@@ -589,8 +590,9 @@ hr {
 .archive-button > .icon {
   font-size: 1.3em;
   /* padding-top: 4px; */
-  top: 12px;
+  bottom: 21px;
   position: absolute;
+  left: 70%;
 }
 
 #date-button-box > .row {
