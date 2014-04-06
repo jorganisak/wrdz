@@ -1,0 +1,31 @@
+<canvas id="canvas" style="border:2px solid black;" width="500" height="800"></canvas>
+<script>
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var html1 = "<p>Here is a note that I am writing to see how long something can be without worrying about the font or the text or what things look like.</p><p>Here is a note that I am writing to see how long something can be without worrying about the font or the text or what things look like.<br></p><h4>header</h4><div><br></div><p>but now when I'm actually writing</p><p>more text so if i'm writing, there is not as much stuff in the way</p><p>- and</p><p>- an list</p>"
+
+var doc = document.implementation.createHTMLDocument("");
+doc.write(html1);
+
+// Get well-formed markup
+html = (new XMLSerializer).serializeToString(doc);
+console.log(html);
+
+var data = "<svg xmlns='http://www.w3.org/2000/svg' width='500' height='800'>" +
+             "<foreignObject width='100%' height='100%'>" +
+               "<div xmlns='http://www.w3.org/1999/xhtml' style='font-size:12px'>" +
+                html +
+
+               "</div>" + 
+             "</foreignObject>" +
+           "</svg>";
+var DOMURL = self.URL || self.webkitURL || self;
+var img = new Image();
+var svg = new Blob([data], {type: "image/svg+xml;charset=utf-8"});
+var url = DOMURL.createObjectURL(svg);
+img.onload = function() {
+    ctx.drawImage(img, 0, 0);
+    DOMURL.revokeObjectURL(url);
+};
+img.src = url;
+</script>

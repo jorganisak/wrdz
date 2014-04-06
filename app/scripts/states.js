@@ -8,7 +8,11 @@ config(['$stateProvider', '$urlRouterProvider',
 
     $stateProvider
 
-
+    .state('picture-test', {
+        url: '/pic-test',
+        templateUrl: 'partials/picture-test.html',
+        
+      })
       
 /*
       LANDING

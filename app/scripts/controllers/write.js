@@ -31,7 +31,8 @@
       */
 
 angular.module('write')
-  .controller('WriteCtrl', ['$scope', 'Write', '$timeout', '$window', '$modal', function ($scope, Write, $timeout, $window, $modal) {
+  .controller('WriteCtrl', ['$scope', 'Write', '$timeout', '$window', '$modal', 'Picture',
+    function ($scope, Write, $timeout, $window, $modal, Picture) {
 
   /*
       Utils
@@ -227,6 +228,13 @@ angular.module('write')
       Write.updateUserDoc('archive', !bool);
       setNextDoc(docId);
     };
+
+    $scope.picture = function (docId) {
+      html2canvas(document.getElementById('write-center'), 
+        { onrendered: function (canvas) {
+          Picture.convert(canvas);
+        }})
+    }
 
     function setNextDoc (docId) {
       angular.forEach($scope.user._userDocs, function (doc) {

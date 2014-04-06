@@ -76,18 +76,45 @@
     <script src="bower_components/angular-perfect-scrollbar/src/angular-perfect-scrollbar.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <!-- endbower -->
 
     <script src="vendor/share.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="vendor/angular-pickadate/angular-pickadate.js"></script>
+    <script src="vendor/html2canvas.js"></script>
     <script src="vendor/medium-editor/dist/js/medium-editor.js"></script>
     
     <script src="vendor/ui-router/angular-ui-router.min.js"></script>
+    <script src="vendor/s3upload.js"></script>
     <!-- endbuild -->
 
 
-
+    <script>
+        function s3_upload(){
+            var s3upload = new S3Upload({
+                file_dom_selector: '#files',
+                s3_sign_put_url: '/sign_s3',
+                onProgress: function(percent, message) {
+                    $('#status').html('Upload progress: ' + percent + '% ' + message);
+                },
+                onFinishS3Put: function(public_url) {
+                    $('#status').html('Upload completed. Uploaded to: '+ public_url);
+                    $("#avatar_url").val(public_url);
+                    $("#preview").html('<img src="'+public_url+'" style="width:300px;" />');
+                },
+                onError: function(status) {
+                    $('#status').html('Upload error: ' + status);
+                }
+            });
+        }
+        /*
+        * Listen for file selection:
+        */
+        $(document).ready(function() {
+            $('#files').on("change", s3_upload);
+        });
+    </script>
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/states.js"></script>
@@ -109,6 +136,7 @@
         <script src="scripts/services/Read.js"></script>
         <script src="scripts/services/MyWrdz.js"></script>
         <script src="scripts/services/Me.js"></script>
+        <script src="scripts/services/Picture.js"></script>
         <script src="scripts/services/models/User.js"></script>
         <script src="scripts/services/models/UserDoc.js"></script>
         <script src="scripts/services/models/PubDoc.js"></script>
