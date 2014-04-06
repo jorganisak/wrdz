@@ -51,18 +51,20 @@
                 <span ng-click="date = today" class="icon tag-remove-x ion-close"></span>
             </div>
             <div class="row">
-                <div class="col-sm-6 no-padding">
-                    
-                    <button type="button" class="btn btn-jo no-padding" ng-click="dateCollapsed = !dateCollapsed; isCollapsed = true; topicCollapse = true;">
-                        <span class="icon ion-calendar"></span>
-                    </button>
-                </div>
-                <div class="col-sm-6 no-padding">
-                    <button type="button" ng-hide='!user.topics.length'class="btn btn-jo no-padding" ng-click="topicCollapse = !topicCollapse; dateCollapsed = true;">
-                        <span class="icon ion-pricetags"></span>
-                    </button>
-                </div>
+                    <div class="col-sm-6">
+                            
+                        <button type="button" class="btn btn-jo " ng-click="dateCollapsed = !dateCollapsed; isCollapsed = true; topicCollapse = true;">
+                            <span class="icon ion-calendar"></span>
+                        </button>
+                    </div>
+                    <div class="col-sm-6">
+                        
+                        <button type="button" ng-hide='!user.topics.length'class="btn btn-jo" ng-click="topicCollapse = !topicCollapse; dateCollapsed = true;">
+                            <span class="icon ion-pricetags"></span>
+                        </button>
+                    </div>
                 
+                    
             </div>
 
             
@@ -132,13 +134,13 @@
     <div id='me-middle' class="">
 
         <accordion close-others="true">
-            <div ng-repeat="doc in docList | orderBy: '-updated_at' | startFrom:starting | limitTo: pageSize | filter:search">
+            <div ng-dblclick='openDocInWrite(doc)' ng-repeat="doc in docList | orderBy: '-updated_at' | startFrom:starting | limitTo: pageSize | filter:search">
 
 
                 <accordion-group ng-class="{'active': isopen}" id="{{doc._id}}" class='read-panel' is-open="isopen">
                 <accordion-heading >
 
-                <div  ng-hide='isopen' ng-dblclick='openDocInWrite(doc)' ng-click='switchDoc(doc, isopen)'   class="read-list-item">
+                <div  ng-hide='isopen'  ng-click='switchDoc(doc, isopen)'   class="read-list-item">
                     <div class="row">
                         
                         <div class="col-xs-4 text-right pull-right ">
@@ -181,16 +183,16 @@
                         </accordion-heading>
                       
                         <div ng-if='isopen' class="row">
-                            <div class="col-xs-4 text-right pull-right ">
+                       <!--      <div class="col-xs-4  text-left ">
 
                                 <div class="read-list-date">
 
                                     {{moment(doc.published_at).format('MMMM Do, ha')}}
                                 </div>
 
-                            </div>
+                            </div> -->
 
-                            <div class="col-sm-6 col-xs-12 pull-right">
+                            <div class="col-sm-6 col-xs-12 col-sm-offset-3">
                                     <div class="no-padding col-xs-4 ">
                                         <button ng-click='openDocInWrite(showDoc)' class="wrdz-button btn  btn-jo ">
                                     <span class="icon ion-edit"></span>

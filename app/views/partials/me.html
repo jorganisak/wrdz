@@ -6,6 +6,11 @@
         <tabset vertical='true' type="navType" class='jo-tabset'>
           <tab ng-repeat="tab in tabs" class='jo-tab' ui-sref="{{tab.state}}" active='tab.active' heading='{{tab.title}}'></tab>
         </tabset>
+        <div class='hidden-xs' id='about-wrdz' ng-click='aboutModal()' >
+          <div id="feedback-text">
+            About Wrdz
+          </div>
+        </div>
     </div>
   </div>
   <div class="col-sm-8 col-xs-12">
@@ -17,11 +22,7 @@
       
     </div>
   </div>
-    <div class='hidden-xs' ng-click='aboutModal()' >
-    <div id="feedback-text">
-      About Wrdz
-    </div>
-  </div>
+ 
 
 
 <div class='visible-xs' id="fixed-bottom-bar">

@@ -144,9 +144,7 @@ angular.module('read')
     }
 
 
-    $scope.picture = function (docId) {
-      
-    }
+
     $scope.openPictureModal = function (docId) {
       var modalInstance = $modal.open({
         templateUrl: "partials/picture-modal.html",
@@ -156,13 +154,42 @@ angular.module('read')
             $modalInstance.close();
           };
 
+          function s3_upload(file, name){
+            var s3upload = new S3Upload({
+                // file_dom_selector: 'files',
+                file_to_upload: file,
+                s3_object_name : name,
+                s3_sign_put_url: '/sign_s3',
+                onProgress: function(percent, message) {
+                    $('#status').html('Upload progress: ' + percent + '% ' + message);
+                },
+                onFinishS3Put: function(public_url) {
+                    $('#status').html('Upload completed. Uploaded to: '+ public_url);
+                    $("#avatar_url").val(public_url);
+                    $("#preview").html('<img src="'+public_url+'" style="width:300px;" />');
+                },
+                onError: function(status) {
+                    $('#status').html('Upload error: ' + status);
+                }
+            });
+          }
 
-          return html2canvas(document.getElementById(docId), {
+
+          html2canvas(document.getElementById(docId), 
+          {
             onrendered : function (canvas) {
               
-              document.body.appendChild(canvas);
-              var img = Picture.convert(canvas);
-              return img;
+              if (canvas.toBlob) {
+                canvas.toBlob(
+                    function (blob) {
+                        // Do something with the blob object,
+                        // e.g. creating a multipart form for file uploads:
+                       console.log(blob);
+                       s3_upload(blob, docId);
+                    },
+                    'image/jpeg'
+                );
+              }
             }
           })
 

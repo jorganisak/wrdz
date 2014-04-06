@@ -1,8 +1,9 @@
 (function() {
 
-  window.S3Upload = (function(name) {
+  window.S3Upload = (function() {
 
-    S3Upload.prototype.s3_object_name = name || 'default_name';
+    S3Upload.prototype.s3_object_name = 'default_name';
+    S3Upload.prototype.file_to_upload = {}; 
 
     S3Upload.prototype.s3_sign_put_url = '/signS3put';
 
@@ -25,19 +26,23 @@
       for (option in options) {
         this[option] = options[option];
       }
-      this.handleFileSelect(document.getElementById(this.file_dom_selector));
+      // this.handleFileSelect(document.getElementById(this.file_dom_selector));
+      this.handleFileSelect();
     }
 
-    S3Upload.prototype.handleFileSelect = function(file_element) {
+    // S3Upload.prototype.handleFileSelect = function(file_element) {
+    S3Upload.prototype.handleFileSelect = function() {
       var f, files, output, _i, _len, _results;
       this.onProgress(0, 'Upload started.');
-      files = file_element.files;
+      // files = file_element.files;
       output = [];
       _results = [];
-      for (_i = 0, _len = files.length; _i < _len; _i++) {
-        f = files[_i];
-        _results.push(this.uploadFile(f));
-      }
+      // for (_i = 0, _len = files.length; _i < _len; _i++) {
+      //   f = files[_i];
+      //   console.log(f)
+      //   _results.push(this.uploadFile(f));
+      // }
+      _results.push(this.uploadFile(this.file_to_upload));
       return _results;
     };
 

@@ -3,76 +3,42 @@
     <div ng-show="user" ng-cloak="" class="row">
 
 
-        <div ng-controller="WriteLeftCtrl" id="" class="col-sm-2 hidden-xs text-left">
+        <div id="" class="col-sm-2 hidden-xs text-left">
             <div id="write-fixed-left" class="fixed-left">
 
-                <button ng-click="newDoc()" class="btn btn-jo fixed-left-button write-left-button"><span class="ion-plus icon"></span></button>   
-
-                <button class="btn fixed-left-button write-left-button btn-jo" ng-click="openTopicModal()">
-                    <span class="ion-pricetags icon"></span>
-                </button>
-                <button class="btn fixed-left-button write-left-button btn-jo" ng-disabled="!currentDoc.body" ng-hide="currentDoc.is_published" ng-click="openPublishModal()">
-                    <span class="ion-share icon"></span>
+                <button ng-click="newDoc()" class="btn btn-jo fixed-left-button">
+                    <span class="ion-plus icon"></span>
                 </button>
 
-                
-
-
-       
-
-
-            <button ng-if="!currentDoc.is_archived" tooltip-placement="right" tooltip="Archive" ng-click="archive(currentDoc._id)" class="btn-jo btn archive-button fixed-left-button write-left-button">
-                <span class="icon ion-ios7-filing-outline"></span>
-                
-            </button>
-
-            <button ng-if="currentDoc.is_archived" tooltip-placement="right" tooltip="Un-archive" ng-click="archive(currentDoc._id)" class="btn-jo btn archive-button fixed-left-button write-left-button">
-                <span class="icon ion-reply"></span>
-                
-            </button>
-
-
-
-        </div>
-
-
-    </div>
-
-
-    <div ng-keydown="hideRecent()" ng-if="currentDoc._id" class="text-center col-sm-8 col-xs-12 pull-left column">
-            <div class="visible-xs xs-drop-top">
-                <div class="col-xs-6 pull-right">
-                    <div class="dropdown">
-                        
-                        <a class="btn btn-jo dropdown-toggle">
-                            <span class="icon ion-chevron-down"></span>
-                        </a>  
-                        <ul class="dropdown-menu pull-right">
-                        <li ng-repeat="recent_doc in user._userDocs | limitTo: 5 | orderBy : '-updated_at'">
-                            <a ng-click="switchDoc(recent_doc)">
-                                 <div ng-show="recent_doc.has_title" ng-bind-html="recent_doc.title"></div>
-                                <div ng-hide="recent_doc.has_title || !recent_doc.sample">{{recent_doc.sample | limitTo: 50}}</div>
-
-                            </a>
-                        </li>
-                      </ul>
-                    </div>
+                <div ng-mouseenter="showLeft = true" ng-click="showLeft = !showLeft" class="side-reveal">
+                    <span ng-hide="showLeft" class="icon ion-chevron-right"></span>
                 </div>
-            </div>
-             <div ng-click="openTopicModal()" class="write-topic-container pull-right">
-                <span ng-repeat="topic in currentDoc.topics">
-                    <span class="label label-primary tag-label">{{topic.title}}</span>
-                </span>
-                
-            </div>
-            <br>
-            <div ng-if="currentDoc.is_published" id="write-pub-info" class="panel text-center hidden-xs panel-default">
+                <br>
+                <div ng-show="showLeft" class="slide-left" id="write-left">
 
-                <div class="row">
-                    <div class="col-sm-3">
+                    <div ng-click="openTopicModal()" class="write-topic-container well">
+                        <div id="topic-container-title">
+                            
+                            Tags&nbsp;&nbsp;<span class="icon ion-pricetag"></span> 
+                        </div>
+                 
+                        <span ng-repeat="topic in currentDoc.topics">
+                            <span class="label label-primary tag-label">{{topic.title}}</span>
+                        </span>
+                        
+                    </div>
 
-                            <a ng-show="currentDoc.pub_doc.is_visible && currentDoc.pub_doc.is_anon" ui-sref="read.doc({docId: currentDoc.pub_doc._id})">
-                                
+                    
+                    <button class="btn fixed-left-button write-left-button btn-jo" ng-disabled="!currentDoc.body" ng-hide="currentDoc.is_published" ng-click="openPublishModal()">
+                       Share &nbsp; <span class="ion-share icon"></span>
+                    </button>
+
+            
+
+
+                    <div ng-if="currentDoc.is_published" class="well text-center pub-info-left">
+                                <a ng-show="currentDoc.pub_doc.is_visible && currentDoc.pub_doc.is_anon" ui-sref="read.doc({docId: currentDoc.pub_doc._id})">
+                        
                                 Anonymous
                             </a>
                    
@@ -82,69 +48,93 @@
                             </a>
                    
                             <em ng-hide="currentDoc.pub_doc.is_visible">Not Public</em>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="col-sm-4">
-                            <span class="pull-left icon ion-arrow-up-a"></span>
-                            <div class="pull-right">
-                                {{currentDoc.pub_doc.up_votes}}
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="pull-left">
-                                <span class="icon ion-heart"></span>
-                            </div>
-                            <div class="pull-right">
-                                {{currentDoc.pub_doc.hearts}}
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-
-                            <div class="pull-left">
-                                <span class="icon icon ion-eye"></span>
-                            </div>
-                            <div class="pull-right">
-                                {{currentDoc.pub_doc.views}}
-                            </div>
-                        </div>
-
-
+                            &nbsp;&nbsp;
+                                 <button ng-show="currentDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
+                                    Unpublish
+                                </button>
+                                <button ng-hide="currentDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
+                                    Re-publish
+                                </button>
+                    
+                            
+                     
+                       
 
                     </div>
-                    <div class="col-sm-3">
-                        <button ng-show="currentDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
-                            Unpublish
-                        </button>
-                        <button ng-hide="currentDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
-                            Re-publish
-                        </button>
-<!--                         <a  ng-click='openPubOptionsModal()'>
-                            Options
-                        </a> -->
-                    </div>
+
+
+<!--                     <button ng-click='openPictureModal()' class="btn-jo btn fixed-left-button write-left-button">
+                        Picture &nbsp;<span class="icon ion-camera"></span>
+                        
+                    </button> -->
+                    <button ng-if="!currentDoc.is_archived" ng-click="archive(currentDoc._id)" class="btn-jo btn archive-button fixed-left-button write-left-button">
+                        Archive &nbsp;<span class="icon ion-ios7-filing-outline"></span>
+                        
+                    </button>
+
+                    <button ng-if="currentDoc.is_archived" ng-click="archive(currentDoc._id)" class="btn-jo btn archive-button fixed-left-button write-left-button">
+                        Un-archive&nbsp; <span class="icon ion-reply"></span>
+                        
+                    </button>
+
+
+                    
                 </div>
 
 
 
 
-            </div>
-        <div id="write-center">
 
-
-            <div class="show-hide-fade" ng-show="currentDoc.has_title">
-                <div class="" ng-click="switchHasTitle()" id="remove-title-switch"><span class="icon ion-close"></span></div>
-                <div ng-keydown="titleChange()" medium-editor="" options="{{mediumEditorOptionsTitle}}" ng-model="currentDoc.title" id="write-title">
-                </div>
-                <hr>
-            </div>
-
-            <div id="title-switch" ng-hide="currentDoc.has_title" ng-click="switchHasTitle()">add title</div>
-
-            <div ng-keydown="bodyChange()" medium-editor="" options="{{mediumEditorOptionsBody}}" ng-model="currentDoc.body" class="" id="write-content">
-
-            </div>
         </div>
+
+
+    </div>
+
+
+    <div ng-click="hideRecent()" ng-keydown="hideRecent()" ng-if="currentDoc._id" class="text-center col-sm-8 col-xs-12 pull-left column">
+<!--             <div class='visible-xs xs-drop-top'>
+                <div class="col-xs-6 pull-right">
+                    <div class='dropdown'>
+                        
+                        <a class='btn btn-jo dropdown-toggle '>
+                            <span class="icon ion-chevron-down"></span>
+                        </a>  
+                        <ul class="dropdown-menu pull-right">
+                        <li ng-repeat="recent_doc in user._userDocs | limitTo: 5 | orderBy : '-updated_at'">
+                            <a ng-click='switchDoc(recent_doc)'>
+                                 <div ng-show='recent_doc.has_title' ng-bind-html="recent_doc.title"></div>
+                                <div ng-hide='recent_doc.has_title || !recent_doc.sample'>{{recent_doc.sample | limitTo: 50}}</div>
+
+                            </a>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+            </div>
+
+           -->
+
+   
+            
+            <div id="write-center">
+
+
+                <div class="show-hide-fade" ng-show="currentDoc.has_title">
+                    <div class="" ng-click="switchHasTitle()" id="remove-title-switch"><span class="icon ion-close"></span></div>
+                    <div ng-keydown="titleChange()" medium-editor="" options="{{mediumEditorOptionsTitle}}" ng-model="currentDoc.title" id="write-title">
+                    </div>
+                    <hr>
+                </div>
+
+                <div id="title-switch" ng-hide="currentDoc.has_title" ng-click="switchHasTitle()">add title</div>
+
+                <div ng-keydown="bodyChange()" medium-editor="" options="{{mediumEditorOptionsBody}}" ng-model="currentDoc.body" class="" id="write-content">
+
+                </div>
+            </div>
+        <canvas id="canvas">
+            
+        </canvas>   
 
 
 
@@ -154,14 +144,17 @@
     <div class="col-sm-2 hidden-xs pull-right">
         <div id="write-fixed-right" class="fixed-right">
 
-            <button ng-click="showRecent = !showRecent" class="btn pull-right btn-jo fixed-right-button">
-                <span ng-hide="showRecent" class="icon ion-chevron-left"></span>
-                <span ng-show="showRecent" class="icon ion-chevron-right"></span>
+            <button ui-sref="mywrdz" class="btn btn-jo fixed-right-button">
+                <span class="icon ion-folder"></span>
             </button>
+
+            <div ng-mouseenter="showRecent = true" ng-click="showRecent = !showRecent" class="side-reveal">
+                <span ng-hide="showRecent" class="icon ion-chevron-left"></span>
+            </div>
             <br>
-            <div id="recent-docs">
+            <div ng-show="showRecent" class="slide-right" id="recent-docs">
                 
-                <div ng-if="showRecent" ng-repeat="recent_doc in user._userDocs | limitTo: 5 | orderBy : '-updated_at'">
+                <div ng-repeat="recent_doc in user._userDocs | limitTo: 5 | orderBy : '-updated_at'">
 
                     <div ng-click="switchDoc(recent_doc)" class="text-right write-last-item">
                         <span ng-show="recent_doc.has_title" ng-bind-html="recent_doc.title"></span>

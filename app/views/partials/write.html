@@ -37,9 +37,7 @@
 
 
                     <div  ng-if='currentDoc.is_published' class='well text-center pub-info-left'>
-                        <div class="row">
-                    
-                            <a ng-show='currentDoc.pub_doc.is_visible && currentDoc.pub_doc.is_anon' ui-sref='read.doc({docId: currentDoc.pub_doc._id})'>
+                                <a ng-show='currentDoc.pub_doc.is_visible && currentDoc.pub_doc.is_anon' ui-sref='read.doc({docId: currentDoc.pub_doc._id})'>
                         
                                 Anonymous
                             </a>
@@ -50,22 +48,25 @@
                             </a>
                    
                             <em ng-hide='currentDoc.pub_doc.is_visible'>Not Public</em>
-                        </div>
+                            &nbsp;&nbsp;
+                                 <button ng-show="currentDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
+                                    Unpublish
+                                </button>
+                                <button ng-hide="currentDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
+                                    Re-publish
+                                </button>
+                    
+                            
                      
-                        <button ng-show="currentDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
-                            Unpublish
-                        </button>
-                        <button ng-hide="currentDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
-                            Re-publish
-                        </button>
+                       
 
                     </div>
 
 
-                    <button ng-click='openPictureModal()' class="btn-jo btn fixed-left-button write-left-button">
+<!--                     <button ng-click='openPictureModal()' class="btn-jo btn fixed-left-button write-left-button">
                         Picture &nbsp;<span class="icon ion-camera"></span>
                         
-                    </button>
+                    </button> -->
                     <button ng-if='!currentDoc.is_archived' ng-click='archive(currentDoc._id)' class="btn-jo btn archive-button fixed-left-button write-left-button">
                         Archive &nbsp;<span class="icon ion-ios7-filing-outline"></span>
                         

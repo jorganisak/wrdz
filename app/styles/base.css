@@ -10,6 +10,24 @@
   max-width: 230px;
 }
 
+#topicCollapse > span > .tag-label {
+  cursor: pointer;
+  transition: all 200ms linear;
+}
+
+#about-wrdz {
+  margin: 50px 0 0 10px
+}
+
+.archive-button {
+  position: relative;
+}
+
+#topicCollapse > span > .tag-label:hover {
+  color: black;
+  border-color: black;
+}
+
 #topic-container-title {
   margin-bottom: 10px;
 }
@@ -17,7 +35,7 @@
 .pub-info-left {
   padding: 5px;
   line-height: 2;
-  margin-bottom: 0;
+  margin-bottom: 6px;
   background-color: white;
   box-shadow: none;
   border-radius: 0;
@@ -57,11 +75,11 @@
 }
 
 #topicCollapse {
-  text-align: right;
-  width: 210%;
+  text-align: left;
+  /* width: 210%; */
   position: absolute;
-  right: 0%;
-  max-width: 290px;
+  left: 3%;
+  /* max-width: 290px; */
 }
 
 .bottom-caret {
@@ -86,6 +104,11 @@
   width: 90%;
   margin-left: 0%;
 }
+
+.ion-pricetag {
+  position: absolute;
+  top: 13px;
+  left: 69%;}
 
 .pickadate-prev {
   float: left;
@@ -214,7 +237,7 @@
   transition: all 200ms ease;
   width: 15%;
   max-width: 160px;
-  top: 15px;
+  top: 7%;
   height: 100%;
   right: 3%;
 }
@@ -252,6 +275,8 @@ html input[disabled] {
   font-size: 1.2em;
   /* padding-left: 2px; */
   /* padding-top: 2px; */
+  position: absolute;
+  left: 70%;
 }
 
 .write-topic-container {
@@ -262,7 +287,7 @@ html input[disabled] {
   cursor: pointer !important;
   transition: all 200ms linear;
   text-align: center;
-  margin-bottom: -1px;
+  margin-bottom: 8px;
   font-family: 'Clear Sans', sans-serif;
   font-weight: 100;
   border-radius: 0;
@@ -319,7 +344,7 @@ body {
 
 .modal-body > .ion-close {
   position: absolute;
-  top: 2%;
+  top: 7%;
   right: 2%;
 }
 
@@ -489,7 +514,7 @@ h6 {
 
 p,
 li {
-  font-size: 20px;
+  font-size: 21px;
   font-weight: 400;
   margin-bottom: 0.65em;
   line-height: 1.25;
@@ -564,6 +589,8 @@ hr {
 .archive-button > .icon {
   font-size: 1.3em;
   /* padding-top: 4px; */
+  top: 12px;
+  position: absolute;
 }
 
 #date-button-box > .row {
@@ -1106,7 +1133,7 @@ add-button.active:active {
   transition: all 200ms ease;
   width: 15%;
   max-width: 160px;
-  top: 15px;
+  top: 7%;
   height: 100%;
   left: 2%;
 }
@@ -1359,8 +1386,7 @@ blockquote {
   border-bottom: solid 1px #ffd9ad;
 }
 
-.activeTopNav:hover {
-}
+
 
 #top-nav-me:hover {
   /* border-bottom: solid 2px gold; */
@@ -1380,7 +1406,7 @@ blockquote {
 h4 {
   font-family: 'Clear Sans', sans-serif;
   font-weight: 800;
-  font-size: 34px;
+  font-size: 30px;
   /* font-family: 'Roboto'; */
 }
 
@@ -1624,7 +1650,7 @@ h3 {
   transition: all 300ms ease;
   border-radius: 0px !important;
   font-family: 'Clear Sans', sans-serif;
-  padding: 7% 6% 3% 6%;
+  padding: 6% 6% 5% 6%;
   box-shadow: inset 0 -1px 0 0 rgb(238, 238, 238);
 }
 
@@ -1850,7 +1876,7 @@ h3 {
   line-height: 1;
   /* font-weight: 700; */
   /* text-align: left; */
-  padding: 10px 20px 10px 20px;
+  padding: 20px 20px 10px 20px;
   /* font-family: 'Clear Sans'; */
 }
 
@@ -2249,6 +2275,7 @@ h3 {
   min-height: 40px;
   font-size: 0.95em;
   padding: 0px;
+  margin-bottom: 10px;
   /* width: 64%; */
   font-weight: 100;
 }

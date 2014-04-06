@@ -49,12 +49,35 @@
                 {{moment(date).format('MMMM Do, YYYY')}}
                 <span ng-click="date = today" class="icon tag-remove-x ion-close"></span>
             </div>
-            <button type="button" class="btn btn-jo" id="mywrdz-date-button" ng-click="dateCollapsed = !dateCollapsed; isCollapsed = true">
-                <span class="icon ion-calendar"></span>&nbsp;&nbsp;<span class="caret"></span>
-            </button>
-            <div collapse="dateCollapsed" id="date-button-box">
+            <div class="row">
+                    <div class="col-sm-6">
+                            
+                        <button type="button" class="btn btn-jo" ng-click="dateCollapsed = !dateCollapsed; isCollapsed = true; topicCollapse = true;">
+                            <span class="icon ion-calendar"></span>
+                        </button>
+                    </div>
+                    <div class="col-sm-6">
+                        
+                        <button type="button" ng-hide="!user.topics.length" class="btn btn-jo" ng-click="topicCollapse = !topicCollapse; dateCollapsed = true;">
+                            <span class="icon ion-pricetags"></span>
+                        </button>
+                    </div>
+                
+                    
+            </div>
 
-    
+            
+            
+            <div collapse="topicCollapse" id="topicCollapse">
+                             
+                <span topic-filter="" ng-click="addTopic(top)" ng-repeat="top in topicOptions">
+                <span ng-class="{active: active}" class="label label-primary tag-label">{{top.title}} </span>&nbsp;
+                    
+                </span>
+
+            </div>
+
+            <div collapse="dateCollapsed" id="date-button-box">
 
                 <div pickadate="" max-date="maxDate" ng-model="date"></div>
 
@@ -107,16 +130,16 @@
 <div class="col-sm-8 col-xs-12">
 
 
-    <div id="me-middle" class="col-sm-10 col-sm-offset-1 col-xs-12">
+    <div id="me-middle" class="">
 
         <accordion close-others="true">
-            <div ng-repeat="doc in docList | orderBy: '-updated_at' | startFrom:starting | limitTo: pageSize | filter:search">
+            <div ng-dblclick="openDocInWrite(doc)" ng-repeat="doc in docList | orderBy: '-updated_at' | startFrom:starting | limitTo: pageSize | filter:search">
 
 
                 <accordion-group ng-class="{'active': isopen}" id="{{doc._id}}" class="read-panel" is-open="isopen">
                 <accordion-heading>
 
-                <div ng-dblclick="openDocInWrite(doc)" ng-click="switchDoc(doc, isopen)" class="read-list-item">
+                <div ng-hide="isopen" ng-click="switchDoc(doc, isopen)" class="read-list-item">
                     <div class="row">
                         
                         <div class="col-xs-4 text-right pull-right">
@@ -128,7 +151,7 @@
 
                         </div>
                         <div class="col-sm-8 col-xs-6">
-                            <div class="read-list-title">
+                            <div ng-hide="isopen" class="read-list-title">
                                 <span ng-show="doc.has_title">
                                     <strong>
                                         
@@ -159,8 +182,16 @@
                         </accordion-heading>
                       
                         <div ng-if="isopen" class="row">
+                       <!--      <div class="col-xs-4  text-left ">
 
-                            <div class="col-sm-6 col-xs-12 pull-right">
+                                <div class="read-list-date">
+
+                                    {{moment(doc.published_at).format('MMMM Do, ha')}}
+                                </div>
+
+                            </div> -->
+
+                            <div class="col-sm-6 col-xs-12 col-sm-offset-3">
                                     <div class="no-padding col-xs-4">
                                         <button ng-click="openDocInWrite(showDoc)" class="wrdz-button btn btn-jo">
                                     <span class="icon ion-edit"></span>
@@ -243,9 +274,7 @@
                                         <button ng-hide="doc.pub_doc.is_visible" ng-click="switchVisible(doc); $event.stopPropagation()" class="btn btn-xs">
                                             Re-publish
                                         </button>
-                            <!--                         <a  ng-click='openPubOptionsModal()'>
-                                                        Options
-                                                    </a> -->
+ 
                                                 </div>
                                             </div>
 
@@ -286,25 +315,14 @@
 
 
     <div class="col-sm-2 pull-right hidden-xs text-right">
-        <div id="mywrdz-right">
-
-
-            <button type="button" ng-hide="!user.topics.length" class="btn btn-jo half-width pull-right" ng-click="topicCollapse = !topicCollapse">
-                <span class="icon ion-pricetags"></span>&nbsp;&nbsp;<span class="caret"></span>
+        <div id="mywrdz-right" class="fixed-right">
+            <button ui-sref="write" class="btn btn-jo fixed-right-button">
+                <span class="icon ion-edit"></span>
             </button>
-            <br><br><br>
-            <div collapse="topicCollapse" id="topicCollapse">
-                             
-                <span topic-filter="" ng-click="addTopic(top)" ng-repeat="top in topicOptions">
-                <span ng-class="{active: active}" class="label label-primary tag-label">{{top.title}} </span>&nbsp;
-                    
-                </span>
 
-            </div>
+            
 
-            <div class="row">
-
-            </div>
+           
         </div>
   
 

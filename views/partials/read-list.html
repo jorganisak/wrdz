@@ -26,8 +26,8 @@
 
 
     <div class="col-sm-2 hidden-xs text-right">
-        <div id="read-list-right">
-            <div popover-placement="left" popover-trigger="mouseenter" popover="{{author_info.bio}}" ng-hide="!showUser" ng-show="$state.current.name === 'read.list.user' || readDoc.author.username">
+        <div class="text-right" id="read-list-right">
+            <div ng-hide="!showUser" ng-show="$state.current.name === 'read.list.user' || readDoc.author.username">
                 
                 <div id="read-doc-username">
                     <a ng-show="$state.current.name !== 'read.list.user'" ui-sref="read.list.user({userId: author_info._id})">{{author_info.username}}</a>
@@ -40,21 +40,16 @@
                 <div>
                     
                     <div id="read-doc-followers">
-                        <span class="half-opacity pull-left">
-                            <em>Followers: </em>
+                        <span class="half-opacity pull-right">
+                            <em>Followers</em>
                         </span>
+                        <br>
                         <span class="pull-right">
                             
                             {{author_info.followers}}
                         </span>
-                        <br>
-                        <span class="half-opacity pull-left">
-                            <em>Karma:</em>
-                        </span>
-                        <span class="pull-right">
-                            
-                        {{author_info.karma}}
-                        </span>
+    
+                       
                     </div>
                         <br>
                     <div ng-click="follow()" ng-hide="following" id="read-doc-follow-button">

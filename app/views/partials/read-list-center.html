@@ -40,8 +40,8 @@
 
             <accordion-group ng-class="{'active': isopen}" id="{{doc._id}}" class='read-panel' is-open="isopen">
                 <accordion-heading >
-                    
-                    <div  ng-dblclick='openDoc(doc._id)' ng-click='switchDoc(doc, isopen)'   class="read-list-item">
+                    <div  ng-hide='isopen' ng-dblclick='openDoc(doc._id)' ng-click='switchDoc(doc, isopen)'   class="read-list-item">
+
                         <div class="row read-list-bottom-row">
                             <div class="col-xs-6 ">
 
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                         <br>
-                        <div ng-hide='isopen' class="row">
+                        <div  class="row">
                             <div  class="col-sm-8 col-xs-6">
                                 <div class="read-list-title">
                                     <span ng-show='doc.doc.has_title'>
@@ -116,30 +116,30 @@
                         
                         <div>
                             <div class="row">
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                     
                                     <div  ng-class='active1' ng-click="up_vote()"  class="read-doc-arrow ">
                                         <span  class="icon  ion-arrow-up-a"></span>
                                     </div>   
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                     
                                     <div ng-class='active2' ng-click="heart()" class="read-doc-heart">
                                         <span class=" icon ion-heart"></span>
                                     </div>                        
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                     
                                     <div twitter-button ng-click="open(readDoc._id)" class="read-doc-tweet">
                                         <span  class="icon ion-social-twitter"></span>
                                     </div>
                                 </div>
-                                 <div class="col-sm-3">
+                                <!--  <div class="col-sm-3">
                                     
                                     <div ng-click="openPictureModal(readDoc._id)" >
                                         <span  class="icon ion-camera"></span>
                                     </div>
-                                </div>
+                                </div> -->
                                 
                             </div>
        
