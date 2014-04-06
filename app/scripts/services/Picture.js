@@ -13,17 +13,12 @@
         return image;
       }
 
-
       return {
 
         convert : function (canvas) {
           var image = convertCanvasToImage(canvas);
-          // $http.post('/picture', image);
+          return image;
         }
-
-
-
-
 
     };
 }]);

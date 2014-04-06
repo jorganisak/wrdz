@@ -116,25 +116,31 @@
                         
                         <div>
                             <div class="row">
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     
                                     <div  ng-class='active1' ng-click="up_vote()"  class="read-doc-arrow ">
                                         <span  class="icon  ion-arrow-up-a"></span>
                                     </div>   
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     
                                     <div ng-class='active2' ng-click="heart()" class="read-doc-heart">
                                         <span class=" icon ion-heart"></span>
                                     </div>                        
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     
                                     <div twitter-button ng-click="open(readDoc._id)" class="read-doc-tweet">
                                         <span  class="icon ion-social-twitter"></span>
                                     </div>
                                 </div>
-                            
+                                 <div class="col-sm-3">
+                                    
+                                    <div ng-click="openPictureModal(readDoc._id)" >
+                                        <span  class="icon ion-camera"></span>
+                                    </div>
+                                </div>
+                                
                             </div>
        
                         </div>

@@ -6,9 +6,8 @@
     
 */
 angular.module('read')
-  .controller('ReadCtrl', ['$scope', 'Read', '$state', '$filter', '$location',
-   '$anchorScroll', '$window', '$timeout',
-   function ($scope, Read, $state, $filter, $location, $anchorScroll, $window, $timeout) {
+  .controller('ReadCtrl', ['$scope', 'Picture', 'Read', '$state', '$filter', '$location', '$window', '$timeout', '$modal',
+   function ($scope, Picture, Read, $state, $filter, $location, $window, $timeout, $modal) {
 
 
     $scope.Read = Read;
@@ -143,6 +142,36 @@ angular.module('read')
         }
       }
     }
+
+
+    $scope.picture = function (docId) {
+      
+    }
+    $scope.openPictureModal = function (docId) {
+      var modalInstance = $modal.open({
+        templateUrl: "partials/picture-modal.html",
+        controller: ['$scope', '$modalInstance', '$state', 
+        function ($scope, $modalInstance, $state) {
+          $scope.close = function () {
+            $modalInstance.close();
+          };
+
+
+          return html2canvas(document.getElementById(docId), {
+            onrendered : function (canvas) {
+              
+              document.body.appendChild(canvas);
+              var img = Picture.convert(canvas);
+              return img;
+            }
+          })
+
+        }],
+        resolve: {
+
+        }
+      });
+    };
 
 
 
@@ -292,9 +321,6 @@ angular.module('read')
       }
     }
 
-
-
-
     $scope.follow = function () {
       if (checkUser()) {
 
@@ -313,5 +339,7 @@ angular.module('read')
         }
       }
     }
+
+  
 
   }]);
