@@ -182,7 +182,7 @@ angular.module('myWrdz')
           var top = document.getElementById(doc._id).getBoundingClientRect().top
           var h = $window.pageYOffset;
           $('html,body').animate({
-            scrollTop: top+h-5
+            scrollTop: top+h-50
           }, 200);
           // $window.scrollTo(0, top + h - 105);
         },600)

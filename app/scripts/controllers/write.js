@@ -40,7 +40,7 @@ angular.module('write')
 
     // TEXT EDITOR OPTIONS
     $scope.mediumEditorOptionsBody = angular.toJson(
-      {"placeholder": "",
+      {"placeholder": "Write here",
         "buttons": ["bold", "italic", "anchor", "header2", "orderedlist", "unorderedlist" ],
         "buttonLabels" : {"header2": "<b>H</b>", "anchor": "<span><span class='icon ion-link'></span></span>",
          "bold":"<strong>b</strong>", "italic": "<em>i</em>"},
@@ -50,7 +50,7 @@ angular.module('write')
     );
 
     $scope.mediumEditorOptionsTitle = angular.toJson(
-      {"placeholder": "", "disableToolbar": true, "disableReturn": true}
+      {"placeholder": "Title", "disableToolbar": true, "disableReturn": true}
     );
 
 

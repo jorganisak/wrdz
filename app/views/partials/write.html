@@ -3,12 +3,35 @@
     <div ng-show='user'  ng-cloak class="row">
 
 
+        <div id="write-fixed-top">
+            <div id="write-fixed-top-container">
+            <div class="row">
+                    <button  ng-click='newDoc()' class="btn btn-jo top-bar-btn">
+                        <span class="ion-plus icon"></span>&nbsp;&nbsp;New
+                    </button>
+                    
+                    <button  ng-click='openTopicModal()' class="btn btn-jo top-bar-btn">
+                        <span class="ion-pricetag icon"></span>&nbsp;&nbsp;Tags
+                    </button>
+
+                    <button class='btn top-bar-btn  btn-jo' ng-disabled='!currentDoc.body' ng-hide='currentDoc.is_published' ng-click='openPublishModal()'>
+                      <span class="ion-share icon"></span>&nbsp;&nbsp;Publish 
+                    </button>
+                    
+                    <button ui-sref='mywrdz' class="btn pull-right btn-jo top-bar-btn">
+                        <span class="icon ion-folder"></span>&nbsp;&nbsp;My Wrdz
+                    </button>
+                    
+
+            </div>  
+            </div>
+        </div>
+
+
         <div id='' class=" col-sm-2 hidden-xs text-left ">
             <div id='write-fixed-left' class='fixed-left'>
 
-                <button  ng-click='newDoc()' class="btn btn-jo fixed-left-button">
-                    <span class="ion-plus icon"></span>
-                </button>
+                
 
                 <div ng-mouseenter="showLeft = true"  ng-click='showLeft = !showLeft' class="side-reveal">
                     <span ng-hide='showLeft' class="icon ion-chevron-right"></span>
@@ -16,16 +39,28 @@
                 <br>
                 <div  ng-show='showLeft' class='slide-left' id="write-left">
 
-                    <div ng-click='openTopicModal()' class="write-topic-container well ">
-                        <div id="topic-container-title">
+                    <div  ng-if='currentDoc.is_published' class='well text-center pub-info-left'>
+                                <a ng-show='currentDoc.pub_doc.is_visible && currentDoc.pub_doc.is_anon' ui-sref='read.doc({docId: currentDoc.pub_doc._id})'>
+                        
+                                Anonymous
+                            </a>
                             
-                            Tags&nbsp;&nbsp;<span class="icon ion-pricetag"></span> 
-                        </div>
+                            <a ng-show='currentDoc.pub_doc.is_visible && !currentDoc.pub_doc.is_anon' ui-sref='read.doc({docId: currentDoc.pub_doc._id})'>
+                                
+                                Public
+                            </a>
+                   
+                            <em ng-hide='currentDoc.pub_doc.is_visible'>Not Public</em>
+                                <br>
+                                 <button ng-show="currentDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
+                                    Unpublish
+                                </button>
+                                <button ng-hide="currentDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
+                                    Re-publish
+                                </button>
+                    </div>
 
-                        <span ng-if='currentDoc.topics.length === 0'>
-                            <em>No Tags</em>
-                        </span>
-                 
+                    <div ng-if='currentDoc.topics.length !== 0' ng-click='openTopicModal()' class="write-topic-container well ">
                         <span ng-repeat='topic in currentDoc.topics'>
                             <span class='label label-primary tag-label'>{{topic.title}}</span>
                         </span>
@@ -33,38 +68,11 @@
                     </div>
 
                     
-                    <button class='btn fixed-left-button write-left-button btn-jo' ng-disabled='!currentDoc.body' ng-hide='currentDoc.is_published' ng-click='openPublishModal()'>
-                       Share &nbsp; <span class="ion-share icon"></span>
-                    </button>
+
 
             
 
 
-                    <div  ng-if='currentDoc.is_published' class='well text-center pub-info-left'>
-                                <a ng-show='currentDoc.pub_doc.is_visible && currentDoc.pub_doc.is_anon' ui-sref='read.doc({docId: currentDoc.pub_doc._id})'>
-                        
-                                Anonymous
-                            </a>
-                   
-                            <a ng-show='currentDoc.pub_doc.is_visible && !currentDoc.pub_doc.is_anon' ui-sref='read.doc({docId: currentDoc.pub_doc._id})'>
-                                
-                                Public
-                            </a>
-                   
-                            <em ng-hide='currentDoc.pub_doc.is_visible'>Not Public</em>
-                            &nbsp;&nbsp;
-                                 <button ng-show="currentDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
-                                    Unpublish
-                                </button>
-                                <button ng-hide="currentDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
-                                    Re-publish
-                                </button>
-                    
-                            
-                     
-                       
-
-                    </div>
 
 
 <!--                     <button ng-click='openPictureModal()' class="btn-jo btn fixed-left-button write-left-button">
@@ -148,9 +156,7 @@
     <div class="col-sm-2 hidden-xs pull-right ">
         <div id="write-fixed-right" class='fixed-right'>
 
-            <button ui-sref='mywrdz' class="btn btn-jo fixed-right-button">
-                <span class="icon ion-folder"></span>
-            </button>
+
 
             <div ng-mouseenter="showRecent = true"  ng-click='showRecent = !showRecent' class="side-reveal">
                 <span ng-hide='showRecent' class="icon ion-chevron-left"></span>

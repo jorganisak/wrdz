@@ -277,7 +277,7 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
-  background-color: rgba(255, 255, 255, 0.66); /* Old browsers */  /* FF3.6+ */  /* Chrome,Safari4+ */  /* Chrome10+,Safari5.1+ */  /* Opera 11.10+ */  /* IE10+ */  /* W3C */  /* IE6-9 */;
+  background-color: rgba(242, 242, 242, 0.04); /* Old browsers */  /* FF3.6+ */  /* Chrome,Safari4+ */  /* Chrome10+,Safari5.1+ */  /* Opera 11.10+ */  /* IE10+ */  /* W3C */  /* IE6-9 */;
 }
 input,
 button,
