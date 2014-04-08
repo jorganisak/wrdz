@@ -303,50 +303,53 @@ angular.module('write')
 
 
     $scope.openPublishModal = function () {
-      var modalInstance = $modal.open({
-        templateUrl: "partials/publish-modal.html",
-        controller: ['$scope', 'Write', '$modalInstance', '$state', 'popularTopics', 'docTopics', 'doc', 'username', function ($scope, Write, $modalInstance, $state, popularTopics, docTopics, doc, username) {
-          $scope.userTopics = popularTopics;
-          $scope.docTopics = docTopics;
-          $scope.username = username;
-          $scope.close = function () {
-            $modalInstance.close();
-          };
+      if (!$scope.currentDoc.is_published) {
+        
+        var modalInstance = $modal.open({
+          templateUrl: "partials/publish-modal.html",
+          controller: ['$scope', 'Write', '$modalInstance', '$state', 'popularTopics', 'docTopics', 'doc', 'username', function ($scope, Write, $modalInstance, $state, popularTopics, docTopics, doc, username) {
+            $scope.userTopics = popularTopics;
+            $scope.docTopics = docTopics;
+            $scope.username = username;
+            $scope.close = function () {
+              $modalInstance.close();
+            };
 
-          // Publish doc
-          $scope.publish = function (isAnon) {
-            Write.publishDoc(isAnon).then(
-              function (res) {
-                if (res.status === 201) {
-                  doc.is_published = true;
-                  doc.pub_doc = res.data;
-                  Write.setCurrentDoc(doc);
-                  // TODO prompt user to share here
-                  $state.go('read.doc', {docId: res.data._id});
-                  $scope.close();
+            // Publish doc
+            $scope.publish = function (isAnon) {
+              Write.publishDoc(isAnon).then(
+                function (res) {
+                  if (res.status === 201) {
+                    doc.is_published = true;
+                    doc.pub_doc = res.data;
+                    Write.setCurrentDoc(doc);
+                    // TODO prompt user to share here
+                    $state.go('read.doc', {docId: res.data._id});
+                    $scope.close();
+                  }
                 }
-              }
-            );
-          };
-        }],
-        resolve: {
-          popularTopics: function () {
-            return $scope.user.topics;
-          },
+              );
+            };
+          }],
+          resolve: {
+            popularTopics: function () {
+              return $scope.user.topics;
+            },
 
-          username : function () {
-            return $scope.user.username;
-          },
+            username : function () {
+              return $scope.user.username;
+            },
 
-          docTopics: function () {
-            return $scope.currentDoc.topics;
-          },
+            docTopics: function () {
+              return $scope.currentDoc.topics;
+            },
 
-          doc : function () {
-            return $scope.currentDoc;
+            doc : function () {
+              return $scope.currentDoc;
+            }
           }
-        }
-      });
+        });
+      }
     };
 
         $scope.openTopicModal = function () {

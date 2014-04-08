@@ -39,8 +39,13 @@
                 <br>
                 <div  ng-show='showLeft' class='slide-left' id="write-left">
 
-                    <div  ng-if='currentDoc.is_published' class='well text-center pub-info-left'>
-                                <a ng-show='currentDoc.pub_doc.is_visible && currentDoc.pub_doc.is_anon' ui-sref='read.doc({docId: currentDoc.pub_doc._id})'>
+                    <div  ng-click='openPublishModal()' class='well text-center pub-info-left'>
+
+                        <div ng-if='!currentDoc.is_published'><em>Private</em></div>
+
+                        <div ng-if='currentDoc.is_published'>
+                            
+                            <a ng-show='currentDoc.pub_doc.is_visible && currentDoc.pub_doc.is_anon' ui-sref='read.doc({docId: currentDoc.pub_doc._id})'>
                         
                                 Anonymous
                             </a>
@@ -51,13 +56,14 @@
                             </a>
                    
                             <em ng-hide='currentDoc.pub_doc.is_visible'>Not Public</em>
-                                <br>
-                                 <button ng-show="currentDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
-                                    Unpublish
-                                </button>
-                                <button ng-hide="currentDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
-                                    Re-publish
-                                </button>
+                            <br>
+                             <button ng-show="currentDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
+                                Unpublish
+                            </button>
+                            <button ng-hide="currentDoc.pub_doc.is_visible" ng-click="switchVisible()" class="btn btn-xs">
+                                Re-publish
+                            </button>
+                        </div>
                     </div>
 
                     <div ng-if='currentDoc.topics.length !== 0' ng-click='openTopicModal()' class="write-topic-container well ">
