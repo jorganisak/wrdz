@@ -182,8 +182,8 @@ angular.module('myWrdz')
           var top = document.getElementById(doc._id).getBoundingClientRect().top
           var h = $window.pageYOffset;
           $('html,body').animate({
-            scrollTop: top+h-50
-          }, 200);
+            scrollTop: top+h-80
+          }, 250);
           // $window.scrollTo(0, top + h - 105);
         },600)
       } else {
@@ -269,10 +269,7 @@ angular.module('myWrdz')
         }
       });
     };
-}])
-
-  .controller('MyWrdzListCtrl', ['$scope', 'MyWrdz', function ($scope, MyWrdz) {
 
 
     
-  }])
+}])

@@ -16,6 +16,57 @@
             </div>
 
 
+        <div id='profile-right' ng-show='$state.current.name === "read.list.user"'>
+            <div class="row">
+                <div class="col-sm-4">
+                    <h6>
+                        {{author_info.username}}
+                    </h6>
+                </div>
+                <div class="col-sm-2">
+                    
+                    <div id='profile-twitter' ng-if='author_info.twitter && !author_info.twitter.hide'>
+                        <a target='_blank' href="http://twitter.com/{{author_info.twitter.username}}">               
+                        <span  class="icon ion-social-twitter"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    
+                    <div id="profile-followers">
+                        <div class="col-sm-8">
+                        <span class="half-opacity ">
+                            <em>Followers</em>
+                        </span>
+                            
+                        </div>
+                        <div class="col-sm-2">
+                            
+                            
+                            {{author_info.followers}}
+                        </div>
+
+                       
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    
+                     
+                    <div ng-click='follow()' ng-hide='following' id="profile-follow-button">
+                        Follow
+                    </div>
+                    <div ng-click='follow()' ng-show='following' id="profile-follow-button">
+                        Unfollow
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div ng-show='$state.current.name === "read.list.user"'>
+            <br>
+            <br>
+        </div>
+
         <div autoscroll='false' ui-view></div>
 
 
@@ -24,39 +75,49 @@
 
 
 
-
     <div  class="col-sm-2 hidden-xs text-right">
         <div class='text-right' id="read-list-right">
-            <div ng-hide='!showUser' ng-show="$state.current.name === 'read.list.user' || readDoc.author.username">
+
+
+
+            <div ng-show="readDoc.author.username" ng-hide='!showUser'>
                 
                 <div  id="read-doc-username">
                     <a ng-show="$state.current.name !== 'read.list.user'" ui-sref="read.list.user({userId: author_info._id})">{{author_info.username}}</a>
-                    <h6 ng-show="$state.current.name === 'read.list.user'">
-                        {{author_info.username}}
-                        </h6>
+
 
                 </div>
-
-                <div >
+                <div ng-show="$state.current.name !== 'read.list.user'">
                     
-                    <div id="read-doc-followers">
-                        <span class="half-opacity pull-right">
-                            <em>Followers</em>
-                        </span>
-                        <br>
-                        <span class="pull-right">
-                            
-                            {{author_info.followers}}
-                        </span>
-    
-                       
+                    <div id='small-author-twitter' ng-if='author_info.twitter && !author_info.twitter.hide'>
+                        <a target='_blank' href="http://twitter.com/{{author_info.twitter.username}}">               <span  class="icon ion-social-twitter"></span>
+    </a>
                     </div>
-                        <br>
-                    <div ng-click='follow()' ng-hide='following' id="read-doc-follow-button">
-                        Follow
-                    </div>
-                    <div ng-click='follow()' ng-show='following' id="read-doc-follow-button">
-                        Unfollow
+
+
+
+
+                    <div >
+                        
+                        <div id="read-doc-followers">
+                            <span class="half-opacity pull-right">
+                                <em>Followers</em>
+                            </span>
+                            <br>
+                            <span class="pull-right">
+                                
+                                {{author_info.followers}}
+                            </span>
+        
+                           
+                        </div>
+                            <br>
+                        <div ng-click='follow()' ng-hide='following' id="read-doc-follow-button">
+                            Follow
+                        </div>
+                        <div ng-click='follow()' ng-show='following' id="read-doc-follow-button">
+                            Unfollow
+                        </div>
                     </div>
                 </div>
             </div>

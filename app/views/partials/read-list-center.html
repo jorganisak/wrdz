@@ -40,7 +40,7 @@
 
             <accordion-group ng-class="{'active': isopen}" id="{{doc._id}}" class='read-panel' is-open="isopen">
                 <accordion-heading >
-                    <div  ng-hide='isopen' ng-dblclick='openDoc(doc._id)' ng-click='switchDoc(doc, isopen)'   class="read-list-item">
+                    <div  ng-hide='isopen' ng-dblclick='openDoc(doc._id)' ng-click='switchDoc(doc, isopen)'   class="read-list-item show-hide-fade">
 
                         <div class="row read-list-bottom-row">
                             <div class="col-xs-6 ">
@@ -99,6 +99,7 @@
 
 
                 </accordion-heading>
+
 
                     <div ng-show='doc.doc.has_title' class="text-center read-title">
                         {{doc.doc.title}}

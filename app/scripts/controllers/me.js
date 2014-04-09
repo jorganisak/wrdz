@@ -117,5 +117,13 @@ LOGOUT
     }
   });
 
+
+  $scope.$watch('user.website', function (newValue) {
+    if (newValue) {
+      
+      User.update('website', newValue);
+    }
+  });
+
 }])
 

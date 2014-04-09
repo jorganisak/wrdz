@@ -48,3 +48,22 @@ div[ui-view].ng-enter {
 div[ui-view].ng-enter-active {
     opacity: 1;
 }
+
+  .panel-collapse.ng-hide-add, .panel-collapse.ng-hide-remove {
+    -webkit-transition:all ease 300ms;
+    -moz-transition:all ease 300ms;
+    -o-transition:all ease 300ms;
+    transition:all ease 300ms;
+    display:block!important;
+  }
+ 
+  .panel-collapse.ng-hide-add.ng-hide-add-active,
+  .panel-collapse.ng-hide-remove {
+    opacity:0;
+  }
+ 
+  .panel-collapse.ng-hide-add,
+  .panel-collapse.ng-hide-remove.ng-hide-remove-active {
+    opacity:1;
+
+  }
