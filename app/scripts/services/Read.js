@@ -27,18 +27,10 @@ angular.module('read')
       updateQuery(oldQuery);      
     };
 
-    function goToFront () {
-      updateQuery([{type:'topics', value: ''}, 
-        {type:'following', value: ''}, 
-        {type:'skip', value: ''}]).then(function (res) {
-          $state.go('read.doc', {'docId': res.data[res.data.length -1 ]._id})
-        });
-    };
 
     function findNextDoc (id) {
       var docs = docList.docs;
       if (docs.length) {
-
         angular.forEach(docs, function (doc) {
           if (doc._id === id) {
             var index = docs.indexOf(doc);
@@ -48,10 +40,8 @@ angular.module('read')
             if (index === docs.length - 1) {
               nextDocId = null;
             } else {
-              nextDocId = docs[index + 1]._id;
-              
+              nextDocId = docs[index + 1]._id;  
             }
-
           } 
         })
       }
@@ -141,17 +131,11 @@ angular.module('read')
 
       },
       getHearts : function () {
-
         var res =  User.getUser();
         if(!res.meta) {
           return false;
         }
-     
-
-        return res.meta._hearts;
-  
-
-        
+        return res.meta._hearts;      
       },
 
       updateQuery : updateQuery,
@@ -162,13 +146,6 @@ angular.module('read')
       updatePubDoc : function (docId, type, bool) {
         return PubDoc.update(docId, type, bool);
       },
-
-      //TOP TOPICS
-      refreshTopics : function () {
-        return Topics.getTop()
-      },
-
-  
 
     };
   }]);

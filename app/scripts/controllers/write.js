@@ -10,7 +10,6 @@
           .body - tied to #write-content
       user (from MainCtrl) {object}
       newTagTitle - model for tag input {string}
-      noDoc {boolean}
       noUser (this probs gets moved to MainCtrl) {boolean}
     
     ------------
@@ -55,7 +54,7 @@ angular.module('write')
 
 
 
-      $scope.isCollapsed = true;
+    $scope.isCollapsed = true;
 
 
     /// DOM STUFF
@@ -63,7 +62,6 @@ angular.module('write')
 
     function placeCaretAtEnd(el) {
       if (el) {
-
         el.focus();
         if (typeof $window.getSelection !== "undefined"
                 && typeof document.createRange !== "undefined") {
@@ -111,9 +109,16 @@ angular.module('write')
       if ($scope.user.current_doc) {
 
         Write.setCurrentDoc($scope.user.current_doc);
+        Write.setDocs($scope.user._userDocs);
+
       } else if (!$scope.user._userDocs[0]) {
         Write.createFirstDoc()
+        
       }
+    }
+    else {
+      Write.setCurrentDoc(Write.getFirstDoc());
+      Write.setDocs([Write.getFirstDoc()]);
     }
 
 
@@ -128,8 +133,9 @@ angular.module('write')
     // Sets Write service doc to current from user
     $scope.$on('userChange', function (evt, user) {
       if (user) {
-        if (user._userDocs[0]) {
-          Write.setCurrentDoc(user._userDocs[0]);
+        Write.setDocs($scope.user._userDocs);
+        if (docs[0]) {
+          Write.setCurrentDoc(docs[0]);
         } else {
           Write.createFirstDoc();
         }
@@ -141,10 +147,12 @@ angular.module('write')
 
         var val = $scope.currentDoc.title;
         if (val || val === '') {
-          Write.updateUserDoc('title', val);
+          if ($scope.user) {
+            Write.updateUserDoc('title', val);
+            
+          }
         }
       }, 500)
-
     };
     $scope.bodyChange = function () {
       $timeout(function () {
@@ -156,23 +164,33 @@ angular.module('write')
           } else {
             $scope.currentDoc.sample = sample;
           }
-          Write.updateUserDoc('body', {'sample': sample, 'body': $scope.currentDoc.body});
+          if ($scope.user) {
+
+            Write.updateUserDoc('body', {'sample': sample, 'body': $scope.currentDoc.body});
+          }
         }
         
       }, 500)
     };
 
-
-
     // Watches function result in the Write service for changes 
     // and uppdates scope accordingly
     $scope.$watch(Write.getCurrentDoc, function (newValue) {
       if (newValue) {
-        $scope.noDoc = false;
         $scope.currentDoc = newValue;
-        $timeout(function () {
-          focusContent();
-        }, 200);
+        //does not scroll if user is not authed
+        if (newValue.title !== "Welcome to Wrdz") {
+
+          $timeout(function () {
+            focusContent();
+          }, 200);
+        }
+      }
+    });
+
+    $scope.$watchCollection(Write.getDocs, function (newValue) {
+      if (newValue) {
+        $scope.docs = newValue;
       }
     });
 
@@ -182,16 +200,12 @@ angular.module('write')
 
     // $scope.showRecent = false;
     $scope.hideRecent = function () {
-      if ($scope.showRecent === true) {
 
         $timeout(function () {
-          if ($scope.showRecent === true) {
 
             $scope.showRecent = false;
-          }
         }, 500)
-      }
-      if ($scope.showLeft === true) {
+            if ($scope.showLeft === true) {
 
         $timeout(function () {
           if ($scope.showLeft === true) {
@@ -222,7 +236,6 @@ angular.module('write')
     };
 
     $scope.archive = function (docId) {
-
       var bool = $scope.currentDoc.is_archived;
       $scope.currentDoc.is_archived = !bool;
       Write.updateUserDoc('archive', !bool);
@@ -249,57 +262,10 @@ angular.module('write')
     };
 
 
-    // MODALS 
-    $scope.openPubOptionsModal = function () {
-      var modalInstance = $modal.open({
-        templateUrl: "partials/publish-options-modal.html",
-        controller: ['$scope', 'Write', '$modalInstance', '$state', 'doc','username', function ($scope, Write, $modalInstance, $state, doc, username) {
-          $scope.close = function () {
-            $modalInstance.close();
-          };
+    /*
+      MODALS 
+    */
 
-          $scope.doc = doc;
-
-          $scope.username = username;
-
-          $scope.switchVisible = function () {
-            Write.updateUserDoc('pubVisible', !$scope.doc.pub_doc.is_visible);
-            $scope.doc.pub_doc.is_visible = !$scope.doc.pub_doc.is_visible;
-            $scope.close();
-          };
-  
-        }],
-        resolve: {
-
-          doc : function () {
-            return $scope.currentDoc;
-          },
-
-          username : function () {
-            return $scope.user.username;
-          }
-        }
-      });
-    };
-
-  $scope.openPictureModal = function () {
-      var modalInstance = $modal.open({
-        templateUrl: "partials/picture-modal.html",
-        controller: ['$scope', '$modalInstance', '$state', 'doc', function ($scope, Write, $modalInstance, $state, popularTopics, docTopics, doc, username) {
-          $scope.close = function () {
-            $modalInstance.close();
-          };
-
-        }],
-        resolve: {
-
-
-          doc : function () {
-            return $scope.currentDoc;
-          }
-        }
-      });
-    };
 
 
     $scope.openPublishModal = function () {
@@ -307,19 +273,31 @@ angular.module('write')
         
         var modalInstance = $modal.open({
           templateUrl: "partials/publish-modal.html",
-          controller: ['$scope', 'Write', '$modalInstance', '$state', 'popularTopics', 'docTopics', 'doc', 'username', function ($scope, Write, $modalInstance, $state, popularTopics, docTopics, doc, username) {
-            $scope.userTopics = popularTopics;
-            $scope.docTopics = docTopics;
-            $scope.username = username;
+          controller: ['$scope', 'Write', '$modalInstance', '$state', 'doc', 'user', 'Picture',
+          function ($scope, Write, $modalInstance, $state, doc, user, Picture) {
+            $scope.user = user;
+            $scope.anon = false;
+            $scope.twitterShareCollapsed = false;
+            var img = "";
+
+            if (user) {
+              $scope.username = user.username;
+            }
+
             $scope.close = function () {
               $modalInstance.close();
             };
 
+
             // Publish doc
-            $scope.publish = function (isAnon) {
+            $scope.publish = function (isAnon, tweet) {
+
               Write.publishDoc(isAnon).then(
                 function (res) {
                   if (res.status === 201) {
+                    if (tweet) {
+                      Picture.tweetPic(user, img);
+                    }
                     doc.is_published = true;
                     doc.pub_doc = res.data;
                     Write.setCurrentDoc(doc);
@@ -330,18 +308,38 @@ angular.module('write')
                 }
               );
             };
+
+            html2canvas(document.getElementById('write-center'), 
+            {
+              onrendered : function (canvas) {
+                document.getElementById('twitter-share').appendChild(canvas);
+
+                img = canvas.toDataURL("image/png");
+                console.log(img);
+
+                // if (canvas.toBlob) {
+                //   canvas.toBlob(
+                //       function (blob) {
+                //         console.log(blob)
+                //           // Do something with the blob object,
+                //           // e.g. creating a multipart form for file uploads:
+                //          img = blob;
+
+                //       },
+                //       'image/png'
+                //   );
+                // }
+              }
+            })
+
+
           }],
           resolve: {
-            popularTopics: function () {
-              return $scope.user.topics;
-            },
 
-            username : function () {
-              return $scope.user.username;
-            },
 
-            docTopics: function () {
-              return $scope.currentDoc.topics;
+            user : function () {
+                return $scope.user;
+            
             },
 
             doc : function () {
@@ -352,7 +350,7 @@ angular.module('write')
       }
     };
 
-        $scope.openTopicModal = function () {
+    $scope.openTopicModal = function () {
       var modalInstance = $modal.open({
         templateUrl: "partials/topic-modal.html",
         controller:  ['$scope', '$modalInstance', 'userTopics', 'docTopics', 'Write', function ($scope, $modalInstance, userTopics, docTopics, Write) {
@@ -396,5 +394,5 @@ angular.module('write')
     };
 
 
-  }])
+}])
 

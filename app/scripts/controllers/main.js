@@ -14,7 +14,6 @@ Does a few things:
 
   */
      $scope.$on('changePageTitle', function (evt, title) {
-      console.log(title);
       if (title) {
         $scope.pageTitle = title;
       } else {

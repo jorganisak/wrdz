@@ -17,24 +17,16 @@ config(['$stateProvider', '$urlRouterProvider',
 /*
       LANDING
       */
-    .state('landing', {
-        url: '/',
-        templateUrl: 'partials/landing.html',
-        controller : ['$scope','$state', function ($scope, $state) {
+    // .state('landing', {
+    //     url: '/',
+    //     templateUrl: 'partials/landing.html',
+    //     controller : ['$scope','$state', function ($scope, $state) {
 
-          if ($scope.user) {
-            $state.go('write')
-          }
+    //         $state.go('write')
+          
 
-          $scope.$on('userChange', function(event, user) {
-            if (user) {
-              $state.go('write')
-            } else {
-
-            }
-          });
-        }]
-      })
+    //     }]
+    //   })
 
 /*
       READ
@@ -248,7 +240,7 @@ config(['$stateProvider', '$urlRouterProvider',
       */
 
       .state('write', {
-        url: '/w',
+        url: '/',
         templateUrl: 'partials/write.html'
       })
 

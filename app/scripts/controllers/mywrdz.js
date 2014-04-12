@@ -26,6 +26,8 @@ angular.module('myWrdz')
     $scope.topicsModel = [];
     $scope.topicOptions = [{}];
 
+
+
     $scope.$watch('date', function (newValue) {
       console.log(newValue);
       $scope.dt = moment(newValue).add('days', 1)._d;

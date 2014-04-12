@@ -2,6 +2,10 @@
   color: black;
 }
 
+.wrdz-list-item {
+  
+}
+
 #write-left {
   margin-top: -420px;
   width: 300%;
@@ -11,14 +15,13 @@
 }
 
 #small-author-twitter {
-    font-size: 1.6em;
-  
+  font-size: 1.6em;
+  padding: 10px 5px;
 }
 
 #profile-twitter {
-    font-size: 1.6em;
-  
-    margin-top: 18px;
+  font-size: 1.6em;
+  margin-top: 18px;
 }
 
 #profile-right {
@@ -33,14 +36,16 @@
 #small-author-website {
   font-size: 0.75em;
 }
+
 #mywrdz-search:focus {
   box-shadow: inset 0px 0px 5px -1px rgb(127, 191, 255);
 }
 
 .wrdz-doc-controls {
-  position: fixed;
-  right: 15%;
-  top: 150px;
+  margin-bottom: 70px;
+  /* left: 25%; */
+  /* width: 50%; */
+  /* top: 7%; */
   /* font-weight: 100; */
 }
 
@@ -68,8 +73,6 @@
 #about-wrdz {
   margin: 50px 0 0 10px;
 }
-
-
 
 #topicCollapse > span > .tag-label:hover {
   color: black;
@@ -126,10 +129,10 @@
 }
 
 #topicCollapse {
-  text-align: left;
+  text-align: right;
   /* width: 210%; */
   position: absolute;
-  left: 6%;
+  right: 7%;
   top: 9%;
 }
 
@@ -204,7 +207,7 @@
 .panel-body {
   padding: 10px 10px 75px 10px;
   border-color: transparent !important;
-  margin-bottom: 130px;
+  /* margin-bottom: 130px; */
 }
 
 @media (max-width: 768px) {
@@ -220,8 +223,8 @@
 }
 
 #me-middle {
-  max-width: 650px;
-  width: 90%;
+  max-width: 670px;
+  width: 95%;
   margin: 30px auto 0 auto;
 }
 
@@ -232,8 +235,8 @@
 .read-panel.active {
   background-color: rgba(255, 255, 255, 0.9);
   /* box-shadow: 0 0 0px 2px rgb(255, 255, 255), inset 0 0 5px -1px rgb(255, 255, 255); */
-  margin-top: 90px;
-  margin-bottom: 0px;
+  margin-top: 70px;
+  margin-bottom: 140px;
   padding-bottom: 0px;
   position: relative;
 }
@@ -276,6 +279,10 @@
   box-shadow: inset 0 3px 5px rgba(220, 220, 220, 0.125);
 }
 
+ul {
+  padding-left: 19px;
+}
+
 #recent-docs {
   margin-top: -430px;
   width: 270%;
@@ -306,9 +313,9 @@
   transition: all 200ms ease;
   width: 15%;
   max-width: 160px;
-  top: 7%;
+  top: 76px;
   height: 100%;
-  right: 3%;
+  right: 0%;
 }
 
 .fixed-right:hover {
@@ -407,6 +414,10 @@ html input[disabled] {
 
 .modal-body {
   position: static;
+}
+
+#twitter-link:hover {
+  text-decoration:none;
 }
 
 body {
@@ -542,19 +553,23 @@ h6 {
 }
 
 #landing-twitter-signup {
-  padding: 10px;
-  border: solid 1px rgb(234, 234, 234);
-  border-radius: 7px;
+  padding: 8px 20px;
+  /* border: solid 1px rgb(234, 234, 234); */
+  border-radius: 0px;
   color: rgb(50, 139, 255);
   font-family: 'Clear Sans', sans-serif;
-  font-size: 1.2em;
+  width: 210px;
   transition: all 200ms ease-in-out;
+  font-size: 1.1em;
+  margin: 0 auto;
+  font-weight: 400;
 }
 
 #landing-twitter-signup:hover {
   background-color: rgb(50, 139, 255);
   color: white;
   text-decoration: none;
+  /* font-weight: 500; */
 }
 
 #landing-form >div > a {
@@ -590,11 +605,12 @@ h6 {
 
 p,
 li {
-  font-size: 21px;
-  font-weight: 400;
+  font-size: 19px;
+  font-weight: 100;
   margin-bottom: 0.65em;
   line-height: 1.25;
   font-family: 'Linux Libertine', sans-serif;
+  font-family: 'Clear Sans', sans-serif;
 }
 
 li {
@@ -634,8 +650,6 @@ hr {
   color: white;
   border-color: rgb(234, 234, 234);
 }
-
-
 
 #landing-copy {
   margin: -20px auto 0 auto;
@@ -792,7 +806,7 @@ hr {
 }
 
 #mywrdz-fixed-left {
-  width: 18%;
+  width: 15%;
   left: 0%;
   top: 70px;
   max-width: 210px;
@@ -944,7 +958,7 @@ h1 {
   padding: 5px 10px;
   position: absolute;
   width: 100%;
-  bottom: 140px;
+  bottom: 30px;
   /* background-color: rgb(250, 250, 250); */
 }
 
@@ -1041,12 +1055,13 @@ h1 {
 #read-doc-username {
   font-family: 'Open Sans', sans-serif;
   font-size: 0.9em;
-  padding: 20px 0px;
+  padding: 10px 0px;
 }
 
 #read-doc-followers {
   /* font-style: italic; */
   font-size: 0.8em;
+  padding: 10px 0px;
   font-family: 'Open Sans', sans serif;
 }
 
@@ -1080,9 +1095,8 @@ h1 {
 }
 
 #profile-followers {
-    padding-top: 24px;
-  
-    font-size: 1.1em;
+  padding-top: 24px;
+  font-size: 1.1em;
 }
 
 #profile-follow-button {
@@ -1206,7 +1220,7 @@ add-button.active:active {
 #read-list-right {
   position: fixed;
   width: 12%;
-  top: 14%;
+  top: 7%;
   font-family: 'Clear Sans', sans-serif !important;
   right: 3%;
   max-width: 140px;
@@ -1247,10 +1261,10 @@ add-button.active:active {
 */
 
 .jo-tab {
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: 200;
   font-family: 'Roboto', sans-serif;
-  height: 40px;
+  height: 38px;
 }
 
 .glyphicon-retweet {
@@ -1267,7 +1281,8 @@ add-button.active:active {
   text-align: center;
   border-radius: 2px;
   border: none;
-  box-shadow: 0px 1px 4px 1px silver;
+  box-shadow: inset 0px 0px 2px 1px rgb(239, 239, 239);
+  padding: 17px 10px;
 }
 
 .modal-backdrop.in {
@@ -1280,10 +1295,11 @@ add-button.active:active {
 }
 
 .nav-pills > li > a {
-  color: black;
-  height: 95%;
+  color: rgb(162, 162, 162);
+  height: 101%;
   padding: 10px;
   border-radius: 0px;
+  transition: all 120ms linear;
 }
 
 .nav-pills > li.active > a,
@@ -1292,7 +1308,7 @@ add-button.active:active {
   background-color: transparent;
   text-shadow: 0px 0px 0px rgb(240, 255, 241);
   color: black;
-  box-shadow: -7px 0 0 -4px black;
+  box-shadow: -9px 0 0 -8px black;
 }
 
 .half-width {
@@ -1407,6 +1423,12 @@ blockquote {
   box-shadow: none;
 }
 
+.wrdz-list-panel.active {
+    padding-top: 120px;
+  
+    margin-top: 50px;
+}
+
 .ion-close {
   opacity: 0.5;
   cursor: pointer;
@@ -1499,10 +1521,10 @@ blockquote {
 }
 
 h4 {
-  font-family: 'Clear Sans', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   font-weight: 800;
   font-size: 28px;
-  /* font-family: 'Roboto'; */
+  font-family: 'Roboto';
 }
 
 .headline {
@@ -1541,7 +1563,7 @@ h4 {
   width: 99%;
   min-width: 20px;
   min-height: 25px;
-  max-height: 75px;
+  /* max-height: 75px; */
   /* opacity: 0.8; */
   background-color: white;
   color: rgb(52, 52, 52);
@@ -1613,6 +1635,7 @@ p {
   opacity: 0.2;
   top: 17px;
   right: 15px;
+  z-index: 4;
 }
 
 #remove-title-switch:hover {
@@ -1621,9 +1644,9 @@ p {
 
 #write-title {
   font-family: 'Clear Sans', sans-serif;
-  font-family: "Roboto", sans-serif;
-  font-size: 3.5rem;
-  text-align: left;
+  /* font-family: "Roboto", sans-serif; */
+  font-size: 4rem;
+  text-align: center;
   line-height: 1;
   outline: none;
   transition: all 700ms ease;
@@ -1672,7 +1695,7 @@ p {
 }
 
 h3 {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-size: 3em;
 }
@@ -1746,14 +1769,14 @@ h3 {
 
 .read-list-item {
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.91);
+  background-color: rgba(245, 245, 245, 0.05);
   transition: all 150ms linear;
-  border-radius: 0px !important;
   font-family: 'Clear Sans', sans-serif;
-  padding: 6% 6%;
+  padding: 7% 13%;
   opacity: 0.8;
-  margin-bottom: 10px;
-  box-shadow: inset 0 -2px 1px -1px rgb(237, 237, 237);
+  /* border-radius: 5px; */
+  margin: 22px 5px;
+  box-shadow: 0px 0px 1px 0px rgb(198, 198, 198);
 }
 
 .me-list-item {
@@ -1775,8 +1798,7 @@ h3 {
   font-size: 0.9em;
   font-family: 'Clear Sans', sans-serif;
   font-weight: 100;
-  margin-right: -5px;
-  padding-top: 3px;
+  padding-top: 11px;
 }
 
 .profile-list-item {
@@ -1794,7 +1816,7 @@ h3 {
 
 .read-list-item:hover {
   background-color: white;
-  box-shadow: inset 0 -5px 1px -4px rgb(143, 143, 143);
+  box-shadow: 0px 0px 1px 0px rgb(114, 114, 114);
   opacity: 1;
 }
 
@@ -1974,10 +1996,10 @@ h3 {
 }
 
 .read-title {
-  font-family: 'Roboto', serif;
+  font-family: 'Source Sans Pro', serif;
   font-size: 2.7em;
   line-height: 1;
-  /* font-weight: 700; */
+  font-weight: 700;
   /* text-align: left; */
   padding: 20px 20px 10px 20px;
   /* font-family: 'Clear Sans'; */
@@ -2194,11 +2216,16 @@ h3 {
 }
 
 #write-pub-info {
-  max-width: 600px;
+  /* max-width: 600px; */
   margin: 20px auto 0px auto;
   box-shadow: none;
   border: none;
-  background-color: rgba(255, 255, 255, 0.65);
+  position: absolute;
+  background-color: rgba(255, 255, 255, 1);
+  width: 95%;
+  left: 2.5%;
+  z-index: 5;
+  top: -140px;
 }
 
 .write-publish-buttons {
@@ -2208,7 +2235,7 @@ h3 {
 
 #title-switch {
   text-align: right;
-  margin-top: -24px;
+  /* margin-top: -24px; */
   font-family: 'Open Sans', sans-serif;
   font-size: 1.1em;
   letter-spacing: 2px;
@@ -2404,10 +2431,24 @@ h3 {
 }
 
 .wrdz-left-btn {
-  width: 30%;
+  width: 100%;
   margin: 0;
   border: none;
   opacity: 0.5;
+  height: 60px;
+}
+
+#anon-checkbox {
+  padding: 22px 0px;
+  font-size: 1.3em
+;
+  cursor: pointer;
+}
+
+#anon-checkbox > div > .form-control {
+  width: 26px;
+  height: 24px;
+  margin-top: 1px;
 }
 
 .wrdz-left-btn:hover {
@@ -2415,16 +2456,47 @@ h3 {
   border: none;
 }
 
+.form-control {
+  border-radius: 3
+  px;
+}
+
 .archive-button {
-  
   margin-top: 20%;
-  border:none;
+  border: none;
   padding-right: 20px;
 }
 
 .archive-button:hover {
   color: red !important;
   opacity: 0.7;
-  border:none;
+  border: none;
+}
+
+#bottom-auth-btn:hover {
+    background-color: rgba(246, 246, 246, 0.7);
   
+}
+
+#bottom-auth-btn {
+  font-size: 1.2em;
+  margin: 0;
+  position: fixed;
+  height: 35px;
+  /* background-color: rgb(234, 234, 234); */
+  color: rgb(18, 18, 18);
+  padding: 9px 0;
+  bottom: 1%;
+  border: none;
+  font-size: 1.1em;
+  right: 3%;
+  width: 193px;
+}
+
+#mywrdz-filter-button {
+  width: 20%;
+  margin: 0;
+  padding: 5px;
+  font-weight: 100;
+  border: none;
 }

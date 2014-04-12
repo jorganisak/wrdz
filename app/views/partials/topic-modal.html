@@ -17,11 +17,10 @@
         </div>
             
         </div>
-        <br>
-        <br>
-        <div ng-show='user.topics.length !== 0' class="text-left tags-you-use panel">
+       
+        <div ng-show='userTopics.length !== 0' class="text-left tags-you-use panel">
             
-            <em>Tags you use</em><br>
+        <hr>
         <span ng-repeat="top in userTopics | orderBy: '-_docs.length' | limitTo: 20">
             <span ng-click='addTopic(top.title)' class="label label-primary tag-label">{{top.title}} <span class="icon tag-add-plus ion-plus"></span></span>&nbsp;
         </span>

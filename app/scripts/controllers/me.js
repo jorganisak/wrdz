@@ -48,7 +48,7 @@ LOGOUT
         Write.setCurrentDoc(null);
         User.changeUser(null);
         if (data == 'Logged out now.') {
-          $state.go('landing');
+          $state.go('write');
         }
       }).error(function(err) {
         console.log(err);

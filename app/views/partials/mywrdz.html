@@ -1,10 +1,11 @@
 
-<div ng-if='user' id="mywrdz-body" ng-cloak class='row' ng-controller='MyWrdzCtrl'>
+<div id="mywrdz-body" ng-cloak class='row' ng-controller='MyWrdzCtrl'>
 
         <div id="write-fixed-top">
             <div id="write-fixed-top-container">
             <div class="row">
                     <input type="text" id='mywrdz-search' placeholder='Search' class="form-control" ng-model='search'>
+
 
                     
                     <div class="btn-group filter-button-group">
@@ -65,9 +66,7 @@
                     <span class="icon ion-calendar"></span>
                 </button>
                 
-                <button type="button" ng-hide='!user.topics.length'class="btn btn-jo wrdz-left-btn" ng-click="topicCollapse = !topicCollapse; dateCollapsed = true;">
-                    <span class="icon ion-pricetags"></span>
-                </button>
+
                 
                     
             </div>
@@ -77,26 +76,7 @@
                 <span ng-click="date = today" class="icon tag-remove-x ion-close"></span>
             </div>
             <br>
-            <div ng-show='topicCollapse'>
-                
-                <span topic-filter ng-click='addTopic(top)' ng-repeat="top in topicsModel">
-                    <span ng-class='{active: active}' class="label label-primary tag-label">{{top.title}} </span>&nbsp;
-                        
-                </span>
-            </div>
-            
-            
-
-            
-            
-            <div collapse='topicCollapse' id='topicCollapse'>
-                             
-                <span topic-filter ng-click='addTopic(top)' ng-repeat="top in topicOptions">
-                <span ng-class='{active: active}' class="label label-primary tag-label">{{top.title}} </span>&nbsp;
-                    
-                </span>
-
-            </div>
+ 
 
             <div collapse='dateCollapsed' id="date-button-box">
 
@@ -157,10 +137,10 @@
             <div ng-dblclick='openDocInWrite(doc)' ng-repeat="doc in docList | orderBy: '-updated_at' | startFrom:starting | limitTo: pageSize | filter:search">
 
 
-                <accordion-group ng-class="{'active': isopen}" id="{{doc._id}}" class='read-panel' is-open="isopen">
+                <accordion-group ng-class="{'active': isopen}" id="{{doc._id}}" class='read-panel wrdz-list-panel' is-open="isopen">
                 <accordion-heading >
 
-                <div  ng-hide='isopen'  ng-click='switchDoc(doc, isopen)'   class="read-list-item">
+                <div  ng-hide='isopen'  ng-click='switchDoc(doc, isopen)'   class="read-list-item wrdz-list-item">
                     <div class="row">
                         
                         <div class="col-xs-4 text-right pull-right ">
@@ -208,9 +188,41 @@
 
                         <div class="row">
                             <div class="col-xs-12 ">
-                            <div  ng-if='doc.is_published' id="write-pub-info" class='panel text-center hidden-xs panel-default'>
+                            <div   id="write-pub-info" class='panel text-center hidden-xs panel-default'>
 
-                                <div class="row">
+                                <div ng-if='showDoc' class='wrdz-doc-controls' class="row">
+                                    <div class="col-xs-4  text-left ">
+
+                                        <div class="read-list-date">
+
+                                            {{moment(doc.published_at).format('MMMM Do, ha')}}
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-2 col-sm-offset-2">
+                                             <button ng-click='openDocInWrite(showDoc)' class="wrdz-button btn  btn-jo ">
+                                            <span class="icon ion-edit"></span>
+                                        </button></div>
+                                    <div class="col-xs-2"><button  class='wrdz-button btn-jo  btn ' ng-click='openTopicModal()'>
+                                            <span class="ion-pricetags icon"></span>
+                                        </button></div>
+                                    <div class="col-xs-2">
+                                        <button ng-if='!showDoc.is_archived' ng-click='archive(showDoc._id)' class="wrdz-button btn  btn-jo ">
+
+                                            <span class="icon ion-ios7-filing-outline"></span>
+                                        </button>
+                                        <button ng-if='showDoc.is_archived' ng-click='archive(showDoc._id)' class="wrdz-button btn  btn-jo  ">
+
+                                            <span class="icon ion-reply"></span>
+                                        </button></div>
+
+                                                        
+
+                                        
+                                </div>
+
+
+                                <div ng-if='doc.is_published' class="row">
                                     <div class="col-sm-3">
 
                                         <a ng-show='doc.pub_doc.is_visible && doc.pub_doc.is_anon' ui-sref='read.doc({docId: doc.pub_doc._id})'>
@@ -302,37 +314,38 @@
 
 
     <div class="col-sm-2 pull-right hidden-xs text-right">
-       
-  
-                        <div ng-if='showDoc' class='wrdz-doc-controls' class="row">
-                       <!--      <div class="col-xs-4  text-left ">
+        <div class="fixed-right">
+            <div class="row">
+                
+               <button type="button" ng-hide='!user.topics.length'class="btn btn-jo wrdz-left-btn" ng-click="topicCollapse = !topicCollapse; dateCollapsed = true;">
+                        <span class="icon ion-pricetags"></span>
+                </button>
+            </div>
+            
+             <div ng-show='topicCollapse'>
+                
+                <span topic-filter ng-click='addTopic(top)' ng-repeat="top in topicsModel">
+                    <span ng-class='{active: active}' class="label label-primary tag-label">{{top.title}} </span>&nbsp;
+                        
+                </span>
+            </div>
+            
+            
 
-                                <div class="read-list-date">
+            
+            
+            <div collapse='topicCollapse' id='topicCollapse'>
+                             
+                <span topic-filter ng-click='addTopic(top)' ng-repeat="top in topicOptions">
+                <span ng-class='{active: active}' class="label label-primary tag-label">{{top.title}} </span>&nbsp;
+                    
+                </span>
 
-                                    {{moment(doc.published_at).format('MMMM Do, ha')}}
-                                </div>
-
-                            </div> -->
-
-                                        <button ng-click='openDocInWrite(showDoc)' class="wrdz-button btn  btn-jo ">
-                                    <span class="icon ion-edit"></span>
-                                </button>
-                                                <button  class='wrdz-button btn-jo  btn ' ng-click='openTopicModal()'>
-                                    <span class="ion-pricetags icon"></span>
-                                </button>
-
-                                <button ng-if='!showDoc.is_archived' ng-click='archive(showDoc._id)' class="wrdz-button btn  btn-jo ">
-
-                                    <span class="icon ion-ios7-filing-outline"></span>
-                                </button>
-                                <button ng-if='showDoc.is_archived' ng-click='archive(showDoc._id)' class="wrdz-button btn  btn-jo  ">
-
-                                    <span class="icon ion-reply"></span>
-                                </button>
-                                
-                        </div>
-
+            </div>
+    
         </div>
+
+    </div>
 
 
         

@@ -9,23 +9,29 @@ angular.module('read')
   .controller('ReadCtrl', ['$scope', 'Picture', 'Read', '$state', '$filter', '$location', '$window', '$timeout', '$modal',
    function ($scope, Picture, Read, $state, $filter, $location, $window, $timeout, $modal) {
 
-
+    //Internal
     $scope.Read = Read;
 
-  $scope.tabs = [
-    { title: "Front", state: "read.list.front({'skip': null})"},
-    { title: "Following", state: "read.list.following({'skip': null})"},
-    { title: "Hearts", state: "read.list.hearts({'skip': null})"}
-  ];
-
-
+    $scope.tabs = [
+      { title: "Front", state: "read.list.front({'skip': null})"},
+      { title: "Following", state: "read.list.following({'skip': null})"},
+      { title: "Hearts", state: "read.list.hearts({'skip': null})"}
+    ];
 
     $scope.navType = 'pills';
-
     $scope.moment = moment;
     $scope.left_xs_collapsed = true;
 
+    // Prompt signin
+    function checkUser () {
+      if ($scope.user) {
+        return true;
+      } else {
+        $scope.launchSignUp();
+      }
+    }
 
+    // Watch current state and change tab active accordingly
     $scope.$watch('$state.current.name', function (newValue) {
       if (newValue) {
         angular.forEach($scope.tabs, function (tab) {
@@ -38,30 +44,32 @@ angular.module('read')
       }
     })
 
+    //Pagination Loading
     $scope.loadNext = function () {
-        var skip = Number($scope.$stateParams.skip) + 10;
-        $scope.$state.go($scope.$state.current.name, {'skip' : skip})
-
+      var skip = Number($scope.$stateParams.skip) + 10;
+      $scope.$state.go($scope.$state.current.name, {'skip' : skip})
     };
 
     $scope.loadPrev = function () {
-        var skip = Number($scope.$stateParams.skip) - 10;
-        $scope.$state.go($scope.$state.current.name, {'skip' : skip})
-
+      var skip = Number($scope.$stateParams.skip) - 10;
+      $scope.$state.go($scope.$state.current.name, {'skip' : skip})
     };
 
-    // Things for read.list.user, maybe eventually move to another controller
-
-    $scope.$on('read_list_author_info', function (evt, author) {
-      console.log('author')
-      $scope.author_info = author;
 
 
+    // Testing if user follows someone w
+    function testFollow (id) {
       if ($scope.user) {
-        testFollow(author._id);
+        var flag = false;
+        angular.forEach($scope.user.following, function (user) {
+          if (user._id === id){
+            flag = true;
+          }
+        })
+        if (flag)  $scope.following = true;
+        else $scope.following = false;
       }
-    })
-
+    }
 
     $scope.$on('userChange', function (evt, user) {
       if (user) {
@@ -72,36 +80,15 @@ angular.module('read')
       }
     });
 
-    function testFollow (id) {
-       var flag = false;
-        angular.forEach($scope.user.following, function (user) {
-          if (user._id === id){
-            flag = true;
-          }
-        })
-        if (flag) {
-          $scope.following = true;
-        } else {
-          $scope.following = false;
-        }
-    }
 
-    function checkUser () {
-      if ($scope.user) {
-        return true;
-      } else {
-        $scope.launchSignUp();
 
-      }
-    }
 
     $scope.switchDoc = function (doc, isopen) {
       if (!isopen){
-        $scope.showStats = true;
-        $scope.hideStats = false;
         $scope.readDoc = doc;
         if (doc.author) {
-          $scope.$emit('read_list_author_info', doc.author)
+          $scope.author_info = doc.author;
+          testFollow(doc.author._id)
           $scope.showUser = true;
         }
         $timeout(function () {
@@ -144,7 +131,9 @@ angular.module('read')
     }
 
 
-
+/*
+  MODALS
+*/
     $scope.openPictureModal = function (docId) {
       var modalInstance = $modal.open({
         templateUrl: "partials/picture-modal.html",
@@ -154,25 +143,6 @@ angular.module('read')
             $modalInstance.close();
           };
 
-          function s3_upload(file, name){
-            var s3upload = new S3Upload({
-                // file_dom_selector: 'files',
-                file_to_upload: file,
-                s3_object_name : name,
-                s3_sign_put_url: '/sign_s3',
-                onProgress: function(percent, message) {
-                    $('#status').html('Upload progress: ' + percent + '% ' + message);
-                },
-                onFinishS3Put: function(public_url) {
-                    $('#status').html('Upload completed. Uploaded to: '+ public_url);
-                    $("#avatar_url").val(public_url);
-                    $("#preview").html('<img src="'+public_url+'" style="width:300px;" />');
-                },
-                onError: function(status) {
-                    $('#status').html('Upload error: ' + status);
-                }
-            });
-          }
 
 
           html2canvas(document.getElementById(docId), 
@@ -204,33 +174,9 @@ angular.module('read')
 
   }])
 
- 
-
-  .controller('TopicsListCtrl', ['$scope', 'Read', function ($scope, Read) {
-    var topTopics;
-    var init = function () {
-      Read.refreshTopics().then(function (topics) {
-        topTopics = topics.data;
-        for (var i=0; i<topTopics.length ; i++) {
-          $scope.data.push(topTopics[i]);
-        }
-      });
-    }
-
-    init();
-
-    $scope.currentPage = 0;
-    $scope.pageSize = 5;
-    $scope.data = [];
-    $scope.numberOfPages = function(){
-      return Math.ceil($scope.data.length/$scope.pageSize);                
-    }
-    
-  }])
-
-
 
   .controller('ReadDocCtrl', ['$scope', 'Read', function ($scope, Read) {
+
     $scope.isCollapsed = true;
 
     $scope.nextDoc = function () {
