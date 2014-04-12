@@ -87,6 +87,7 @@ angular.module('write')
           user._userDocs.unshift(doc);
           //set the current doc to the new doc
           setCurrentDoc(doc);
+          console.log(doc);
         });
       }
       else {
@@ -119,17 +120,17 @@ angular.module('write')
     function switchDocTitle (id) {
       //update userdoc
       if (User.getUser()) {
-
         updateUserDoc('hasTitle', !current_doc.has_title);
-        angular.forEach(User.getUser()._userDocs, function (doc) {
-          if (doc._id === id) {
-            doc.has_title = !doc.has_title;
-          }
-        });
       }
       //udate current doc
+      console.log(id);
       current_doc.has_title = !current_doc.has_title;
       //update userDocs on scope.user
+      angular.forEach(docs, function (doc) {
+        if (doc._id === id) {
+          doc.has_title = !doc.has_title;
+        }
+      });
     };
 
     function publishDoc (isAnon) {

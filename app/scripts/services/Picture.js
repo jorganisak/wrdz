@@ -15,12 +15,17 @@
  
       return {
 
-        tweetPic : function (user, pic) {
+        tweetPic : function (user, pic, id, message) {
+          var url = "http://www.wrdz.co/r/"+id;
           var data = {
             user: user,
-            pic : pic
+            pic : pic,
+            url : url,
+            message : message
           }
-          return $http.post('/twitterPic', data);
+          $http.post('/twitterPic', data).success(function (res) {
+            console.log(res);
+          });
         }
 
     };

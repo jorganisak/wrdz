@@ -134,8 +134,8 @@ angular.module('write')
     $scope.$on('userChange', function (evt, user) {
       if (user) {
         Write.setDocs($scope.user._userDocs);
-        if (docs[0]) {
-          Write.setCurrentDoc(docs[0]);
+        if ($scope.user._userDocs[0]) {
+          Write.setCurrentDoc($scope.user._userDocs[0]);
         } else {
           Write.createFirstDoc();
         }
@@ -230,6 +230,7 @@ angular.module('write')
 
     $scope.switchHasTitle = function () {
       Write.switchDocTitle($scope.currentDoc._id);
+      $scope.currentDoc.has_title = !$scope.currentDoc.has_title;
       $timeout(function () {
         focusTitle();
       },200)
@@ -296,7 +297,7 @@ angular.module('write')
                 function (res) {
                   if (res.status === 201) {
                     if (tweet) {
-                      Picture.tweetPic(user, img);
+                      Picture.tweetPic(user, img, res.data._id);
                     }
                     doc.is_published = true;
                     doc.pub_doc = res.data;

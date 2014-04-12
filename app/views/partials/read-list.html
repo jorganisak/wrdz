@@ -36,7 +36,7 @@
                     <div id="profile-followers">
                         <div class="col-sm-8">
                         <span class="half-opacity ">
-                            <em>Followers</em>
+                            <em>Readers</em>
                         </span>
                             
                         </div>
@@ -53,21 +53,21 @@
                     
                      
                     <div ng-click='follow()' ng-hide='following' id="profile-follow-button">
-                        Follow
+                        Read
                     </div>
                     <div ng-click='follow()' ng-show='following' id="profile-follow-button">
-                        Unfollow
+                        Unsubscribe
                     </div>
                 </div>
             </div>
+            <hr>
 
         </div>
         <div ng-show='$state.current.name === "read.list.user"'>
-            <br>
-            <br>
+  
         </div>
 
-        <div autoscroll='true' ui-view></div>
+        <div autoscroll='true' id='read-center' ui-view></div>
 
 
     </div>
@@ -101,7 +101,7 @@
                         
                         <div id="read-doc-followers">
                             <span class="half-opacity pull-right">
-                                <em>Followers</em>
+                                <em>Readers</em>
                             </span>
                             <br>
                             <span class="pull-right">
@@ -113,10 +113,10 @@
                         </div>
                             <br>
                         <div ng-click='follow()' ng-hide='following' id="read-doc-follow-button">
-                            Follow
+                            Read
                         </div>
                         <div ng-click='follow()' ng-show='following' id="read-doc-follow-button">
-                            Unfollow
+                            Unsubscribe
                         </div>
                     </div>
                 </div>

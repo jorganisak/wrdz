@@ -8,6 +8,7 @@ config(['$stateProvider', '$urlRouterProvider',
 
     $stateProvider
 
+
     .state('picture-test', {
         url: '/pic-test',
         templateUrl: 'partials/picture-test.html',
@@ -123,7 +124,6 @@ config(['$stateProvider', '$urlRouterProvider',
                 if (!res.length) {
                   return false;
                 }
-                console.log(res);
                 return Read.updateQuery([{type:'hearts', 
                   value: res}, {type:'following', value: ''},{type:'topics', value: ''}, {type:'skip', value: ''}]);
               } else {
@@ -201,7 +201,7 @@ config(['$stateProvider', '$urlRouterProvider',
             if ($scope.docs[0]) {
               
               if ($scope.docs[0].author._id === $stateParams.userId) {
-                $scope.$emit('read_list_author_info', $scope.docs[0].author)
+                $scope.$emit('author_info', $scope.docs[0].author)
               }
             }
 

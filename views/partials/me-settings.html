@@ -36,14 +36,27 @@
     <div class="row">
       <h4>Bio</h4>
 
-      <textarea name="bio" placeholder="Whose words are these?" ng-model="user.bio" maxlength="150" class="form-control" id="bio-textarea" cols="30" rows="4"></textarea>
+      <textarea name="bio" placeholder="Whose words are these?" ng-model="user.bio" maxlength="50" class="form-control" id="bio-textarea" cols="30" rows="4"></textarea>
       <span class="pull-right">
         
-        {{150 - user.bio.length}}
+        {{50 - user.bio.length}}
       </span>
 
     </div>
-          <div class="row">
+<!--     <div ng-if='user.twitter' class="row">
+      <h4>Show Twitter Link</h4>
+
+      <input type="checkbox"  ng-model='user.twitter.hide'>
+
+    </div> -->
+<!--     <div class="row">
+      <h4>Website</h4>
+
+      <input type="text" class='form-control' ng-model='user.website'>
+
+    </div> -->
+
+    <div class="row">
             
           <h4>Followers:</h4>
           
@@ -53,7 +66,7 @@
       <h6>{{user.karma}}</h6>
           
       <a class="" ui-sref="read.list.user({userId: user._id})">See your public wrdz.</a>
-      </div>
+    </div>
 
 
     <br>

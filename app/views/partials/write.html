@@ -6,10 +6,12 @@
         <div id="write-fixed-top">
             <div id="write-fixed-top-container">
             <div class="row">
-                    <button  ng-click='newDoc()' class="btn btn-jo top-bar-btn">
+
+                <div class="hidden-xs">
+                    
+                    <button  ng-click='newDoc()' class="btn  btn-jo top-bar-btn">
                         <span class="ion-plus icon"></span>&nbsp;&nbsp;New
                     </button>
-                    
                     <button ng-if='user'  ng-click='openTopicModal()' class="btn btn-jo top-bar-btn">
                         <span class="ion-pricetag icon"></span>&nbsp;&nbsp;Tags
                     </button>
@@ -18,17 +20,33 @@
                       <span class="ion-android-share icon"></span>&nbsp;&nbsp;Share 
                     </button>
                     
-                    <button ng-if='user' ui-sref='mywrdz' class="btn pull-right btn-jo top-bar-btn">
+                    <button ng-if='user' ui-sref='mywrdz' class="btn pull-right btn-jo top-bar-btn ">
                         <span class="icon ion-folder"></span>&nbsp;&nbsp;My Wrdz
                     </button>
-                
-                    <a id='twitter-link' ng-if='!user' class='pull-right'target='_blank'  href="/auth/twitter">
-
+                <a id='twitter-link' ng-if='!user' class='pull-right' target='_blank' href="/auth/twitter">
+                    
                         <div class='top-bar-btn' id="landing-twitter-signup">
                          <span class="icon ion-social-twitter"></span> &nbsp; Sign in with Twitter 
                         </div>
 
                       </a>
+                </div>
+
+                <div class="visible-xs">
+                    <button  ng-click='newDoc()' class="btn col-xs-5 btn-jo top-bar-btn small">
+                        <span class="ion-plus icon"></span>&nbsp;&nbsp;New
+                    </button>
+                    <a id='twitter-link' ng-if='!user' class='top-bar-btn small pull-right' target='_blank' href="/auth/twitter">
+                    
+                        <div class='' >
+                         <span class="icon ion-social-twitter"></span> &nbsp; Sign in
+                        </div>
+
+                      </a>
+                </div>
+
+                    
+
                     
 
             </div>  
@@ -191,33 +209,12 @@
 
     </div>
 
-    <div class='visible-xs' id="fixed-bottom-bar">
-        <div class="col-xs-3 no-padding"><div ng-click='newDoc()' class='btn btn-jo'><span class="ion-plus icon"></span></div> </div>
 
-        <div class="col-xs-3  no-padding">
-                     <div class='btn-jo' ng-click='openTopicModal()'>
+    <div id="save-alert" ng-show="!user && currentDoc.title !== 'Welcome to Wrdz'">
+        Your writing won't save unless you're signed in :(
 
-                        <span class="ion-pricetags icon"></span>
-
-                    </div></div>
-        <div class="col-xs-3  no-padding">
-
-
-
-           <div ng-if='!currentDoc.is_archived' ng-click='archive(currentDoc._id)' class="btn-jo btn archive-button ">
-                <span class="icon ion-ios7-filing-outline"></span>
-                
-            </div>
-
-            <div ng-if='currentDoc.is_archived' ng-click='archive(currentDoc._id)' class="btn-jo btn archive-button ">
-                <span class="icon ion-reply"></span>
-                
-            </div>
-        </div>
-        <div class="col-xs-3  no-padding"><div ng-hide='currentDoc.is_published' ng-click='openPublishModal()' class='btn btn-jo '>
-                <span class="icon ion-share"></span>
-            </div></div>
     </div>
+
     
 
 </div>

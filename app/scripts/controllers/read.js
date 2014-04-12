@@ -81,7 +81,9 @@ angular.module('read')
     });
 
 
-
+    $scope.$on('author_info', function (evt, author) {
+      $scope.author_info = author;
+    })
 
     $scope.switchDoc = function (doc, isopen) {
       if (!isopen){

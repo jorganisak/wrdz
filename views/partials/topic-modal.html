@@ -2,13 +2,14 @@
     <span ng-click="close()" class="pull-right icon ion-close"></span>
 
     <h3>Tags</h3>
+<hr>
 <br>
     <jo-input-add name="Topic" on-submit="addTopic(title)"></jo-input-add>
    
         <br>
         <div class="">
 
-        <div class="panel">
+        <div class="panel text-left">
         <span ng-repeat="top in docTopics">
             <span class="label label-primary tag-label">{{top.title}} <span ng-click="removeTopic(top)" class="icon tag-remove-x ion-close"></span></span>&nbsp;
         </span>
@@ -16,11 +17,10 @@
         </div>
             
         </div>
-        <br>
-        <br>
-        <div ng-show="user.topics.length !== 0" class="text-left tags-you-use panel">
+       
+        <div ng-show="userTopics.length !== 0" class="text-left tags-you-use panel">
             
-            <em>Tags you use</em><br>
+        <hr>
         <span ng-repeat="top in userTopics | orderBy: '-_docs.length' | limitTo: 20">
             <span ng-click="addTopic(top.title)" class="label label-primary tag-label">{{top.title}} <span class="icon tag-add-plus ion-plus"></span></span>&nbsp;
         </span>

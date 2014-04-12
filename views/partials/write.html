@@ -1,26 +1,52 @@
 <div id="write-body" ng-cloak="" class="" ng-controller="WriteCtrl">
 
-    <div ng-show="user" ng-cloak="" class="row">
+    <div ng-cloak="" class="row">
 
 
         <div id="write-fixed-top">
             <div id="write-fixed-top-container">
             <div class="row">
+
+                <div class="hidden-xs">
+                    
                     <button ng-click="newDoc()" class="btn btn-jo top-bar-btn">
                         <span class="ion-plus icon"></span>&nbsp;&nbsp;New
                     </button>
-                    
-                    <button ng-click="openTopicModal()" class="btn btn-jo top-bar-btn">
+                    <button ng-if="user" ng-click="openTopicModal()" class="btn btn-jo top-bar-btn">
                         <span class="ion-pricetag icon"></span>&nbsp;&nbsp;Tags
                     </button>
 
                     <button class="btn top-bar-btn btn-jo" ng-disabled="!currentDoc.body" ng-hide="currentDoc.is_published" ng-click="openPublishModal()">
-                      <span class="ion-share icon"></span>&nbsp;&nbsp;Publish 
+                      <span class="ion-android-share icon"></span>&nbsp;&nbsp;Share 
                     </button>
                     
-                    <button ui-sref="mywrdz" class="btn pull-right btn-jo top-bar-btn">
+                    <button ng-if="user" ui-sref="mywrdz" class="btn pull-right btn-jo top-bar-btn">
                         <span class="icon ion-folder"></span>&nbsp;&nbsp;My Wrdz
                     </button>
+                <a id="twitter-link" ng-if="!user" class="pull-right" target="_blank" href="/auth/twitter">
+                    
+                        <div class="top-bar-btn" id="landing-twitter-signup">
+                         <span class="icon ion-social-twitter"></span> &nbsp; Sign in with Twitter 
+                        </div>
+
+                      </a>
+                </div>
+
+                <div class="visible-xs">
+                    <button ng-click="newDoc()" class="btn col-xs-5 btn-jo top-bar-btn small">
+                        <span class="ion-plus icon"></span>&nbsp;&nbsp;New
+                    </button>
+                    <a id="twitter-link" ng-if="!user" class="top-bar-btn small pull-right" target="_blank" href="/auth/twitter">
+                    
+                        <div class="">
+                         <span class="icon ion-social-twitter"></span> &nbsp; Sign in
+                        </div>
+
+                      </a>
+                </div>
+
+                    
+
                     
 
             </div>  
@@ -29,7 +55,7 @@
 
 
         <div id="" class="col-sm-2 hidden-xs text-left">
-            <div id="write-fixed-left" class="fixed-left">
+            <div ng-show="user" id="write-fixed-left" class="fixed-left">
 
                 
 
@@ -109,7 +135,7 @@
     </div>
 
 
-    <div ng-click="hideRecent()" ng-keydown="hideRecent()" ng-if="currentDoc._id" class="text-center col-sm-8 col-xs-12 pull-left column">
+    <div ng-click="hideRecent()" ng-keydown="hideRecent()" ng-if="currentDoc" class="text-center col-sm-8 col-xs-12 pull-left column">
 <!--             <div class='visible-xs xs-drop-top'>
                 <div class="col-xs-6 pull-right">
                     <div class='dropdown'>
@@ -132,27 +158,25 @@
 
            -->
 
+                <div id="title-switch" ng-hide="currentDoc.has_title" ng-click="switchHasTitle()">add title</div>
    
             
+                    <div ng-show="currentDoc.has_title" class="" ng-click="switchHasTitle()" id="remove-title-switch"><span class="icon ion-close"></span></div>
             <div id="write-center">
 
 
                 <div class="show-hide-fade" ng-show="currentDoc.has_title">
-                    <div class="" ng-click="switchHasTitle()" id="remove-title-switch"><span class="icon ion-close"></span></div>
                     <div ng-keydown="titleChange()" medium-editor="" options="{{mediumEditorOptionsTitle}}" ng-model="currentDoc.title" id="write-title">
                     </div>
                     <hr>
                 </div>
 
-                <div id="title-switch" ng-hide="currentDoc.has_title" ng-click="switchHasTitle()">add title</div>
 
                 <div ng-keydown="bodyChange()" medium-editor="" options="{{mediumEditorOptionsBody}}" ng-model="currentDoc.body" class="" id="write-content">
 
                 </div>
             </div>
-        <canvas id="canvas">
-            
-        </canvas>   
+    
 
 
 
@@ -160,7 +184,7 @@
     </div>
 
     <div class="col-sm-2 hidden-xs pull-right">
-        <div id="write-fixed-right" class="fixed-right">
+        <div ng-show="user" id="write-fixed-right" class="fixed-right">
 
 
 
@@ -170,7 +194,7 @@
             <br>
             <div ng-show="showRecent" class="slide-right" id="recent-docs">
                 
-                <div ng-repeat="recent_doc in user._userDocs | limitTo: 5 | orderBy : '-updated_at'">
+                <div ng-repeat="recent_doc in docs track by $index | limitTo: 5 | orderBy : '-updated_at'">
 
                     <div ng-click="switchDoc(recent_doc)" class="text-right write-last-item">
                         <span ng-show="recent_doc.has_title" ng-bind-html="recent_doc.title"></span>
@@ -185,33 +209,12 @@
 
     </div>
 
-    <div class="visible-xs" id="fixed-bottom-bar">
-        <div class="col-xs-3 no-padding"><div ng-click="newDoc()" class="btn btn-jo"><span class="ion-plus icon"></span></div> </div>
 
-        <div class="col-xs-3 no-padding">
-                     <div class="btn-jo" ng-click="openTopicModal()">
+    <div id="save-alert" ng-show="!user && currentDoc.title !== 'Welcome to Wrdz'">
+        Your writing won't save unless you're signed in :(
 
-                        <span class="ion-pricetags icon"></span>
-
-                    </div></div>
-        <div class="col-xs-3 no-padding">
-
-
-
-           <div ng-if="!currentDoc.is_archived" ng-click="archive(currentDoc._id)" class="btn-jo btn archive-button">
-                <span class="icon ion-ios7-filing-outline"></span>
-                
-            </div>
-
-            <div ng-if="currentDoc.is_archived" ng-click="archive(currentDoc._id)" class="btn-jo btn archive-button">
-                <span class="icon ion-reply"></span>
-                
-            </div>
-        </div>
-        <div class="col-xs-3 no-padding"><div ng-hide="currentDoc.is_published" ng-click="openPublishModal()" class="btn btn-jo">
-                <span class="icon ion-share"></span>
-            </div></div>
     </div>
+
     
 
 </div>

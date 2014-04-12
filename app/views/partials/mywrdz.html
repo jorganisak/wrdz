@@ -188,7 +188,7 @@
 
                         <div class="row">
                             <div class="col-xs-12 ">
-                            <div   id="write-pub-info" class='panel text-center hidden-xs panel-default'>
+                            <div   id="write-pub-info" class='panel text-center  panel-default'>
 
                                 <div ng-if='showDoc' class='wrdz-doc-controls' class="row">
                                     <div class="col-xs-4  text-left ">
@@ -222,7 +222,7 @@
                                 </div>
 
 
-                                <div ng-if='doc.is_published' class="row">
+                                <div ng-if='doc.is_published' class="row hidden-xs">
                                     <div class="col-sm-3">
 
                                         <a ng-show='doc.pub_doc.is_visible && doc.pub_doc.is_anon' ui-sref='read.doc({docId: doc.pub_doc._id})'>
@@ -349,14 +349,14 @@
 
 
         
-    <div class='visible-xs' id="fixed-bottom-bar">
+   <!--  <div class='visible-xs' id="fixed-bottom-bar">
         <div ng-click='editCollapsed = !editCollapsed; goToTop()' class="col-xs-12 bottom-caret text-center">
         <span ng-show='editCollapsed' class="icon ion-chevron-up"></span>
         <span ng-hide='editCollapsed' class="icon ion-chevron-down"></span>
         </div>
         
 
-    </div>
+    </div> -->
 
 
 </div>

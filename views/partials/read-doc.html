@@ -1,206 +1,163 @@
-<div ng-controller="ReadDocCtrl" id="read-doc-body">
-
-    <div class="col-sm-2 hidden-xs">
-        <div ng-if="Read.getPrevState().name" ng-click="goBack()" id="read-doc-back">
+<div id="read-list-body" class="row">
+    <div class="col-sm-2 hidden-xs text-left">
+        <div class="fixed-left">
+            <div ui-sref="read.list.front({\"skip\": null})" id="read-doc-back">
             <span class="icon ion-arrow-return-left"></span>
         </div>
-        <div id="read-doc-left-fixed">
-
-            <div ng-class="active1" ng-click="up_vote()" class="read-doc-arrow">
-                <span class="icon pull-left ion-arrow-up-a"></span>
-                <span class="pull-right read-doc-left-text">{{doc.up_votes}}</span>
-            </div>
-            <br>
-
-            <div ng-class="active2" ng-click="heart()" class="read-doc-heart">
-                <span class="pull-left icon ion-heart"></span>
-                <span class="pull-right read-doc-left-text">{{doc.hearts}}</span>
-
-            </div>
-            <br>
-            <div twitter-button="" ng-click="open(doc._id)" class="read-doc-tweet">
-
-                    
-                    <span class="icon ion-social-twitter">
-                        
-                    </span>
-                
-
-                
-            </div>
-
         </div>
     </div>
 
-    <div ng-mouseenter="isCollapsed = true" class="col-sm-8">
-        <div class="read-doc-center">
+    <div class="col-sm-8 col-xs-12">
+        <div id="read-doc-center" ng-controller="ReadDocCtrl">
             
-<!--             <div class="row">
+            <div class="show-hide-fade">
+
+                <div class="row">
+                   
+                    <div class="col-xs-6 text-left pull-left">
+
+                        <div class="read-list-date" id="read-doc-date">
+
+                            {{moment(doc.published_at).format('MMMM Do, ha')}}
+                        </div>
+
+                    </div>
+                </div>
+                <br>
+            
+                
+            </div>
 
 
-                <div id='read-doc-section-label' class="text-right ">            
 
-                    <span ng-repeat='topic in doc.topics'>
-                        <span ui-sref='read.list.topics({topicId: topic._id})' class='label label-primary tag-label'>{{topic.title}}</span>
-                    </span>
-                </div>    
 
-            </div> -->
 
             <div ng-show="doc.doc.has_title" class="text-center read-title">
                 {{doc.doc.title}}
                 <hr>
             </div>
             <div ng-hide="doc.doc.has_title" class="">
-                <br>
-            </div>
-
-
-            <div ng-bind-html="doc.doc.body" class="read-doc-content">
-
-            </div>
-
             <br>
-            <em>{{moment(doc.published_at).format('MMMM D, YYYY')}}</em>
-            <br>
+            </div>
+            <div ng-bind-html="doc.doc.body" class="read-body"></div>
+ 
 
+            <div class="">
+                <div class="hidden-xs fixed-read-doc-stats">
+                        
+                        <div>
+                                    
+                                    <div ng-class="active1" ng-click="up_vote()" class="read-doc-arrow">
+                                        <span class="icon ion-arrow-up-a"></span>
+                                    </div>   
+                                    <br>
+                                    
+                                    <div ng-class="active2" ng-click="heart()" class="read-doc-heart">
+                                        <span class="icon ion-heart"></span>
+                                    </div>                        
+                                    <br>
+                                    
+                                    <div twitter-button="" ng-click="open(readDoc._id)" class="read-doc-tweet">
+                                        <span class="icon ion-social-twitter"></span>
+                                    </div>
+                                <!--  <div class="col-sm-3">
+                                    
+                                    <div ng-click="openPictureModal(readDoc._id)" >
+                                        <span  class="icon ion-camera"></span>
+                                    </div>
+                                </div> -->
+                                
+                            </div>
+       
+                        </div>
+                    </div>
+                        
+            
+
+                    <div class="visible-xs" id="fixed-bottom-bar">
+                        <div class="col-xs-3 no-padding">
+                            <div ng-class="active1" ng-click="up_vote()" class="read-doc-arrow">
+                                    <span class="icon ion-arrow-up-a"></span>
+                                </div>  
+                        </div>
+
+                        <div class="col-xs-3 no-padding">
+                            <div ng-class="active2" ng-click="heart()" class="read-doc-heart">
+                                    <span class="icon ion-heart"></span>
+                                </div> 
+                        </div>
+                        <div class="col-xs-3 no-padding">
+                           <div twitter-button="" ng-click="open(readDoc._id)" class="read-doc-tweet">
+                                    <span class="icon ion-social-twitter"></span>
+                                </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+
+
+
+            
 
         </div>
 
+
     </div>
-    <div ng-mouseover="isCollapsed = false" class="hidden-xs col-sm-2">
-        <span ng-show="Read.getNextDocId()" ng-click="nextDoc(doc)" id="read-next-icon">
-            
-            <span class="icon ion-chevron-right"></span>
-        </span>
-        <div class="text-right" id="read-doc-right-fixed">
-            <div ng-hide="doc.is_anon">
+
+    <div class="col-sm-2 hidden-xs text-right">
+        <div class="text-right" id="read-list-right">
+
+
+
+            <div ng-show="doc.author.username">
                 
                 <div id="read-doc-username">
                     <a ui-sref="read.list.user({userId: doc.author._id})">{{doc.author.username}}</a>
-                </div>
 
-                <div>
+
+                </div>
+                <div ng-show="$state.current.name !== 'read.list.user'">
                     
-                    <div id="read-doc-followers">
-                        <span class="half-opacity pull-left">
-                            <em>Followers: </em>
-                        </span>
-                        <span class="pull-right">
-                            
-                            {{doc.author.followers}}
-                        </span>
-                        <br>
-                        <span class="half-opacity pull-left">
-                            <em>Karma:</em>
-                        </span>
-                        <span class="pull-right">
-                            
-                        {{doc.author.karma}}
-                        </span>
+                    <div id="small-author-twitter" ng-if="doc.author.twitter && !doc.author.twitter.hide">
+                        <a target="_blank" href="http://twitter.com/{{doc.author.twitter.username}}">               <span class="icon ion-social-twitter"></span>
+    </a>
                     </div>
-                    <br>
-                    <br>
-                    <div id="read-doc-bio">
-                        {{doc.author.bio}}
-                    </div>
-                    <div ng-click="follow()" ng-hide="following" id="read-doc-follow-button">
-                        Follow
-                    </div>
-                    <div ng-click="follow()" ng-show="following" id="read-doc-follow-button">
-                        Unfollow
+
+
+
+
+                    <div>
+                        
+                        <div id="read-doc-followers">
+                            <span class="half-opacity pull-right">
+                                <em>Readers</em>
+                            </span>
+                            <br>
+                            <span class="pull-right">
+                                
+                                {{doc.author.followers}}
+                            </span>
+        
+                           
+                        </div>
+                            <br>
+                        <div ng-click="follow()" ng-hide="following" id="read-doc-follow-button">
+                            Read
+                        </div>
+                        <div ng-click="follow()" ng-show="following" id="read-doc-follow-button">
+                            Unsubscribe
+                        </div>
                     </div>
                 </div>
             </div>
 
-        </div>
 
-    </div>
+
+
+        </div>
 
     
-    <div class="visible-xs" id="fixed-bottom-bar">
-       <div class="col-xs-3">
 
-
-            <button ng-if="Read.getPrevState().name" ng-click="goBack()" class="btn btn-jo"><span style="font-size: 1.2em" class="icon ion-arrow-return-left"></span></button> 
-        </div>
-        <div class="col-xs-3">
-
-
-            <button ng-class="active1" ng-click="up_vote()" class="btn text-center btn-jo"> <span class="icon ion-arrow-up-a"></span></button> 
-
-           
-
-
-        </div>
-        <div class="col-xs-3">
-
-            <button ng-class="active2" ng-click="heart()" class="btn text-center btn-jo"> <span class="icon ion-heart"></span></button> 
-        </div>
-        <div class="col-xs-3">
-
-            <button twitter-button="" ng-click="open(doc._id)" ng-click="heart()" class="btn text-center btn-jo"> <span style="font-size: 1.5em" class="icon ion-social-twitter"></span></button> 
-
-         
-
-        </div>
-      
     </div>
-    <div class="visible-xs" id="fixed-top-bar">
-        <div class="col-xs-4 col-xs-offset-4">
-            
-                
-                <a ng-click="left_xs_collapsed = !left_xs_collapsed" ng-hide="doc.is_anon" class="btn btn-jo">
-                    <span class="icon ion-chevron-down"></span>
-                </a>  
 
-                <div collapse="left_xs_collapsed">
-                             <div id="read-doc-username">
-                    <a ui-sref="read.list.user({userId: doc.author._id})">{{doc.author.username}}</a>
-                </div>
-
-                <div>
-                    
-                    <div id="read-doc-followers">
-                        <span class="half-opacity pull-left">
-                            <em>Followers: </em>
-                        </span>
-                        <span class="pull-right">
-                            
-                            {{doc.author.followers}}
-                        </span>
-                        <br>
-                        <span class="half-opacity pull-left">
-                            <em>Karma:</em>
-                        </span>
-                        <span class="pull-right">
-                            
-                        {{doc.author.karma}}
-                        </span>
-                    </div>
-                    <br>
-                    <br>
-                    <div id="read-doc-bio">
-                        {{doc.author.bio}}
-                    </div>
-                    <div ng-click="follow()" ng-hide="following" id="read-doc-follow-button">
-                        Follow
-                    </div>
-                    <div ng-click="follow()" ng-show="following" id="read-doc-follow-button">
-                        Unfollow
-                    </div>
-                </div>
-                </div>
-        </div>
-        <div ng-show="Read.getNextDocId()" class="col-xs-4 pull-right">
-             
-                <a ng-click="nextDoc(doc)" class="btn btn-jo">
-                      <span class="icon ion-chevron-right"></span>
-                </a>  
-            <span>
-            
-        
-        </span>
-        </div>
-    </div>
-</div>
