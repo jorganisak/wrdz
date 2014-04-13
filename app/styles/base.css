@@ -61,9 +61,7 @@
   box-shadow: inset 0px 0px 5px -1px rgb(127, 191, 255);
 }
 
-#top-nav-container > div {
-  background-color: white;
-}
+
 
 .wrdz-doc-controls {
   margin-bottom: 70px;
@@ -249,6 +247,10 @@
 
   #me-middle {
     padding: 0;
+  }
+  
+  #top-nav-container > div {
+    background-color: white;
   }
   
    .read-list-item {
