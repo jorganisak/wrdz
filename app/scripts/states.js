@@ -45,31 +45,51 @@ config(['$stateProvider', '$urlRouterProvider',
         url:'',
         templateUrl:'partials/read-list.html',
       })
+
+      //FRONT
       .state('read.list.front', {
-        url: '/f?skip',
+        url: '/f?skip?sort',
         templateUrl: 'partials/read-list-center.html',
         resolve : {
           docs : ['Read','$stateParams', function (Read, $stateParams) {
             return Read.updateQuery([{type:'topics', value: ''}, 
-              {type:'following', value: ''}, {type:'hearts', value: ''}, {type:'skip', value: $stateParams.skip}]);
+              {type:'following', value: ''}, {type:'hearts', value: ''}, 
+              {type:'skip', value: $stateParams.skip}, {type: 'sort', value: $stateParams.sort}]);
           }]
         },
-        controller : ['$scope','docs','Read', '$state', function ($scope, docs, Read, $state) {
+        controller : ['$scope','docs','Read', '$state','$stateParams',
+         function ($scope, docs, Read, $state, $stateParams) {
           $scope.hideStats = true;
           $scope.showUser = false;
-          Read.setPrevState($state);
           $scope.docs = docs.data;
+
+          // Sorting mechanism;
+          $scope.$watch('readFilter', function (newValue) {
+            if (newValue) {
+              if (newValue !== $stateParams.sort) {
+                $stateParams.skip = null;
+              }
+
+              $state.go('read.list.front', {'skip': $stateParams.skip, 'sort': newValue})
+
+            }
+          })
+
+          $scope.readFilter = $stateParams.sort;
+
         }]
 
       })
+      //FOLLOWING
       .state('read.list.following', {
-        url: '/l/:userId',
+        url: '/l/:userId?skip?sort',
         templateUrl: 'partials/read-list-center.html',
         resolve : { 
           docs : ['$stateParams','User', 'Read', function ($stateParams, User, Read) {
             if ($stateParams.userId) {
               return Read.updateQuery([{type:'following', 
-                value: [$stateParams.userId]}, {type:'topics', value: ''}, {type:'skip', value: ''}]);
+                value: [$stateParams.userId]}, {type:'topics', value: ''}, 
+                {type:'skip', value: $stateParams.skip}, {type: 'sort', value: $stateParams.sort}]);
 
             } else {
               var a = [];
@@ -80,7 +100,8 @@ config(['$stateProvider', '$urlRouterProvider',
                 return false;
               }
               return Read.updateQuery([{type:'following', 
-                value: a}, {type:'hearts', value: ''}, {type:'topics', value: ''}, {type:'skip', value: ''}]);
+                value: a}, {type:'hearts', value: ''}, {type:'topics', value: ''}, 
+                {type:'skip', value: $stateParams.skip}, {type: 'sort', value: $stateParams.sort}]);
             }
           }]
         },
@@ -89,7 +110,7 @@ config(['$stateProvider', '$urlRouterProvider',
             $scope.hideStats = true;
             $scope.showUser = false;
 
-            $scope.$on('userChange', function (evt, user) {
+            function update (user) {
               if (user && !$stateParams.userId) {
                 var a = [];
                 angular.forEach(user.following, function (user) {
@@ -102,20 +123,37 @@ config(['$stateProvider', '$urlRouterProvider',
 
                   Read.updateQuery([{type:'following', 
                     value: a}, {type:'topics', value: ''}, {type:'hearts', value: ''},
-                    {type:'skip', value: ''}]).then(function (res) {
-                      $scope.docs = res.data;
-                    })
+                    {type:'skip', value: $stateParams.skip}, {type: 'sort', value: $stateParams.sort}])
+                    .then(function (res) {
+                        $scope.docs = res.data;
+                      })
                 }
               }
+            }
+
+            $scope.$on('userChange', function (evt, user) {
+              update(user);
+
             });
-            Read.setPrevState($state);
+
+          $scope.$watch('readFilter', function (newValue) {
+            if (newValue) {
+              if (newValue !== $stateParams.sort) {
+                $stateParams.skip = null;
+              }
+              $state.go('read.list.following', {'skip': $stateParams.skip, 'sort': newValue})
+
+            }
+          })
+
+            $scope.readFilter = $stateParams.sort;
 
             $scope.docs = docs.data;
           }]
 
       })
       .state('read.list.hearts', {
-        url: '/h',
+        url: '/h?skip?sort',
         templateUrl: 'partials/read-list-center.html',
         resolve : { 
           docs : ['$stateParams','User', 'Read', function ($stateParams, User, Read) {
@@ -125,7 +163,8 @@ config(['$stateProvider', '$urlRouterProvider',
                   return false;
                 }
                 return Read.updateQuery([{type:'hearts', 
-                  value: res}, {type:'following', value: ''},{type:'topics', value: ''}, {type:'skip', value: ''}]);
+                  value: res}, {type:'following', value: ''},{type:'topics', value: ''}, 
+                  {type:'skip', value: $stateParams.skip}, {type: 'sort', value: $stateParams.sort}]);
               } else {
                 return true;
               }
@@ -135,56 +174,76 @@ config(['$stateProvider', '$urlRouterProvider',
         controller : ['$scope', 'docs','Read', '$stateParams','$state', 
           function ($scope, docs, Read, $stateParams, $state) {
 
+            function update () {
+              var h = Read.getHearts();
+                Read.updateQuery([{type:'hearts', 
+                  value: h }, {type:'topics', value: ''}, {type:'following', value: ''},
+                  {type:'skip', value: $stateParams.skip}, {type: 'sort', value: $stateParams.sort}])
+                  .then(function (res) {
+                      console.log(res.data);
+                      $scope.docs = res.data;
+                    })
+            }
 
             $scope.$on('userChange', function (evt, user) {
               if (user) {
-                var res = Read.getHearts();
-                Read.updateQuery([{type:'hearts', 
-                  value: res }, {type:'topics', value: ''}, {type:'following', value: ''},
-                  {type:'skip', value: ''}]).then(function (res) {
-                    $scope.docs = res.data;
-                  })
+                update()
               }
             });
-            Read.setPrevState($state);
+
+            $scope.$watch('readFilter', function (newValue) {
+              if (newValue) {
+                if (newValue !== $stateParams.sort) {
+                  $stateParams.skip = null;
+                }
+                $state.go('read.list.hearts', {'skip': $stateParams.skip, 'sort': newValue})
+
+              }
+            })
+
+            $scope.readFilter = $stateParams.sort;
             $scope.docs = docs.data;
           }]
 
       })
-      .state('read.list.topics', {
-        templateUrl: 'partials/read-list-center.html',
-        url: '/t/:topicId',
-        resolve : {
-          docs : ['$stateParams', 'Read', '$state', function ($stateParams, Read, $state) {
-            if ($stateParams.topicId) {
-              return Read.updateQuery([{type:'following', 
-                value: ''}, {type:'topics', value: $stateParams.topicId}, 
-                {type:'skip', value: ''}]);
-            } else {
+      // .state('read.list.topics', {
+      //   templateUrl: 'partials/read-list-center.html',
+      //   url: '/t/:topicId',
+      //   resolve : {
+      //     docs : ['$stateParams', 'Read', '$state', function ($stateParams, Read, $state) {
+      //       if ($stateParams.topicId) {
+      //         return Read.updateQuery([{type:'following', 
+      //           value: ''}, {type:'topics', value: $stateParams.topicId}, 
+      //           {type:'skip', value: ''}, {type: 'sort', value: 'score'}]);
+      //       } else {
 
-              Read.refreshTopics().then(function (res) {
-                $state.go('read.list.topics',{topicId: res.data[0]._id}) 
-              });
-            }
-          }]
-        },
-        controller : ['$scope', 'docs', 'Read','$state', function ($scope, docs, Read, $state) {
+      //         Read.refreshTopics().then(function (res) {
+      //           $state.go('read.list.topics',{topicId: res.data[0]._id}) 
+      //         });
+      //       }
+      //     }]
+      //   },
+      //   controller : ['$scope', 'docs', 'Read','$state', function ($scope, docs, Read, $state) {
 
-          if (docs) {
-            Read.setPrevState($state);
-            $scope.docs = docs.data;
-          }
-        }]
-      })
+      //     if (docs) {
+      //       $scope.docs = docs.data;
+      //     }
+      //   }]
+      // })
       .state('read.list.user', {
         templateUrl: 'partials/read-list-center.html',
-        url: '/u/:userId',
+        url: '/u/:userId?skip?sort',
         resolve : {
           docs : ['$stateParams','User', 'Read', function ($stateParams, User, Read) {
             if ($stateParams.userId) {
+              if (!$stateParams.sort) {
+                $stateParams.sort = 'score';
+              }
+
               return Read.updateQuery([{type:'following', 
                 value: [$stateParams.userId]}, {type:'topics', value: ''}, 
-                {type:'hearts', value: ''}, {type:'skip', value: ''}]);
+                {type:'hearts', value: ''}, {type:'skip', value: $stateParams.skip}, 
+                {type: 'sort', value: $stateParams.sort}]);
 
             } else {
               return false;
@@ -195,7 +254,6 @@ config(['$stateProvider', '$urlRouterProvider',
           function ($scope, docs, Read, $stateParams, $state, $rootScope) {
 
 
-            Read.setPrevState($state);
 
             $scope.docs = docs.data;
             if ($scope.docs[0]) {
@@ -204,6 +262,18 @@ config(['$stateProvider', '$urlRouterProvider',
                 $scope.$emit('author_info', $scope.docs[0].author)
               }
             }
+
+            $scope.$watch('readFilter', function (newValue) {
+              if (newValue) {
+                if (newValue !== $stateParams.sort) {
+                  $stateParams.skip = null;
+                }
+                $state.go('read.list.user', {'userId':$stateParams.userId, 'skip': $stateParams.skip, 'sort': newValue})
+
+              }
+            })
+
+            $scope.readFilter = $stateParams.sort;
 
           }]
       })
@@ -288,53 +358,6 @@ config(['$stateProvider', '$urlRouterProvider',
  
       })
       
-      .state('me.hearts', {
-        url: '/hearts',
-        templateUrl: 'partials/me-hearts.html',
-        resolve: {
-          docs : ['Me','$state', function (Me, $state) {
-            var i = Me.getHearts();
-            if (i) {
-
-              return i;
-            } else {
-              return true;
-            }
-          }]
-        },
-        controller : ['$scope', 'docs', 'Me', function ($scope, docs, Me) {
-
-
-          $scope.currentPage = 0;
-          $scope.pageSize = 6;
-          $scope.data = [];
-          $scope.numberOfPages = function(){
-            return Math.ceil($scope.data.length/$scope.pageSize);                
-          }
-          var init = function (docs) {
-
-            if (docs.data) {
-              for (var i=0; i<docs.data.length ; i++) {
-                $scope.data.push(docs.data[i]);
-              }          
-            }      
-          }
-          init(docs);
-          $scope.$on('userChange', function (evt, user) {
-              if (user) {               
-                var i = Me.getHearts()
-                i.then(function (res) {
-                  init(res)
-
-                })
-              }
-            });
-
-
-
-        }]
-
-      })
 
      // Password reset
      .state('password_reset', {

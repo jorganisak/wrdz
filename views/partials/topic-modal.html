@@ -9,7 +9,7 @@
         <br>
         <div class="">
 
-        <div class="panel text-left">
+        <div class="text-left">
         <span ng-repeat="top in docTopics">
             <span class="label label-primary tag-label">{{top.title}} <span ng-click="removeTopic(top)" class="icon tag-remove-x ion-close"></span></span>&nbsp;
         </span>
@@ -18,7 +18,7 @@
             
         </div>
        
-        <div ng-show="userTopics.length !== 0" class="text-left tags-you-use panel">
+        <div ng-show="userTopics.length !== 0" class="text-left tags-you-use">
             
         <hr>
         <span ng-repeat="top in userTopics | orderBy: '-_docs.length' | limitTo: 20">

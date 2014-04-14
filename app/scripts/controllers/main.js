@@ -75,27 +75,6 @@ Does a few things:
 
     $scope.local_auth_form = false;
 
-
-    $scope.signup = function (user) {
-      if (!User.isLoggedIn()) {
-        User.signup(user).
-        success(function(user, status, headers, config)
-        {
-          User.getCurrentUser(user._id).success(function  (data) {
-            User.changeUser(data.user);
-            $state.go('write');
-          }).error(function  (data) {
-            });
-        }).
-        error(function(err, status, headers, config)
-        {
-          if (err.errors.username.type === 'Username already exists') {
-            $scope.message = 'Bummer. That username is taken. Try another?';
-          }
-        });
-      }
-    };
-
     $scope.closeWindow = function () {
       $timeout(function () {
         console.log('closing')
@@ -103,33 +82,14 @@ Does a few things:
       }, 1000)
     };
 
-    $scope.signin = function(user) {
-      if (!User.isLoggedIn()){
-        User.signin(user).
-        success(function(user, status, headers, config) {
-          User.getCurrentUser(user._id).success(function  (data) {
-              User.changeUser(data.user);
-              $state.go('write');
-            }).error(function  (data) {
-            });
-        }).
-        error(function(err, status, headers, config) {
-          if (err == 'Unknown user') {
-            $scope.message = 'No one has that username on wrdz!';
-          }
-          if (err == 'Invalid password') {
-            $scope.message = 'Right username, wrong password...';
-          }
-        });
-      }
-    };
+
 /*
   Two Auth methods for launching Login and Signup modals from anyhere in the app
   They launch modals and call the User service for commnication with server
 */
-    $scope.launchLogIn = function () {
+    $scope.launchEmailLogin = function () {
       var modalInstance = $modal.open({
-        templateUrl: "partials/signin.html",
+        templateUrl: "partials/email-login.html",
         controller: ['$scope', '$modalInstance', 'User', function  ($scope, $modalInstance, User) {
           $scope.close = function() {
             $modalInstance.close();
@@ -156,6 +116,26 @@ Does a few things:
             }
           };
 
+          $scope.signup = function (user) {
+            if (!User.isLoggedIn()) {
+              User.signup(user).
+              success(function(user, status, headers, config)
+              {
+                User.getCurrentUser(user._id).success(function  (data) {
+                  User.changeUser(data.user);
+                  $scope.close();
+                  $state.go('write');
+                }).error(function  (data) {
+                  });
+              }).
+              error(function(err, status, headers, config)
+              {
+                if (err.errors.username.type === 'Username already exists') {
+                  $scope.message = 'Bummer. That username is taken. Try another?';
+                }
+              });
+            }
+          };
 
           $scope.forgotPasswordModal = function () {
             var modalInstance = $modal.open({
@@ -189,6 +169,28 @@ Does a few things:
           $scope.close = function() {
             $modalInstance.close();
           }; 
+          $scope.signin = function(user) {
+            if (!User.isLoggedIn()){
+              User.signin(user).
+              success(function(user, status, headers, config) {
+                User.getCurrentUser(user._id).success(function  (data) {
+                    User.changeUser(data.user);
+                    $scope.close();
+                    $state.go('write');
+                  }).error(function  (data) {
+                  });
+              }).
+              error(function(err, status, headers, config) {
+                if (err == 'Unknown user') {
+                  $scope.message = 'No one has that username on wrdz!';
+                }
+                if (err == 'Invalid password') {
+                  $scope.message = 'Right username, wrong password...';
+                }
+              });
+            }
+          };
+
           $scope.signup = function (user) {
             if (!User.isLoggedIn()) {
               User.signup(user).
@@ -197,6 +199,7 @@ Does a few things:
                 User.getCurrentUser(user._id).success(function  (data) {
                   User.changeUser(data.user);
                   $scope.close();
+
                   $state.go('write');
                 }).error(function  (data) {
                   });
@@ -208,6 +211,29 @@ Does a few things:
                 }
               });
             }
+          };
+
+          $scope.forgotPasswordModal = function () {
+            var modalInstance = $modal.open({
+              templateUrl: "partials/password-modal.html",
+              controller: ['$scope', '$modalInstance', '$http', '$cookieStore', function  ($scope, $modalInstance, $http, $cookieStore) {
+                $scope.close = function() {
+                  $modalInstance.close();
+                }; 
+
+                $scope.submitEmail = function (email) {
+                  $http.post('/forgot', {'email': email}).then(function (res) {
+                    $cookieStore.remove('pwreset');
+                    $cookieStore.put('pwreset', {
+                        id: res.data,
+                        email: email
+                      })
+
+                  })
+                  $scope.close();
+                }
+              }],
+            });
           };
 
         }],

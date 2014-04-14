@@ -15,7 +15,7 @@
                     </span>
                 </div>
 
-                <div ng-hide="$state.includes('read')" ui-sref="read.list.front" id="top-nav-read" class="top-nav-item col-xs-4 col-sm-4 col-sm-offset-1">
+                <div ng-hide="$state.includes('read')" ui-sref="read.list.front({'skip':null, 'sort':'score'})" id="top-nav-read" class="top-nav-item col-xs-4 col-sm-4 col-sm-offset-1">
                     <span class="top-nav-title">read</span>
                 </div>
             </div>
@@ -35,15 +35,24 @@
             </div>
 
 
-            <div ng-if="!user" ng-show="$state.includes('write') || $state.includes('mywrdz')" class="col-sm-2 pull-right">
+            <div ng-if="!user" ng-show="$state.includes('write') || $state.includes('mywrdz')" class="pull-right">
                 
-                <button ng-click="launchSignUp()" ng-click="launchSignUp()" class="btn btn-jo" id="bottom-auth-btn">
+                <button ng-click="launchEmailLogin()" class="btn btn-jo" id="bottom-auth-btn">
                     Sign in with email
                 </button>
 
              
             </div>
-      
+          
+           <div ng-if="!user" ng-hide="$state.includes('write') || $state.includes('mywrdz')" class="col-sm-2 col-xs-6 text-right pull-right">
+                    
+                    <div ng-click="aboutModal()" class="top-nav-item">
+                        about wrdz
+                    </div>
+
+                 
+                </div>
+          
                 
 
             

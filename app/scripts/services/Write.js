@@ -13,12 +13,12 @@ angular.module('write')
     
     //Internal
     var firstDoc = {
-        body: "<p><b>1. Highlight this text.</b></p><p>2. You see? Its <i>editable</i>. &nbsp;This is a writing surface!</p><p>3. Delete this text (but not before you read all the steps!) and change the title, and write something awesome.</p><p><i>then</i></p><p>5. Sign in with Twitter (link) to share your writing as a picture (if over 200 words, then a link). (sign in at any points)</p><p>6. <b style='font-style: italic;'>Or don't share!</b>&nbsp; No pressure dude.&nbsp;Just sign in with Twitter <i>or email</i>&nbsp;and you'll be able to save your writing prvately.</p>",
+        body: "<p><span style='font-weight: 800;'>Ahoy internet traveler!</span></p><p>Try something for me - highlight this text.</p><p>You see that? It is <b><i>editable!</i>&nbsp;</b>&nbsp;This is a writing surface!</p><p><br></p><p>If you sign up for Wrdz, you can save and share as many of these as your heart desires.</p><p><br></p><p><i>p.s.</i></p><p>If you sign in with Twitter, you can share your writing as a <i>picture attached to a tweet</i>. &nbsp;Your followers will read it straight from the feed, without needing to click a link!</p>",
         created_at: Date(),
         has_title: true,
         is_archived: false,
         is_published: false,
-        sample: "1. Highlight this text.↵↵2. You see? Its editable.  This is a writing surface!↵↵3. Delete this text (but not before you read all the steps!) and change the title, and write something awesome.↵↵then↵↵5. Sign in with Twitter (link) to share your writing as a picture (if over 200 words, then a link). (sign in at any points)↵↵6. Or don't share!  No pressure dude. Just sign in with Twitter or email and you'll be able to save your writing prvately.↵↵",
+        sample: "Ahoy internet traveler!↵↵↵↵Try something for me - highlight this text.↵↵You see that? It is editable!  This is a writing surface!↵↵↵↵If you sign up for Wrdz, you can save and share as many of these as your heart desires.↵↵↵↵p.s.↵↵If you sign in with Twitter, you can share your writing as a picture attached to a tweet.  Your followers will read it straight from the feed, without needing to click a link!↵↵",
         title: "Welcome to Wrdz",
         topics: Array[0],
         updated_at: Date()
@@ -102,10 +102,12 @@ angular.module('write')
       UserDoc.create().then(function (res) {
         var doc = res.data;
         doc.title = 'My First Wrdz';
+        doc.body = '<p>Delete this and write something awesome!</p>'
         user._userDocs.unshift(doc);
         setCurrentDoc(doc);
         updateUserDoc('title', 'My First Wrdz');
         switchDocTitle(doc._id);
+        current_doc.has_title = true;
       });
     }
 
@@ -123,7 +125,6 @@ angular.module('write')
         updateUserDoc('hasTitle', !current_doc.has_title);
       }
       //udate current doc
-      console.log(id);
       current_doc.has_title = !current_doc.has_title;
       //update userDocs on scope.user
       angular.forEach(docs, function (doc) {

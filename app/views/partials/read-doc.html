@@ -1,7 +1,7 @@
 <div id="read-list-body" class='row'>
     <div class="col-sm-2 hidden-xs text-left">
         <div  class='fixed-left'>
-            <div ui-sref='read.list.front({"skip": null})' id="read-doc-back">
+            <div ui-sref="read.list.front({'skip': null, 'sort': 'score'})" id="read-doc-back">
             <span class="icon ion-arrow-return-left"></span>
         </div>
         </div>
@@ -10,24 +10,7 @@
     <div class="col-sm-8 col-xs-12">
         <div id='read-doc-center' ng-controller='ReadDocCtrl'>
             
-            <div class="show-hide-fade">
-
-                <div class="row">
-                   
-                    <div class="col-xs-6 text-left pull-left ">
-
-                        <div class="read-list-date" id='read-doc-date'>
-
-                            {{moment(doc.published_at).format('MMMM Do, ha')}}
-                        </div>
-
-                    </div>
-                </div>
-                <br>
-            
-                
-            </div>
-
+       
 
 
 
@@ -45,65 +28,68 @@
             <div class="">
                 <div class="hidden-xs fixed-read-doc-stats">
                         
+                    <div>
+                        
+                        <div  ng-class='active1' ng-click="up_vote()"  class="read-doc-arrow ">
+                            <span  class="icon  ion-arrow-up-a"></span>
+                        </div>   
+                        <br>
+                        
+                        <div ng-class='active2' ng-click="heart()" class="read-doc-heart">
+                            <span class=" icon ion-heart"></span>
+                        </div>                        
+                        <br>
+                        
+                        <div twitter-button ng-click="open(readDoc._id)" class="read-doc-tweet">
+                            <span  class="icon ion-social-twitter"></span>
+                        </div>
+                    <!--  <div class="col-sm-3">
+                        
+                        <div ng-click="openPictureModal(readDoc._id)" >
+                            <span  class="icon ion-camera"></span>
+                        </div>
+                    </div> -->
+                            
+                    </div>
+       
+                </div>
+            </div>
+
+                                <div class="visible-xs read-doc fixed-read-left-bar">
+                        
                         <div>
+                            <div class="row ">
+                                <div class="col-xs-4">
                                     
                                     <div  ng-class='active1' ng-click="up_vote()"  class="read-doc-arrow ">
                                         <span  class="icon  ion-arrow-up-a"></span>
                                     </div>   
-                                    <br>
+                                </div>
+                                <div class="col-xs-4">
                                     
                                     <div ng-class='active2' ng-click="heart()" class="read-doc-heart">
                                         <span class=" icon ion-heart"></span>
                                     </div>                        
-                                    <br>
+                                </div>
+                                <div class="col-xs-4">
                                     
                                     <div twitter-button ng-click="open(readDoc._id)" class="read-doc-tweet">
                                         <span  class="icon ion-social-twitter"></span>
                                     </div>
-                                <!--  <div class="col-sm-3">
-                                    
-                                    <div ng-click="openPictureModal(readDoc._id)" >
-                                        <span  class="icon ion-camera"></span>
-                                    </div>
-                                </div> -->
+                                </div>
+                               
                                 
                             </div>
+                        
        
                         </div>
                     </div>
-                        
-            
-
-                    <div class='visible-xs' id="fixed-bottom-bar">
-                        <div class="col-xs-3 no-padding">
-                            <div  ng-class='active1' ng-click="up_vote()"  class="read-doc-arrow">
-                                    <span  class="icon  ion-arrow-up-a"></span>
-                                </div>  
-                        </div>
-
-                        <div class="col-xs-3  no-padding">
-                            <div ng-class='active2' ng-click="heart()" class="read-doc-heart">
-                                    <span class=" icon ion-heart"></span>
-                                </div> 
-                        </div>
-                        <div class="col-xs-3  no-padding">
-                           <div twitter-button ng-click="open(readDoc._id)" class="read-doc-tweet">
-                                    <span  class="icon ion-social-twitter"></span>
-                                </div>
-                        </div>
-
-                        
-                    </div>
-                </div>
-
-
-
-            
-
+                  
         </div>
 
-
     </div>
+
+
 
     <div  class="col-sm-2 hidden-xs text-right">
         <div class='text-right' id="read-list-right">

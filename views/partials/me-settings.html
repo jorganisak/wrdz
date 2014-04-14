@@ -33,16 +33,16 @@
 
     </div>
 
-    <div class="row">
+<!--     <div class="row">
       <h4>Bio</h4>
 
-      <textarea name="bio" placeholder="Whose words are these?" ng-model="user.bio" maxlength="50" class="form-control" id="bio-textarea" cols="30" rows="4"></textarea>
+      <textarea name="bio" placeholder='Whose words are these?' ng-model='user.bio' maxlength="50" class='form-control' id="bio-textarea" cols="30" rows="4"></textarea>
       <span class="pull-right">
         
         {{50 - user.bio.length}}
       </span>
 
-    </div>
+    </div> -->
 <!--     <div ng-if='user.twitter' class="row">
       <h4>Show Twitter Link</h4>
 
@@ -60,10 +60,10 @@
             
           <h4>Followers:</h4>
           
-          <h6>{{user.followers}}</h6>
+          <p>{{user.followers}}</p>
           
           <h4>Karma:</h4>
-      <h6>{{user.karma}}</h6>
+      <p>{{user.karma}}</p>
           
       <a class="" ui-sref="read.list.user({userId: user._id})">See your public wrdz.</a>
     </div>

@@ -13,9 +13,9 @@ angular.module('read')
     $scope.Read = Read;
 
     $scope.tabs = [
-      { title: "Front", state: "read.list.front({'skip': null})"},
-      { title: "Following", state: "read.list.following({'skip': null})"},
-      { title: "Hearts", state: "read.list.hearts({'skip': null})"}
+      { title: "Front", state: "read.list.front({'skip': null, 'sort': 'score'})"},
+      { title: "Following", state: "read.list.following({'skip': null, 'sort': 'score'})"},
+      { title: "Hearts", state: "read.list.hearts({'skip': null, 'sort': 'score'})"}
     ];
 
     $scope.navType = 'pills';
@@ -44,15 +44,19 @@ angular.module('read')
       }
     })
 
+
+
     //Pagination Loading
     $scope.loadNext = function () {
       var skip = Number($scope.$stateParams.skip) + 10;
-      $scope.$state.go($scope.$state.current.name, {'skip' : skip})
+      var sort = $scope.$stateParams.sort;
+      $scope.$state.go($scope.$state.current.name, {'skip' : skip, 'sort': sort})
     };
 
     $scope.loadPrev = function () {
       var skip = Number($scope.$stateParams.skip) - 10;
-      $scope.$state.go($scope.$state.current.name, {'skip' : skip})
+      var sort = $scope.$stateParams.sort;
+      $scope.$state.go($scope.$state.current.name, {'skip' : skip, 'sort': sort})
     };
 
 
@@ -97,7 +101,7 @@ angular.module('read')
           var top = document.getElementById(doc._id).getBoundingClientRect().top
           var h = $window.pageYOffset;
           $('html,body').animate({
-            scrollTop: top+h-80
+            scrollTop: top+h-40
           }, 200);
           // $window.scrollTo(0, top + h - 105);
         },600)

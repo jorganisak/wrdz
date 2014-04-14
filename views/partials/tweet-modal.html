@@ -1,0 +1,22 @@
+<div class="modal-body">
+  <span ng-click="close()" class="pull-right icon ion-close"></span>
+
+  
+  <span id="fixed-twitter-modal" class="icon ion-social-twitter"></span>
+  <p id="tweet-modal-header">Tweet As A Photo</p>
+
+ 
+  <textarea class="form-control" ng-model="message" maxlength="110" name="twitter-message" id="twitter-message" cols="30" rows="10"></textarea>
+  <span id="message-count">
+    
+    {{110 - message.length}}
+  </span>
+
+  <button ng-click="sendTweet()" class="btn btn-jo" id="tweet-modal-button">Send Tweet</button>
+  <div id="twitter-preview">
+    <p class="pull-left">Photo Preview</p>
+    
+  </div>
+
+
+</div>

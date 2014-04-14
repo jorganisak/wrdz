@@ -1,18 +1,20 @@
 
-<div id='me-middle' class="">
-<!--     <div class="row">
-        
-        <div class="btn-group col-sm-5 pull-right read-filter-button-group">
+<div id='me-middle'>
 
-            <button type="button" class="btn btn-default" ng-model="readFilter" btn-radio="'Popularity'">Popular</button>
-            <button type="button" class="btn btn-default" ng-model="readFilter" btn-radio="'Date'">New</button>
+    <div class="row">
+        
+        <div class="btn-group col-sm-6 col-xs-12 col-sm-offset-3 read-filter-button-group">
+
+            <button type="button" class="btn btn-default" ng-model="readFilter" btn-radio="'score'">Popular</button>
+            <button type="button" class="btn btn-default" ng-model="readFilter" btn-radio="'time'">New</button>
 
         </div> 
     </div>
-    <br> -->
+    <br>
+    
 
     <accordion close-others="true">
-        <div ng-controller='ReadDocCtrl' ng-repeat="doc in docs | orderBy: '-score'">
+        <div ng-controller='ReadDocCtrl' ng-repeat="doc in docs">
             
 
             <accordion-group ng-class="{'active': isopen}" id="{{doc._id}}" class='read-panel' is-open="isopen">
@@ -94,6 +96,7 @@
 
 
                 </accordion-heading>
+                
 
 
                     <div ng-show='doc.doc.has_title' class="text-center read-title">
@@ -130,12 +133,7 @@
                                         <span  class="icon ion-social-twitter"></span>
                                     </div>
                                 </div>
-                                <!--  <div class="col-xs-3">
-                                    
-                                    <div ng-click="openPictureModal(readDoc._id)" >
-                                        <span  class="icon ion-camera"></span>
-                                    </div>
-                                </div> -->
+                               
                                 
                             </div>
                         

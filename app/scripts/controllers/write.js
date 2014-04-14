@@ -40,12 +40,14 @@ angular.module('write')
     // TEXT EDITOR OPTIONS
     $scope.mediumEditorOptionsBody = angular.toJson(
       {"placeholder": "Write here",
-        "buttons": ["bold", "italic", "anchor", "header2", "orderedlist", "unorderedlist" ],
+        "buttons": ["bold", "italic", "header2", "anchor","quote"],
         "buttonLabels" : {"header2": "<b>H</b>", "anchor": "<span><span class='icon ion-link'></span></span>",
-         "bold":"<strong>b</strong>", "italic": "<em>i</em>"},
+         "bold":"<strong>b</strong>", "italic": "<em><b>i</b></em>"},
         "disableToolbar": false,
-        "forcePlainText" : false,
-        "targetBlank": true}
+        "cleanPastedHTML": true,
+        "checkLinkFormat": true,
+        "targetBlank": true,
+        "anchorPreviewHideDelay": 500}
     );
 
     $scope.mediumEditorOptionsTitle = angular.toJson(
@@ -106,14 +108,18 @@ angular.module('write')
 
     // If user, set Write service current_doc to that users current
     if ($scope.user) {
-      if ($scope.user.current_doc) {
+      if ($scope.user._userDocs[0]) {
 
-        Write.setCurrentDoc($scope.user.current_doc);
+        Write.setCurrentDoc($scope.user._userDocs[0]);
         Write.setDocs($scope.user._userDocs);
 
       } else if (!$scope.user._userDocs[0]) {
-        Write.createFirstDoc()
-        
+        Write.createFirstDoc();
+        // $timeout(function () {
+        //   $scope.currentDoc.has_title = true;
+        //   document.getElementById('write-content').focus();
+        // }, 2000)
+
       }
     }
     else {
@@ -138,6 +144,11 @@ angular.module('write')
           Write.setCurrentDoc($scope.user._userDocs[0]);
         } else {
           Write.createFirstDoc();
+
+          // $timeout(function () {
+          //   $scope.currentDoc.has_title = true;
+          //   document.getElementById('write-content').focus();
+          // }, 2000)
         }
       }
     });
@@ -274,15 +285,25 @@ angular.module('write')
         
         var modalInstance = $modal.open({
           templateUrl: "partials/publish-modal.html",
-          controller: ['$scope', 'Write', '$modalInstance', '$state', 'doc', 'user', 'Picture',
-          function ($scope, Write, $modalInstance, $state, doc, user, Picture) {
+          controller: ['$scope', 'Write', '$modalInstance', '$state', 'doc', 'user', 'Picture', 'openTweetModal',
+          function ($scope, Write, $modalInstance, $state, doc, user, Picture, openTweetModal) {
             $scope.user = user;
             $scope.anon = false;
-            $scope.twitterShareCollapsed = false;
             var img = "";
+            var tweet = false;
+
+            $scope.setTweetFlag = function () {
+              tweet = true;
+            }
 
             if (user) {
               $scope.username = user.username;
+              if (user.twitter.username) {
+                $scope.twitterOpts = true;
+              } else {
+                $scope.publishOpts = true;
+                $scope.twitterOpts = false;
+              }
             }
 
             $scope.close = function () {
@@ -290,33 +311,103 @@ angular.module('write')
             };
 
 
+
             // Publish doc
-            $scope.publish = function (isAnon, tweet) {
+            $scope.publish = function (isAnon) {
 
               Write.publishDoc(isAnon).then(
                 function (res) {
                   if (res.status === 201) {
-                    if (tweet) {
-                      Picture.tweetPic(user, img, res.data._id);
-                    }
                     doc.is_published = true;
                     doc.pub_doc = res.data;
                     Write.setCurrentDoc(doc);
                     // TODO prompt user to share here
-                    $state.go('read.doc', {docId: res.data._id});
+                    if (tweet) {
+                      $scope.openTweet(res.data._id)
+                    } else {
+
+                      $state.go('read.doc', {docId: res.data._id});
+                    }
                     $scope.close();
                   }
                 }
               );
             };
 
+            $scope.openTweet = function (docId) {
+              $scope.close();
+              openTweetModal(docId);
+            }
+
+          }],
+          resolve: {
+            user : function () {
+                return $scope.user;
+            },
+
+            doc : function () {
+              return $scope.currentDoc;
+            },
+
+            openTweetModal : function () {
+              return $scope.openTweetModal;
+            }
+          }
+        });
+      }
+    };
+
+     $scope.openTweetModal = function (docId) {
+
+        
+        var modalInstance = $modal.open({
+          templateUrl: "partials/tweet-modal.html",
+          controller: ['$scope', 'Write', '$modalInstance', '$state', 'user', 'Picture',
+          function ($scope, Write, $modalInstance, $state, user, Picture) {
+            $scope.user = user;
+            var img = "";
+            $scope.message = '';
+
+
+            $scope.close = function () {
+              $modalInstance.close();
+            };
+
+            function tweetPic (img) {
+              //id is optional
+              console.log($scope.message)
+              var message = document.getElementById('twitter-message').value;
+              Picture.tweetPic(user, img, message);
+              $scope.close();
+            }
+
+            function getShortUrl (docId) {
+              return Picture.shortUrl(docId)
+            }
+
+            $scope.sendTweet = function () {
+              tweetPic(img);
+            }
+
+            if (docId) {
+              getShortUrl(docId).then(function (res) {
+                var url = res.data;
+                $scope.message = " " + url;
+              })
+            }
+
+
+
+            var prevWidth = document.getElementById("write-center").offsetWidth
+            document.getElementById("write-center").style.width="500px";
             html2canvas(document.getElementById('write-center'), 
             {
-              onrendered : function (canvas) {
-                document.getElementById('twitter-share').appendChild(canvas);
 
+              onrendered : function (canvas) {
+                document.getElementById('twitter-preview').appendChild(canvas);
+
+                document.getElementById("write-center").style.width=prevWidth+"px";
                 img = canvas.toDataURL("image/png");
-                console.log(img);
 
                 // if (canvas.toBlob) {
                 //   canvas.toBlob(
@@ -336,19 +427,12 @@ angular.module('write')
 
           }],
           resolve: {
-
-
             user : function () {
                 return $scope.user;
-            
-            },
-
-            doc : function () {
-              return $scope.currentDoc;
             }
           }
         });
-      }
+
     };
 
     $scope.openTopicModal = function () {

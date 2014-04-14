@@ -8,7 +8,7 @@
     </div>
   
   <span ng-repeat='user in user.following'>
-    <span ui-sref='read.list.user({userId: user._id})' class="label label-primary following-tag-label">{{user.username}} &nbsp;<span ng-click="unfollow(user._id); $event.stopPropagation()" class="icon pull tag-remove-x ion-close"></span></span>
+    <span ui-sref='read.list.user({userId: user._id})' class="label label-primary following-tag-label">{{user.username}} &nbsp;<span ng-click="unfollow(user._id); $event.stopPropagation()" class="icon pull tag-remove-x ion-close"></span></span>&nbsp;
 
 
   </span>

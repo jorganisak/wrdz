@@ -2,9 +2,45 @@
   color: black;
 }
 
+.fixed-read-left-bar.read-doc {
+  top: 140px;
+}
+
+#message-count {
+  position: absolute;
+  
+  right: 24%;
+  top: 170px;
+}
+
+#twitter-message {
+  height: 70px;
+  width: 60%;
+  /* margin-bottom: 30px; */
+  resize: none;
+  margin: 0 auto 0px auto;
+  border-color: rgb(237, 237, 237);
+}
+
+#tweet-modal-header {
+  margin-top: -3%;
+  margin-bottom: 9%;
+}
+
+#tweet-modal-button {
+  width: 24%;
+  float: right;
+  /* margin-top: -90px; */
+  background-color: rgb(33, 162, 255);
+  color: white;
+  font-size: 1.1em;
+  position: absolute;
+  right: 23%;
+  top: 200px;
+}
+
 #save-alert {
   position: fixed;
-  
   bottom: 0%;
   padding: 10px20px;
   left: 30%;
@@ -15,6 +51,12 @@
   text-align: center;
   opacity: 0.5;
   background-color: rgb(255, 0, 0);
+}
+
+#wrdz-top {
+  position: absolute;
+  right: 1%;
+  top: 1%;
 }
 
 #write-left {
@@ -28,11 +70,13 @@
 .top-bar-btn.small {
   width: 33%;
 }
+
 #read-doc-center {
   max-width: 600px;
-  margin: 0 auto;
+  margin: 30px auto;
   width: 90%;
 }
+
 #small-author-twitter {
   font-size: 1.6em;
   padding: 10px 5px;
@@ -45,9 +89,9 @@
 
 #profile-right {
   position: fixed;
-  width: 60%;
+  width: 10%;
   top: 0%;
-  left: 20%;
+  right: 4%;
   background-color: rgb(252, 252, 252);
   margin: 0 auto 0px auto;
   z-index: 2;
@@ -61,8 +105,6 @@
   box-shadow: inset 0px 0px 5px -1px rgb(127, 191, 255);
 }
 
-
-
 .wrdz-doc-controls {
   margin-bottom: 70px;
   /* left: 25%; */
@@ -72,8 +114,8 @@
 }
 
 .wrdz-doc-controls > div > .read-list-date {
-  margin-left: 20px;
-  margin-top: 4px;
+  padding-right: 20px;
+  margin-top: 11px;
 }
 
 .ion-gear-a {
@@ -99,7 +141,10 @@
 }
 
 #about-wrdz {
-  margin: 50px 0 0 10px;
+  margin: 80px 0 0 10px;
+  cursor: pointer;
+  font-family: 'Clear Sans';
+  font-weight: 100;
 }
 
 #topicCollapse > span > .tag-label:hover {
@@ -114,13 +159,16 @@
 
 .pub-info-left {
   padding: 17px;
-  line-height: 2;
+  line-height: 3;
+  border: none;
   margin-bottom: 0;
-  background-color: white;
+  background-color: transparent;
   box-shadow: none;
   border-radius: 0;
+  font-weight: 100;
+  font-family: 'Clear Sans', sans-serif;
   cursor: default;
-  border-color: rgb(243, 243, 243);
+  border-bottom: 2px solid rgb(243, 243, 243);
 }
 
 .tags-you-use > span > .tag-label:hover {
@@ -238,33 +286,47 @@
   /* margin-bottom: 130px; */
 }
 
+#twitter-preview {
+  margin-top: 130px;
+}
+
 @media (max-width: 768px) {
   .panel-body {
     padding: 10px 0px 75px 0px;
     border-color: rgb(242, 242, 242) !important;
     margin-bottom: 0px;
   }
+  #twitter-message {
+    width: 100%;
+  }
+  
+  #tweet-modal-button {
+    width: 100%;
+    right: 0;
+  }
 
   #me-middle {
     padding: 0;
   }
-  
+
+  .top-bar-btn {
+    width: 45% !important;
+  }
+
   #top-nav-container > div {
     background-color: white;
   }
-  
-   .read-list-item {
+
+  .read-list-item {
     padding: 5px 15px !important;
   }
-  
-
 }
 
 #me-middle {
   max-width: 670px;
   width: 95%;
   margin: 0px auto 0 auto;
-  margin-top: 50px;
+  /* margin-top: 60px; */
   /* background-color: white; */
   /* box-shadow: 0 0 1px 0px rgba(223, 223, 223, 1), inset 0px 0px 5px -1px rgba(179, 179, 179, 0.61); */
 }
@@ -274,7 +336,7 @@
 }
 
 #read-center {
-  padding-top: 40px;
+  /* padding-top: 40px; */
 }
 
 .read-panel.active {
@@ -312,8 +374,8 @@
 .btn-default:active,
 .btn-default.active,
 .open .dropdown-toggle.btn-default {
-  /* color: #333; */
-  background-color: #E3E3E3;
+  color: #040404;
+  background-color: #ECECEC;
   border-color: #FFFFFF;
 }
 
@@ -321,15 +383,16 @@
 .btn.active {
   background-image: none;
   outline: 0;
-  box-shadow: inset 0 3px 5px rgba(220, 220, 220, 0.125);
+  box-shadow: inset 0 1px 5px -2px rgba(77, 77, 77, 0.125);
 }
 
-ul, ol {
-  padding-left: 19px;
+ul,
+ol {
+  padding-left: 40px;
 }
 
 #recent-docs {
-  margin-top: -380px;
+  margin-top: -430px;
   width: 270%;
   right: 0%;
   position: absolute;
@@ -341,14 +404,14 @@ ul, ol {
   width: 100%;
   top: 0%;
   left: 0%;
-  box-shadow: 0 2px 2px -1px rgb(247, 247, 247), inset 0 -2px 2px -1px rgb(243, 243, 243);
+  box-shadow: 0 2px 1px -2px rgb(231, 231, 231), inset 0 -2px 10px -3px rgb(253, 253, 253);
   z-index: 2;
   height: 37px;
   background-color: rgb(255, 255, 255);
 }
 
 #write-fixed-top-container {
-  width: 90%;
+  width: 93%;
   margin: 0 auto;
 }
 
@@ -361,7 +424,7 @@ ul, ol {
   top: 20px;
   height: 100%;
   right: 0%;
-  padding-top: 40px;
+  /* padding-top: 40px; */
   background-color: rgb(250, 250, 250);
 }
 
@@ -499,6 +562,7 @@ body {
 h6 {
   font-size: 25px;
   line-height: 1.8;
+  font-family: 'Clear Sans', sans-serif;
 }
 
 .topic-add:hover {
@@ -549,11 +613,27 @@ h6 {
 .read-filter-button-group > .btn {
   width: 50%;
   font-size: 1em;
-  border: solid 1px rgb(234, 232, 232);
+  border: 1px solid rgb(240, 240, 240);
   padding: 5px 15px;
-  border-radius: 0px;
-  font-family: 'Clear Sans', sans-serif;
+  border-radius: 14px;
+  font-family: 'Roboto', sans-serif;
   font-weight: 100;
+  opacity: 0.5;
+  border-top: none;
+  border-top-right-radius: 0px;
+  background-color: transparent;
+  border-top-left-radius: 0px;
+}
+
+.read-filter-button-group > .btn.active {
+  background-color: white;
+  /* font-weight: 400; */
+  opacity: 1;
+  border-color: rgb(240, 240, 240);
+}
+
+.read-filter-button-group > .btn:hover {
+  background-color: white;
 }
 
 #wrdz-headline:hover {
@@ -601,11 +681,11 @@ h6 {
 
 #landing-twitter-signup {
   padding: 8px 20px;
-  /* border: solid 1px rgb(234, 234, 234); */
+  border: solid 1px rgb(234, 234, 234);
   border-radius: 0px;
   color: rgb(50, 139, 255);
   font-family: 'Clear Sans', sans-serif;
-  width: 210px;
+  width: 100%;
   transition: all 200ms ease-in-out;
   font-size: 1.1em;
   margin: 0 auto;
@@ -624,7 +704,7 @@ h6 {
 }
 
 .read-doc-tweet {
-  padding: 6px 21%;
+  padding: 4px 1% 0px 0;
   text-align: center;
   transition: all .2s linear;
   cursor: pointer;
@@ -638,6 +718,7 @@ h6 {
   max-width: 300px;
   position: relative;
   margin: 3% auto 0px auto;
+  text-align: center;
 }
 
 .read-doc-tweet:hover {
@@ -658,7 +739,7 @@ li {
   line-height: 1.25;
   font-family: 'Linux Libertine', sans-serif;
   font-family: 'Noto Sans', sans-serif;
-  font-family: 'Clear Sans';
+  font-family: 'Clear Sans', sans-serif;
 }
 
 li {
@@ -932,8 +1013,8 @@ h1 {
 }
 
 #mywrdz-body {
-  /* margin-top: 70px; */
-  /* margin-bottom: 70px; */
+  margin-top: 60px;
+  margin-bottom: 60px;
 }
 
 #mywrdz-doc-list {
@@ -1132,9 +1213,9 @@ h1 {
   font-size: 0.8em;
   border: solid 1px silver;
   cursor: pointer;
-  width: 50%;
+  width: 69%;
   font-weight: 100;
-  margin-left: 49%;
+  margin-left: 30%;
   opacity: 0.4;
   transition: all 75ms linear;
   margin-top: 10%;
@@ -1147,6 +1228,7 @@ h1 {
 #profile-followers {
   padding-top: 24px;
   font-size: 1.1em;
+  /* width: 100%; */
 }
 
 #profile-follow-button {
@@ -1254,8 +1336,8 @@ add-button.active:active {
 */
 
 #me-content {
-  /* margin-top: 70px; */
-  /* margin-bottom: 40px; */
+  margin-top: 50px;
+  margin-bottom: 40px;
 }
 
 .me-doc-block {
@@ -1270,7 +1352,7 @@ add-button.active:active {
 #read-list-right {
   position: fixed;
   width: 12%;
-  top: 7%;
+  top: 8%;
   font-family: 'Clear Sans', sans-serif !important;
   right: 3%;
   max-width: 140px;
@@ -1293,13 +1375,9 @@ add-button.active:active {
   transition: all 200ms ease;
   width: 15%;
   max-width: 160px;
-  top: 7%;
+  top: 12%;
   height: 100%;
   left: 2%;
-}
-
-.fixed-left:hover {
-  /* opacity: 1; */
 }
 
 #read-list-left:hover {
@@ -1410,7 +1488,7 @@ a:hover {
 }
 
 a {
-  color: #82AFFF;
+  color: #0053E8;
   /*   text-decoration: underline; */
   line-height: inherit;
   cursor: pointer;
@@ -1418,16 +1496,18 @@ a {
 
 blockquote,
 blockquote p {
-  line-height: 1.6;
+  /* line-height: 1.6; */
   font-style: italic;
-  color: #6F6F6F;
-  font-family: 'Roboto', sans-serif;
+  color: #000000;
+  font-size: 17px;
+  font-weight: 100;
+  font-family: 'Montserrat', sans-serif;
 }
 
 blockquote {
-  margin: 0 0  1.25rem;
-  padding: 0.5625rem 1.25rem 1rem 1.1875rem;
-  border-left: 1px solid #dddddd;
+  margin: 2rem 0 2rem 5px;
+  padding: 0.5625rem 6.25rem 1rem 1.8875rem;
+  border-left: 2px solid #6189C3;
 }
 
 #header {
@@ -1469,7 +1549,7 @@ blockquote {
   /* padding: 0px 3px; */
   background-color: white;
   /* margin-bottom: 5px; */
-  box-shadow: 1px -1px 3px -3px black;
+  box-shadow: 0px 0px 1px -1px black;
   border-radius: 0px !important;
 }
 
@@ -1498,7 +1578,7 @@ blockquote {
   cursor: pointer;
   opacity: 0.7;
   height: 43px;
-  padding: 4px 0 0 0;
+  padding: 4px 5px 0 0;
   transition: all 250ms ease-in-out 100ms;
   /* font-weight: 100; */
   /* box-shadow: inset 0 -2px 0px black; */
@@ -1573,7 +1653,7 @@ h4 {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 800;
   font-size: 29px;
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
 }
 
 .headline {
@@ -1654,12 +1734,13 @@ p {
 }
 
 #write-center {
-  padding: 5% 3% 8% 3%;
-  box-shadow: 0 0 1px 0px rgba(223, 223, 223, 1), inset 0px 0px 4px -1px rgba(179, 179, 179, 0.61);
+  padding: 5% 4% 8% 4%;
+  box-shadow: 0 0 1px 0px rgba(236, 236, 236, 1), inset 0px 0px 4px -1px rgba(228, 228, 228, 0.61);
   max-width: 684px;
   margin: 20px auto 30% auto;
   position: relative;
   text-align: left;
+  width: 101%;
   border-radius: 6px;
   background-color: rgb(255, 255, 255);
 }
@@ -1684,8 +1765,8 @@ p {
   float: right;
   position: absolute;
   opacity: 0.2;
-  top: 29px;
-  right: 5%;
+  top: 9px;
+  right: 10px;
   z-index: 1;
 }
 
@@ -1849,7 +1930,7 @@ h3 {
   font-size: 0.9em;
   font-family: 'Clear Sans', sans-serif;
   font-weight: 100;
-  padding-top: 5px;
+  padding-top: 3px;
   margin-right: -9px;
 }
 
@@ -1891,7 +1972,7 @@ h3 {
 }
 
 .ion-heart {
-  color: #FF251F;
+  color: #FF4D49;
   font-size: 1.5em;
   /* margin-top: -20px; */
   /* margin-bottom: -20px; */
@@ -1991,8 +2072,8 @@ h3 {
 }
 
 .following-tag-label {
-  font-size: 1.8rem;
-  line-height: 2.3;
+  font-size: 1.4rem;
+  line-height: 3.3;
   margin: 10px;
   color: rgb(90, 90, 90);
   background-color: rgb(218, 236, 255);
@@ -2129,13 +2210,13 @@ h3 {
 
 .read-doc-heart:hover {
   /* font-size: 1.15em; */
-  box-shadow: inset 5px 0px 0px -1px rgb(255, 67, 67);
+  box-shadow: inset 3px 0px 0px 0px rgb(255, 67, 67);
   opacity: 1;
 }
 
 .read-doc-arrow:hover {
   /* font-size: 1.15em; */
-  box-shadow: inset 5px 0px rgb(0, 218, 0);
+  box-shadow: inset 3px 0px rgb(0, 218, 0);
   opacity: 1;
 }
 
@@ -2248,7 +2329,7 @@ h3 {
   width: 5%;
   max-width: 180px;
   right: 0%;
-  top: 7%;
+  top: 17%;
   background-color: transparent;
 }
 
@@ -2315,10 +2396,11 @@ h3 {
 }
 
 .write-last-item {
-  margin: 2px 0px;
+  margin: 20px 0px;
   font-family: 'Clear Sans', sans-serif;
   font-weight: 100;
   font-size: 0.9em;
+  /* box-shadow: 0 7px 16px -13px silver; */
   border-radius: 2px;
   padding: 7px 15px 7px 10px;
   cursor: pointer;
@@ -2467,6 +2549,7 @@ h3 {
 
 .top-bar-btn {
   margin: 0;
+  margin-right: 10px;
   font-size: 1.1em;
   border: none;
   /* box-shadow: 1px 1px 0 0 silver; */
@@ -2474,9 +2557,14 @@ h3 {
   text-align: center;
   height: 36px;
   color: rgb(143, 143, 143);
-  width: 13%;
-  padding: 4px;
+  width: 12%;
+  font-family: 'Roboto', sans-serif;
   background-color: transparent;
+  padding: 0px;
+}
+
+.top-bar-btn#landing-twitter-signup {
+  border: none;
 }
 
 .fixed-read-doc-stats {
@@ -2487,8 +2575,7 @@ h3 {
 }
 
 #read-doc-date {
-    margin: 10px 0 0 15px;
-  
+  margin: 10px 0 0 15px;
 }
 
 .top-bar-btn:hover {
@@ -2529,32 +2616,41 @@ h3 {
 .archive-button {
   margin-top: 20%;
   border: none;
+  background-color: transparent;
   padding-right: 20px;
 }
 
 .archive-button:hover {
   color: red !important;
-  opacity: 0.7;
+  /* opacity: 0.7; */
   border: none;
 }
 
 #bottom-auth-btn:hover {
-  background-color: rgba(246, 246, 246, 0.7);
+  color: black;
 }
 
 #bottom-auth-btn {
   font-size: 1.2em;
   margin: 0;
   position: fixed;
-  height: 35px;
-  /* background-color: rgb(234, 234, 234); */
-  color: rgb(18, 18, 18);
-  padding: 9px 0;
+  height: 36px;
+  background-color: rgba(249, 249, 249, 0.85);
+  color: rgb(78, 78, 78);
+  padding: 9px 0 0px 0;
   bottom: 1%;
   border: none;
-  font-size: 1.1em;
-  right: 3%;
-  width: 193px;
+  font-size: 1em;
+  right: 0%;
+  width: 163px;
+}
+
+#fixed-twitter-modal {
+  position: absolute;
+  left: 6%;
+  top: 19px;
+  color: rgb(88, 170, 255);
+  font-size: 2em;
 }
 
 #mywrdz-filter-button {
@@ -2563,4 +2659,37 @@ h3 {
   padding: 5px;
   font-weight: 100;
   border: none;
+}
+
+#twitter-share > .pub-button {
+  width: 30%;
+  margin: 0;
+  font-size: 1.3em;
+}
+
+.pub-button:hover {
+  border: none;
+}
+
+.pub-button > .ion-social-twitter {
+  color: rgb(75, 172, 255);
+}
+
+.pub-button {
+  font-family: 'Roboto';
+  margin: 20px 2%;
+  height: 110px;
+  line-height: 1.5;
+  padding: 0;
+  border: none;
+  font-size: 1.5em;
+  color: rgb(110, 110, 110);
+  font-weight: 500;
+  box-shadow: inset 0px -1px 3px -1px rgb(201, 201, 201), 0px -3px 1px -3px rgb(235, 235, 235);
+}
+
+
+
+#publishOpts > .pub-button {
+  width: 45%;
 }

@@ -1,93 +1,47 @@
 
 <div class="modal-body">
-      <span ng-click="close()" class="pull-right icon ion-close"></span>
+  <span ng-click="close()" class="pull-right icon ion-close"></span>
 
 
-    <h3>Share</h3>
-<hr>
-    <div ng-show='user'>
+  <h3>Share</h3>
+  <hr>
+  <br>
+  <div ng-show='user'>
 
 
 
-      <div id='twitter-share' >
-        
-      </div>
-      <div ng-click='anon = !anon' class="row" id='anon-checkbox'>
-        <div class='col-sm-6 col-sm-offset-2'>
+    <div class="row" ng-show='twitterOpts' id='twitter-share' >
 
-          <em>Publish Anonymously on Wrdz</em>
-        </div>
-        <div class='col-sm-2'>
-          <input class="form-control" ng-model='anon' type="checkbox">
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col-sm-6">
-          <button ng-click='publish(anon)' class="btn btn-jo">
-            Publish (don't Tweet)
+
+
+     
+          <button ng-click='openTweet()' class="btn pub-button btn-jo">
+            <span class="icon ion-social-twitter"></span> &nbsp; Tweet
           </button>
-        </div>
-        <div class="col-sm-6">
-          <button ng-click='publish(anon, true)' class="btn btn-jo">
-            
-            Publish and Tweet <span class="icon ion-social-twitter"></span> 
-          </button>
-        </div>
-      </div>
+          <button ng-click='publishOpts = true; twitterOpts = false;' class="btn pub-button btn-jo">
 
+            Publish
+          </button>          
+          <button ng-click='setTweetFlag(); publishOpts = true; twitterOpts = false;' class="btn pub-button btn-jo">
+
+            Publish <br>& <br> <span class="icon ion-social-twitter"></span>  Tweet  
+          </button>
     </div>
 
 
+    <div ng-show='publishOpts' id="publishOpts" class='row show-hide-fade'>
+      <button ng-click='publish(false)' class="pub-button btn btn-jo">
+        Publish <br> as {{username}}
+      </button>
+      <button ng-click='publish(true)' class="pub-button btn btn-jo">
+        Publish  <br>Anonymously
+      </button>
 
-
-
-
-
-    <div ng-if='!user'>
-       <a ng-hide='local_auth_form' target='_blank' href="/auth/twitter">
-      <br>
-
-      <div id="landing-twitter-signup">
-       <span class="icon ion-social-twitter"></span> &nbsp; Sign in with Twitter 
-      </div>
-
-    </a>
-
-    <div ng-show='local_auth_form'>
-      
-      <form name="signUpForm" role='form' ng-submit="signup(userSignUp)" novalidate>
-        <p>
-          
-          {{message}}
-        </p>
-        <div class="text-left form-group">
-          
-          <label for="username">Choose a username</label>
-        <input class='form-control' id='username' type="text" class="medium-6 columns" ng-model="userSignUp.username" required placeholder="">
-        </div>
-        <div class=" text-left form-group">
-          <label for="email">Email</label>
-        <input class='form-control' id='email' type="email" class="medium-6 columns" ng-model="userSignUp.email" required placeholder="">
-        </div>
-
-
-        <div class="text-left form-group">
-          <label for="password">Password</label>
-          
-        <input class='form-control' id='password' type="password" class="medium-6 columns" ng-model="userSignUp.password" required placeholder="">
-        </div>
-
-        <button type="submit" ng-disabled="signUpForm.$invalid" class="btn btn-jo">Join Wrdz</button>
-      </form>      
     </div>
+
 
   </div>
-  <br>
-  <a ng-show='local_auth_form' ng-click='local_auth_form = !local_auth_form' class='pull-left' href="">Cancel</a>
-  <a ng-hide='local_auth_form' ng-click='local_auth_form = !local_auth_form' class="pull-right">I prefer email.</a>
-  <br>
-    </div>
+
 
 
 </div>

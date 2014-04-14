@@ -52,6 +52,7 @@ angular.module('read')
     };
 
     function updateQuery (newQuery) {
+
       for (var j=0; j < newQuery.length; j++) {
 
         var flag = true;
@@ -68,6 +69,7 @@ angular.module('read')
       }
 
       var d = PubDoc.list(query);
+      
       d.then(function (res) {
         var toSkip = 0;
         angular.forEach(query, function (q) {
