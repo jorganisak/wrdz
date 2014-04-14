@@ -421,7 +421,7 @@ ol {
   transition: all 200ms ease;
   width: 18%;
   max-width: 260px;
-  top: 20px;
+  top: 58px;
   height: 100%;
   right: 0%;
   /* padding-top: 40px; */
@@ -1352,7 +1352,7 @@ add-button.active:active {
 #read-list-right {
   position: fixed;
   width: 12%;
-  top: 8%;
+  top: 10%;
   font-family: 'Clear Sans', sans-serif !important;
   right: 3%;
   max-width: 140px;
