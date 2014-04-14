@@ -8,7 +8,6 @@
 
 #message-count {
   position: absolute;
-  
   right: 24%;
   top: 170px;
 }
@@ -296,10 +295,11 @@
     border-color: rgb(242, 242, 242) !important;
     margin-bottom: 0px;
   }
+
   #twitter-message {
     width: 100%;
   }
-  
+
   #tweet-modal-button {
     width: 100%;
     right: 0;
@@ -685,7 +685,7 @@ h6 {
   border-radius: 0px;
   color: rgb(50, 139, 255);
   font-family: 'Clear Sans', sans-serif;
-  width: 100%;
+  width: 100% !important;
   transition: all 200ms ease-in-out;
   font-size: 1.1em;
   margin: 0 auto;
@@ -2687,8 +2687,6 @@ h3 {
   font-weight: 500;
   box-shadow: inset 0px -1px 3px -1px rgb(201, 201, 201), 0px -3px 1px -3px rgb(235, 235, 235);
 }
-
-
 
 #publishOpts > .pub-button {
   width: 45%;
