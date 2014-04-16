@@ -15,8 +15,8 @@
 
 
 
-            <div ng-show="doc.doc.has_title" class="text-center read-title">
-                {{doc.doc.title}}
+            <div ng-bind-html="doc.doc.title" ng-show="doc.doc.has_title" class="text-center read-title">
+                
                 <hr>
             </div>
             <div ng-hide="doc.doc.has_title" class="">

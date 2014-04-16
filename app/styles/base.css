@@ -91,7 +91,7 @@
   width: 10%;
   top: 0%;
   right: 4%;
-  background-color: rgb(252, 252, 252);
+  /* background-color: rgb(252, 252, 252); */
   margin: 0 auto 0px auto;
   z-index: 2;
 }
@@ -140,7 +140,7 @@
 }
 
 #about-wrdz {
-  margin: 80px 0 0 10px;
+  margin: 15px 0 0 10px;
   cursor: pointer;
   font-family: 'Clear Sans';
   font-weight: 100;
@@ -280,7 +280,7 @@
 }
 
 .panel-body {
-  padding: 30px 20px 75px 20px;
+  padding: 30px 10%;
   border-color: transparent !important;
   /* margin-bottom: 130px; */
 }
@@ -324,7 +324,7 @@
 
 #me-middle {
   max-width: 670px;
-  width: 95%;
+  width: 100%;
   margin: 0px auto 0 auto;
   /* margin-top: 60px; */
   /* background-color: white; */
@@ -341,7 +341,6 @@
 
 .read-panel.active {
   /* background-color: rgba(255, 255, 255, 0.9); */
-  box-shadow: inset 0 32px 16px -36px rgba(222, 222, 222, 1), 0px 6px 8px -8px rgba(136, 136, 136, 0.61);
   margin-top: 90px;
   margin-bottom: 30px;
   padding-bottom: 100px;
@@ -613,7 +612,7 @@ h6 {
 .read-filter-button-group > .btn {
   width: 50%;
   font-size: 1em;
-  border: 1px solid rgb(240, 240, 240);
+  border: 1px solid rgb(239, 239, 239);
   padding: 5px 15px;
   border-radius: 14px;
   font-family: 'Roboto', sans-serif;
@@ -621,7 +620,7 @@ h6 {
   opacity: 0.5;
   border-top: none;
   border-top-right-radius: 0px;
-  background-color: transparent;
+  background-color: rgba(189, 189, 189, 0.57);
   border-top-left-radius: 0px;
 }
 
@@ -733,13 +732,14 @@ h6 {
 
 p,
 li {
-  font-size: 20px;
+  font-size: 26px;
   font-weight: 100;
-  margin-bottom: 0.5em;
+  text-align: justify;
+  margin-bottom: 0.6em;
   line-height: 1.25;
-  font-family: 'Linux Libertine', sans-serif;
-  font-family: 'Noto Sans', sans-serif;
-  font-family: 'Clear Sans', sans-serif;
+  font-family: 'Crimson', sans-serif;
+  /* font-family: 'Noto Sans', sans-serif; */
+  /* font-family: 'Clear Sans', sans-serif; */
 }
 
 li {
@@ -1239,8 +1239,10 @@ h1 {
   cursor: pointer;
   font-weight: 100;
   opacity: 0.4;
+  width: 60%;
   transition: all 75ms linear;
   margin-top: 22px;
+  float: right;
 }
 
 #profile-follow-button:hover {
@@ -1501,7 +1503,7 @@ blockquote p {
   color: #000000;
   font-size: 17px;
   font-weight: 100;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 blockquote {
@@ -1650,10 +1652,11 @@ blockquote {
 }
 
 h4 {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Clear Sans', sans-serif;
   font-weight: 800;
-  font-size: 29px;
-  font-family: 'Roboto', sans-serif;
+  font-size: 37px;
+  /* font-family: 'Montserrat', sans-serif; */
+  margin-bottom: 20px;
 }
 
 .headline {
@@ -2130,11 +2133,11 @@ h3 {
 
 .read-title {
   font-family: 'Source Sans Pro', serif;
-  font-size: 2.7em;
+  font-size: 3.6em;
   line-height: 1;
   font-weight: 700;
   /* text-align: left; */
-  padding: 40px 20px 10px 20px;
+  padding: 10px 20px 10px 20px;
   /* font-family: 'Clear Sans'; */
 }
 
