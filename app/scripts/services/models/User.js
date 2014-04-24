@@ -1,10 +1,6 @@
 'use strict';
 /*
-
   User Factory <models>
-
-
-
 */
 angular.module('models')
   .factory('User', ['$http', '$cookieStore', '$rootScope', function ($http, $cookieStore, $rootScope) {
@@ -12,7 +8,6 @@ angular.module('models')
 
 
     function changeUser(user) {
-
       currentUser =  user;
       $rootScope.$broadcast('userChange', user);
     }

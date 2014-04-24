@@ -7,12 +7,6 @@
   angular.module('shared')
   .factory('Picture', ['$http',  function ($http) {
 
-   
-
-
-
-
- 
       return {
 
         tweetPic : function (user, pic, message) {

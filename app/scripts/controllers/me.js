@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('me')
-.controller('MeCtrl', ['$scope', 'User', '$state','Me', 'Write', function ($scope, User, $state, Me, Write) {
+.controller('MeCtrl', ['$scope', 'User','Me', 'Write', function ($scope, User, Me, Write) {
 
 /*
 MY WRDZ 
@@ -15,10 +15,9 @@ MY WRDZ
 
   $scope.tabs = [
     { title: "Profile", state: "me.profile"},
-    { title: "Following", state: "me.following"},
   ];
 
-  $scope.$watch('$state.current.name', function (newValue) {
+  $scope.$watch('$scope.$state.current.name', function (newValue) {
     if (newValue) {
 
       angular.forEach($scope.tabs, function (tab) {
@@ -34,28 +33,29 @@ MY WRDZ
   $scope.navType = 'pills';
 
 
-
-
 /*
 
-LOGOUT
+LOGOUT - should be moved
 
 */
   $scope.logout = function() {
     if ( User.isLoggedIn() ) {
       User.logout().
       success( function( data ) {
-        Write.setCurrentDoc(null);
         User.changeUser(null);
         if (data == 'Logged out now.') {
-          $state.go('write');
+          $scope.$state.go('write');
         }
       }).error(function(err) {
         console.log(err);
       });
     }
   };
+
+
+
 }])
+
 
 .controller('MeSettingsCtrl', ['$scope', 'User', 'Me', function ($scope, User, Me) {
   
@@ -72,9 +72,7 @@ LOGOUT
 
   $scope.usernameChange = function () {
     var u = $scope.username_copy;
-
     console.log
-
     $scope.change = true;
   }
 
@@ -108,22 +106,6 @@ LOGOUT
       $scope.username_ok = false;
     }
   }, true);
-
-
-  $scope.$watch('user.bio', function (newValue) {
-    if (newValue) {
-      
-      User.update('bio', newValue);
-    }
-  });
-
-
-  $scope.$watch('user.website', function (newValue) {
-    if (newValue) {
-      
-      User.update('website', newValue);
-    }
-  });
 
 }])
 

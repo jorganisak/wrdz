@@ -408,7 +408,6 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'bower-install',
-      'stylus:compile',
       'concurrent:server',
       'autoprefixer',
       'express:dev',

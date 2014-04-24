@@ -6,7 +6,6 @@ angular.module('vendor', [
   'ngAnimate',
   'ngSanitize',
   'ngRoute',
-  'perfect_scrollbar',
   'ui.bootstrap',
   'ui.router',
   'pickadate'

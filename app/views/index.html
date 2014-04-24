@@ -2,12 +2,12 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" ng-app="wrdz" ng-cloak ng-controller="MainCtrl"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" > <!--<![endif]-->
   <head ng-cloak>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <base href="/">
-    <title ng-bind="pageTitle"></title> 
+    <title>wrdz</title> 
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -38,7 +38,7 @@
     mixpanel.init("2c328856e86493b3769e994c07bba8df");</script><!-- end Mixpanel -->
 
   </head>
-  <body >
+  <body ng-app="wrdz" ng-cloak ng-controller="MainCtrl">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -74,7 +74,6 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/momentjs/moment.js"></script>
-    <script src="bower_components/angular-perfect-scrollbar/src/angular-perfect-scrollbar.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/lodash/dist/lodash.compat.js"></script>
@@ -99,13 +98,10 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/states.js"></script>
 
-        <script src="scripts/controllers/navbar.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/profile.js"></script>
         <script src="scripts/controllers/read.js"></script>
         <script src="scripts/controllers/write.js"></script>
         <script src="scripts/controllers/me.js"></script>
-        <script src="scripts/controllers/mywrdz.js"></script>
         
         <script src="scripts/directives/medium-js.js"></script>
         <script src="scripts/directives/directives.js"></script>
@@ -114,13 +110,11 @@
         
         <script src="scripts/services/Write.js"></script>
         <script src="scripts/services/Read.js"></script>
-        <script src="scripts/services/MyWrdz.js"></script>
         <script src="scripts/services/Me.js"></script>
         <script src="scripts/services/Picture.js"></script>
         <script src="scripts/services/models/User.js"></script>
         <script src="scripts/services/models/UserDoc.js"></script>
         <script src="scripts/services/models/PubDoc.js"></script>
-        <script src="scripts/services/models/Topics.js"></script>
         <!-- endbuild -->
 </body>
 </html>

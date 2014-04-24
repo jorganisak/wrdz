@@ -2,23 +2,15 @@
 
 /*
   Read View Controller
-
-    
 */
+
 angular.module('read')
-  .controller('ReadCtrl', ['$scope', 'Picture', 'Read', '$state', '$filter', '$location', '$window', '$timeout', '$modal',
-   function ($scope, Picture, Read, $state, $filter, $location, $window, $timeout, $modal) {
+  .controller('ReadCtrl', ['$scope', 'Read', '$window', '$timeout',
+   function ($scope, Read, $window, $timeout) {
 
     //Internal
     $scope.Read = Read;
 
-    $scope.tabs = [
-      { title: "Front", state: "read.list.front({'skip': null, 'sort': 'score'})"},
-      { title: "Following", state: "read.list.following({'skip': null, 'sort': 'score'})"},
-      { title: "Hearts", state: "read.list.hearts({'skip': null, 'sort': 'score'})"}
-    ];
-
-    $scope.navType = 'pills';
     $scope.moment = moment;
     $scope.left_xs_collapsed = true;
 
@@ -31,150 +23,41 @@ angular.module('read')
       }
     }
 
-    // Watch current state and change tab active accordingly
-    $scope.$watch('$state.current.name', function (newValue) {
-      if (newValue) {
-        angular.forEach($scope.tabs, function (tab) {
-          if ($filter('lowercase')(tab.title) === newValue.slice(10)) {
-            tab.active = true;
-          } else {
-            tab.active = false;
-          }
-        })
-      }
-    })
-
-
-
-    //Pagination Loading
-    $scope.loadNext = function () {
-      var skip = Number($scope.$stateParams.skip) + 10;
-      var sort = $scope.$stateParams.sort;
-      $scope.$state.go($scope.$state.current.name, {'skip' : skip, 'sort': sort})
-    };
-
-    $scope.loadPrev = function () {
-      var skip = Number($scope.$stateParams.skip) - 10;
-      var sort = $scope.$stateParams.sort;
-      $scope.$state.go($scope.$state.current.name, {'skip' : skip, 'sort': sort})
-    };
-
-
-
-    // Testing if user follows someone w
-    function testFollow (id) {
-      if ($scope.user) {
-        var flag = false;
-        angular.forEach($scope.user.following, function (user) {
-          if (user._id === id){
-            flag = true;
-          }
-        })
-        if (flag)  $scope.following = true;
-        else $scope.following = false;
-      }
-    }
 
     $scope.$on('userChange', function (evt, user) {
       if (user) {
         if ($scope.author_info) {
-
           testFollow($scope.author_info._id);
         }
       }
     });
 
-
     $scope.$on('author_info', function (evt, author) {
       $scope.author_info = author;
     })
 
-    $scope.switchDoc = function (doc, isopen) {
-      if (!isopen){
-        $scope.readDoc = doc;
-        if (doc.author) {
-          $scope.author_info = doc.author;
-          testFollow(doc.author._id)
-          $scope.showUser = true;
-        }
-        $timeout(function () {
-          var top = document.getElementById(doc._id).getBoundingClientRect().top
-          var h = $window.pageYOffset;
-          $('html,body').animate({
-            scrollTop: top+h-40
-          }, 200);
-          // $window.scrollTo(0, top + h - 105);
-        },600)
-      } else {
-        $scope.readDoc = null;
-      }
-
+    // $scope.switchDoc = function (doc, isopen) {
+    //   if (!isopen){
+    //     $scope.readDoc = doc;
+    //     if (doc.author) {
+    //       $scope.author_info = doc.author;
+    //       testFollow(doc.author._id)
+    //       $scope.showUser = true;
+    //     }
+    //     $timeout(function () {
+    //       var top = document.getElementById(doc._id).getBoundingClientRect().top
+    //       var h = $window.pageYOffset;
+    //       $('html,body').animate({
+    //         scrollTop: top+h-40
+    //       }, 200);
+    //       // $window.scrollTo(0, top + h - 105);
+    //     },600)
+    //   } else {
+    //     $scope.readDoc = null;
+    //   }
         
-    };
+    // };
 
-    $scope.openDoc = function (docId) {
-      $scope.$state.go('read.doc', {docId : docId});
-      
-    }
-
-    $scope.follow = function () {
-      if (checkUser()) {
-
-        if ($scope.author_info) {
-
-          if ($scope.following) {
-
-            Read.followUser($scope.author_info, false);
-            $scope.author_info.followers--;
-          } else {
-            
-            Read.followUser($scope.author_info, true);
-            $scope.author_info.followers++;
-          }
-          $scope.following = !$scope.following;
-        }
-      }
-    }
-
-
-/*
-  MODALS
-*/
-    $scope.openPictureModal = function (docId) {
-      var modalInstance = $modal.open({
-        templateUrl: "partials/picture-modal.html",
-        controller: ['$scope', '$modalInstance', '$state', 
-        function ($scope, $modalInstance, $state) {
-          $scope.close = function () {
-            $modalInstance.close();
-          };
-
-
-
-          html2canvas(document.getElementById(docId), 
-          {
-            onrendered : function (canvas) {
-              
-              if (canvas.toBlob) {
-                canvas.toBlob(
-                    function (blob) {
-                        // Do something with the blob object,
-                        // e.g. creating a multipart form for file uploads:
-                       console.log(blob);
-                       s3_upload(blob, docId);
-                    },
-                    'image/jpeg'
-                );
-              }
-            }
-          })
-
-        }],
-        resolve: {
-
-        }
-      });
-    };
 
 
 
@@ -185,23 +68,8 @@ angular.module('read')
 
     $scope.isCollapsed = true;
 
-    $scope.nextDoc = function () {
-      Read.goToNextDoc();
-    };
-
-    $scope.goBack = function () {
-      Read.goBack();
-    };
 
 
-
-    $scope.isHeart = function () {
-      if ($scope.user.meta._hearts.indexOf($scope.doc._id) > -1) {
-        $scope.active2 = 'active';
-        return true;
-      }
-      return false;
-    };
     $scope.isVote = function () {
       if ($scope.user.meta._up_votes.indexOf($scope.doc._id) > -1) {
         $scope.active1 = 'active';
@@ -209,41 +77,8 @@ angular.module('read')
       }
       return false;
     };
-    $scope.isFollowing = function () {
-      if ($scope.doc.author) {
-        var flag = false;
-        angular.forEach($scope.user.following, function (user) {
-          if (user._id === $scope.doc.author._id){
-            flag = true;
-          }
-        })
 
-        if (flag) {
 
-          $scope.following = true;
-
-        } else {
-
-          $scope.following = false;
-        }
-      }
-    };
-
-    $scope.heart = function () {
-      if (checkUser()) {
-        
-        if ($scope.active2 === 'active') {
-          $scope.doc.hearts--;
-          $scope.active2 = null;
-          Read.updatePubDoc($scope.doc._id, 'heart', false);
-        } else {
-          $scope.active2 = 'active';
-          Read.updatePubDoc($scope.doc._id, 'heart', true);
-          $scope.doc.hearts++;
-          $scope.user.meta._hearts.push($scope.doc._id);
-        }
-      }
-    };
 
     $scope.up_vote = function () {
       if (checkUser()) {
@@ -262,22 +97,10 @@ angular.module('read')
     };
 
 
-    $scope.view = function () {
-      // Check if user to register view
-      // TODO, this can surely be worked around to
-      // manufacture page views..
-      if ($scope.user) {
-        if ($scope.user.meta._views.indexOf($scope.doc._id) === -1) {
-          Read.updatePubDoc($scope.doc._id, 'view', true);
-        }
-      }
-    };
+
 
     function checkDoc() {
-      $scope.view();
-      $scope.isHeart();
       $scope.isVote();
-      $scope.isFollowing();
     }
 
 
@@ -296,26 +119,6 @@ angular.module('read')
         return true;
       } else {
         $scope.launchSignUp();
-
-      }
-    }
-
-    $scope.follow = function () {
-      if (checkUser()) {
-
-        if ($scope.doc.author) {
-
-          if ($scope.following) {
-
-            Read.followUser($scope.doc.author, false);
-            $scope.doc.author.followers--;
-          } else {
-            
-            Read.followUser($scope.doc.author, true);
-            $scope.doc.author.followers++;
-          }
-          $scope.following = !$scope.following;
-        }
       }
     }
 

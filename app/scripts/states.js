@@ -8,28 +8,13 @@ config(['$stateProvider', '$urlRouterProvider',
 
     $stateProvider
 
-
-    .state('picture-test', {
-        url: '/pic-test',
-        templateUrl: 'partials/picture-test.html',
-        
+      .state('landing', {
+        url: '/',
+        templateUrl: 'partials/landing.html',
       })
-      
-/*
-      LANDING
-      */
-    // .state('landing', {
-    //     url: '/',
-    //     templateUrl: 'partials/landing.html',
-    //     controller : ['$scope','$state', function ($scope, $state) {
 
-    //         $state.go('write')
-          
 
-    //     }]
-    //   })
-
-/*
+      /*
       READ
       */
 
@@ -80,156 +65,6 @@ config(['$stateProvider', '$urlRouterProvider',
         }]
 
       })
-      //FOLLOWING
-      .state('read.list.following', {
-        url: '/l/:userId?skip?sort',
-        templateUrl: 'partials/read-list-center.html',
-        resolve : { 
-          docs : ['$stateParams','User', 'Read', function ($stateParams, User, Read) {
-            if ($stateParams.userId) {
-              return Read.updateQuery([{type:'following', 
-                value: [$stateParams.userId]}, {type:'topics', value: ''}, 
-                {type:'skip', value: $stateParams.skip}, {type: 'sort', value: $stateParams.sort}]);
-
-            } else {
-              var a = [];
-              angular.forEach(User.getUser().following, function (user) {
-                a.push(user._id);
-              });
-              if (!a.length) {
-                return false;
-              }
-              return Read.updateQuery([{type:'following', 
-                value: a}, {type:'hearts', value: ''}, {type:'topics', value: ''}, 
-                {type:'skip', value: $stateParams.skip}, {type: 'sort', value: $stateParams.sort}]);
-            }
-          }]
-        },
-        controller : ['$scope', 'docs','Read', '$stateParams','$state', 
-          function ($scope, docs, Read, $stateParams, $state) {
-            $scope.hideStats = true;
-            $scope.showUser = false;
-
-            function update (user) {
-              if (user && !$stateParams.userId) {
-                var a = [];
-                angular.forEach(user.following, function (user) {
-                  a.push(user._id);
-                });
-                if (!a.length) {
-                  console.log('not following')
-                  $scope.docs = [];
-                } else {
-
-                  Read.updateQuery([{type:'following', 
-                    value: a}, {type:'topics', value: ''}, {type:'hearts', value: ''},
-                    {type:'skip', value: $stateParams.skip}, {type: 'sort', value: $stateParams.sort}])
-                    .then(function (res) {
-                        $scope.docs = res.data;
-                      })
-                }
-              }
-            }
-
-            $scope.$on('userChange', function (evt, user) {
-              update(user);
-
-            });
-
-          $scope.$watch('readFilter', function (newValue) {
-            if (newValue) {
-              if (newValue !== $stateParams.sort) {
-                $stateParams.skip = null;
-              }
-              $state.go('read.list.following', {'skip': $stateParams.skip, 'sort': newValue})
-
-            }
-          })
-
-            $scope.readFilter = $stateParams.sort;
-
-            $scope.docs = docs.data;
-          }]
-
-      })
-      .state('read.list.hearts', {
-        url: '/h?skip?sort',
-        templateUrl: 'partials/read-list-center.html',
-        resolve : { 
-          docs : ['$stateParams','User', 'Read', function ($stateParams, User, Read) {
-              var res = Read.getHearts();
-              if (res) {
-                if (!res.length) {
-                  return false;
-                }
-                return Read.updateQuery([{type:'hearts', 
-                  value: res}, {type:'following', value: ''},{type:'topics', value: ''}, 
-                  {type:'skip', value: $stateParams.skip}, {type: 'sort', value: $stateParams.sort}]);
-              } else {
-                return true;
-              }
-
-          }]
-        },
-        controller : ['$scope', 'docs','Read', '$stateParams','$state', 
-          function ($scope, docs, Read, $stateParams, $state) {
-
-            function update () {
-              var h = Read.getHearts();
-                Read.updateQuery([{type:'hearts', 
-                  value: h }, {type:'topics', value: ''}, {type:'following', value: ''},
-                  {type:'skip', value: $stateParams.skip}, {type: 'sort', value: $stateParams.sort}])
-                  .then(function (res) {
-                      console.log(res.data);
-                      $scope.docs = res.data;
-                    })
-            }
-
-            $scope.$on('userChange', function (evt, user) {
-              if (user) {
-                update()
-              }
-            });
-
-            $scope.$watch('readFilter', function (newValue) {
-              if (newValue) {
-                if (newValue !== $stateParams.sort) {
-                  $stateParams.skip = null;
-                }
-                $state.go('read.list.hearts', {'skip': $stateParams.skip, 'sort': newValue})
-
-              }
-            })
-
-            $scope.readFilter = $stateParams.sort;
-            $scope.docs = docs.data;
-          }]
-
-      })
-      // .state('read.list.topics', {
-      //   templateUrl: 'partials/read-list-center.html',
-      //   url: '/t/:topicId',
-      //   resolve : {
-      //     docs : ['$stateParams', 'Read', '$state', function ($stateParams, Read, $state) {
-      //       if ($stateParams.topicId) {
-      //         return Read.updateQuery([{type:'following', 
-      //           value: ''}, {type:'topics', value: $stateParams.topicId}, 
-      //           {type:'skip', value: ''}, {type: 'sort', value: 'score'}]);
-      //       } else {
-
-      //         Read.refreshTopics().then(function (res) {
-      //           $state.go('read.list.topics',{topicId: res.data[0]._id}) 
-      //         });
-      //       }
-      //     }]
-      //   },
-      //   controller : ['$scope', 'docs', 'Read','$state', function ($scope, docs, Read, $state) {
-
-      //     if (docs) {
-      //       $scope.docs = docs.data;
-      //     }
-      //   }]
-      // })
       .state('read.list.user', {
         templateUrl: 'partials/read-list-center.html',
         url: '/u/:userId?skip?sort',
@@ -310,17 +145,8 @@ config(['$stateProvider', '$urlRouterProvider',
       */
 
       .state('write', {
-        url: '/',
+        url: '/w',
         templateUrl: 'partials/write.html'
-      })
-
-  /*
-      My Wrdz
-      */
-
-      .state('mywrdz', {
-        url: '/d',
-        templateUrl: 'partials/mywrdz.html'
       })
 
 
@@ -338,26 +164,7 @@ config(['$stateProvider', '$urlRouterProvider',
       .state('me.profile', {
         url: '/profile',
         templateUrl: 'partials/me-settings.html'
-      })
-       .state('me.following', {
-        url: '/f',
-        templateUrl: 'partials/me-following.html',
-        controller: ['$scope', 'User', function ($scope, User) {
-
-          $scope.unfollow = function (id) {
-            var data = {userId: id, bool : false};
-            User.update('addFollowing', data);
-            angular.forEach($scope.user.following, function (user) {
-              if (user._id === id) {
-                $scope.user.following.splice($scope.user.following.indexOf(user), 1);
-              }
-            })
-          }
-  
-        }]
- 
-      })
-      
+      }) 
 
      // Password reset
      .state('password_reset', {

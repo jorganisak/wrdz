@@ -1,33 +1,8 @@
 'use strict';
 
 angular.module('shared')
-.controller('MainCtrl', ['$scope', 'User', '$rootScope', '$modal', '$window', '$state','$timeout', function ($scope, User, $rootScope, $modal, $window, $state, $timeout) {
+.controller('MainCtrl', ['$scope', 'User', '$modal', '$window','$timeout', function ($scope, User, $modal, $window, $timeout) {
 
-
-
-/*
-Does a few things:
-  1. when loaded checks to see if user is logged in
-  2. if it is a cookie of a user then it calls to get full user
-  3. assigns the full user to $scope.user
-  4. listener at the bottom for changes like login/signup/logout
-
-  */
-     $scope.$on('changePageTitle', function (evt, title) {
-      if (title) {
-        $scope.pageTitle = title;
-      } else {
-        $scope.pageTitle = 'wrdz';
-      }
-    })
-
-
-     $scope.$watch('$state.current.name', function (newValue ) {
-       if (newValue !== 'read.doc') {
-        
-        $scope.pageTitle = 'wrdz';
-       }
-     })
 
 
 
@@ -45,15 +20,16 @@ Does a few things:
         "targetBlank": true}
     );
 
+
     function getUser () {
       var u = User.getUser();
-        // gets full user, messages check is to make sure the user is not already complete
-        if (u && !u._userDocs) {
-          User.getCurrentUser(u._id).success(function  (data) {
-            User.changeUser(data.user);
-          }).error(function  (data) {
-          });
-        }
+      // gets full user, messages check is to make sure the user is not already complete
+      if (u && !u._userDocs) {
+        User.getCurrentUser(u._id).success(function  (data) {
+          User.changeUser(data.user);
+        }).error(function  (data) {
+        });
+      }
     }
 
 
@@ -69,18 +45,18 @@ Does a few things:
       }
     });
 
+
     $scope.goToTop = function () {
       $window.scrollTo(0, 0);
     };
 
     $scope.local_auth_form = false;
 
-    $scope.closeWindow = function () {
-      $timeout(function () {
-        console.log('closing')
-        $window.close();
-      }, 1000)
-    };
+
+
+
+
+// Everything below is auth related or the about modal
 
 
 /*
@@ -101,7 +77,7 @@ Does a few things:
                 User.getCurrentUser(user._id).success(function  (data) {
                     User.changeUser(data.user);
                     $scope.close();
-                    $state.go('write');
+                    $scope.$state.go('write');
                   }).error(function  (data) {
                   });
               }).
@@ -124,7 +100,7 @@ Does a few things:
                 User.getCurrentUser(user._id).success(function  (data) {
                   User.changeUser(data.user);
                   $scope.close();
-                  $state.go('write');
+                  $scope.$state.go('write');
                 }).error(function  (data) {
                   });
               }).
@@ -176,7 +152,7 @@ Does a few things:
                 User.getCurrentUser(user._id).success(function  (data) {
                     User.changeUser(data.user);
                     $scope.close();
-                    $state.go('write');
+                    $scope.$state.go('write');
                   }).error(function  (data) {
                   });
               }).
@@ -200,7 +176,7 @@ Does a few things:
                   User.changeUser(data.user);
                   $scope.close();
 
-                  $state.go('write');
+                  $scope.$state.go('write');
                 }).error(function  (data) {
                   });
               }).
@@ -240,10 +216,6 @@ Does a few things:
       });
     };
 
-  /*
-  Feedback Modal
-    */
-
 
     $scope.aboutModal = function () {
       var modalInstance = $modal.open({
@@ -279,8 +251,6 @@ Does a few things:
       });
     };
 
-
-
     $scope.forgotPasswordModal = function () {
       var modalInstance = $modal.open({
         templateUrl: "partials/password-modal.html",
@@ -303,14 +273,5 @@ Does a few things:
         }],
       });
     };
-
-
-    $scope.twitterAuth = function () {
-      User.twitter().success(function (res, err) {
-        console.log(res);
-        console.log(err);
-        console.log('callback')
-      });
-    }
 
   }])

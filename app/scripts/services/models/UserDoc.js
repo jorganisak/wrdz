@@ -8,7 +8,6 @@
 */
 angular.module('models')
   .factory('UserDoc', ['$http', function ($http) {
-    // Service logic
 
     // Public API here
     return {
@@ -36,7 +35,7 @@ angular.module('models')
           }
         }
         return $http.get('/userDocs/?'+str);
-      },
+      }
 
       
     };

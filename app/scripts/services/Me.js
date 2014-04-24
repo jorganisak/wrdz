@@ -1,13 +1,8 @@
 'use strict';
 
-/*
-  Write Service
-  */
 
-  angular.module('write')
-  .factory('Me', ['$http', 'User', 'UserDoc','PubDoc', function ($http, User, UserDoc, PubDoc) {
-
-
+  angular.module('shared')
+  .factory('Me', ['$http', 'User', function ($http, User) {
 
     return {
        
@@ -18,8 +13,6 @@
       saveUsername : function (username) {
         return User.update('username', username)
       },
-
-
 
     };
 }]);
