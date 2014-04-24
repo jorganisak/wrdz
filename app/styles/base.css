@@ -420,11 +420,11 @@ ol {
   transition: all 200ms ease;
   width: 18%;
   max-width: 260px;
-  top: 58px;
+  top: 21px;
   height: 100%;
   right: 0%;
-  /* padding-top: 40px; */
-  background-color: rgb(250, 250, 250);
+  padding-top: 40px;
+  /* background-color: rgb(250, 250, 250); */
 }
 
 .fixed-right:hover {
@@ -938,7 +938,7 @@ hr {
   width: 18%;
   left: 0%;
   top: 20px;
-  background-color: rgb(250, 250, 250);
+  /* background-color: rgb(250, 250, 250); */
   max-width: 260px;
   padding-top: 40px;
 }
