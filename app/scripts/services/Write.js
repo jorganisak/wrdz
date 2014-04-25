@@ -10,23 +10,18 @@ angular.module('write')
 /*
   Service Logic and declarations
   */
-    
-    //Internal
-    var firstDoc = {
-        body: "<p><span style='font-weight: 800;'>Ahoy internet traveler!</span></p><p>Try something for me - highlight this text.</p><p>You see that? It is <b><i>editable!</i>&nbsp;</b>&nbsp;This is a writing surface!</p><p><br></p><p>If you sign up for Wrdz, you can save and share as many of these as your heart desires.</p><p><br></p><p><i>p.s.</i></p><p>If you sign in with Twitter, you can share your writing as a <i>picture attached to a tweet</i>. &nbsp;Your followers will read it straight from the feed, without needing to click a link!</p>",
-        created_at: Date(),
-        is_archived: false,
-        is_published: false,
-        updated_at: Date()
-    }
 
-    var blankDoc = {
-        body: "",
-        created_at: Date(),
-        is_archived: false,
-        is_published: false,
-        updated_at: Date()
-    };
+    var mediumEditorOptionsBody = angular.toJson(
+      {"placeholder": "Write here",
+          "buttons": ["bold", "italic", "header2"],
+          "buttonLabels" : {"header2": "<b>H</b>", "anchor": "<span><span class='icon ion-link'></span></span>",
+           "bold":"<strong>b</strong>", "italic": "<em><b>i</b></em>"},
+          "disableToolbar": false,
+          "cleanPastedHTML": true,
+          "checkLinkFormat": true,
+          "targetBlank": true,
+          "anchorPreviewHideDelay": 500}
+      )
 
     var docs = [];
 
@@ -37,13 +32,18 @@ angular.module('write')
     function setDocs (newDocs) {
       docs = newDocs;
     }
-
-    //UserDoc
     
     function updateUserDoc (type, data, id) {
-      //this argument will need to take an id as argument
       updateRecentDoc(id);
       return UserDoc.update(id, type, data);
+    }
+    // should test to see if this is needed
+    function updateRecentDoc(id) {
+      angular.forEach(User.getUser()._userDocs, function (doc) {
+        if (doc._id === id) {
+          doc.updated_at = Date();
+        }
+      });
     }
 
     function createNewDoc () {
@@ -57,9 +57,6 @@ angular.module('write')
           console.log(doc);
         });
       }
-      else {
-        docs.unshift(blankDoc);
-      }
     }
 
     //setting first document if no user docs
@@ -72,13 +69,6 @@ angular.module('write')
       });
     }
 
-    function updateRecentDoc(id) {
-      angular.forEach(User.getUser()._userDocs, function (doc) {
-        if (doc._id === id) {
-          doc.updated_at = Date();
-        }
-      });
-    }
 
     function publishDoc (isAnon) {
       var data = {
@@ -94,16 +84,13 @@ angular.module('write')
 
     return {
 
-      getFirstDoc : function () {
-        return firstDoc;
-      },
-
       createFirstDoc: createFirstDoc,
       createNewDoc : createNewDoc,
       updateUserDoc : updateUserDoc,
       publishDoc : publishDoc,
       getDocs: getDocs,
       setDocs: setDocs,
+      getMediumOptions: mediumEditorOptionsBody,
 
     };
   }]);

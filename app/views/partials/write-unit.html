@@ -1,0 +1,56 @@
+<div>
+  
+  <div ng-show="showDoc" class="doc-unit write-unit">
+
+    <div ng-click="archive()" class="archive-doc-btn">
+      <span class="icon ion-close"></span>
+    </div>
+
+    <div ng-keydown='bodyChange(doc.body)' medium-editor options="{{mediumEditorOptionsBody}}" ng-model='doc.body' class="write-content">
+
+    </div>
+
+    <div class="doc-unit-shelf write-unit-shelf">
+
+      <div ng-class="{active: !shelfCollapsed}" ng-click="shelfCollapsed = !shelfCollapsed" class="write-shelf-btn btn">
+        <span ng-show='!doc.is_published'>
+          Private 
+        </span>
+
+        <span ng-show="shelfCollapsed" class="icon ion-chevron-down"></span>
+        <span ng-show="!shelfCollapsed" class="icon ion-chevron-up"></span>
+      </div>
+      <div collapse="shelfCollapsed">
+        <div class="write-unit-collapse">
+          <div class="write-collapse-first text-center">
+            <button class="btn btn-jo">
+              Publish as {{user.username}}
+            </button>
+            <button class="btn btn-jo ">
+              Publish Anonymously
+            </button>
+            <button class="btn btn-jo ">
+              <span class="icon ion-social-twitter"></span> &nbsp; Tweet as photo
+            </button>
+          </div>
+        </div> 
+      </div>
+    </div>
+    
+  </div>
+
+
+  <div class="archive-warning-box" ng-show="showArchiveWarning">
+    <div class="well well-lg">
+      Deleted &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; 
+      <span ng-click="cancelArchive()" class="undo-archive-btn">
+        
+        Undo &nbsp; <span class="icon ion-arrow-return-left"></span>
+      </span>
+    </div>
+
+  </div>
+
+
+
+</div>

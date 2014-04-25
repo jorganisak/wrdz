@@ -4,61 +4,9 @@
   Write Controller
 */
 
-angular.module('write')
-  .controller('WriteCtrl', ['$scope', 'Write', '$timeout', '$window', '$modal', 'Picture',
-    function ($scope, Write, $timeout, $window, $modal, Picture) {
+angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$timeout', '$window', '$modal', 'Picture',
+  function ($scope, Write, $timeout, $window, $modal, Picture) {
 
-  /*
-      Utils
-      */
-
-    // TEXT EDITOR OPTIONS
-    $scope.mediumEditorOptionsBody = angular.toJson(
-      {"placeholder": "Write here",
-        "buttons": ["bold", "italic", "header2"],
-        "buttonLabels" : {"header2": "<b>H</b>", "anchor": "<span><span class='icon ion-link'></span></span>",
-         "bold":"<strong>b</strong>", "italic": "<em><b>i</b></em>"},
-        "disableToolbar": false,
-        "cleanPastedHTML": true,
-        "checkLinkFormat": true,
-        "targetBlank": true,
-        "anchorPreviewHideDelay": 500}
-    );
-
-    $scope.mediumEditorOptionsTitle = angular.toJson(
-      {"placeholder": "Title", "disableToolbar": true, "disableReturn": true}
-    );
-
-    $scope.isCollapsed = true;
-
-
-    /// DOM STUFF
-    // Should be moved to directives for testing purposes
-
-    function placeCaretAtEnd(el) {
-      if (el) {
-        el.focus();
-        if (typeof $window.getSelection !== "undefined"
-                && typeof document.createRange !== "undefined") {
-          var range = document.createRange();
-          range.selectNodeContents(el);
-          range.collapse(false);
-          var sel = $window.getSelection();
-          sel.removeAllRanges();
-          sel.addRange(range);
-        } else if (typeof document.body.createTextRange !== "undefined") {
-          var textRange = document.body.createTextRange();
-          textRange.moveToElementText(el);
-          textRange.collapse(false);
-          textRange.select();
-        }
-        $window.scrollTo(0, el.scrollHeight);
-      }
-    }
-    // Focus content input on doc
-    function focusContent() {
-      placeCaretAtEnd(document.getElementById('write-content'));
-    }
 
   /*
     Init
@@ -74,9 +22,7 @@ angular.module('write')
         Write.createFirstDoc();
       }
     }
-    else {
-      Write.setDocs([Write.getFirstDoc()]);
-    }
+
 
   /*
     Watches
@@ -87,24 +33,13 @@ angular.module('write')
     $scope.$on('userChange', function (evt, user) {
       if (user) {
         Write.setDocs($scope.user._userDocs);
-        if ($scope.user._userDocs[0]) {
-        } else {
+        if (!$scope.user._userDocs[0]) {
           Write.createFirstDoc();
         }
       }
     });
 
-    // this needs to change form entirely
-    $scope.bodyChange = function (body, id) {
-      $timeout(function () {
-        var val = body;
-        if (val) {
-          if ($scope.user) {
-            Write.updateUserDoc('body', {'body': val}, id);
-          }
-        }
-      }, 500)
-    };
+
 
 
     $scope.$watchCollection(Write.getDocs, function (newValue) {
@@ -121,12 +56,7 @@ angular.module('write')
       Write.createNewDoc();
     };
 
-    $scope.archive = function (docId) {
-      var bool = $scope.currentDoc.is_archived;
-      $scope.currentDoc.is_archived = !bool;
-      // needs id
-      Write.updateUserDoc('archive', !bool);
-    };
+
 
     $scope.switchVisible = function () {
       // needs id
