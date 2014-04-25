@@ -1,6 +1,6 @@
-<div>
+<div class="doc-unit write-unit">
   
-  <div ng-show="showDoc" class="doc-unit write-unit">
+  <div ng-show="showDoc" >
 
     <div ng-click="archive()" class="archive-doc-btn">
       <span class="icon ion-close"></span>
@@ -16,20 +16,56 @@
         <span ng-show='!doc.is_published'>
           Private 
         </span>
+        <span ng-show='doc.is_published && doc.pub_doc.is_anon && doc.pub_doc.is_visible'>
+          Public: Annonymous 
+        </span>
+        <span ng-show='doc.is_published && !doc.pub_doc.is_anon && doc.pub_doc.is_visible'>
+          Public: {{user.username}} 
+        </span>
+        <span ng-show='doc.is_published && !doc.pub_doc.is_visible'>
+          Unpublished
+        </span>
 
         <span ng-show="shelfCollapsed" class="icon ion-chevron-down"></span>
         <span ng-show="!shelfCollapsed" class="icon ion-chevron-up"></span>
       </div>
+
+      <div ng-show="doc.is_published" class="write-shelf-hearts">
+        <span class="icon ion-heart"></span> {{doc.pub_doc.up_votes - 1}}
+      </div>
       <div collapse="shelfCollapsed">
         <div class="write-unit-collapse">
           <div class="write-collapse-first text-center">
-            <button class="btn btn-jo">
-              Publish as {{user.username}}
-            </button>
-            <button class="btn btn-jo ">
-              Publish Anonymously
-            </button>
-            <button class="btn btn-jo ">
+
+            <span ng-show="!doc.is_published">
+              <button ng-click="publish(false)" class="btn btn-jo">
+                Publish as {{user.username}}
+              </button>
+              <button ng-click="publish(true)" class="btn btn-jo ">
+                Publish Anonymously
+              </button>
+            </span>
+            
+            <span ng-show="doc.is_published">
+              
+              <span ng-show="doc.pub_doc.is_visible">
+                <a ui-sref="read.doc({docId: doc.pub_doc._id})" class="btn btn-jo">
+                  View
+                </a>
+                <button ng-click="switchVisible()" class="btn btn-jo">
+                  Unpublish
+                </button>
+              </span>             
+              <span ng-show="!doc.pub_doc.is_visible">
+                <button ng-click="switchVisible()" class="btn btn-jo">
+                  Re-publish
+                </button>
+              </span>             
+
+            </span>
+      
+
+            <button ng-show="user.twitter.username" class="btn btn-jo ">
               <span class="icon ion-social-twitter"></span> &nbsp; Tweet as photo
             </button>
           </div>
@@ -41,13 +77,14 @@
 
 
   <div class="archive-warning-box" ng-show="showArchiveWarning">
-    <div class="well well-lg">
-      Deleted &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; 
-      <span ng-click="cancelArchive()" class="undo-archive-btn">
+      <span class="pull-left">
         
-        Undo &nbsp; <span class="icon ion-arrow-return-left"></span>
+        Deleted 
       </span>
-    </div>
+
+      <span ng-click="cancelArchive()" class="undo-archive-btn pull-right">
+        | &nbsp;&nbsp;&nbsp;Undo &nbsp; <span class="icon ion-arrow-return-left"></span>
+      </span>
 
   </div>
 

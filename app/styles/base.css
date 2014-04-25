@@ -11,6 +11,23 @@
   font-size: 130%;
   text-align: center;
   color: gray;
+  height: 30px;
+  padding: 0 30px;
+}
+
+.write-shelf-hearts {
+    position: absolute;
+    opacity: 0.8;
+    bottom: 9px;
+    left: 12px;
+    font-size: 91%;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.write-shelf-hearts > .icon {
+  font-size: 100%;
+  padding-right: 10px;
 }
 
 .undo-archive-btn {
@@ -46,13 +63,13 @@
     position: relative;
     min-height: 60px;
     border-radius: 4px;
-    padding: 30px 0% 20px 0%;
+    padding: 30px 5% 20px 5%;
     box-shadow: 1px 1px 3px -2px rgb(89, 117, 151), inset 1px 1px 3px -2px rgb(144, 164, 191);
     background-color: rgba(245, 245, 245, 1);
 }
 
 .write-shelf-btn {
-    width: 70px;
+    width: 150px;
   
     position: absolute;
     right: 10px;
@@ -62,15 +79,18 @@
     font-size: 0.8em;
     text-align: center;
     color: rgb(193, 193, 193);
-    padding: 5px 0;
+    padding: 5px 25px 5px 0;
     font-style: italic;
+    text-align: right;
 }
 
 .write-shelf-btn:hover {
   
 }
 .write-unit-collapse {
+    width: 110%;
   
+    margin-left: -5%;
 }
 
 .write-unit {
@@ -88,11 +108,15 @@
 }
 
 #top-bar-title {
-  background-color: black;
+  background-color: rgb(39, 39, 39);
   color: white;
   font-family: 'Roboto', sans-serif;
   font-size: 2em;
   font-style: italic;
+  text-shadow: 2px 1px 1px rgb(87, 87, 87);
+  padding: 1px;
+  box-shadow: inset -1px 0px 1px 0px dimgray;
+  border-radius: 2px;
 }
 
 #twitter-message {
@@ -1604,15 +1628,14 @@ blockquote {
   width: 130px;
   text-align: center;
   left: -1%;
-  opacity: 0.8;
   padding-left: 4px;
   position: fixed;
   transition: all 150ms linear;
   top: 1%;
+  cursor: pointer;
 }
 
 #header:hover {
-  opacity: 1;
 }
 
 #top-nav {
@@ -1828,7 +1851,7 @@ p {
 
 .write-content {
   outline: none;
-  padding: 0px 5%;
+  padding: 0px 0%;
   border: none;
   cursor: text;
   margin: 25px auto 40px auto;
@@ -2055,9 +2078,6 @@ h3 {
 .ion-heart {
   color: #FF4D49;
   font-size: 1.5em;
-  /* margin-top: -20px; */
-  /* margin-bottom: -20px; */
-  /* padding-top: 7px; */
 }
 
 .ion-arrow-up-a {
@@ -2774,7 +2794,6 @@ h3 {
 }
 
 .write-collapse-first {
-    width: 101%;
   
 }
 

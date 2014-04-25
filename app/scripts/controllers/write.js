@@ -23,7 +23,6 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$timeout', 
       }
     }
 
-
   /*
     Watches
     */
@@ -39,29 +38,14 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$timeout', 
       }
     });
 
-
-
-
     $scope.$watchCollection(Write.getDocs, function (newValue) {
       if (newValue) {
         $scope.docs = newValue;
       }
     });
 
-  /*
-    UX Functions
-    */
-
     $scope.newDoc = function () {
       Write.createNewDoc();
-    };
-
-
-
-    $scope.switchVisible = function () {
-      // needs id
-      Write.updateUserDoc('pubVisible', !$scope.currentDoc.pub_doc.is_visible);
-      $scope.currentDoc.pub_doc.is_visible = !$scope.currentDoc.pub_doc.is_visible;
     };
 
 
@@ -102,26 +86,7 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$timeout', 
 
 
 
-            // Publish doc
-            $scope.publish = function (isAnon) {
 
-              Write.publishDoc(isAnon).then(
-                function (res) {
-                  if (res.status === 201) {
-                    doc.is_published = true;
-                    doc.pub_doc = res.data;
-                    // TODO prompt user to share here
-                    if (tweet) {
-                      $scope.openTweet(res.data._id)
-                    } else {
-
-                      $state.go('read.doc', {docId: res.data._id});
-                    }
-                    $scope.close();
-                  }
-                }
-              );
-            };
 
             $scope.openTweet = function (docId) {
               $scope.close();

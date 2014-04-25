@@ -37,6 +37,24 @@ angular.module('shared')
 
       };
 
+      // Publish doc
+      $scope.publish = function (isAnon) {
+        Write.publishDoc(isAnon, $scope.doc._id).then(
+          function (res) {
+            if (res.status === 201) {
+              $scope.doc.is_published = true;
+              $scope.doc.pub_doc = res.data;
+            }
+          }
+        );
+      };
+
+      $scope.switchVisible = function () {
+        Write.updateUserDoc('pubVisible', !$scope.doc.pub_doc.is_visible, $scope.doc._id);
+        $scope.doc.pub_doc.is_visible = !$scope.doc.pub_doc.is_visible;
+      };
+
+
       $scope.bodyChange = function () {
         $timeout(function () {
           if ($scope.doc.body) {

@@ -70,9 +70,9 @@ angular.module('write')
     }
 
 
-    function publishDoc (isAnon) {
+    function publishDoc (isAnon, id) {
       var data = {
-        id: current_doc._id,
+        id: id,
         is_anon : isAnon,
       };
       return PubDoc.create(data);
