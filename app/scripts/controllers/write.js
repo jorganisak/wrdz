@@ -15,7 +15,7 @@ angular.module('write')
     // TEXT EDITOR OPTIONS
     $scope.mediumEditorOptionsBody = angular.toJson(
       {"placeholder": "Write here",
-        "buttons": ["bold", "italic", "header2", "anchor","quote"],
+        "buttons": ["bold", "italic", "header2"],
         "buttonLabels" : {"header2": "<b>H</b>", "anchor": "<span><span class='icon ion-link'></span></span>",
          "bold":"<strong>b</strong>", "italic": "<em><b>i</b></em>"},
         "disableToolbar": false,
@@ -95,24 +95,16 @@ angular.module('write')
     });
 
     // this needs to change form entirely
-    $scope.bodyChange = function () {
+    $scope.bodyChange = function (body, id) {
       $timeout(function () {
-        var val = $scope.currentDoc.body;
+        var val = body;
         if (val) {
-          var sample = getSample();
-          if (!sample) {
-            sample = $scope.currentDoc.sample;
-          } else {
-            $scope.currentDoc.sample = sample;
-          }
           if ($scope.user) {
-            // needs id
-            Write.updateUserDoc('body', {'sample': sample, 'body': $scope.currentDoc.body});
+            Write.updateUserDoc('body', {'body': val}, id);
           }
         }
       }, 500)
     };
-
 
 
     $scope.$watchCollection(Write.getDocs, function (newValue) {

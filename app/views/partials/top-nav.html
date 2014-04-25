@@ -1,59 +1,12 @@
 <div id="header">
 
-    <!-- 
-        User Nav
-     -->
 
     <div  id='top-nav' class="row">
         <div id="top-nav-container">
 
-            <div class="col-sm-2 col-xs-6">
-                
-                <div ng-hide="$state.includes('write') || $state.includes('mywrdz')" ui-sref="write" id='top-nav-write' class="top-nav-item col-xs-4  col-sm-offset-1 col-sm-4 ">
-                    <span class="top-nav-title">
-                        write
-                    </span>
-                </div>
-
-                <div ng-hide="$state.includes('read')" ui-sref="read.list.front({'skip':null, 'sort':'score'})" id='top-nav-read' class="top-nav-item  col-xs-4 col-sm-4 col-sm-offset-1">
-                    <span class="top-nav-title">read</span>
-                </div>
+            <div id="top-bar-title" class="col-sm-4">
+                Wrdz
             </div>
-
-
-
-<!--             <div id='wrdz-headline' class="hidden-sm hidden-xs col-md-4 ">
-                             <span ui-sref='write' class="top-nav-title">wrdz</span>
-            </div> -->
-            <div ng-if='user' class="col-sm-1 col-sm-offset-9  col-xs-6">
-
-
-                <div ng-class="{activeTopNav: $state.includes('me')}"  ui-sref="me.profile" id='top-nav-me' class="top-nav-item hidden-xs text-right">
-                    
-                    <span class="ion ion-gear-a"></span> 
-                </div>
-            </div>
-
-
-            <div ng-if='!user' ng-show="$state.includes('write') || $state.includes('mywrdz')"  class=" pull-right">
-                
-                <button ng-click='launchEmailLogin()' class="btn btn-jo" id='bottom-auth-btn'>
-                    Sign in with email
-                </button>
-
-             
-            </div>
-          
-           <div ng-if='!user' ng-hide="$state.includes('write') || $state.includes('mywrdz')"  class="col-sm-2 col-xs-6 text-right pull-right">
-                    
-                    <div ng-click='aboutModal()' class="top-nav-item">
-                        about wrdz
-                    </div>
-
-                 
-                </div>
-          
-                
 
             
         </div>

@@ -12,6 +12,15 @@
   top: 170px;
 }
 
+#top-bar-title {
+  background-color: black;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2em;
+  max-width: 130px;
+  font-style: italic;
+}
+
 #twitter-message {
   height: 70px;
   width: 60%;
@@ -314,7 +323,7 @@
   }
 
   #top-nav-container > div {
-    background-color: white;
+    /* background-color: white; */
   }
 
   .read-list-item {
@@ -496,7 +505,7 @@ html input[disabled] {
 
 @media (max-width: 768px) {
   #top-nav-container {
-    padding: 0 20px;
+    /* padding: 0 20px; */
   }
 }
 
@@ -732,7 +741,7 @@ h6 {
 
 p,
 li {
-  font-size: 26px;
+  font-size: 19px;
   font-weight: 100;
   text-align: justify;
   margin-bottom: 0.6em;
@@ -1521,7 +1530,7 @@ blockquote {
   transition: all 150ms linear;
   height: 43px;
   z-index: 110;
-  bottom: 0%;
+  top: 0%;
 }
 
 #header:hover {
@@ -1654,7 +1663,7 @@ blockquote {
 h4 {
   font-family: 'Clear Sans', sans-serif;
   font-weight: 800;
-  font-size: 37px;
+  font-size: 32px;
   /* font-family: 'Montserrat', sans-serif; */
   margin-bottom: 20px;
 }
@@ -1737,15 +1746,15 @@ p {
 }
 
 #write-center {
-  padding: 5% 4% 8% 4%;
+  padding: 5% 4%;
   box-shadow: 0 0 1px 0px rgba(236, 236, 236, 1), inset 0px 0px 4px -1px rgba(228, 228, 228, 0.61);
   max-width: 684px;
-  margin: 20px auto 30% auto;
+  margin: 20px auto;
   position: relative;
   text-align: left;
-  width: 101%;
+  /* width: 101%; */
   border-radius: 6px;
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
 }
 
 #write-content {

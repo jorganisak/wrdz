@@ -40,10 +40,10 @@ angular.module('write')
 
     //UserDoc
     
-    function updateUserDoc (type, data) {
+    function updateUserDoc (type, data, id) {
       //this argument will need to take an id as argument
-      updateRecentDoc(current_doc._id);
-      return UserDoc.update(current_doc._id, type, data);
+      updateRecentDoc(id);
+      return UserDoc.update(id, type, data);
     }
 
     function createNewDoc () {
