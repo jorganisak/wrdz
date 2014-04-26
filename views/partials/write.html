@@ -1,0 +1,27 @@
+<div id="write-body" ng-cloak="" class="" ng-controller="WriteCtrl">
+
+    <div ng-cloak="" class="row">
+
+        <div class="text-center col-sm-8 col-sm-offset-2 col-xs-12 pull-left column">
+
+            <div id="write-center">
+                
+                <div ng-click="newDoc()" class="text-center" id="new-doc-button">
+                    <span class="icon ion-plus-round"></span>
+                </div>
+
+                <div ng-repeat="doc in docs">
+                    <div write-unit="" tweet="openTweetModal(docId, pub)" user="user" doc="doc"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-2 hidden-xs pull-right">
+            <div ng-show="user" id="write-fixed-right" class="fixed-right">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

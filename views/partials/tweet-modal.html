@@ -1,0 +1,32 @@
+<div class="modal-body">
+  <span ng-click="close()" class="pull-right icon ion-close"></span>
+
+  
+  <span id="fixed-twitter-modal" class="icon ion-social-twitter"></span>
+  <div id="tweet-modal-header">Tweet These Wrdz</div>
+
+ 
+  <textarea class="form-control" ng-model="message" maxlength="110" name="twitter-message" id="twitter-message" cols="30" rows="10"></textarea>
+  <span id="message-count">
+    
+    {{110 - message.length}}
+  </span>
+
+  <button ng-click="sendTweet()" class="btn btn-jo" id="tweet-modal-button">Send Tweet</button>
+
+  <div id="include-photo" class="checkbox">
+    <label>
+      <input ng-model="includePhoto" type="checkbox"> Include Photo
+    </label>
+  </div>
+  <div ng-show="includePhoto" id="twitter-preview">
+
+    
+  </div>
+  <div ng-hide="includePhoto">
+    <br>
+    <br>
+  </div>
+
+
+</div>

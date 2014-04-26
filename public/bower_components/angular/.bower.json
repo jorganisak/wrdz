@@ -1,0 +1,16 @@
+{
+  "name": "angular",
+  "version": "1.2.17-build.105+sha.1ebed26",
+  "main": "./angular.js",
+  "dependencies": {},
+  "homepage": "https://github.com/angular/bower-angular",
+  "_release": "1.2.17-build.105+sha.1ebed26",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.2.17-build.105+sha.1ebed26",
+    "commit": "737e94a381d7e4cba8d2b1d5a78c479cfbe37e80"
+  },
+  "_source": "git://github.com/angular/bower-angular.git",
+  "_target": "~1.2.10",
+  "_originalSource": "angular"
+}

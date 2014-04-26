@@ -1,0 +1,36 @@
+<div ng-mouseleave="navCollapse = true" ng-if="user" ng-controller="NavCtrl" id="header">
+
+
+    <div id="top-nav" class="">
+        <div id="top-nav-container">
+
+            <div ng-click="expandNav(); $event.stopPropagation();" id="top-bar-title" class="">
+                Wrdz
+            </div>
+
+            <div ng-show="showNav" class="slide-left">
+              <div ui-sref="write" ui-sref-active="active" class="nav-item">
+                write
+              </div>
+              <div ui-sref="read.front" ui-sref-active="active" class="nav-item">
+                read
+              </div>
+              <div ui-sref-active="active" ui-sref="read.user({userId: user._id})" class="nav-item">
+                <span class="icon ion-person"></span>&nbsp;
+                {{user.username}}
+              </div>
+              <div ui-sref="me" ui-sref-active="active" class="nav-item">
+                <span class="icon ion-gear-a"></span>&nbsp;
+                settings
+              </div>
+
+            </div>
+
+            
+        </div>
+
+    </div>
+
+
+
+</div>

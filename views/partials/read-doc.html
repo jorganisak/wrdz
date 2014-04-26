@@ -1,0 +1,36 @@
+<div id="me-middle">
+    
+    <div ng-controller="ReadDocCtrl">
+
+        <div class="read-top-row">
+            <div class="read-author-row">
+                
+                <div ng-show="doc.is_anon">
+                    Annonymous
+                </div>
+                <div ng-hide="doc.is_anon">
+                    {{doc.author.username}}
+                </div>
+            </div>
+            <div ng-click="up_vote()" ng-class="{active: active1}" class="read-heart-btn">
+                <span class="icon ion-heart"></span>
+                {{doc.up_votes - 1}}
+            </div>
+
+
+        </div>
+        
+        <div class="doc-unit read-unit">
+
+            <div>
+
+                <div ng-bind-html="doc.doc.body" class="write-content">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

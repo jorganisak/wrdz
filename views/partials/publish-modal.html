@@ -1,0 +1,48 @@
+<div class="modal-body">
+  <span ng-click="close()" class="pull-right icon ion-close"></span>
+
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <div ng-show="user">
+
+
+
+    <div class="row" ng-show="twitterOpts" id="twitter-share">
+
+
+
+     
+          <button ng-click="openTweet()" class="btn pub-button btn-jo">
+            <span class="icon ion-social-twitter"></span> &nbsp; Tweet
+          </button>
+          <button ng-click="publishOpts = true; twitterOpts = false;" class="btn pub-button btn-jo">
+
+            Publish
+          </button>          
+          <button ng-click="setTweetFlag(); publishOpts = true; twitterOpts = false;" class="btn pub-button btn-jo">
+
+            Publish <br>& <br> <span class="icon ion-social-twitter"></span>  Tweet  
+          </button>
+    </div>
+
+
+    <div ng-show="publishOpts" id="publishOpts" class="row show-hide-fade">
+      <button ng-click="publish(false)" class="pub-button btn btn-jo">
+        Publish <br> as {{username}}
+      </button>
+      <button ng-click="publish(true)" class="pub-button btn btn-jo">
+        Publish  <br>Anonymously
+      </button>
+
+    </div>
+
+
+  </div>
+
+
+
+</div>

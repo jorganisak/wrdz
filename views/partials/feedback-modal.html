@@ -1,0 +1,27 @@
+<div class="modal-header">
+        <span ng-click="close()" class="pull-right icon ion-close"></span>
+
+    <h3>Feedback</h3>
+</div>
+
+<div class="modal-body">
+
+<p>How could wrdz be better for you?</p>
+
+
+<form name="feedbackForm" role="form" ng-submit="submitFeedback(feedback)" novalidate="">
+
+  <div class="form-group">
+
+    <textarea name="feedback" class="form-control" required="" ng-model="feedback" id="" cols="30" rows="10"></textarea>
+    
+  </div>
+
+
+  <button type="submit" ng-disabled="feedbackForm.$invalid" class="btn btn-block btn-success">Submit</button>
+
+
+</form>      
+
+
+</div>

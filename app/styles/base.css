@@ -16,15 +16,13 @@
   cursor: pointer;
 }
 
-#include-photo{
-    width: 130px;
-  
-    margin: 17px 0 0 22%;
+#include-photo {
+  width: 130px;
+  margin: 17px 0 0 22%;
 }
 
 .nav-item.active {
-    font-weight: 800;
-  
+  font-weight: 800;
 }
 
 #landing-copy-big {
@@ -32,69 +30,56 @@
   font-family: 'Clear Sans', sans-serif;
   font-size: 2em;
   width: 325px;
-  right: 11%;
+  right: 12%;
   text-align: left;
   top: 113px;
 }
 
 .no-underline:hover {
-    text-decoration: none;
-
+  text-decoration: none;
 }
 
-.nav-item.active:hover {
-  
-}
+
 
 .nav-item:hover {
   background-color: white;
 }
 
-
 .read-heart-row {
-    margin: 0 auto;
-  
-    width: 45%;
-    text-align: center;
+  margin: 0 auto;
+  width: 45%;
+  text-align: center;
 }
 
 .read-heart-btn {
-    position: absolute;
-  
-    right: 8%;
-    top: 12px;
-    font-weight: 100;
-    transition: all 100ms linear;
-    border-radius: 4px;
-    padding: 7px 12px;
-    cursor: pointer;
-    /* box-shadow: 0 0 2px -1px rgb(24, 24, 24); */
+  position: absolute;
+  right: 8%;
+  top: 12px;
+  font-weight: 100;
+  transition: all 100ms linear;
+  border-radius: 4px;
+  padding: 7px 12px;
+  cursor: pointer;
+  /* box-shadow: 0 0 2px -1px rgb(24, 24, 24); */
 }
 
 .read-heart-btn:hover {
-    background-color: rgb(238, 238, 238);
-  
+  background-color: rgb(238, 238, 238);
 }
 
-.read-heart-btn.active {
-  
-}
+
 
 .read-heart-btn.active > .icon {
   color: red;
 }
-.read-heart-btn.active:hover {
-  
-}
+
+
 
 .read-heart-btn > .icon {
-    font-size: 108%;
-  
-    padding: 2px 9px 0 0;
-    color: rgb(195, 195, 195);
+  font-size: 108%;
+  padding: 2px 9px 0 0;
+  color: rgb(195, 195, 195);
 }
-
-
 
 .archive-warning-box {
   font-family: 'Clear Sans', sans-serif;
@@ -174,13 +159,6 @@
 
 
 
-.write-unit-collapse {
-}
-
-
-
-
-
 #message-count {
   /* position: absolute; */
   float: right;
@@ -229,9 +207,9 @@
   font-family: 'Roboto', sans-serif;
   margin-top: -19px;
 }
-#tweet-modal-button:hover {
-  
-}
+
+
+
 #tweet-modal-button {
   width: 24%;
   float: right;
@@ -278,22 +256,20 @@
 }
 
 .read-top-row {
-    font-family: 'Roboto', sans-serif;
-  
-    margin: 0 auto;
-    width: 83%;
-    position: relative;
-    height: 55px;
+  font-family: 'Roboto', sans-serif;
+  margin: 0 auto;
+  width: 83%;
+  position: relative;
+  height: 55px;
 }
 
 .read-author-row {
-    border-bottom: solid 1px rgb(0, 0, 0);
-  
-    width: 33%;
-    left: 9%;
-    position: absolute;
-    padding: 14px 2px;
-    box-shadow: inset 0px -1px 2px -2px rgb(205, 205, 205);
+  border-bottom: solid 1px rgb(0, 0, 0);
+  width: 33%;
+  left: 9%;
+  position: absolute;
+  padding: 14px 2px;
+  box-shadow: inset 0px -1px 2px -2px rgb(205, 205, 205);
 }
 
 #read-doc-center {
@@ -342,8 +318,6 @@
   padding-right: 20px;
   margin-top: 11px;
 }
-
-
 
 #topicCollapse > span > .tag-label {
   cursor: pointer;
@@ -593,16 +567,12 @@ ol {
   max-width: 280px;
 }
 
-
-
 .read-unit {
-    margin: 0px auto 70px auto;
-  
-    width: 70%;
-    padding: 0;
-    box-shadow: none;
+  margin: 0px auto 70px auto;
+  width: 70%;
+  padding: 0;
+  box-shadow: none;
 }
-
 
 #write-fixed-top {
   position: fixed;
@@ -691,8 +661,6 @@ html input[disabled] {
   color: black;
 }
 
-
-
 .medium-editor-toolbar li button:focus {
   outline: none;
 }
@@ -708,8 +676,7 @@ html input[disabled] {
   padding-top: 26px;
 }
 
-.modal-body {
-}
+
 
 #twitter-link:hover {
   text-decoration: none;
@@ -970,16 +937,17 @@ hr {
 }
 
 #landing-header-big {
- 
- background-color: rgb(39, 39, 39);   color: white;   font-family: 'Roboto', sans-serif;   
- font-size: 4em;   font-style: italic;   
- position: absolute;
- padding: 48px 70px 48px 16%;
- left: -4px;
- top: 107px;
- border-radius: 4px;
+  background-color: rgb(39, 39, 39);
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 4em;
+  font-style: italic;
+  position: absolute;
+  padding: 48px 70px 48px 16%;
+  left: -4px;
+  top: 107px;
+  border-radius: 4px;
 }
-
 
 .mywrdz-date-box {
   margin: 10px 0px;
@@ -1368,8 +1336,6 @@ h1 {
   color: rgb(16, 16, 16);
 }
 
-
-
 #read-doc-username {
   font-family: 'Open Sans', sans-serif;
   font-size: 0.9em;
@@ -1712,8 +1678,6 @@ blockquote {
   z-index: 1;
   cursor: pointer;
 }
-
-
 
 #top-nav {
   z-index: 1000;
@@ -2870,7 +2834,6 @@ h3 {
   width: 45%;
 }
 
-
 .ion-social-twitter {
   color: #55ACEE;
 }
@@ -2881,7 +2844,6 @@ h3 {
   margin: 9px auto;
   min-height: 48px;
 }
-
 
 @media (min-width: 786px) {
   .thin-modal {
@@ -2896,37 +2858,33 @@ h3 {
     border-color: rgb(242, 242, 242) !important;
     margin-bottom: 0px;
   }
+
   .read-top-row {
     width: 100%;
-    
   }
-  
+
   .read-author-row {
     left: 1%;
-    
-  
     width: 40%;
-}
+  }
+
   #header {
     top: 0;
-  
     width: 50%;
     position: absolute;
   }
-  
+
   .read-unit {
     width: 98%;
-    
   }
 
   #new-doc-button {
     position: absolute;
-    
-  
     right: 10px;
     top: -82px;
     width: 50px;
-}
+  }
+
   #twitter-message {
     width: 100%;
   }
@@ -2946,51 +2904,43 @@ h3 {
 
   #write-center {
     width: 90% !important;
-  
     margin-top: 30px;
-}
-  
+  }
+
   .write-shelf-btn.active {
     bottom: 152px;
   }
-  
+
   .read-heart-btn {
     right: 1%;
-    
-  
     background-color: rgb(242, 242, 242);
     width: 30%;
     top: 10px;
     text-align: center;
   }
-  
+
   #message-count {
     margin-right: 10px;
-    
   }
-  
+
   #include-photo {
     margin: 70px auto 30px auto;
-    
   }
-  
+
   #twitter-preview {
-    
-  
     margin: 0 auto;
     background-color: transparent;
     box-shadow: none;
     padding: 0;
+  }
 }
 
-}
 @media (max-width: 400px) {
-   #twitter-preview {
+  #twitter-preview {
     margin: 0 auto;
     background-color: transparent;
     box-shadow: none;
     padding: 0;
-  
     margin-left: -58px;
-}
+  }
 }

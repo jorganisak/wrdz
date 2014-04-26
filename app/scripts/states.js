@@ -11,6 +11,14 @@ config(['$stateProvider', '$urlRouterProvider',
       .state('landing', {
         url: '/',
         templateUrl: 'partials/landing.html',
+        controller: ['$scope', '$state', function ($scope, $state) {
+          if ($scope.user) $state.go('write');
+          $scope.$on('userChange', function (evt, user) {
+            if (user) {
+              $state.go('write');
+            }
+          });
+        }]
       })
 
       .state('twitter', {
@@ -34,9 +42,7 @@ config(['$stateProvider', '$urlRouterProvider',
         url: '/r',
         templateUrl: 'partials/read.html',
         abstract: 'true',
-        controller: ['$scope', '$state', function ($scope, $state) {
 
-        }]
       })
 
 
