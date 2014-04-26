@@ -13,6 +13,18 @@ config(['$stateProvider', '$urlRouterProvider',
         templateUrl: 'partials/landing.html',
       })
 
+      .state('twitter', {
+        url: '/auth/twitter',
+        templateUrl: 'partials/landing.html',
+        controller: ['$scope', '$timeout', function ($scope, $timeout) {
+          $timeout(function () {
+            
+            location.reload(true);
+          }, 100)
+        }]
+
+      })
+
 
       /*
       READ
@@ -64,16 +76,9 @@ config(['$stateProvider', '$urlRouterProvider',
         templateUrl: 'partials/read-list-center.html',
         url: '/u/:userId?sort',
         resolve : {
-          docs : ['$stateParams','User', 'Read', function ($stateParams, User, Read) {
+          docs : ['$stateParams', 'Read', function ($stateParams, Read) {
             if ($stateParams.userId) {
-              if (!$stateParams.sort) {
-                $stateParams.sort = 'score';
-              }
-
-              return Read.updateQuery([{type:'following', 
-                value: [$stateParams.userId]}, {type:'topics', value: ''}, 
-                {type:'hearts', value: ''}, {type:'skip', value: $stateParams.skip}, 
-                {type: 'sort', value: $stateParams.sort}]);
+              return Read.getUser($stateParams.userId);
 
             } else {
               return false;
@@ -144,14 +149,10 @@ config(['$stateProvider', '$urlRouterProvider',
       .state('me', {
         url: '/m',
         templateUrl: 'partials/me.html',
-        abstract: 'true',
       })
 
       
-      .state('me.profile', {
-        url: '/profile',
-        templateUrl: 'partials/me-settings.html'
-      }) 
+
 
      // Password reset
      .state('password_reset', {

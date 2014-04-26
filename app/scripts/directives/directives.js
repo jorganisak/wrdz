@@ -8,7 +8,8 @@ angular.module('shared')
     templateUrl: 'partials/write-unit.html',
     scope: {
       doc : '=doc',
-      user: '=user'
+      user: '=user',
+      tweetModal: '&tweet',
     },
     controller: ['$scope', '$timeout', 'Write', function ($scope, $timeout, Write) {
       $scope.mediumEditorOptionsBody = Write.getMediumOptions;
@@ -48,6 +49,18 @@ angular.module('shared')
           }
         );
       };
+
+      function isPublic () {
+        if ($scope.doc.is_published) {
+          if ($scope.doc.pub_doc.is_visible) {
+            return true
+          } 
+        }
+        return false;
+      }
+      $scope.tweet = function () {
+        $scope.tweetModal({docId: $scope.doc._id, pub: isPublic()});
+      }
 
       $scope.switchVisible = function () {
         Write.updateUserDoc('pubVisible', !$scope.doc.pub_doc.is_visible, $scope.doc._id);

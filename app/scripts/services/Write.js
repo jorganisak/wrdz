@@ -54,7 +54,6 @@ angular.module('write')
           //add to userdocs on scope user
           user._userDocs.unshift(doc);
           //set the current doc to the new doc
-          console.log(doc);
         });
       }
     }

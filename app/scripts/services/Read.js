@@ -16,6 +16,10 @@ angular.module('read')
         return PubDoc.list();
       },
 
+      getUser : function (userId) {        
+        return PubDoc.user(userId);
+      },
+
       setDocs : function (docs) {
         docList = docs;
       },

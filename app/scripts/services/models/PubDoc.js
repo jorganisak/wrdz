@@ -22,7 +22,6 @@ angular.module('models')
 
       update: function (docId, type, bool) {
         var send = {'data' : bool };
-
         // res.status = 200 on good, 400 bad
         return $http.post('/pubDocs/' + docId  + '/?type=' + type, send);
       },
@@ -31,20 +30,12 @@ angular.module('models')
         return $http.get('/pubDocs/' + docId);
       },
 
-
-      ///TO DELETE
-      refresh : function () {
-        return $http.get('pubDocs/');
-      },
-
-      getHearts : function (docIds) {
-        var data = {docIds: docIds}
-        return $http.post('pubDocs/hearts', data)
-      },
-
       list : function () {
-
         return $http.get('/pubDocs');
+      },
+
+      user : function (userId) {
+        return $http.get('/pubDocs?user=' + userId)
       }
     }
   }]);

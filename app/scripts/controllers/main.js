@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('shared')
-.controller('MainCtrl', ['$scope', 'User', '$modal', '$window','$timeout', function ($scope, User, $modal, $window, $timeout) {
+angular.module('shared').controller('MainCtrl', ['$scope', 'User', '$modal', '$window','$timeout', 
+  function ($scope, User, $modal, $window, $timeout) {
 
 
 
@@ -51,6 +51,11 @@ angular.module('shared')
     };
 
     $scope.local_auth_form = false;
+
+
+    $scope.bodyClick = function () {
+      $scope.$broadcast('bodyClick');
+    };
 
 
 

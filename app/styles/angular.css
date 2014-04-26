@@ -29,8 +29,8 @@
 }
 
 .slide-left.ng-hide-remove {
-    -webkit-animation: fadeInLeft 0.2s;
-    animation: fadeInLeft 0.2s;
+    -webkit-animation: slideInLeft 0.3s;
+    animation: slideInLeft 0.3s;
 }
 
 .slide-left.ng-hide-add {

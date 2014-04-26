@@ -54,73 +54,18 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$timeout', 
     */
 
 
-    $scope.openPublishModal = function () {
-      if (!$scope.currentDoc.is_published) {
-        
-        var modalInstance = $modal.open({
-          templateUrl: "partials/publish-modal.html",
-          controller: ['$scope', 'Write', '$modalInstance', '$state', 'doc', 'user', 'Picture', 'openTweetModal',
-          function ($scope, Write, $modalInstance, $state, doc, user, Picture, openTweetModal) {
-            $scope.user = user;
-            $scope.anon = false;
-            var img = "";
-            var tweet = false;
 
-            $scope.setTweetFlag = function () {
-              tweet = true;
-            }
-
-            if (user) {
-              $scope.username = user.username;
-              if (user.twitter.username) {
-                $scope.twitterOpts = true;
-              } else {
-                $scope.publishOpts = true;
-                $scope.twitterOpts = false;
-              }
-            }
-
-            $scope.close = function () {
-              $modalInstance.close();
-            };
-
-
-
-
-
-            $scope.openTweet = function (docId) {
-              $scope.close();
-              openTweetModal(docId);
-            }
-
-          }],
-          resolve: {
-            user : function () {
-                return $scope.user;
-            },
-
-            doc : function () {
-              return $scope.currentDoc;
-            },
-
-            openTweetModal : function () {
-              return $scope.openTweetModal;
-            }
-          }
-        });
-      }
-    };
-
-     $scope.openTweetModal = function (docId) {
+     $scope.openTweetModal = function (docId, pub) {
 
         
         var modalInstance = $modal.open({
           templateUrl: "partials/tweet-modal.html",
-          controller: ['$scope', 'Write', '$modalInstance', '$state', 'user', 'Picture',
-          function ($scope, Write, $modalInstance, $state, user, Picture) {
+          controller: ['$scope', 'Write', '$modalInstance', 'user', 'Picture',
+          function ($scope, Write, $modalInstance, user, Picture) {
             $scope.user = user;
             var img = "";
             $scope.message = '';
+            $scope.includePhoto = true;
 
 
             $scope.close = function () {
@@ -143,7 +88,7 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$timeout', 
               tweetPic(img);
             }
 
-            if (docId) {
+            if (docId && pub) {
               getShortUrl(docId).then(function (res) {
                 var url = res.data;
                 $scope.message = " " + url;
@@ -152,29 +97,16 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$timeout', 
 
 
 
-            var prevWidth = document.getElementById("write-center").offsetWidth
-            document.getElementById("write-center").style.width="500px";
-            html2canvas(document.getElementById('write-center'), 
+            var prevWidth = document.getElementById(docId).offsetWidth;
+            document.getElementById(docId).style.width="320px";
+            html2canvas(document.getElementById(docId), 
             {
 
               onrendered : function (canvas) {
                 document.getElementById('twitter-preview').appendChild(canvas);
 
-                document.getElementById("write-center").style.width=prevWidth+"px";
+                document.getElementById(docId).style.width=prevWidth+"px";
                 img = canvas.toDataURL("image/png");
-
-                // if (canvas.toBlob) {
-                //   canvas.toBlob(
-                //       function (blob) {
-                //         console.log(blob)
-                //           // Do something with the blob object,
-                //           // e.g. creating a multipart form for file uploads:
-                //          img = blob;
-
-                //       },
-                //       'image/png'
-                //   );
-                // }
               }
             })
 
