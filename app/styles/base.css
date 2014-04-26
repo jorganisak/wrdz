@@ -6,6 +6,30 @@
   top: 140px;
 }
 
+.nav-item {
+  
+    font-size: 110%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    text-align: left;
+    transition: box-shadow 50ms linear;
+    padding: 15px 24px;
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    box-shadow: inset 9px 0px 0 0 black;
+  
+}
+
+.nav-item.active {
+  
+}
+
+.nav-item.active:hover {
+  
+}
+
 .archive-warning-box {
   font-family: 'Clear Sans', sans-serif;
   font-size: 130%;
@@ -62,9 +86,9 @@
     margin: 0px auto 40px auto;
     position: relative;
     min-height: 60px;
-    border-radius: 4px;
+    border-radius: 2px;
     padding: 30px 5% 20px 5%;
-    box-shadow: 1px 1px 3px -2px rgb(89, 117, 151), inset 1px 1px 3px -2px rgb(144, 164, 191);
+    box-shadow: 1px 1px 2px -2px rgb(99, 99, 99), inset 1px 1px 4px -2px rgb(183, 183, 183);
     background-color: rgba(245, 245, 245, 1);
 }
 
@@ -238,8 +262,6 @@
 }
 
 .ion-gear-a {
-  font-size: 1.1em;
-  margin: 3px 14% 0px 0;
 }
 
 #topicCollapse > span > .tag-label {
@@ -1754,8 +1776,8 @@ blockquote {
 }
 
 #content {
-  max-width: 105em;
-  padding: 0px 5%;
+  max-width: 65em;
+  padding: 0px 0%;
   margin: 0 auto 60px auto;
   padding-top: 0px;
 }

@@ -33,13 +33,11 @@ config(['$stateProvider', '$urlRouterProvider',
 
       //FRONT
       .state('read.list.front', {
-        url: '/f?skip?sort',
+        url: '/f?sort',
         templateUrl: 'partials/read-list-center.html',
         resolve : {
           docs : ['Read','$stateParams', function (Read, $stateParams) {
-            return Read.updateQuery([{type:'topics', value: ''}, 
-              {type:'following', value: ''}, {type:'hearts', value: ''}, 
-              {type:'skip', value: $stateParams.skip}, {type: 'sort', value: $stateParams.sort}]);
+              return Read.getDocs();
           }]
         },
         controller : ['$scope','docs','Read', '$state','$stateParams',
@@ -67,7 +65,7 @@ config(['$stateProvider', '$urlRouterProvider',
       })
       .state('read.list.user', {
         templateUrl: 'partials/read-list-center.html',
-        url: '/u/:userId?skip?sort',
+        url: '/u/:userId?sort',
         resolve : {
           docs : ['$stateParams','User', 'Read', function ($stateParams, User, Read) {
             if ($stateParams.userId) {
@@ -127,18 +125,10 @@ config(['$stateProvider', '$urlRouterProvider',
 
           $scope.doc = readDoc.data;
 
-          var title = '';
-          if ($scope.doc.doc.has_title) {
-            title = $scope.doc.doc.title;
-          } else {
-            title = $scope.doc.doc.sample.slice(0, 20)
-          }
-
-          $rootScope.$broadcast('changePageTitle', title);
-
         }]
 
       })
+
 
 /*
       WRITE

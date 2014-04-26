@@ -97,10 +97,6 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['newer:copy:styles']
       },
-      stylus: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.styl'],
-        tasks: ['stylus:compile']
-      },
       gruntfile: {
         files: ['Gruntfile.js']
       },

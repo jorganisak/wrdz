@@ -12,7 +12,8 @@ angular.module('read')
 
 
       getDocs : function () {
-        return docList;
+
+        return PubDoc.list();
       },
 
       setDocs : function (docs) {
@@ -20,15 +21,8 @@ angular.module('read')
       },
       
       getPubDoc : function (docId) {
-        findNextDoc(docId);
         return PubDoc.findOne(docId);
       },
-
-      followUser : function (user, bool) {
-        var data = {userId: user._id, bool : bool};
-        User.update('addFollowing', data);
-      },
-
 
       updatePubDoc : function (docId, type, bool) {
         return PubDoc.update(docId, type, bool);

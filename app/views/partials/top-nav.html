@@ -1,11 +1,27 @@
-<div id="header">
+<div ng-mouseleave="navCollapse = true" ng-controller="NavCtrl" id="header">
 
 
     <div  id='top-nav' class="">
         <div id="top-nav-container">
 
-            <div id="top-bar-title" class="">
+            <div ng-mouseenter="navCollapse =false"  id="top-bar-title" class="">
                 Wrdz
+            </div>
+
+            <div>
+              <div ui-sref="write" class="nav-item">
+                write
+              </div>
+              <div ui-sref="read.list.front" class="nav-item">
+                read
+              </div>
+              <div  class="nav-item">
+                <span class="icon ion-person"></span>{{user.username}}
+              </div>
+              <div ui-sref="me" class="nav-item">
+                <span class="icon ion-gear-a"></span>settings
+              </div>
+
             </div>
 
             
