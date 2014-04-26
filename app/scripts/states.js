@@ -26,13 +26,10 @@ config(['$stateProvider', '$urlRouterProvider',
 
         }]
       })
-      .state('read.list', {
-        url:'',
-        templateUrl:'partials/read-list.html',
-      })
+
 
       //FRONT
-      .state('read.list.front', {
+      .state('read.front', {
         url: '/f?sort',
         templateUrl: 'partials/read-list-center.html',
         resolve : {
@@ -63,7 +60,7 @@ config(['$stateProvider', '$urlRouterProvider',
         }]
 
       })
-      .state('read.list.user', {
+      .state('read.user', {
         templateUrl: 'partials/read-list-center.html',
         url: '/u/:userId?sort',
         resolve : {
