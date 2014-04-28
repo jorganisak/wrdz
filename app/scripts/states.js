@@ -60,6 +60,13 @@ config(['$stateProvider', '$urlRouterProvider',
           $scope.hideStats = true;
           $scope.showUser = false;
           $scope.docs = docs.data;
+          Read.setDocs(docs.data);
+
+          
+
+          $scope.$on('new-read-docs', function (evt, docs) {
+            $scope.docs = docs;
+          })
 
           // Sorting mechanism;
           $scope.$watch('readFilter', function (newValue) {
@@ -82,27 +89,29 @@ config(['$stateProvider', '$urlRouterProvider',
         templateUrl: 'partials/read-list-center.html',
         url: '/u/:userId?sort',
         resolve : {
-          docs : ['$stateParams', 'Read', function ($stateParams, Read) {
+          data : ['$stateParams', 'Read', "User", function ($stateParams, Read, User) {
             if ($stateParams.userId) {
-              return Read.getUser($stateParams.userId);
+              var user = User.getOneUser($stateParams.userId);
+              var docs = Read.getUser($stateParams.userId);
+              var data = {user: user, docs: docs};
+              return data;
 
             } else {
               return false;
             }
           }]
         },
-        controller : ['$scope', 'docs','Read', '$stateParams','$state', '$rootScope', 
-          function ($scope, docs, Read, $stateParams, $state, $rootScope) {
+        controller : ['$scope', 'data','Read', '$stateParams','$state', '$rootScope', 
+          function ($scope, data, Read, $stateParams, $state, $rootScope) {
 
 
 
-            $scope.docs = docs.data;
-            if ($scope.docs[0]) {
-              
-              if ($scope.docs[0].author._id === $stateParams.userId) {
-                $scope.$emit('author_info', $scope.docs[0].author)
-              }
-            }
+            data.user.then(function (user) {
+              $scope.author = user.data.user;
+            })
+            data.docs.then(function (docs) {
+              $scope.docs = docs.data;
+            })
 
             $scope.$watch('readFilter', function (newValue) {
               if (newValue) {

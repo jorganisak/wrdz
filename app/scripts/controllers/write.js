@@ -48,11 +48,23 @@ angular.module('write').controller('WriteCtrl', ['$scope', 'Write', '$timeout', 
       Write.createNewDoc();
     };
 
+    $scope.loadMore = function () {
+      console.log('loading more')
+      Write.loadMoreDocs();
+    }
+
+    $scope.$on("focus-doc", function (evt, id) {
+        console.log(id);
+        $timeout(function () {
+          document.getElementById(id).focus();
+        }, 200)
+    })
+
+
 
     /*
       MODALS 
     */
-
 
 
      $scope.openTweetModal = function (docId, pub) {

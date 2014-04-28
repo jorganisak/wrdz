@@ -13,6 +13,10 @@ angular.module('read')
 
     $scope.moment = moment;
 
+    $scope.loadMore = function () {
+      console.log('loading')
+      Read.loadMore();
+    }
 
 
   }])
@@ -50,6 +54,7 @@ angular.module('read')
         }
       }
     };
+
 
 
 

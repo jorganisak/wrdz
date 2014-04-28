@@ -44,7 +44,7 @@ LOGOUT - should be moved
       success( function( data ) {
         User.changeUser(null);
         if (data == 'Logged out now.') {
-          $scope.$state.go('write');
+          $scope.$state.go('landing');
         }
       }).error(function(err) {
         console.log(err);

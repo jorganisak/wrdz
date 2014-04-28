@@ -22,18 +22,8 @@ angular.module('models')
         return $http.post('/userDocs/' + docId  + '/?type=' + type, send);
       },
 
-      list : function (args) {
-        var str = "";
-        for (var i=0; i<args.length; i++) {
-          if (args[i].value instanceof Array) {
-            for (var j=0; j< args[i].value.length; j++) {
-              str = str + args[i].type + '[]=' + args[i].value[j] + '&';
-            }
-          } else {
+      list : function (str) {
 
-            str = str  + args[i].type + '=' + args[i].value + '&';
-          }
-        }
         return $http.get('/userDocs/?'+str);
       }
 

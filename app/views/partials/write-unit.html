@@ -34,49 +34,43 @@
         <span class="icon ion-heart"></span> {{doc.pub_doc.up_votes - 1}}
       </div>
       <div collapse="shelfCollapsed">
-        <div class="write-unit-collapse">
-          <div class="write-collapse-first text-center">
-
-            <span ng-show="!doc.is_published">
-              <button ng-disabled="!doc.body" ng-click="publish(false)" class="btn btn-jo write-unit-btn ">
-                Publish <br>as {{user.username}}
-              </button>
-              <button ng-disabled="!doc.body" ng-click="publish(true)" class="btn btn-jo write-unit-btn">
-                Publish <br>Anonymously
-              </button>
-            </span>
+        <div ng-class="{two: doc.is_published && !doc.pub_doc.isVisible}" class="write-unit-collapse text-center">
+          
+          <span ng-show="!doc.is_published">
+            <button ng-disabled="!doc.body" ng-click="publish(false)" class="btn btn-jo write-unit-btn ">
+              Publish <br>as {{user.username}}
+            </button>
+            <button ng-disabled="!doc.body" ng-click="publish(true)" class="btn btn-jo write-unit-btn">
+              Publish <br>Anonymously
+            </button>
+          </span>
+          
+          <span ng-show="doc.is_published">
             
-            <span ng-show="doc.is_published">
-              
-              <span ng-show="doc.pub_doc.is_visible">
-                <a class='no-underline' ui-sref="read.doc({docId: doc.pub_doc._id})" >
-                  <button class="btn btn-jo write-unit-btn ">
-                    
-                  View
-                  </button>
-                </a>
-                <button ng-click="switchVisible()" class="btn btn-jo write-unit-btn ">
-                  Unpublish
+            <span ng-show="doc.pub_doc.is_visible">
+              <a class='no-underline' ui-sref="read.doc({docId: doc.pub_doc._id})" >
+                <button class="btn btn-jo write-unit-btn ">
+                  
+                View
                 </button>
-              </span>             
-              <span ng-show="!doc.pub_doc.is_visible">
-                <button ng-disabled="!doc.body" ng-click="switchVisible()" class="btn btn-jo write-unit-btn ">
-                  Re-publish
-                </button>
-              </span>             
+              </a>
+              <button ng-click="switchVisible()" class="btn btn-jo write-unit-btn ">
+                Unpublish
+              </button>
+            </span>             
+            <span ng-show="!doc.pub_doc.is_visible">
+              <button ng-disabled="!doc.body" ng-click="switchVisible()" class="btn btn-jo write-unit-btn ">
+                Re-publish
+              </button>
+            </span>             
 
-            </span>
-      
-
-
-
+          </span>
+          <span>
+            
             <button ng-click="tweet()" ng-disabled="!doc.body" ng-show="user.twitter.username" class="btn btn-jo write-unit-btn ">
               <span class="icon ion-social-twitter"></span> &nbsp;Tweet
             </button>
-
-
-
-          </div>
+          </span>
         </div> 
       </div>
     </div>

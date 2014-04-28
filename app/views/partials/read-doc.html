@@ -8,9 +8,9 @@
                 <div ng-show="doc.is_anon">
                     Annonymous
                 </div>
-                <div ng-hide="doc.is_anon">
+              <a class="author-link" ui-sref="read.user({userId: doc.author._id})" target="_blank" ng-hide="doc.is_anon">
                     {{doc.author.username}}
-                </div>
+                </a>
             </div>
             <div ng-click="up_vote()" ng-class="{active: active1}" class="read-heart-btn">
                 <span class="icon ion-heart"></span>

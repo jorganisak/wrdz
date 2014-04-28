@@ -4,16 +4,16 @@
   Write Service
   */
 
-angular.module('write')
-  .factory('Write', ['User', 'PubDoc', 'UserDoc', function (User, PubDoc, UserDoc) {
+angular.module('write').factory('Write', ['User', 'PubDoc', 'UserDoc', '$rootScope',
+  function (User, PubDoc, UserDoc, $rootScope) {
 
 /*
   Service Logic and declarations
   */
 
     var mediumEditorOptionsBody = angular.toJson(
-      {"placeholder": "Write here",
-          "buttons": ["bold", "italic", "header2"],
+      {"placeholder": "",
+          "buttons": ["bold", "italic", "header2", "unorderedlist", "orderedlist"],
           "buttonLabels" : {"header2": "<b>H</b>", "anchor": "<span><span class='icon ion-link'></span></span>",
            "bold":"<strong>b</strong>", "italic": "<em><b>i</b></em>"},
           "disableToolbar": false,
@@ -46,6 +46,23 @@ angular.module('write')
       });
     }
 
+    function loadMoreDocs () {
+      var str = "skip=" + docs.length;
+      UserDoc.list(str).then(function (res) {
+        var newDocs = res.data;
+        if (newDocs.length != 0) {
+
+          if (docs[docs.length-1]._id !== newDocs[newDocs.length-1]._id) {
+
+            var set = docs.concat(res.data);
+            setDocs(set);
+          }
+        }
+
+
+      });
+    }
+
     function createNewDoc () {
       var user = User.getUser();
       if (user) {
@@ -54,6 +71,7 @@ angular.module('write')
           //add to userdocs on scope user
           user._userDocs.unshift(doc);
           //set the current doc to the new doc
+          $rootScope.$broadcast("focus-doc", doc._id)
         });
       }
     }
@@ -63,8 +81,11 @@ angular.module('write')
       var user = User.getUser();
       UserDoc.create().then(function (res) {
         var doc = res.data;
-        doc.body = '<p>Delete this and write something awesome!</p>'
+        doc.body = "<h4>Welcome to Wrdz</h4><p>This is your writing surface.</p><p>Write anything you want here!</p><p><span style='line-height: 1.3;'>Highlight this text to see your formatting options.</span></p><p><br></p>"
+        docs.unshift(doc);
         user._userDocs.unshift(doc);
+        $rootScope.$broadcast("focus-doc", doc._id)
+        console.log("creating new doc")
       });
     }
 
@@ -89,6 +110,7 @@ angular.module('write')
       publishDoc : publishDoc,
       getDocs: getDocs,
       setDocs: setDocs,
+      loadMoreDocs: loadMoreDocs,
       getMediumOptions: mediumEditorOptionsBody,
 
     };

@@ -87,6 +87,10 @@ angular.module('models')
 
       twitter: function () {
         return $http.get('/auth/twitter');
+      },
+
+      getOneUser: function (userId) {
+        return $http.get('/users/simple/' + userId)
       }
 
 

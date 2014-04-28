@@ -8,6 +8,7 @@ angular.module('vendor', [
   'ngRoute',
   'ui.bootstrap',
   'ui.router',
+  'infinite-scroll',
   'pickadate'
   ]);
 

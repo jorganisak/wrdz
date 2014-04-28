@@ -30,8 +30,11 @@ angular.module('models')
         return $http.get('/pubDocs/' + docId);
       },
 
-      list : function () {
-        return $http.get('/pubDocs');
+      list : function (str) {
+        if (!str) {
+          str = '';
+        }
+        return $http.get('/pubDocs' + str);
       },
 
       user : function (userId) {
