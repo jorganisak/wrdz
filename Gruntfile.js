@@ -42,18 +42,6 @@ module.exports = function (grunt) {
         }
       }
     },
-    stylus: {
-      compile: {
-        options: {
-          paths: [],
-        },
-        files: {
-          '<%= yeoman.app %>/styles/main_styl.css': '<%= yeoman.app %>/styles/app.styl', // 1:1 compile
-          //'path/to/another.css': ['path/to/sources/*.styl', 'path/to/more/*.styl'] // compile and concat into single file
-        }
-      }
-    },
-
     protractor: {
       options: {
         configFile: "node_modules/protractor/referenceConf.js", // Default config file
@@ -182,7 +170,6 @@ module.exports = function (grunt) {
         }]
       }
     },
-
     // Automatically inject Bower components into the app
     'bower-install': {
       app: {
@@ -190,9 +177,6 @@ module.exports = function (grunt) {
         ignorePath: '<%= yeoman.app %>/'
       }
     },
-    
-    
-
     // Renames files for browser caching purposes
     rev: {
       dist: {

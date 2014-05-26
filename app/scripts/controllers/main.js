@@ -3,13 +3,6 @@
 angular.module('shared').controller('MainCtrl', ['$scope', 'User', '$modal', '$window','$timeout', 
   function ($scope, User, $modal, $window, $timeout) {
 
-
-
-
-    $scope.pageTitle = 'wrdz';
-
-    $scope.landingCopy = "<h4 style='text-align:center'>Welcome to Wrdz</h4><p><br></p><p><span style='font-size: 22px; line-height: 1.25;'>This is a web app that provides a simple and clean place to write. <br><br> <strong>(Try highlighting this text.)</strong></span><br><br></p><p><em>With Wrdz, you can:&nbsp;</em></p><p></p><ul><li>Write whatever's in your head</li><li>Easily browse and organize by date and tag</li><li>Share your writing, anonymously if you'd like</li></ul>"
-    
     $scope.mediumEditorOptionsBody = angular.toJson(
       {"placeholder": "",
         "buttons": ["bold", "italic", "anchor", "header2", "orderedlist", "unorderedlist" ],
@@ -19,7 +12,6 @@ angular.module('shared').controller('MainCtrl', ['$scope', 'User', '$modal', '$w
         "forcePlainText" : false,
         "targetBlank": true}
     );
-
 
     function getUser () {
       var u = User.getUser();
@@ -31,7 +23,6 @@ angular.module('shared').controller('MainCtrl', ['$scope', 'User', '$modal', '$w
         });
       }
     }
-
 
     getUser();
 
@@ -52,17 +43,12 @@ angular.module('shared').controller('MainCtrl', ['$scope', 'User', '$modal', '$w
 
     $scope.local_auth_form = false;
 
-
     $scope.bodyClick = function () {
       $scope.$broadcast('bodyClick');
     };
 
 
-
-
-
 // Everything below is auth related or the about modal
-
 
 /*
   Two Auth methods for launching Login and Signup modals from anyhere in the app
@@ -229,8 +215,6 @@ angular.module('shared').controller('MainCtrl', ['$scope', 'User', '$modal', '$w
           $scope.close = function() {
             $modalInstance.close();
           }; 
-          
-
           $scope.feedbackModal = function () {
             $scope.close();
             var modalInstance = $modal.open({
@@ -244,14 +228,10 @@ angular.module('shared').controller('MainCtrl', ['$scope', 'User', '$modal', '$w
                   var data = {'content': feedback}
                   $scope.close();
                   return $http.post('/feedback', data);
-                  
                 };
-
-                
               }],
             });
           };
-          
         }],
       });
     };
@@ -263,7 +243,6 @@ angular.module('shared').controller('MainCtrl', ['$scope', 'User', '$modal', '$w
           $scope.close = function() {
             $modalInstance.close();
           }; 
-
           $scope.submitEmail = function (email) {
             $http.post('/forgot', {'email': email}).then(function (res) {
               $cookieStore.remove('pwreset');
@@ -271,12 +250,10 @@ angular.module('shared').controller('MainCtrl', ['$scope', 'User', '$modal', '$w
                   id: res.data,
                   email: email
                 })
-
             })
             $scope.close();
           }
         }],
       });
     };
-
-  }])
+}])
