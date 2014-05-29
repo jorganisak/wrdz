@@ -1,109 +1,35 @@
-<div ng-hide="user" id="landing-body" class="text-center">
-  <div>
-
-    <div>
-
-      <div>
-        <div class="visible-xs">
-         <div id="landing-header-small" class="text-left">
-          Wrdz
+<div id="landing">
+    <div class="container">
+        <div id="landing-header">
+            Wrdz
         </div>
-        <br>
-        <div id="landing-copy-small">
-          A better place to write your thoughts and ideas.
+        <div id="landing-copy">
+            A simple online journal.
+        </div>
+        <div id="landing-button-group">
+            <button ui-sref="twitter" class="btn landing-button">
+                <span class="icon ion-social-twitter landing-social-icon"></span>
+
+                <span class="landing-btn-copy">
+
+                    Sign in with Twitter
+                </span>
+            </button>
+            <button ui-sref="google" class="btn landing-button">
+                <span class="icon ion-social-googleplus landing-social-icon"></span>
+                <span class="landing-btn-copy">
+                    Sign in with Google
+                </span>
+            </button>
+            <!--<button class="btn landing-button">-->
+                <!--<span class="icon ion-social-facebook landing-social-icon"></span>-->
+                <!--<span class="landing-btn-copy">-->
+
+                    <!--Sign in with Facebook-->
+                <!--</span>-->
+            <!--</button>-->
+    
         </div>
 
-          <div id="landing-form" class="small">
-            <div class="">
-
-
-
-              <a id="landing-twitter-signup" ng-hide="local_auth_form" ui-sref="twitter">
-
-               <span class="icon ion-social-twitter"></span> &nbsp; Sign in with Twitter</a>
-<br>
-<br>
-<br>
-
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a ng-hide="local_auth_form" ng-click="launchEmailLogin();" class="pull-right">I prefer email.</a>
-
-           </div>
-
-           
-         </div>
     </div>
-  </div></div></div>
-
-      <div class="hidden-xs">
-
-        <div id="landing-header-big" class="hidden-xs text-left">
-          Wrdz
-        </div>
-        <div id="landing-copy-big">
-          A better place to write your thoughts and ideas.
-        </div>
-
-        <div>
-          <div id="landing-form">
-            <div class="">
-
-
-
-              <a id="landing-twitter-signup" ng-hide="local_auth_form" ui-sref="twitter">
-
-               <span class="icon ion-social-twitter"></span> &nbsp; Sign in with Twitter 
-
-             </a>
-
-             <a ng-hide="local_auth_form" ng-click="launchEmailLogin();" class="pull-right">I prefer email.</a>
-
-           </div>
-
-
-         </div>
-
-
-
-
-       </div>
-     </div>
-
-
-     <div id="landing-boxes">
-       <div class="row">
-         <div class="col-sm-4">
-           <div class="landing-box">
-             <span class="icon ion-compose"></span>
-             <br>
-             <hr>
-             <span class="landing-box-copy">
-               Write whatever's in your head on a clean surface with simple formatting tools.
-             </span>
-           </div>
-         </div>
-         <div class="col-sm-4">
-           <div class="landing-box">
-              <span class="icon ion-document-text"></span>
-             <br>
-             <hr>
-             <span class="landing-box-copy">
-               Keep your writing private like a diary, or share it for everyone to enjoy.
-             </span>
-           </div>
-         </div>
-         <div class="col-sm-4">
-           <div class="landing-box">
-              <span class="icon ion-social-twitter"></span>
-             <br>
-             <hr>
-             <span class="landing-box-copy">
-               Sign in with Twitter and share your writing as a photo attached to a Tweet.
-             </span>
-           </div>
-         </div>
-
-       </div>
-     </div>
-   </div>
- 
-
+</div>

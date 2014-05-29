@@ -1,1 +1,206 @@
+/*LANDING*/
 
+#landing-header {
+    font-family: "Noto Serif", sans-serif;
+    padding: 20px 0;
+    font-size: 54px;
+    text-align: center;
+}
+
+#landing {
+    margin-top: 40px;
+    text-align: center;
+    
+}
+
+#landing-copy {
+    font-family: 'Clear Sans', sans-serif;
+    padding: 20px 0;
+    font-weight: 100;
+    font-size: 18px;
+    
+}
+
+.landing-button {
+    width: 245px;
+    border-radius: 0;
+    height: 55px;
+    background-color: white;
+    border: solid 1px #f8f8f8;
+    font-family: 'Clear Sans', sans-serif;
+    font-weight: 100;
+    padding: 8px 10%;
+}
+
+#landing-button-group {
+    width: 40%;
+    margin: 0 auto;
+    padding: 20px 0;
+    
+}
+
+
+
+.landing-social-icon {
+    float: left;
+    font-size: 22px;
+    text-align: center;
+    width: 20px;
+}
+
+.ion-social-twitter {
+    color: #55AACE;
+}
+
+.landing-btn-copy {
+    margin-left: 30px;
+    
+}
+
+.ion-social-facebook {
+    color: #3B5998;
+}
+
+.ion-social-googleplus {
+    color: #dd4b39;
+}
+
+/*WRITE*/
+.write-content {
+  outline: none;
+  padding: 15px 4%;
+  border: none;
+  cursor: text;
+  margin: 0px auto 25px auto;
+  background-color: rgb(250, 250, 250);
+  width: 100%;
+}
+
+#logo {
+    font-family: "Noto Serif", sans-serif;
+    font-size: 25px;
+    padding: 10px 21px;
+    position: fixed;
+    top: 0px;
+    cursor: pointer;
+    left: 0px;
+    
+}
+
+#write-left-panel {
+    position: fixed;
+    top: 50px;
+    left: 27px;
+    padding: 8px 5px;
+    text-align: center;
+}
+
+.write-left-panel-btn {
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 80ms linear;
+    border-radius: 20px;
+    height: 45px;
+    margin-top: 10px;
+    width: 45px;
+    padding: 7px 0 0 0px;
+
+}
+
+.write-left-panel-btn:hover {
+    background-color: black; 
+    color: white;
+}
+
+.write-left-panel-btn:hover > .open-icon {
+    border-color: white;
+}
+
+.open-icon {
+    width: 21px;
+    height: 21px;
+    border: solid 2px black;
+    border-radius: 200px;
+    margin: 5px auto 0 12px;
+    
+}
+
+#word-count-container {
+    position: fixed;
+    bottom: 12px;
+    left: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+#write-center {
+    width: 60%;
+    margin: 60px auto;
+}
+
+.write-unit-collapsed {
+    width: 85%;
+    position: relative;
+    margin: 0 auto;
+    
+}
+
+.write-unit-collapsed-content {
+    width: 100%;
+    margin: 10px auto;
+    /* max-height: 80px; */
+    overflow: hidden;
+}
+
+.write-unit-date {
+    font-family: "Clear Sans", font-family;
+}
+
+ul, ol {
+    padding-left: 2px;
+  
+}
+
+p, li {
+    font-family: "Clear Sans", serif;
+    font-size: 16px;
+    font-weight: 100;
+}
+
+h4 {
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+}
+
+#write-center-expanded {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.write-unit-expanded {
+    margin: 20px 0 40px 0;
+}
+
+#about-btn {
+    position: fixed;   bottom: 0px;   
+    right: 11px;
+
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.remove-doc-btn {
+    position: absolute;
+  
+    top: 12px;
+    right: 14px;
+    padding: 3px 3px;
+    opacity: 0.3;
+    cursor: pointer;
+}
+.remove-doc-btn:hover {
+    opacity: 1;
+  
+}
+.remove-doc-btn > .icon {
+  
+}

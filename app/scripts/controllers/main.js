@@ -3,19 +3,8 @@
 angular.module('shared').controller('MainCtrl', ['$scope', 'User', '$modal', '$window','$timeout', 
   function ($scope, User, $modal, $window, $timeout) {
 
-    $scope.mediumEditorOptionsBody = angular.toJson(
-      {"placeholder": "",
-        "buttons": ["bold", "italic", "anchor", "header2", "orderedlist", "unorderedlist" ],
-        "buttonLabels" : {"header2": "<b>H</b>", "anchor": "<span><span class='icon ion-link'></span></span>",
-         "bold":"<strong>B</strong>", "italic": "<em>i</em>"},
-        "disableToolbar": false,
-        "forcePlainText" : false,
-        "targetBlank": true}
-    );
-
     function getUser () {
       var u = User.getUser();
-      // gets full user, messages check is to make sure the user is not already complete
       if (u && !u._userDocs) {
         User.getCurrentUser(u._id).success(function  (data) {
           User.changeUser(data.user);
@@ -26,8 +15,6 @@ angular.module('shared').controller('MainCtrl', ['$scope', 'User', '$modal', '$w
 
     getUser();
 
-    // This recieves a broadcast signal from the User service when
-    // login or logout happens during interaction with the app
     $scope.$on('userChange', function(event, user) {
       if (user) {
         $scope.user = user;
@@ -36,177 +23,13 @@ angular.module('shared').controller('MainCtrl', ['$scope', 'User', '$modal', '$w
       }
     });
 
-
     $scope.goToTop = function () {
       $window.scrollTo(0, 0);
     };
 
-    $scope.local_auth_form = false;
-
     $scope.bodyClick = function () {
       $scope.$broadcast('bodyClick');
     };
-
-
-// Everything below is auth related or the about modal
-
-/*
-  Two Auth methods for launching Login and Signup modals from anyhere in the app
-  They launch modals and call the User service for commnication with server
-*/
-    $scope.launchEmailLogin = function () {
-      var modalInstance = $modal.open({
-        templateUrl: "partials/email-login.html",
-        controller: ['$scope', '$modalInstance', 'User', function  ($scope, $modalInstance, User) {
-          $scope.close = function() {
-            $modalInstance.close();
-          }; 
-          $scope.signin = function(user) {
-            if (!User.isLoggedIn()){
-              User.signin(user).
-              success(function(user, status, headers, config) {
-                User.getCurrentUser(user._id).success(function  (data) {
-                    User.changeUser(data.user);
-                    $scope.close();
-                    $scope.$state.go('write');
-                  }).error(function  (data) {
-                  });
-              }).
-              error(function(err, status, headers, config) {
-                if (err == 'Unknown user') {
-                  $scope.message = 'No one has that username on wrdz!';
-                }
-                if (err == 'Invalid password') {
-                  $scope.message = 'Right username, wrong password...';
-                }
-              });
-            }
-          };
-
-          $scope.signup = function (user) {
-            if (!User.isLoggedIn()) {
-              User.signup(user).
-              success(function(user, status, headers, config)
-              {
-                User.getCurrentUser(user._id).success(function  (data) {
-                  User.changeUser(data.user);
-                  $scope.close();
-                  $scope.$state.go('write');
-                }).error(function  (data) {
-                  });
-              }).
-              error(function(err, status, headers, config)
-              {
-                if (err.errors.username.type === 'Username already exists') {
-                  $scope.message = 'Bummer. That username is taken. Try another?';
-                }
-              });
-            }
-          };
-
-          $scope.forgotPasswordModal = function () {
-            var modalInstance = $modal.open({
-              templateUrl: "partials/password-modal.html",
-              controller: ['$scope', '$modalInstance', '$http', '$cookieStore', function  ($scope, $modalInstance, $http, $cookieStore) {
-                $scope.close = function() {
-                  $modalInstance.close();
-                }; 
-
-                $scope.submitEmail = function (email) {
-                  $http.post('/forgot', {'email': email}).then(function (res) {
-                    $cookieStore.remove('pwreset');
-                    $cookieStore.put('pwreset', {
-                        id: res.data,
-                        email: email
-                      })
-
-                  })
-                  $scope.close();
-                }
-              }],
-            });
-          };
-        }],
-      });
-    };
-    $scope.launchSignUp = function () {
-      var modalInstance = $modal.open({
-        templateUrl: "partials/signup.html",
-        controller: ['$scope', '$modalInstance', 'User', '$http', function  ($scope, $modalInstance, User) {
-          $scope.close = function() {
-            $modalInstance.close();
-          }; 
-          $scope.signin = function(user) {
-            if (!User.isLoggedIn()){
-              User.signin(user).
-              success(function(user, status, headers, config) {
-                User.getCurrentUser(user._id).success(function  (data) {
-                    User.changeUser(data.user);
-                    $scope.close();
-                    $scope.$state.go('write');
-                  }).error(function  (data) {
-                  });
-              }).
-              error(function(err, status, headers, config) {
-                if (err == 'Unknown user') {
-                  $scope.message = 'No one has that username on wrdz!';
-                }
-                if (err == 'Invalid password') {
-                  $scope.message = 'Right username, wrong password...';
-                }
-              });
-            }
-          };
-
-          $scope.signup = function (user) {
-            if (!User.isLoggedIn()) {
-              User.signup(user).
-              success(function(user, status, headers, config)
-              {
-                User.getCurrentUser(user._id).success(function  (data) {
-                  User.changeUser(data.user);
-                  $scope.close();
-
-                  $scope.$state.go('write');
-                }).error(function  (data) {
-                  });
-              }).
-              error(function(err, status, headers, config)
-              {
-                if (err.errors.username.type === 'Username already exists') {
-                  $scope.message = 'Bummer. That username is taken. Try another?';
-                }
-              });
-            }
-          };
-
-          $scope.forgotPasswordModal = function () {
-            var modalInstance = $modal.open({
-              templateUrl: "partials/password-modal.html",
-              controller: ['$scope', '$modalInstance', '$http', '$cookieStore', function  ($scope, $modalInstance, $http, $cookieStore) {
-                $scope.close = function() {
-                  $modalInstance.close();
-                }; 
-
-                $scope.submitEmail = function (email) {
-                  $http.post('/forgot', {'email': email}).then(function (res) {
-                    $cookieStore.remove('pwreset');
-                    $cookieStore.put('pwreset', {
-                        id: res.data,
-                        email: email
-                      })
-
-                  })
-                  $scope.close();
-                }
-              }],
-            });
-          };
-
-        }],
-      });
-    };
-
 
     $scope.aboutModal = function () {
       var modalInstance = $modal.open({
@@ -232,27 +55,6 @@ angular.module('shared').controller('MainCtrl', ['$scope', 'User', '$modal', '$w
               }],
             });
           };
-        }],
-      });
-    };
-
-    $scope.forgotPasswordModal = function () {
-      var modalInstance = $modal.open({
-        templateUrl: "partials/password-modal.html",
-        controller: ['$scope', '$modalInstance', '$http', '$cookieStore', function  ($scope, $modalInstance, $http, $cookieStore) {
-          $scope.close = function() {
-            $modalInstance.close();
-          }; 
-          $scope.submitEmail = function (email) {
-            $http.post('/forgot', {'email': email}).then(function (res) {
-              $cookieStore.remove('pwreset');
-              $cookieStore.put('pwreset', {
-                  id: res.data,
-                  email: email
-                })
-            })
-            $scope.close();
-          }
         }],
       });
     };

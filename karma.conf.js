@@ -13,14 +13,13 @@ module.exports = function(config) {
     files: [
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-animate/angular-animate.js',
-      'app/bower_components/angular-perfect-scrollbar/angular-perfect-scrollbar.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
-      'app/bower_components/angular-resource/angular-resource.js',
       'app/bower_components/angular-cookies/angular-cookies.js',
       'app/bower_components/angular-bootstrap/ui-bootstrap.js',
       'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'app/bower_components/angular-sanitize/angular-sanitize.js',
-      'app/bower_components/angular-route/angular-route.js',
+      'app/bower_components/underscore/underscore.js',
+      'app/bower_components/q/q.js',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
       'app/vendor/medium-editor/dist/js/medium-editor.js',
@@ -53,7 +52,7 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['Firefox'],
+    browsers: ['Chrome'],
     plugins : [
             'karma-chrome-launcher',
             'karma-firefox-launcher',

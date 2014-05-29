@@ -1,27 +1,38 @@
-<div id="write-body" ng-cloak class='' ng-controller='WriteCtrl'>
-
-    <div ng-cloak class="row">
-
-        <div class="text-center col-sm-8 col-sm-offset-2 col-xs-12 pull-left column ">
-
-            <div infinite-scroll="loadMore()" infinite-scroll-distance="1" infinite-scroll-immediate-check="false" id="write-center">
-                
-                <div ng-click='newDoc()' class='text-center' id='new-doc-button'>
-                    <span class="icon ion-plus-round"></span>
-                </div>
-
-                <div ng-repeat="doc in docs">
-                    <div write-unit tweet="openTweetModal(docId, pub)" user="user" doc="doc" ></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-2 hidden-xs pull-right ">
-            <div ng-show='user' id="write-fixed-right" class='fixed-right'>
-            </div>
-
-        </div>
-
+<div ng-controller="DocsCtrl" id="write">
+    <div ng-click="aboutModal()" id="logo">
+        Wrdz
     </div>
+    <div id="write-left-panel">
+        <!--<div class="write-left-panel-btn" data-toggle="tooltip" data-placement="left" title="Top">-->
+            <!--<span class="icon ion-arrow-up-c"></span>-->
+        <!--</div>-->
+        <div ng-click="newDoc()" class="write-left-panel-btn" data-toggle="tooltip" data-placement="left" title="New">
+            <span class="icon ion-plus-round"></span>
+        </div>
+        <!--<div class="write-left-panel-btn" data-toggle="tooltip" data-placement="left" title="Collapse">-->
+            <!--<span class="icon ion-minus-round"></span>-->
+        <!--</div>-->
+        <!--<div class="write-left-panel-btn" data-toggle="tooltip" data-placement="left" title="Expand">-->
+            <!--<div class="open-icon"></div>-->
+        <!--</div>-->
+    </div>
+    <!--<div id="word-count-container">-->
+        <!--23432-->
+    <!--</div>-->
+
+    <div id="write-center">
+      <div ng-repeat="doc in docs | orderBy: '-updated_at'">
+        <div write-unit ng-mouseover="showX = true" ng-mouseleave="showX=false" class="write-unit-collapsed">
+          <div doc-date dates-showing="datesShowing" date="{{doc.updated_at}}" class="write-unit-date">
+          </div>
+          <div class="write-unit-collapsed-content">
+            <div ng-keydown='bodyChange(doc)' id="{{doc._id}}" medium-editor options="{{mediumEditorOptionsBody}}" ng-model='doc.body' class="write-content">
+            </div>
+          </div>
+          <div ng-click="remove(doc)" ng-show="showX" class="remove-doc-btn">
+            <span class="icon ion-close"></span>
+          </div>
+        </div>
+      </div>
 
 </div>

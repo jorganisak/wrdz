@@ -18,105 +18,68 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" href="vendor/angular-pickadate/angular-pickadate.css" />
-
     <link rel="stylesheet" href="styles/ionicons.css" />
     <link rel="stylesheet" href="styles/bootstrap.css" />
     <link rel="stylesheet" href="vendor/medium-editor/dist/css/medium-editor_2.css" />
     <link rel="stylesheet" href="vendor/medium-editor/dist/css/medium-editor.css" />
     <link rel="stylesheet" href="styles/main.css" />
-    <link rel="stylesheet" href="styles/base.css" />
     <link rel="stylesheet" href="styles/angular.css" />
     <link rel="stylesheet" href="vendor/animate.css" />
-
-
     <!-- endbuild -->
     <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Latin+Modern:400,700,400i,700i/Merriweather:200,200i,400,400i,700,700i/Roboto+Slab:200,300,400,700/Old+Standard:400,400i,700/Roboto:300,500,700/Crimson:400,700,400i/Montserrat:400,700/Source+Sans+Pro:200,300,400,500,600,700,800,400i,600i/Noto+Serif:400,400i,700,700i/Clear+Sans:300,500,700">
-    
     <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
     for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
     mixpanel.init("2c328856e86493b3769e994c07bba8df");</script><!-- end Mixpanel -->
-
   </head>
   <body ng-app="wrdz" ng-cloak ng-controller="MainCtrl">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    
     <div ng-click="bodyClick()" ng-include="'partials/main.html'"></div>
-
-
-
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-47683318-1', 'wrdz.co');
-  ga('send', 'pageview');
-
-</script>
- 
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-47683318-1', 'wrdz.co');
+      ga('send', 'pageview');
+    </script>
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
-
     <!-- build:js(app) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/momentjs/moment.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/lodash/dist/lodash.compat.js"></script>
-    <script src="bower_components/angular-strap/dist/angular-strap.min.js"></script>
-    <script src="bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
     <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+    <script src="bower_components/q/q.js"></script>
     <!-- endbower -->
-
-    <script src="vendor/share.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="vendor/angular-pickadate/angular-pickadate.js"></script>
-    <script src="vendor/html2canvas.js"></script>
     <script src="vendor/medium-editor/dist/js/medium-editor.js"></script>
-    
     <script src="vendor/ui-router/angular-ui-router.min.js"></script>
-    <script src="vendor/s3upload.js"></script>
-    <script src="vendor/canvas-to-blob.js"></script>
     <!-- endbuild -->
-
-
-  
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/states.js"></script>
-
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/read.js"></script>
-        <script src="scripts/controllers/write.js"></script>
-        <script src="scripts/controllers/me.js"></script>
-        <script src="scripts/controllers/nav.js"></script>
-        
-        <script src="scripts/directives/medium-js.js"></script>
-        <script src="scripts/directives/directives.js"></script>
-        <script src="scripts/directives/share.js"></script>
-        <script src="scripts/filters/filters.js"></script>
-        
-        <script src="scripts/services/Write.js"></script>
-        <script src="scripts/services/Read.js"></script>
-        <script src="scripts/services/Me.js"></script>
-        <script src="scripts/services/Picture.js"></script>
-        <script src="scripts/services/models/User.js"></script>
-        <script src="scripts/services/models/UserDoc.js"></script>
-        <script src="scripts/services/models/PubDoc.js"></script>
-        <!-- endbuild -->
-</body>
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/states.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/write.js"></script>
+    <script src="scripts/directives/medium-js.js"></script>
+    <script src="scripts/directives/directives.js"></script>
+    <script src="scripts/filters/filters.js"></script>
+    <script src="scripts/services/Write.js"></script>
+    <script src="scripts/components/user/user-model.js"></script>
+    <script src="scripts/components/resource/resource.js"></script>
+    <script src="scripts/components/doc/doc-model.js"></script>
+    <script src="scripts/components/doc/doc-ctrl.js"></script>
+    <!-- endbuild -->
+  </body>
 </html>
